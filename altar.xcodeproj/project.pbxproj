@@ -3,27 +3,35 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		47A39922668B2238F9B2BB13 /* Pods_altar.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DA57ADF581AF8A6E36DBF695 /* Pods_altar.framework */; };
+		657F2B472325F5CA00187C9D /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 657F2B462325F5CA00187C9D /* SignUpViewController.swift */; };
 		65D42419232576A800DB286E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65D42418232576A800DB286E /* AppDelegate.swift */; };
-		65D4241B232576A800DB286E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65D4241A232576A800DB286E /* ViewController.swift */; };
 		65D4241E232576A800DB286E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 65D4241C232576A800DB286E /* Main.storyboard */; };
 		65D42421232576A800DB286E /* altar.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 65D4241F232576A800DB286E /* altar.xcdatamodeld */; };
 		65D42423232576AA00DB286E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 65D42422232576AA00DB286E /* Assets.xcassets */; };
 		65D42426232576AA00DB286E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 65D42424232576AA00DB286E /* LaunchScreen.storyboard */; };
+		65D4242E232586E200DB286E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 65D4242D232586E200DB286E /* GoogleService-Info.plist */; };
+		65D4243023258A2D00DB286E /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65D4242F23258A2D00DB286E /* LogInViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		499F25A3C25A7466F9176978 /* Pods-altar.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-altar.release.xcconfig"; path = "Target Support Files/Pods-altar/Pods-altar.release.xcconfig"; sourceTree = "<group>"; };
+		657F2B462325F5CA00187C9D /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		65D42415232576A800DB286E /* altar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = altar.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		65D42418232576A800DB286E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		65D4241A232576A800DB286E /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		65D4241D232576A800DB286E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		65D42420232576A800DB286E /* altar.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = altar.xcdatamodel; sourceTree = "<group>"; };
 		65D42422232576AA00DB286E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		65D42425232576AA00DB286E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		65D42427232576AA00DB286E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		65D4242D232586E200DB286E /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		65D4242F23258A2D00DB286E /* LogInViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
+		66B4795A4700C036E1CD6395 /* Pods-altar.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-altar.debug.xcconfig"; path = "Target Support Files/Pods-altar/Pods-altar.debug.xcconfig"; sourceTree = "<group>"; };
+		DA57ADF581AF8A6E36DBF695 /* Pods_altar.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_altar.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -31,17 +39,28 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				47A39922668B2238F9B2BB13 /* Pods_altar.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0760074D86B288FF279ECB21 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				DA57ADF581AF8A6E36DBF695 /* Pods_altar.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		65D4240C232576A800DB286E = {
 			isa = PBXGroup;
 			children = (
 				65D42417232576A800DB286E /* altar */,
 				65D42416232576A800DB286E /* Products */,
+				69C2338FAB26ED92AA2C9206 /* Pods */,
+				0760074D86B288FF279ECB21 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -57,14 +76,25 @@
 			isa = PBXGroup;
 			children = (
 				65D42418232576A800DB286E /* AppDelegate.swift */,
-				65D4241A232576A800DB286E /* ViewController.swift */,
 				65D4241C232576A800DB286E /* Main.storyboard */,
+				657F2B462325F5CA00187C9D /* SignUpViewController.swift */,
 				65D42422232576AA00DB286E /* Assets.xcassets */,
 				65D42424232576AA00DB286E /* LaunchScreen.storyboard */,
+				65D4242F23258A2D00DB286E /* LogInViewController.swift */,
 				65D42427232576AA00DB286E /* Info.plist */,
+				65D4242D232586E200DB286E /* GoogleService-Info.plist */,
 				65D4241F232576A800DB286E /* altar.xcdatamodeld */,
 			);
 			path = altar;
+			sourceTree = "<group>";
+		};
+		69C2338FAB26ED92AA2C9206 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				66B4795A4700C036E1CD6395 /* Pods-altar.debug.xcconfig */,
+				499F25A3C25A7466F9176978 /* Pods-altar.release.xcconfig */,
+			);
+			path = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -74,9 +104,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 65D4242A232576AA00DB286E /* Build configuration list for PBXNativeTarget "altar" */;
 			buildPhases = (
+				11E01FB0D46E08F4A1E9BB8F /* [CP] Check Pods Manifest.lock */,
 				65D42411232576A800DB286E /* Sources */,
 				65D42412232576A800DB286E /* Frameworks */,
 				65D42413232576A800DB286E /* Resources */,
+				44DA273824436F5AE476D16C /* [CP] Embed Pods Frameworks */,
+				691641845997C102225972D5 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -126,6 +159,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				65D42426232576AA00DB286E /* LaunchScreen.storyboard in Resources */,
+				65D4242E232586E200DB286E /* GoogleService-Info.plist in Resources */,
 				65D42423232576AA00DB286E /* Assets.xcassets in Resources */,
 				65D4241E232576A800DB286E /* Main.storyboard in Resources */,
 			);
@@ -133,14 +167,74 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		11E01FB0D46E08F4A1E9BB8F /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-altar-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		44DA273824436F5AE476D16C /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-altar/Pods-altar-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-altar/Pods-altar-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-altar/Pods-altar-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		691641845997C102225972D5 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-altar/Pods-altar-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-altar/Pods-altar-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-altar/Pods-altar-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		65D42411232576A800DB286E /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				65D4241B232576A800DB286E /* ViewController.swift in Sources */,
 				65D42421232576A800DB286E /* altar.xcdatamodeld in Sources */,
 				65D42419232576A800DB286E /* AppDelegate.swift in Sources */,
+				657F2B472325F5CA00187C9D /* SignUpViewController.swift in Sources */,
+				65D4243023258A2D00DB286E /* LogInViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -284,11 +378,13 @@
 		};
 		65D4242B232576AA00DB286E /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 66B4795A4700C036E1CD6395 /* Pods-altar.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 5766G78FC9;
 				INFOPLIST_FILE = altar/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -302,11 +398,13 @@
 		};
 		65D4242C232576AA00DB286E /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 499F25A3C25A7466F9176978 /* Pods-altar.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 5766G78FC9;
 				INFOPLIST_FILE = altar/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
