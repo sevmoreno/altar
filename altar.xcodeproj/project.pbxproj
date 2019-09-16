@@ -9,6 +9,10 @@
 /* Begin PBXBuildFile section */
 		47A39922668B2238F9B2BB13 /* Pods_altar.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DA57ADF581AF8A6E36DBF695 /* Pods_altar.framework */; };
 		657F2B472325F5CA00187C9D /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 657F2B462325F5CA00187C9D /* SignUpViewController.swift */; };
+		65ABFC83232C069000729B57 /* UsersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65ABFC82232C069000729B57 /* UsersViewController.swift */; };
+		65ABFC85232C0E1D00729B57 /* UserTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65ABFC84232C0E1D00729B57 /* UserTableViewCell.swift */; };
+		65ABFC87232C12C200729B57 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65ABFC86232C12C200729B57 /* User.swift */; };
+		65ABFC89232C170200729B57 /* Advengers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65ABFC88232C170200729B57 /* Advengers.swift */; };
 		65D42419232576A800DB286E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65D42418232576A800DB286E /* AppDelegate.swift */; };
 		65D4241E232576A800DB286E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 65D4241C232576A800DB286E /* Main.storyboard */; };
 		65D42421232576A800DB286E /* altar.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 65D4241F232576A800DB286E /* altar.xcdatamodeld */; };
@@ -21,6 +25,10 @@
 /* Begin PBXFileReference section */
 		499F25A3C25A7466F9176978 /* Pods-altar.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-altar.release.xcconfig"; path = "Target Support Files/Pods-altar/Pods-altar.release.xcconfig"; sourceTree = "<group>"; };
 		657F2B462325F5CA00187C9D /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
+		65ABFC82232C069000729B57 /* UsersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersViewController.swift; sourceTree = "<group>"; };
+		65ABFC84232C0E1D00729B57 /* UserTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserTableViewCell.swift; sourceTree = "<group>"; };
+		65ABFC86232C12C200729B57 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		65ABFC88232C170200729B57 /* Advengers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Advengers.swift; sourceTree = "<group>"; };
 		65D42415232576A800DB286E /* altar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = altar.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		65D42418232576A800DB286E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		65D4241D232576A800DB286E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -77,6 +85,10 @@
 			children = (
 				65D42418232576A800DB286E /* AppDelegate.swift */,
 				65D4241C232576A800DB286E /* Main.storyboard */,
+				65ABFC86232C12C200729B57 /* User.swift */,
+				65ABFC84232C0E1D00729B57 /* UserTableViewCell.swift */,
+				65ABFC82232C069000729B57 /* UsersViewController.swift */,
+				65ABFC88232C170200729B57 /* Advengers.swift */,
 				657F2B462325F5CA00187C9D /* SignUpViewController.swift */,
 				65D42422232576AA00DB286E /* Assets.xcassets */,
 				65D42424232576AA00DB286E /* LaunchScreen.storyboard */,
@@ -232,9 +244,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				65D42421232576A800DB286E /* altar.xcdatamodeld in Sources */,
+				65ABFC89232C170200729B57 /* Advengers.swift in Sources */,
+				65ABFC83232C069000729B57 /* UsersViewController.swift in Sources */,
 				65D42419232576A800DB286E /* AppDelegate.swift in Sources */,
 				657F2B472325F5CA00187C9D /* SignUpViewController.swift in Sources */,
+				65ABFC85232C0E1D00729B57 /* UserTableViewCell.swift in Sources */,
 				65D4243023258A2D00DB286E /* LogInViewController.swift in Sources */,
+				65ABFC87232C12C200729B57 /* User.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

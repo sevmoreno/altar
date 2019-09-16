@@ -27,7 +27,7 @@ class SignUpViewController: UIViewController, UIImagePickerControllerDelegate, U
  
     let databaseReference = Database.database().reference()
     
-    var selectedChurch = "Not listed"
+    var selectedChurch = "Favorday Church"
     var churchList = ["Favorday Church","River Church","Not listed"]
   
    // let userStorage =
@@ -63,21 +63,36 @@ class SignUpViewController: UIViewController, UIImagePickerControllerDelegate, U
                  
                 let uploadTask = imageref.putData(data!, metadata: nil, completion: { (metadata, error) in
 
+                    
+                    imageref.downloadURL(completion: { (url, error) in
+                        
+                        
+                        
+                        
+                        self.ref = self.databaseReference
+                        
+                        let userinfo: [String:Any] = ["userid" : (user?.user.uid), "name" : self.name.text!, "email" : self.email.text!, "church": self.selectedChurch, "photoURL" : url ?? ""]
+                        let userID = String ((user?.user.uid)!) ?? "NoTiene"
+                        //   self.databaseReference.child("users").child("\(user!.user.uid)").setValue(user?.user.uid, forKeyPath: "userid")
+                        self.ref.child("users").child(userID).setValue(userinfo)
+                        //self.ref.child("users").child(userID).setValue(self.email.text!)
+                        //   self.databaseReference.child("users").child("\(user!.user.uid)").setValue(self.selectedChurch, forKeyPath: "church")
+                        self.performSegue(withIdentifier: "accesoOK", sender: self)
+                        
+                        
                         
                     })
+                    
+                    
+                    
+                    })
+                    
+                    
                 
                 uploadTask.resume()
-                    
-                    self.ref = self.databaseReference
                 
-                    let userinfo: [String:Any] = ["userid" : (user?.user.uid), "name" : self.name.text!, "email" : self.email.text!, "church": self.selectedChurch]
-                    let userID = String ((user?.user.uid)!) ?? "NoTiene"
-                 //   self.databaseReference.child("users").child("\(user!.user.uid)").setValue(user?.user.uid, forKeyPath: "userid")
-                    self.ref.child("users").child(userID).setValue(self.name.text!)
-                    self.ref.child("users").child(userID).setValue(self.email.text!)
-                 //   self.databaseReference.child("users").child("\(user!.user.uid)").setValue(self.selectedChurch, forKeyPath: "church")
-                    self.performSegue(withIdentifier: "accesoOK", sender: self)
-                    
+                
+          
                 }
                 
             }
