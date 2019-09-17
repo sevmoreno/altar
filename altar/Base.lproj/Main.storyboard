@@ -56,12 +56,12 @@
                         <outlet property="emailLogin" destination="5e4-Yk-Fsu" id="ZUT-AM-94U"/>
                         <outlet property="passwordLogin" destination="sDZ-Z7-Pva" id="S0k-p0-vHF"/>
                         <segue destination="vWx-L6-goc" kind="show" identifier="accesoSignIN" id="BO6-Ti-jNe"/>
-                        <segue destination="2E5-vo-rva" kind="show" identifier="accesoOK" id="jNS-0C-fbx"/>
+                        <segue destination="Leq-eS-bcM" kind="show" identifier="accesoOK" id="7cR-iW-vX2"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1520" y="94"/>
+            <point key="canvasLocation" x="-1303" y="60"/>
         </scene>
         <!--Sign Up View Controller-->
         <scene sceneID="wfu-gD-6re">
@@ -137,12 +137,12 @@
                         <outlet property="password" destination="qVH-1X-tyT" id="h9A-lb-AsJ"/>
                         <outlet property="passwordvalidator" destination="umP-gQ-xSf" id="FAn-KZ-rYs"/>
                         <outlet property="signInBtt" destination="RNC-D6-GfG" id="c2A-ow-D6o"/>
-                        <segue destination="2E5-vo-rva" kind="show" identifier="accesoOK" id="Qx7-R4-UtT"/>
+                        <segue destination="Leq-eS-bcM" kind="show" identifier="accesoOK" id="t9C-jd-6oV"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BWf-gt-Un9" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-626" y="-400"/>
+            <point key="canvasLocation" x="-310" y="-702"/>
         </scene>
         <!--Altar-->
         <scene sceneID="TiS-yx-EPF">
@@ -167,30 +167,41 @@
                                                 <segue destination="BYZ-38-t0r" kind="show" id="bxx-9m-bmf"/>
                                             </connections>
                                         </barButtonItem>
+                                        <barButtonItem key="rightBarButtonItem" title="Item" id="03H-q2-U51" userLabel="Reload Data">
+                                            <connections>
+                                                <action selector="reloadData:" destination="2E5-vo-rva" id="w06-xW-dA4"/>
+                                            </connections>
+                                        </barButtonItem>
                                     </navigationItem>
                                 </items>
                             </navigationBar>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="XYd-Qr-9k8">
-                                <rect key="frame" x="0.0" y="110" width="414" height="726"/>
+                                <rect key="frame" x="0.0" y="110" width="414" height="741"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="userCell" rowHeight="92" id="dRQ-MP-GRQ" customClass="UserTableViewCell" customModule="altar" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="414" height="92"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" accessoryType="detailDisclosureButton" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="userCell" rowHeight="150" id="dRQ-MP-GRQ" customClass="UserTableViewCell" customModule="altar" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="414" height="150"/>
                                         <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="dRQ-MP-GRQ" id="FHA-Fa-V5A">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="91.5"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="dRQ-MP-GRQ" id="FHA-Fa-V5A">
+                                            <rect key="frame" x="0.0" y="0.0" width="342" height="149.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="lRK-Kg-Ro1">
-                                                    <rect key="frame" x="30" y="21" width="50" height="50"/>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" tag="201" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="lRK-Kg-Ro1">
+                                                    <rect key="frame" x="30" y="50" width="50" height="50"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="50" id="bOQ-WI-JAD"/>
                                                         <constraint firstAttribute="height" constant="50" id="jfE-Xh-O0l"/>
                                                     </constraints>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                            <integer key="value" value="25"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                        <userDefinedRuntimeAttribute type="boolean" keyPath="layer.maskToBounds" value="YES"/>
+                                                    </userDefinedRuntimeAttributes>
                                                 </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Full Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1oU-4q-a5u">
-                                                    <rect key="frame" x="99" y="35.5" width="77" height="21"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" tag="200" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Full Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1oU-4q-a5u">
+                                                    <rect key="frame" x="99" y="64.5" width="77" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -216,6 +227,7 @@
                         <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="4oW-gN-YA2"/>
                     </view>
+                    <tabBarItem key="tabBarItem" title="Users" id="uPw-uh-Mzn"/>
                     <navigationItem key="navigationItem" title="Altar" id="fLZ-C6-76v"/>
                     <connections>
                         <outlet property="tablaUsuarios" destination="XYd-Qr-9k8" id="HFm-xQ-iV2"/>
@@ -223,10 +235,137 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5u2-uL-Jyf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="250.72463768115944" y="-19.419642857142858"/>
+            <point key="canvasLocation" x="1367" y="-611"/>
+        </scene>
+        <!--Power of Prayer-->
+        <scene sceneID="zAQ-tN-L7N">
+            <objects>
+                <viewController id="1ME-OJ-6H4" customClass="PrayViewController" customModule="altar" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="0tp-gq-rz0">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="OsV-yV-MAy"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Power of Prayer" id="pkq-IK-ZeI">
+                        <barButtonItem key="leftBarButtonItem" title="Item" id="Gxn-Ua-1xY"/>
+                        <barButtonItem key="rightBarButtonItem" title="Add prayer" id="BEb-rR-cC1">
+                            <connections>
+                                <segue destination="q9L-LC-sol" kind="show" id="NPy-yK-Dfw"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="6a8-XC-ieJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2263.768115942029" y="75"/>
+        </scene>
+        <!--Pray Post View Controller-->
+        <scene sceneID="48J-oD-yOv">
+            <objects>
+                <viewController id="q9L-LC-sol" customClass="PrayPostViewController" customModule="altar" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="tNG-42-u8f">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="sWZ-aQ-PjT">
+                                <rect key="frame" x="55" y="114" width="80" height="81"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="50" id="6H6-pj-IO1"/>
+                                    <constraint firstAttribute="height" constant="50" id="7hk-od-cRG"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8RK-md-cSH">
+                                <rect key="frame" x="157" y="144" width="226" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" text="What is your prayer" textAlignment="justified" translatesAutoresizingMaskIntoConstraints="NO" id="ASl-BX-YVG">
+                                <rect key="frame" x="20" y="203" width="374" height="410"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Csx-GS-71j">
+                                <rect key="frame" x="20" y="633" width="85" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Photo/Video"/>
+                                <connections>
+                                    <action selector="selectVideoPhoto:" destination="q9L-LC-sol" eventType="touchUpInside" id="NBB-jH-LNv"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Nmy-ys-uJV">
+                                <rect key="frame" x="20" y="671" width="128" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Background image"/>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ooa-gF-WHf" userLabel="Audible Prayer">
+                                <rect key="frame" x="20" y="709" width="100" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Audible Prayer"/>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QHy-37-KRr">
+                                <rect key="frame" x="192" y="749" width="31" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Post"/>
+                                <connections>
+                                    <action selector="postAction:" destination="q9L-LC-sol" eventType="touchUpInside" id="7SM-c1-wTZ"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="Wyf-ML-dlq"/>
+                    </view>
+                    <connections>
+                        <outlet property="textoIngresado" destination="ASl-BX-YVG" id="NER-9R-cm2"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="xDi-d3-anm" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3037.68115942029" y="75"/>
+        </scene>
+        <!--Tab Bar Controller-->
+        <scene sceneID="nF9-zY-BAG">
+            <objects>
+                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="Leq-eS-bcM" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="7ht-gb-uwh">
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="RyO-YI-Hhq" kind="relationship" relationship="viewControllers" id="w7n-s8-BZq"/>
+                        <segue destination="2E5-vo-rva" kind="relationship" relationship="viewControllers" id="2IR-9q-3me"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="4Rp-Pe-VqO" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="520" y="-175"/>
+        </scene>
+        <!--Power of Pray-->
+        <scene sceneID="YfA-NO-ev4">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="RyO-YI-Hhq" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Power of Pray" id="53m-hi-SVr"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="CDC-65-onB">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="1ME-OJ-6H4" kind="relationship" relationship="rootViewController" id="2qC-c9-AeN"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dPb-zV-EZu" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1353.6231884057972" y="75"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="Qx7-R4-UtT"/>
+        <segue reference="7cR-iW-vX2"/>
     </inferredMetricsTieBreakers>
 </document>

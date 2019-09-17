@@ -26,8 +26,10 @@ class advengers {
     let lastNewsRef = Database.database().reference().child ("last_news")
     // var newsfeeds = [newFeed (newsDate: "", url: "", thumbURL: "", title: "", subtitle: "", bodyText: "")]
     
-   
-    var currentChurch = "Favor Day"
+   let  postPrayFeed = Database.database().reference().child ("post_pray_feed")
+    let PostPrayStorage = Storage.storage().reference().child("post_pray_feed")
+    
+    var currentChurch = "Favorday Church"
     
     let storageRef = Storage.storage().reference()
     

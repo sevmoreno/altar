@@ -55,6 +55,13 @@ class SignUpViewController: UIViewController, UIImagePickerControllerDelegate, U
                     print(error.localizedDescription)
                 }
                 
+                let changeRequest = Auth.auth().currentUser?.createProfileChangeRequest()
+                changeRequest?.displayName = self.name.text
+                changeRequest?.commitChanges(completion: { (no) in
+                    
+                })
+                
+                
                 if user != nil {
                 
                 let imageref = self.storageReference.child("picture").child("\(user!.user.uid)")
@@ -68,10 +75,10 @@ class SignUpViewController: UIViewController, UIImagePickerControllerDelegate, U
                         
                         
                         
-                        
+                        let modoString = String (url!.absoluteString)
                         self.ref = self.databaseReference
                         
-                        let userinfo: [String:Any] = ["userid" : (user?.user.uid), "name" : self.name.text!, "email" : self.email.text!, "church": self.selectedChurch, "photoURL" : url ?? ""]
+                        let userinfo: [String:Any] = ["userid" : (user?.user.uid), "name" : self.name.text!, "email" : self.email.text!, "church": self.selectedChurch, "photoURL" : modoString ?? ""]
                         let userID = String ((user?.user.uid)!) ?? "NoTiene"
                         //   self.databaseReference.child("users").child("\(user!.user.uid)").setValue(user?.user.uid, forKeyPath: "userid")
                         self.ref.child("users").child(userID).setValue(userinfo)

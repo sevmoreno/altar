@@ -32,35 +32,43 @@ class UsersViewController: UIViewController {
         
         advengers.shared.usersStatusRef.queryOrderedByKey().observe(.value) { (datasnap) in
             let usersRead = datasnap.value as! [ String : NSDictionary]
-            self.users.removeAll()
+            //self.users.removeAll()
             
             for (_,value) in usersRead {
                 
-                if let userid = value["user"] as? String {
+                print("heeyyy")
+                
+                print(datasnap.value)
+                
+                if let userid = value["userid"] as? String {
+                    
+                     print("Entra")
+                     print(userid)
                     
                     if userid != Auth.auth().currentUser?.uid
                     {
                         if advengers.shared.currentChurch == value["church"] as? String {
                             
                             var userToShow = User()
-                            userToShow.userID = value["user"] as? String ?? ""
+                            userToShow.userID = value["userid"] as? String ?? ""
                             userToShow.fullName = value["name"] as? String ?? ""
                             userToShow.email = value["email"] as? String ?? ""
                             userToShow.photoUser = value["photoURL"] as? String ?? ""
                             
                             self.users.append(userToShow)
-                            
+                            self.tablaUsuarios.reloadData()
+                          
                         }
                         
                         
                     }
                 }
             }
-            self.tablaUsuarios.reloadData()
+           
             
             
         }
-      advengers.shared.usersStatusRef.removeAllObservers()
+     // advengers.shared.usersStatusRef.removeAllObservers()
         
     }
 
@@ -70,6 +78,13 @@ class UsersViewController: UIViewController {
         
     }
     
+    @IBAction func reloadData(_ sender: Any) {
+        
+        
+        print(self.users.count)
+         self.tablaUsuarios.reloadData()
+        
+    }
     
 }
 
@@ -79,17 +94,37 @@ extension UsersViewController: UITableViewDelegate, UITableViewDataSource {
 
 
 func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+   // return users.count
+    
     return users.count
     
 }
 
 func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+   
+    
+    
     let cell = tableView.dequeueReusableCell(withIdentifier: "userCell", for: indexPath) as! UserTableViewCell
     
-    cell.nombre.text = users[indexPath.row].fullName
+    
+   
+    
+ 
+     if users.count != nil {
+    
+     if let titulo = cell.viewWithTag(200) as? UILabel
+     
+     {
+     titulo.text = users[indexPath.row].fullName
+     
+     }
+     
+     cell.nombre.text = users[indexPath.row].fullName
     cell.userId = users[indexPath.row].userID
     cell.foto.downloadImage(imgURL: users[indexPath.row].photoUser)
     
+                            }
+ 
     
     return cell
     
