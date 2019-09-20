@@ -10,6 +10,8 @@
 		47A39922668B2238F9B2BB13 /* Pods_altar.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DA57ADF581AF8A6E36DBF695 /* Pods_altar.framework */; };
 		654F95D923306ABC00175A7E /* PrayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 654F95D823306ABC00175A7E /* PrayViewController.swift */; };
 		654F95DB23306E7F00175A7E /* PrayPostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 654F95DA23306E7F00175A7E /* PrayPostViewController.swift */; };
+		654F95DD2331B93B00175A7E /* FeedCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 654F95DC2331B93B00175A7E /* FeedCollectionViewCell.swift */; };
+		654F95DF2332AD8700175A7E /* Posts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 654F95DE2332AD8700175A7E /* Posts.swift */; };
 		657F2B472325F5CA00187C9D /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 657F2B462325F5CA00187C9D /* SignUpViewController.swift */; };
 		65ABFC83232C069000729B57 /* UsersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65ABFC82232C069000729B57 /* UsersViewController.swift */; };
 		65ABFC85232C0E1D00729B57 /* UserTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65ABFC84232C0E1D00729B57 /* UserTableViewCell.swift */; };
@@ -28,6 +30,8 @@
 		499F25A3C25A7466F9176978 /* Pods-altar.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-altar.release.xcconfig"; path = "Target Support Files/Pods-altar/Pods-altar.release.xcconfig"; sourceTree = "<group>"; };
 		654F95D823306ABC00175A7E /* PrayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrayViewController.swift; sourceTree = "<group>"; };
 		654F95DA23306E7F00175A7E /* PrayPostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrayPostViewController.swift; sourceTree = "<group>"; };
+		654F95DC2331B93B00175A7E /* FeedCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedCollectionViewCell.swift; sourceTree = "<group>"; };
+		654F95DE2332AD8700175A7E /* Posts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Posts.swift; sourceTree = "<group>"; };
 		657F2B462325F5CA00187C9D /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		65ABFC82232C069000729B57 /* UsersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersViewController.swift; sourceTree = "<group>"; };
 		65ABFC84232C0E1D00729B57 /* UserTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserTableViewCell.swift; sourceTree = "<group>"; };
@@ -89,6 +93,8 @@
 			children = (
 				65D42418232576A800DB286E /* AppDelegate.swift */,
 				65D4241C232576A800DB286E /* Main.storyboard */,
+				654F95DE2332AD8700175A7E /* Posts.swift */,
+				654F95DC2331B93B00175A7E /* FeedCollectionViewCell.swift */,
 				654F95DA23306E7F00175A7E /* PrayPostViewController.swift */,
 				654F95D823306ABC00175A7E /* PrayViewController.swift */,
 				65ABFC86232C12C200729B57 /* User.swift */,
@@ -251,10 +257,12 @@
 			files = (
 				65D42421232576A800DB286E /* altar.xcdatamodeld in Sources */,
 				65ABFC89232C170200729B57 /* Advengers.swift in Sources */,
+				654F95DD2331B93B00175A7E /* FeedCollectionViewCell.swift in Sources */,
 				654F95DB23306E7F00175A7E /* PrayPostViewController.swift in Sources */,
 				654F95D923306ABC00175A7E /* PrayViewController.swift in Sources */,
 				65ABFC83232C069000729B57 /* UsersViewController.swift in Sources */,
 				65D42419232576A800DB286E /* AppDelegate.swift in Sources */,
+				654F95DF2332AD8700175A7E /* Posts.swift in Sources */,
 				657F2B472325F5CA00187C9D /* SignUpViewController.swift in Sources */,
 				65ABFC85232C0E1D00729B57 /* UserTableViewCell.swift in Sources */,
 				65D4243023258A2D00DB286E /* LogInViewController.swift in Sources */,

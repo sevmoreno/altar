@@ -37,7 +37,12 @@ class advengers {
     
     let mediaRef = Database.database().reference().child ("Media")
     
-   
+    var currenUSer = ["church": "",
+                      "email": "",
+                      "name":"",
+                      "photoURL":"",
+                      "userid":""] as! [String:String]
+    
     
 
     

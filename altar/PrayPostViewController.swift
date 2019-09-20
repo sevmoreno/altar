@@ -53,24 +53,30 @@ class PrayPostViewController: UIViewController, UIImagePickerControllerDelegate,
     
     @IBAction func postAction(_ sender: Any) {
         
+        AppDelegate.instance().showActivityIndicatior()
+        
         let uid = Auth.auth().currentUser?.uid
   
+        let nombreToDisplay = advengers.shared.currenUSer["name"] ?? "Unknow"
+        let userphot = advengers.shared.currenUSer["photoURL"] ?? "No cargo"
         
         let key = advengers.shared.postPrayFeed.childByAutoId().key
         
-        let imageRef = advengers.shared.PostPrayStorage.child(uid!).child("\(key).jpg")
+        let imageRef = advengers.shared.PostPrayStorage.child(uid!).child("\(key!).jpg")
         
-        let data = UIGraphicsImageRenderer(bounds: textoIngresado.bounds)
+       // let data = UIGraphicsImageRenderer(bounds: textoIngresado.bounds)
+        let data = textViewImage().jpegData(compressionQuality: 0.6)
         
-        let data2 = data.jpegData(withCompressionQuality: 0.6) { (bada) in
+      //  let data2 = data.jpegData(withCompressionQuality: 0.6) { (bada) in
             
-        }
+      //  }
         
-        let uploadTask = imageRef.putData(data2, metadata: nil) { (matadata, error) in
+        let uploadTask = imageRef.putData(data!, metadata: nil) { (matadata, error) in
             
             if error != nil {
                 print(error.debugDescription)
             }
+            
             
             imageRef.downloadURL(completion: { (url, error) in
                 if let url = url {
@@ -78,13 +84,19 @@ class PrayPostViewController: UIViewController, UIImagePickerControllerDelegate,
                     let feed = ["userid": uid,
                                 "pathtoPost":url.absoluteString,
                                 "prays": 0,
-                                "author": Auth.auth().currentUser?.displayName,
+                                "author": nombreToDisplay,
+                                "userPhoto": userphot,
                                 "postID": key] as! [String:Any]
-                    let postfeed = ["\(key)" : feed] as! [String:Any]
+                    
+                    let postfeed = ["\(key!)" : feed] as! [String:Any]
                     
                     advengers.shared.postPrayFeed.updateChildValues(postfeed)
                     
-                   // self.dismiss(animated: true, completion: nil)
+                     AppDelegate.instance().dismissActivityIndicator()
+                    
+                    _ = self.navigationController?.popViewController(animated: true)
+                    
+                  // self.dismiss(animated: true, completion: nil)
                 }
             })
    
