@@ -43,7 +43,14 @@ class advengers {
                       "photoURL":"",
                       "userid":""] as! [String:String]
     
-    
+    enum postType: String {
+        case textOnly = "textOnly"
+        case imageOnly = "imageOnly"
+        case audio = "audio"
+        case audioText = "audioText"
+        case textImage = "textImage"
+        case textBkground = "textBkground"
+    }
 
     
     

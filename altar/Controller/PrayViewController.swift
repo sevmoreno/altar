@@ -60,7 +60,7 @@ class PrayViewController: UIViewController {
                 temporarioPost.userPhoto = value["userPhoto"] as! String
                 temporarioPost.postID = value["postID"] as! String
                 temporarioPost.userID = value["userid"] as! String
-                
+                temporarioPost.postType = value["postType"] as! String
                 self.posts.append(temporarioPost)
                 
                 print(temporarioPost.photoImage)

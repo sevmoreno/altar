@@ -86,7 +86,8 @@ class PrayPostViewController: UIViewController, UIImagePickerControllerDelegate,
                                 "prays": 0,
                                 "author": nombreToDisplay,
                                 "userPhoto": userphot,
-                                "postID": key] as! [String:Any]
+                                "postID": key,
+                                "postType": advengers.postType.textBkground] as! [String:Any]
                     
                     let postfeed = ["\(key!)" : feed] as! [String:Any]
                     
@@ -109,13 +110,14 @@ class PrayPostViewController: UIViewController, UIImagePickerControllerDelegate,
         
         var image: UIImage? = nil
         
-        UIGraphicsBeginImageContextWithOptions(textoIngresado.contentSize, textoIngresado.isOpaque, 0.0)
+        
+        UIGraphicsBeginImageContextWithOptions(textoIngresado.visibleSize, textoIngresado.isOpaque, 0.0)
         
         let savedContentOffset: CGPoint = textoIngresado.contentOffset
         let savedFrame: CGRect = textoIngresado.frame
         
         textoIngresado.contentOffset = .zero
-        textoIngresado.frame = CGRect(x: 0, y: 0, width: textoIngresado.contentSize.width, height: textoIngresado.contentSize.height)
+        textoIngresado.frame = CGRect(x: 0, y: 0, width: textoIngresado.visibleSize.width, height: textoIngresado.visibleSize.height)
         
         textoIngresado.layer.render(in: UIGraphicsGetCurrentContext()!)
         image = UIGraphicsGetImageFromCurrentImageContext()

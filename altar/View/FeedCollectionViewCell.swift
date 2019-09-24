@@ -38,7 +38,7 @@ class FeedCollectionViewCell: UICollectionViewCell {
             
             let updateCount: [String:AnyObject] = ["prays": junta.count as AnyObject]
             advengers.shared.postPrayFeed.child(self.postID).updateChildValues(updateCount)
-            self.praysCount.text = "\(String(junta.count)) prayed"
+            self.praysCount.text = "\(String(junta.count))"
             
                 }
                 

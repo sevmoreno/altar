@@ -17,6 +17,8 @@ class Posts {
     var userID: String!
     var postID: String!
     var userPhoto: String!
+    var postType: String!
+    
     
     var whoLikes: [String] = [String] ()
     
