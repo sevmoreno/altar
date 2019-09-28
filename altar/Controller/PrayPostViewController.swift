@@ -21,6 +21,10 @@ class PrayPostViewController: UIViewController, UIImagePickerControllerDelegate,
         
        
        picker.delegate = self
+       textoIngresado.text = "What is your prayer"
+       textoIngresado.textColor = .lightGray
+       textoIngresado.delegate = self
+        
         
         
         
@@ -129,6 +133,49 @@ class PrayPostViewController: UIViewController, UIImagePickerControllerDelegate,
         
         return image!
     }
+    
+    @IBAction func style1(_ sender: Any) {
+        textoIngresado.backgroundColor = UIColor(red:102.0/255.0, green:153.0/255.0, blue:204.0/255.0, alpha:1.0)
+        textoIngresado.textColor = .white
+    
+
+        
+      
+        
+           // UIColor.init(displayP3Red: 102, green: 153, blue: 204, alpha: 100)
+            
+            //UIColor.init(hue: 210, saturation: 50, brightness: 80, alpha: 0)
+    }
+    
+    @IBAction func style2(_ sender: Any) {
+    }
+    
+    @IBAction func style3(_ sender: Any) {
+    }
+    
+    @IBAction func style4(_ sender: Any) {
+    }
+    
+    @IBAction func style5(_ sender: Any) {
+    }
+    
 }
 
+extension PrayPostViewController: UITextViewDelegate {
+    
+    
+    func textViewDidBeginEditing(_ textView: UITextView) {
+        if textView.textColor == UIColor.lightGray {
+            textView.text = nil
+            textView.textColor = UIColor.black
+        }
+    }
+    
+    func textViewDidEndEditing(_ textView: UITextView) {
+        if textView.text.isEmpty {
+            textView.text = "Placeholder"
+            textView.textColor = UIColor.lightGray
+        }
+    }
+}
 
