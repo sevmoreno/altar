@@ -16,6 +16,13 @@ class PrayPostViewController: UIViewController, UIImagePickerControllerDelegate,
     
     @IBOutlet weak var textoIngresado: UITextView!
     
+    var attributes: [NSAttributedString.Key: Any] = [
+        .font: UIFont.systemFont(ofSize: 75),
+        .foregroundColor : UIColor.white
+    ]
+    
+    var fontSize: Int = 50
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -135,11 +142,28 @@ class PrayPostViewController: UIViewController, UIImagePickerControllerDelegate,
     }
     
     @IBAction func style1(_ sender: Any) {
-        textoIngresado.backgroundColor = UIColor(red:102.0/255.0, green:153.0/255.0, blue:204.0/255.0, alpha:1.0)
-        textoIngresado.textColor = .white
-    
+        textoIngresado.backgroundColor = UIColor(red:81.0/255.0, green:224.0/255.0, blue:225.0/255.0, alpha:1.0)
 
         
+        let quote = textoIngresado.text!
+        let font = UIFont.systemFont(ofSize: CGFloat(fontSize))
+        let paragraphStyle = NSMutableParagraphStyle()
+        paragraphStyle.alignment = .center
+        
+       // paragraphStyle.firstLineHeadIndent = 5.0
+        /*
+        var attributes: [NSAttributedString.Key: Any] = [
+            .font: font,
+            .foregroundColor : UIColor.white,
+            .paragraphStyle: paragraphStyle
+        ]
+ */
+        attributes[.font] = font
+        
+        
+        let attributedQuote = NSAttributedString(string: quote, attributes: attributes)
+
+        textoIngresado.attributedText = attributedQuote
       
         
            // UIColor.init(displayP3Red: 102, green: 153, blue: 204, alpha: 100)
@@ -148,23 +172,90 @@ class PrayPostViewController: UIViewController, UIImagePickerControllerDelegate,
     }
     
     @IBAction func style2(_ sender: Any) {
+         textoIngresado.backgroundColor = UIColor(red:51.0/255.0, green:101.0/255.0, blue:138.0/255.0, alpha:1.0)
+        let quote = textoIngresado.text!
+        let font = UIFont.systemFont(ofSize: CGFloat(fontSize))
+        let paragraphStyle = NSMutableParagraphStyle()
+        paragraphStyle.alignment = .center
+        attributes[.font] = font
+        
+        let attributedQuote = NSAttributedString(string: quote, attributes: attributes)
+        
+        textoIngresado.attributedText = attributedQuote
     }
     
     @IBAction func style3(_ sender: Any) {
-    }
+        
+         textoIngresado.backgroundColor = UIColor(red:47.0/255.0, green:72.0/255.0, blue:88.0/255.0, alpha:1.0)
+        
+        let quote = textoIngresado.text!
+        let font = UIFont.systemFont(ofSize: CGFloat(fontSize))
+        let paragraphStyle = NSMutableParagraphStyle()
+        paragraphStyle.alignment = .center
+        attributes[.font] = font
+        
+        let attributedQuote = NSAttributedString(string: quote, attributes: attributes)
+        
+        textoIngresado.attributedText = attributedQuote    }
     
     @IBAction func style4(_ sender: Any) {
+        
+         textoIngresado.backgroundColor = UIColor(red:246.0/255.0, green:174.0/255.0, blue:45.0/255.0, alpha:1.0)
+        let quote = textoIngresado.text!
+        let font = UIFont.systemFont(ofSize: CGFloat(fontSize))
+        let paragraphStyle = NSMutableParagraphStyle()
+        paragraphStyle.alignment = .center
+        attributes[.font] = font
+        
+        let attributedQuote = NSAttributedString(string: quote, attributes: attributes)
+        
+        textoIngresado.attributedText = attributedQuote
     }
     
     @IBAction func style5(_ sender: Any) {
+        
+         textoIngresado.backgroundColor = UIColor(red:244.0/255.0, green:100.0/255.0, blue:25.0/255.0, alpha:1.0)
+        let quote = textoIngresado.text!
+        let font = UIFont.systemFont(ofSize: CGFloat(fontSize))
+        let paragraphStyle = NSMutableParagraphStyle()
+        paragraphStyle.alignment = .center
+        attributes[.font] = font
+        
+        let attributedQuote = NSAttributedString(string: quote, attributes: attributes)
+        
+        textoIngresado.attributedText = attributedQuote
     }
     
 }
 
 extension PrayPostViewController: UITextViewDelegate {
     
+    func textViewDidChange(_ textView: UITextView) {
+        
+        
+        if textoIngresado.text.count > 10 {
+            
+            let quote = textoIngresado.text!
+            let font = attributes[.font] as! UIFont
+            attributes[.font] = font.withSize(CGFloat(fontSize))
+            let paragraphStyle = NSMutableParagraphStyle()
+            paragraphStyle.alignment = .center
+            // paragraphStyle.firstLineHeadIndent = 5.0
+            
+            attributes[  .paragraphStyle] = paragraphStyle
+            
+            let attributedQuote = NSAttributedString(string: quote, attributes: attributes)
+            
+            textoIngresado.attributedText = attributedQuote
+            
+        }
+    }
+    
     
     func textViewDidBeginEditing(_ textView: UITextView) {
+        
+        
+        
         if textView.textColor == UIColor.lightGray {
             textView.text = nil
             textView.textColor = UIColor.black
