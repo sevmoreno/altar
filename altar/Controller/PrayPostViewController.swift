@@ -11,10 +11,14 @@ import Firebase
 
 class PrayPostViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
  
-    
+    var selectionVideoPhoto: Bool = false
     var picker = UIImagePickerController ()
     
     @IBOutlet weak var textoIngresado: UITextView!
+    var typeOfPost: String = ""
+    
+    var imageToSend: UIImage?
+    var videoToSend: String?
     
     var attributes: [NSAttributedString.Key: Any] = [
         .font: UIFont.systemFont(ofSize: 75),
@@ -38,6 +42,34 @@ class PrayPostViewController: UIViewController, UIImagePickerControllerDelegate,
         // Do any additional setup after loading the view.
     }
     
+    @IBAction func photoVideoButton(_ sender: Any) {
+                   selectionVideoPhoto = true
+                   picker.allowsEditing = true
+                   picker.sourceType = .photoLibrary
+                   self.present(picker, animated: true, completion: nil)
+        
+        // performSegue(withIdentifier: "photoVideoPost", sender: nil)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        if segue.identifier == "photoVideoPost" {
+            let controller = segue.destination as! PhotoVideoPostViewController
+              if imageToSend != nil
+              {
+                   controller.isImage = imageToSend
+                
+              } else if videoToSend != nil {
+                
+                controller.isVideo = videoToSend
+            }
+            
+        
+
+            
+        }
+    }
+    
     @IBAction func selectVideoPhoto(_ sender: Any) {
         
         picker.allowsEditing = true
@@ -47,10 +79,32 @@ class PrayPostViewController: UIViewController, UIImagePickerControllerDelegate,
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         
+        if selectionVideoPhoto {
+            //print(info[UIImagePickerController.InfoKey.mediaType])
+            if info[UIImagePickerController.InfoKey.mediaType] as! String == "public.image" {
+                print ("Image")
+                
+                if let image = info[UIImagePickerController.InfoKey.editedImage] as? UIImage {
+                     
+                    imageToSend = image
+                        
+                    }
+            }
+                if info[UIImagePickerController.InfoKey.mediaType] as! String == "public.video" {
+                           
+                    videoToSend = info[UIImagePickerController.InfoKey.mediaURL] as! String
+                    print (videoToSend)
+
+                       }
+            
+             performSegue(withIdentifier: "photoVideoPost", sender: nil)
+            
+            
+        } else {
+        
         if let image = info[UIImagePickerController.InfoKey.editedImage] as? UIImage {
          
-          //  let textView = UITextView(frame: CGRect(x: CGFloat(20), y: CGFloat(20), width: CGFloat(400), height: CGFloat(400 )))
-          //  textView.text = "this is a test \n this is test \n this is a test"
+    
             let img = UIImageView(frame: textoIngresado.bounds)
             img.image = image
             textoIngresado.backgroundColor = UIColor.clear
@@ -59,6 +113,9 @@ class PrayPostViewController: UIViewController, UIImagePickerControllerDelegate,
             textoIngresado.sendSubviewToBack(img)
             
         }
+          
+        }
+        
         self.dismiss(animated: true, completion: nil)
     }
     
@@ -81,39 +138,49 @@ class PrayPostViewController: UIViewController, UIImagePickerControllerDelegate,
       //  let data2 = data.jpegData(withCompressionQuality: 0.6) { (bada) in
             
       //  }
-        
-        let uploadTask = imageRef.putData(data!, metadata: nil) { (matadata, error) in
+        switch typeOfPost {
+        case advengers.postType.textBkground.rawValue:
             
-            if error != nil {
-                print(error.debugDescription)
-            }
+            let uploadTask = imageRef.putData(data!, metadata: nil) { (matadata, error) in
+                       
+                       if error != nil {
+                           print(error.debugDescription)
+                       }
+                       
+                       
+                       imageRef.downloadURL(completion: { (url, error) in
+                           if let url = url {
+                               
+                               let feed = ["userid": uid,
+                                           "pathtoPost":url.absoluteString,
+                                           "prays": 0,
+                                           "author": nombreToDisplay,
+                                           "userPhoto": userphot,
+                                           "postID": key,
+                                           "postType": advengers.postType.textBkground] as! [String:Any]
+                               
+                               let postfeed = ["\(key!)" : feed] as! [String:Any]
+                               
+                               advengers.shared.postPrayFeed.updateChildValues(postfeed)
+                               
+                                AppDelegate.instance().dismissActivityIndicator()
+                               
+                               _ = self.navigationController?.popViewController(animated: true)
+                               
+                             // self.dismiss(animated: true, completion: nil)
+                           }
+                       })
+              
+                   }
+                   uploadTask.resume()
             
+        default:
+            print("heyy")
+            // en el caso que sea default
             
-            imageRef.downloadURL(completion: { (url, error) in
-                if let url = url {
-                    
-                    let feed = ["userid": uid,
-                                "pathtoPost":url.absoluteString,
-                                "prays": 0,
-                                "author": nombreToDisplay,
-                                "userPhoto": userphot,
-                                "postID": key,
-                                "postType": advengers.postType.textBkground] as! [String:Any]
-                    
-                    let postfeed = ["\(key!)" : feed] as! [String:Any]
-                    
-                    advengers.shared.postPrayFeed.updateChildValues(postfeed)
-                    
-                     AppDelegate.instance().dismissActivityIndicator()
-                    
-                    _ = self.navigationController?.popViewController(animated: true)
-                    
-                  // self.dismiss(animated: true, completion: nil)
-                }
-            })
-   
         }
-        uploadTask.resume()
+        
+       
         
     }
     
@@ -227,6 +294,8 @@ class PrayPostViewController: UIViewController, UIImagePickerControllerDelegate,
     }
     
 }
+
+// MARK: TEXT DELEGATE
 
 extension PrayPostViewController: UITextViewDelegate {
     

@@ -18,6 +18,8 @@
 		65ABFC85232C0E1D00729B57 /* UserTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65ABFC84232C0E1D00729B57 /* UserTableViewCell.swift */; };
 		65ABFC87232C12C200729B57 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65ABFC86232C12C200729B57 /* User.swift */; };
 		65ABFC89232C170200729B57 /* Advengers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65ABFC88232C170200729B57 /* Advengers.swift */; };
+		65C7FE06237B3E3B000D6D80 /* PhotoVideoPostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65C7FE05237B3E3B000D6D80 /* PhotoVideoPostViewController.swift */; };
+		65C7FE08237CF5B0000D6D80 /* OnlyVideoPostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65C7FE07237CF5B0000D6D80 /* OnlyVideoPostViewController.swift */; };
 		65D42419232576A800DB286E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65D42418232576A800DB286E /* AppDelegate.swift */; };
 		65D4241E232576A800DB286E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 65D4241C232576A800DB286E /* Main.storyboard */; };
 		65D42421232576A800DB286E /* altar.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 65D4241F232576A800DB286E /* altar.xcdatamodeld */; };
@@ -39,6 +41,8 @@
 		65ABFC84232C0E1D00729B57 /* UserTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserTableViewCell.swift; sourceTree = "<group>"; };
 		65ABFC86232C12C200729B57 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		65ABFC88232C170200729B57 /* Advengers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Advengers.swift; sourceTree = "<group>"; };
+		65C7FE05237B3E3B000D6D80 /* PhotoVideoPostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoVideoPostViewController.swift; sourceTree = "<group>"; };
+		65C7FE07237CF5B0000D6D80 /* OnlyVideoPostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = OnlyVideoPostViewController.swift; path = Controller/OnlyVideoPostViewController.swift; sourceTree = "<group>"; };
 		65D42415232576A800DB286E /* altar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = altar.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		65D42418232576A800DB286E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		65D4241D232576A800DB286E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -99,6 +103,7 @@
 				65D42418232576A800DB286E /* AppDelegate.swift */,
 				65D42422232576AA00DB286E /* Assets.xcassets */,
 				65D4241C232576A800DB286E /* Main.storyboard */,
+				65C7FE07237CF5B0000D6D80 /* OnlyVideoPostViewController.swift */,
 				65D42424232576AA00DB286E /* LaunchScreen.storyboard */,
 				65D42427232576AA00DB286E /* Info.plist */,
 				65D4242D232586E200DB286E /* GoogleService-Info.plist */,
@@ -135,6 +140,7 @@
 				65ABFC82232C069000729B57 /* UsersViewController.swift */,
 				657F2B462325F5CA00187C9D /* SignUpViewController.swift */,
 				65D4242F23258A2D00DB286E /* LogInViewController.swift */,
+				65C7FE05237B3E3B000D6D80 /* PhotoVideoPostViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -288,7 +294,9 @@
 				654F95DD2331B93B00175A7E /* FeedCollectionViewCell.swift in Sources */,
 				654F95DB23306E7F00175A7E /* PrayPostViewController.swift in Sources */,
 				654F95D923306ABC00175A7E /* PrayViewController.swift in Sources */,
+				65C7FE08237CF5B0000D6D80 /* OnlyVideoPostViewController.swift in Sources */,
 				65ABFC83232C069000729B57 /* UsersViewController.swift in Sources */,
+				65C7FE06237B3E3B000D6D80 /* PhotoVideoPostViewController.swift in Sources */,
 				65D42419232576A800DB286E /* AppDelegate.swift in Sources */,
 				654F95DF2332AD8700175A7E /* Posts.swift in Sources */,
 				657F2B472325F5CA00187C9D /* SignUpViewController.swift in Sources */,
