@@ -7,16 +7,30 @@
 //
 
 import UIKit
+import AVFoundation
 
 class OnlyVideoPostViewController: UIViewController {
 
+    @IBOutlet weak var videoView: UIView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        guard let url = URL(string: "https://devstreaming-cdn.apple.com/videos/streaming/examples/img_bipbop_adv_example_ts/master.m3u8") else {
+        guard let urla = URL(string: "https://devstreaming-cdn.apple.com/videos/streaming/examples/img_bipbop_adv_example_ts/master.m3u8")
+        else {
         return
         }
-        // Do any additional setup after loading the view.
+            
+        let asset = AVAsset(url: urla)
+        let playerItem = AVPlayerItem(asset: asset)
+        let player = AVPlayer(playerItem: playerItem)
+        let playerLayer = AVPlayerLayer(player: player)
+        playerLayer.frame = self.videoView.bounds
+        playerLayer.videoGravity = .resizeAspect
+        self.videoView.layer.addSublayer(playerLayer)
+        player.play()
+        
+        
     }
     
 

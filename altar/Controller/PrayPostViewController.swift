@@ -11,14 +11,16 @@ import Firebase
 
 class PrayPostViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
  
-    var selectionVideoPhoto: Bool = false
+    var selectionVideoPhoto: String = ""
     var picker = UIImagePickerController ()
     
-    @IBOutlet weak var textoIngresado: UITextView!
+
     var typeOfPost: String = ""
     
     var imageToSend: UIImage?
     var videoToSend: String?
+    
+    @IBOutlet weak var textoIngresado: UITextView!
     
     var attributes: [NSAttributedString.Key: Any] = [
         .font: UIFont.systemFont(ofSize: 75),
@@ -43,7 +45,7 @@ class PrayPostViewController: UIViewController, UIImagePickerControllerDelegate,
     }
     
     @IBAction func photoVideoButton(_ sender: Any) {
-                   selectionVideoPhoto = true
+                   selectionVideoPhoto = "photo"
                    picker.allowsEditing = true
                    picker.sourceType = .photoLibrary
                    self.present(picker, animated: true, completion: nil)
@@ -79,25 +81,30 @@ class PrayPostViewController: UIViewController, UIImagePickerControllerDelegate,
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         
-        if selectionVideoPhoto {
-            //print(info[UIImagePickerController.InfoKey.mediaType])
+        if selectionVideoPhoto == "photo" {
+    
+            
             if info[UIImagePickerController.InfoKey.mediaType] as! String == "public.image" {
-                print ("Image")
                 
                 if let image = info[UIImagePickerController.InfoKey.editedImage] as? UIImage {
                      
                     imageToSend = image
-                        
+                    performSegue(withIdentifier: "photoVideoPost", sender: nil)
+                    
                     }
             }
-                if info[UIImagePickerController.InfoKey.mediaType] as! String == "public.video" {
-                           
-                    videoToSend = info[UIImagePickerController.InfoKey.mediaURL] as! String
-                    print (videoToSend)
-
-                       }
             
-             performSegue(withIdentifier: "photoVideoPost", sender: nil)
+            
+            if info[UIImagePickerController.InfoKey.mediaType] as! String == "public.video" {
+                           
+                videoToSend = (info[UIImagePickerController.InfoKey.mediaURL] as! String)
+                print (videoToSend!)
+                performSegue(withIdentifier: "onlyVideoPost", sender: nil)
+            
+
+                }
+            
+             
             
             
         } else {
