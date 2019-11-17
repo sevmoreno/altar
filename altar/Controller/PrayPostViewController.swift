@@ -34,9 +34,9 @@ class PrayPostViewController: UIViewController, UIImagePickerControllerDelegate,
         
        
        picker.delegate = self
-       textoIngresado.text = "What is your prayer"
-       textoIngresado.textColor = .lightGray
-       textoIngresado.delegate = self
+     textoIngresado.text = "What is your prayer"
+     textoIngresado.textColor = .lightGray
+     textoIngresado.delegate = self
         
         
         
@@ -138,15 +138,14 @@ class PrayPostViewController: UIViewController, UIImagePickerControllerDelegate,
         let key = advengers.shared.postPrayFeed.childByAutoId().key
         
         let imageRef = advengers.shared.PostPrayStorage.child(uid!).child("\(key!).jpg")
+
         
-       // let data = UIGraphicsImageRenderer(bounds: textoIngresado.bounds)
         let data = textViewImage().jpegData(compressionQuality: 0.6)
         
-      //  let data2 = data.jpegData(withCompressionQuality: 0.6) { (bada) in
-            
-      //  }
-        switch typeOfPost {
-        case advengers.postType.textBkground.rawValue:
+ 
+        
+     //   switch typeOfPost {
+     //   case advengers.postType.textBkground.rawValue:
             
             let uploadTask = imageRef.putData(data!, metadata: nil) { (matadata, error) in
                        
@@ -174,18 +173,18 @@ class PrayPostViewController: UIViewController, UIImagePickerControllerDelegate,
                                
                                _ = self.navigationController?.popViewController(animated: true)
                                
-                             // self.dismiss(animated: true, completion: nil)
+                            
                            }
                        })
               
                    }
                    uploadTask.resume()
             
-        default:
-            print("heyy")
-            // en el caso que sea default
+     //   default:
+      //      print("heyy")
+
             
-        }
+      //  }
         
        
         
@@ -306,8 +305,16 @@ class PrayPostViewController: UIViewController, UIImagePickerControllerDelegate,
 
 extension PrayPostViewController: UITextViewDelegate {
     
+    func adjustUITextViewHeight(arg : UITextView)
+    {
+        arg.translatesAutoresizingMaskIntoConstraints = true
+        arg.sizeToFit()
+        arg.isScrollEnabled = false
+    }
+    
     func textViewDidChange(_ textView: UITextView) {
         
+        // adjustUITextViewHeight(arg: textView)
         
         if textoIngresado.text.count > 10 {
             
