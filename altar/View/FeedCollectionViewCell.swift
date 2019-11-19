@@ -16,6 +16,7 @@ class FeedCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var postImagen: UIImageView!
     @IBOutlet weak var prayForIt: UIButton!
     @IBOutlet weak var praysCount: UILabel!
+    @IBOutlet weak var message: UITextView!
     
     var postID: String!
     

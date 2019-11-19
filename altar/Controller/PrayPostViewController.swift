@@ -14,6 +14,7 @@ class PrayPostViewController: UIViewController, UIImagePickerControllerDelegate,
     var selectionVideoPhoto: String = ""
     var picker = UIImagePickerController ()
     
+    var hasImage: Bool = false
 
     var typeOfPost: String = ""
     
@@ -141,52 +142,70 @@ class PrayPostViewController: UIViewController, UIImagePickerControllerDelegate,
 
         
         let data = textViewImage().jpegData(compressionQuality: 0.6)
+       
         
- 
         
-     //   switch typeOfPost {
-     //   case advengers.postType.textBkground.rawValue:
+        if hasImage {
             
             let uploadTask = imageRef.putData(data!, metadata: nil) { (matadata, error) in
-                       
-                       if error != nil {
-                           print(error.debugDescription)
-                       }
-                       
-                       
-                       imageRef.downloadURL(completion: { (url, error) in
-                           if let url = url {
-                               
-                               let feed = ["userid": uid,
-                                           "pathtoPost":url.absoluteString,
-                                           "prays": 0,
-                                           "author": nombreToDisplay,
-                                           "userPhoto": userphot,
-                                           "postID": key,
-                                           "postType": advengers.postType.textBkground] as! [String:Any]
-                               
-                               let postfeed = ["\(key!)" : feed] as! [String:Any]
-                               
-                               advengers.shared.postPrayFeed.updateChildValues(postfeed)
-                               
-                                AppDelegate.instance().dismissActivityIndicator()
-                               
-                               _ = self.navigationController?.popViewController(animated: true)
-                               
-                            
-                           }
-                       })
-              
-                   }
-                   uploadTask.resume()
+                
+                if error != nil {
+                    print(error.debugDescription)
+                }
+                
+                
+                imageRef.downloadURL(completion: { (url, error) in
+                    if let url = url {
+                        
+                        let feed = ["userid": uid,
+                                    "pathtoPost":url.absoluteString,
+                                    "prays": 0,
+                                    "author": nombreToDisplay,
+                                    "userPhoto": userphot,
+                                    "postID": key,
+                                    "postType": advengers.postType.imageOnly.rawValue,
+                                    "message": self.textoIngresado.text] as! [String:Any]
+                        
+                        let postfeed = ["\(key!)" : feed] as! [String:Any]
+                        
+                        advengers.shared.postPrayFeed.updateChildValues(postfeed)
+                        
+                        AppDelegate.instance().dismissActivityIndicator()
+                        
+                        _ = self.navigationController?.popViewController(animated: true)
+                        
+                        
+                    }
+                })
+                
+            }
+            uploadTask.resume()
             
-     //   default:
-      //      print("heyy")
+            
+            
+        } else {
+            
+            let feed = ["userid": uid,
+                        "pathtoPost": nil,
+                        "prays": 0,
+                        "author": nombreToDisplay,
+                        "userPhoto": userphot,
+                        "postID": key,
+                        "postType": advengers.postType.textOnly.rawValue,
+                        "message": self.textoIngresado.text] as! [String:Any]
+            
+            let postfeed = ["\(key!)" : feed] as! [String:Any]
+            
+            advengers.shared.postPrayFeed.updateChildValues(postfeed)
+            
+            AppDelegate.instance().dismissActivityIndicator()
+            
+            _ = self.navigationController?.popViewController(animated: true)
 
             
-      //  }
+        }
         
-       
+  
         
     }
     
@@ -213,6 +232,7 @@ class PrayPostViewController: UIViewController, UIImagePickerControllerDelegate,
         
         return image!
     }
+    // MARK:   --------------------------------------- TEXT STYLE --------------------------------------
     
     @IBAction func style1(_ sender: Any) {
         textoIngresado.backgroundColor = UIColor(red:81.0/255.0, green:224.0/255.0, blue:225.0/255.0, alpha:1.0)
@@ -223,14 +243,6 @@ class PrayPostViewController: UIViewController, UIImagePickerControllerDelegate,
         let paragraphStyle = NSMutableParagraphStyle()
         paragraphStyle.alignment = .center
         
-       // paragraphStyle.firstLineHeadIndent = 5.0
-        /*
-        var attributes: [NSAttributedString.Key: Any] = [
-            .font: font,
-            .foregroundColor : UIColor.white,
-            .paragraphStyle: paragraphStyle
-        ]
- */
         attributes[.font] = font
         
         
@@ -238,14 +250,13 @@ class PrayPostViewController: UIViewController, UIImagePickerControllerDelegate,
 
         textoIngresado.attributedText = attributedQuote
       
-        
-           // UIColor.init(displayP3Red: 102, green: 153, blue: 204, alpha: 100)
-            
-            //UIColor.init(hue: 210, saturation: 50, brightness: 80, alpha: 0)
     }
     
     @IBAction func style2(_ sender: Any) {
-         textoIngresado.backgroundColor = UIColor(red:51.0/255.0, green:101.0/255.0, blue:138.0/255.0, alpha:1.0)
+        
+        hasImage = true
+        textoIngresado.backgroundColor = UIColor(red:51.0/255.0, green:101.0/255.0, blue:138.0/255.0, alpha:1.0)
+        
         let quote = textoIngresado.text!
         let font = UIFont.systemFont(ofSize: CGFloat(fontSize))
         let paragraphStyle = NSMutableParagraphStyle()
@@ -259,7 +270,8 @@ class PrayPostViewController: UIViewController, UIImagePickerControllerDelegate,
     
     @IBAction func style3(_ sender: Any) {
         
-         textoIngresado.backgroundColor = UIColor(red:47.0/255.0, green:72.0/255.0, blue:88.0/255.0, alpha:1.0)
+        hasImage = true
+        textoIngresado.backgroundColor = UIColor(red:47.0/255.0, green:72.0/255.0, blue:88.0/255.0, alpha:1.0)
         
         let quote = textoIngresado.text!
         let font = UIFont.systemFont(ofSize: CGFloat(fontSize))
@@ -273,7 +285,8 @@ class PrayPostViewController: UIViewController, UIImagePickerControllerDelegate,
     
     @IBAction func style4(_ sender: Any) {
         
-         textoIngresado.backgroundColor = UIColor(red:246.0/255.0, green:174.0/255.0, blue:45.0/255.0, alpha:1.0)
+        hasImage = true
+        textoIngresado.backgroundColor = UIColor(red:246.0/255.0, green:174.0/255.0, blue:45.0/255.0, alpha:1.0)
         let quote = textoIngresado.text!
         let font = UIFont.systemFont(ofSize: CGFloat(fontSize))
         let paragraphStyle = NSMutableParagraphStyle()
@@ -287,7 +300,8 @@ class PrayPostViewController: UIViewController, UIImagePickerControllerDelegate,
     
     @IBAction func style5(_ sender: Any) {
         
-         textoIngresado.backgroundColor = UIColor(red:244.0/255.0, green:100.0/255.0, blue:25.0/255.0, alpha:1.0)
+        hasImage = true
+        textoIngresado.backgroundColor = UIColor(red:244.0/255.0, green:100.0/255.0, blue:25.0/255.0, alpha:1.0)
         let quote = textoIngresado.text!
         let font = UIFont.systemFont(ofSize: CGFloat(fontSize))
         let paragraphStyle = NSMutableParagraphStyle()
@@ -299,9 +313,17 @@ class PrayPostViewController: UIViewController, UIImagePickerControllerDelegate,
         textoIngresado.attributedText = attributedQuote
     }
     
+    @IBAction func imageBackground(_ sender: Any) {
+        
+        selectionVideoPhoto = "backgroundForText"
+        picker.allowsEditing = true
+        picker.sourceType = .photoLibrary
+        self.present(picker, animated: true, completion: nil)
+        
+    }
 }
 
-// MARK: TEXT DELEGATE
+// ------------------------------------------------ MARK: TEXT DELEGATE -------------------------
 
 extension PrayPostViewController: UITextViewDelegate {
     

@@ -1,30 +1,23 @@
 //
-//  FeedOnlyTextCollectionViewCell.swift
+//  FeedImageOnlyCollectionViewCell.swift
 //  altar
 //
-//  Created by Juan Moreno on 9/23/19.
+//  Created by Juan Moreno on 11/18/19.
 //  Copyright © 2019 Juan Moreno. All rights reserved.
 //
 
 import UIKit
 import Firebase
 
-
-class FeedOnlyTextCollectionViewCell: UICollectionViewCell {
+class FeedImageOnlyCollectionViewCell: UICollectionViewCell {
     
     
-    @IBOutlet weak var nameAutor: UILabel!
     @IBOutlet weak var fotoAuthor: UIImageView!
-    
-    @IBOutlet weak var message: UITextView!
+    @IBOutlet weak var nameAutor: UILabel!
     @IBOutlet weak var praysCount: UILabel!
+    @IBOutlet weak var postImagen: UIImageView!
     
     @IBOutlet weak var prayForIt: UIButton!
-    
-    
-
-
-    
     var postID: String!
     
     @IBAction func prayForIT(_ sender: Any) {
@@ -71,7 +64,4 @@ class FeedOnlyTextCollectionViewCell: UICollectionViewCell {
         
         
     }
-    
-
-
 }

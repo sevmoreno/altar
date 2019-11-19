@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 
 class PhotoVideoPostViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
@@ -21,7 +22,7 @@ class PhotoVideoPostViewController: UIViewController, UIImagePickerControllerDel
     override func viewDidLoad() {
         textoIngresado.delegate = self
         picker.delegate = self
-        
+        textoIngresado.text = "Say something about this photo ..."
         if isImage != nil {
             
             imageToDisplay.image = isImage
@@ -32,15 +33,62 @@ class PhotoVideoPostViewController: UIViewController, UIImagePickerControllerDel
        
     }
     
-    override func viewWillAppear(_ animated: Bool) {
+
+    @IBAction func postImageAndText(_ sender: Any) {
         
-            //picker.allowsEditing = true
-             //picker.sourceType = .photoLibrary
-             // self.present(picker, animated: true, completion: nil)
-
-
+        
+        AppDelegate.instance().showActivityIndicatior()
+        
+        let uid = Auth.auth().currentUser?.uid
+        
+        let nombreToDisplay = advengers.shared.currenUSer["name"] ?? "Unknow"
+        let userphot = advengers.shared.currenUSer["photoURL"] ?? "No cargo"
+        
+        let key = advengers.shared.postPrayFeed.childByAutoId().key
+        
+        let imageRef = advengers.shared.PostPrayStorage.child(uid!).child("\(key!).jpg")
+        
+        let data = isImage?.jpegData(compressionQuality: 0.6)
+       
+        
+        let uploadTask = imageRef.putData(data!, metadata: nil) { (matadata, error) in
+            
+            if error != nil {
+                print(error.debugDescription)
+            }
+            
+            
+            imageRef.downloadURL(completion: { (url, error) in
+                if let url = url {
+                    
+                    let feed = ["userid": uid,
+                                "pathtoPost":url.absoluteString,
+                                "prays": 0,
+                                "author": nombreToDisplay,
+                                "userPhoto": userphot,
+                                "postID": key,
+                                "postType": advengers.postType.textImage.rawValue,
+                                "message": self.textoIngresado.text] as! [String:Any]
+                    
+                    let postfeed = ["\(key!)" : feed] as! [String:Any]
+                    
+                    advengers.shared.postPrayFeed.updateChildValues(postfeed)
+                    
+                    AppDelegate.instance().dismissActivityIndicator()
+                    
+                    _ = self.navigationController?.popToRootViewController(animated: true)
+                    
+                    
+                }
+            })
+            
+        }
+        
+        uploadTask.resume()
+        
+        
     }
-
+    
    
     
 }

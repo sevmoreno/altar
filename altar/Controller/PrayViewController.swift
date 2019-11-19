@@ -55,15 +55,15 @@ class PrayViewController: UIViewController {
                     
                 let temporarioPost = Posts ()
                 temporarioPost.author = value["author"] as! String
-                temporarioPost.photoImage = value["pathtoPost"] as! String
+                temporarioPost.photoImage = value["pathtoPost"] as? String
                 temporarioPost.likes = value["prays"] as! Int
                 temporarioPost.userPhoto = value["userPhoto"] as! String
                 temporarioPost.postID = value["postID"] as! String
                 temporarioPost.userID = value["userid"] as! String
                 temporarioPost.postType = value["postType"] as! String
+                temporarioPost.message = value["message"] as! String
                 self.posts.append(temporarioPost)
                 
-                print(temporarioPost.photoImage)
                 
                 self.feedCollection.reloadData()
               
@@ -86,15 +86,71 @@ extension PrayViewController: UICollectionViewDelegate, UICollectionViewDataSour
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "feed", for: indexPath) as! FeedCollectionViewCell
-        cell.fotoAuthor.downloadImage(imgURL: posts[indexPath.row].userPhoto)
-        cell.postImagen.downloadImage(imgURL: posts[indexPath.row].photoImage)
-        cell.nameAutor.text = posts[indexPath.row].author
-        cell.praysCount.text = String (posts[indexPath.row].likes) + "Prayed"
-        cell.postID = posts[indexPath.row].postID
+        print("Tipo de post \(posts[indexPath.row].postType)")
+        
+        switch posts[indexPath.row].postType {
+            
+        case advengers.postType.imageOnly.rawValue:
+            
+            print ("IMAGE ONLY")
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "feedImage", for: indexPath) as! FeedImageOnlyCollectionViewCell
+            cell.fotoAuthor.downloadImage(imgURL: posts[indexPath.row].userPhoto)
+            cell.postImagen.downloadImage(imgURL: posts[indexPath.row].photoImage ?? "gs://altar-92d12.appspot.com/post_pray_feed/SuGgNEE2drVVBd5fLnw6Q2cbfc12/-LpFra4bipDDspKXcuML.jpg")
+            cell.nameAutor.text = posts[indexPath.row].author
+            cell.praysCount.text = String (posts[indexPath.row].likes) + "Prayed"
+            cell.postID = posts[indexPath.row].postID
+            
+            
+            return cell
+            
+         case advengers.postType.textOnly.rawValue:
+            
+            print ("TEXT ONLY")
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "OnlyText", for: indexPath) as! FeedOnlyTextCollectionViewCell
+            cell.fotoAuthor.downloadImage(imgURL: posts[indexPath.row].userPhoto)
+            cell.message.text = posts[indexPath.row].message
+            cell.nameAutor.text = posts[indexPath.row].author
+            cell.praysCount.text = String (posts[indexPath.row].likes) + "Prayed"
+            cell.postID = posts[indexPath.row].postID
+            
+            
+            return cell
+          
+         case advengers.postType.textImage.rawValue:
+            
+       
+             print ("DEFAULT")
+             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "feed", for: indexPath) as! FeedCollectionViewCell
+             cell.fotoAuthor.downloadImage(imgURL: posts[indexPath.row].userPhoto)
+             cell.postImagen.downloadImage(imgURL: posts[indexPath.row].photoImage ?? "gs://altar-92d12.appspot.com/post_pray_feed/SuGgNEE2drVVBd5fLnw6Q2cbfc12/-LpFra4bipDDspKXcuML.jpg")
+             cell.message.text = posts[indexPath.row].message
+             cell.nameAutor.text = posts[indexPath.row].author
+             cell.praysCount.text = String (posts[indexPath.row].likes) + "Prayed"
+             cell.postID = posts[indexPath.row].postID
+             
+             
+             return cell
+            
+            
+        default:
+            
+            /*
+            print ("DEFAULT")
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "feed", for: indexPath) as! FeedCollectionViewCell
+            cell.fotoAuthor.downloadImage(imgURL: posts[indexPath.row].userPhoto)
+            cell.postImagen.downloadImage(imgURL: posts[indexPath.row].photoImage ?? "gs://altar-92d12.appspot.com/post_pray_feed/SuGgNEE2drVVBd5fLnw6Q2cbfc12/-LpFra4bipDDspKXcuML.jpg")
+            cell.nameAutor.text = posts[indexPath.row].author
+            cell.praysCount.text = String (posts[indexPath.row].likes) + "Prayed"
+            cell.postID = posts[indexPath.row].postID
+            
+            
+            return cell
+    */
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "feed", for: indexPath) as! FeedCollectionViewCell
+            return cell
+        }
         
         
-        return cell
     }
     
     
