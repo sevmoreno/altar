@@ -38,6 +38,7 @@ class PrayPostViewController: UIViewController, UIImagePickerControllerDelegate,
      textoIngresado.text = "What is your prayer"
      textoIngresado.textColor = .lightGray
      textoIngresado.delegate = self
+     
         
         
         

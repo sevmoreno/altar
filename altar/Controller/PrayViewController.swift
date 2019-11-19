@@ -18,6 +18,9 @@ class PrayViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.feedCollection.reloadData()
+        self.feedCollection.layoutIfNeeded()
+        
         advengers.shared.usersStatusRef.queryOrderedByKey().observe(.value) { (datasnap) in
             
             let userinfo = datasnap.value as! [String:NSDictionary]
