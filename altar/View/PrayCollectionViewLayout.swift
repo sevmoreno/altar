@@ -5,7 +5,7 @@
 //  Created by Juan Moreno on 11/20/19.
 //  Copyright © 2019 Juan Moreno. All rights reserved.
 //
-
+/*
 import UIKit
 
 class PrayCollectionViewLayout: UICollectionViewLayout {
@@ -13,7 +13,7 @@ class PrayCollectionViewLayout: UICollectionViewLayout {
     // https://www.raywenderlich.com/4829472-uicollectionview-custom-layout-tutorial-pinterest
     
     // 1
-    weak var delegate: PinterestLayoutDelegate?
+   // weak var delegate: PinterestLayoutDelegate?
     
     // 2
     private let numberOfColumns = 2
@@ -81,7 +81,29 @@ class PrayCollectionViewLayout: UICollectionViewLayout {
             
             column = column < (numberOfColumns - 1) ? (column + 1) : 0
         }
-    }
+        
+        
+        func layoutAttributesForElements(in rect: CGRect)
+            -> [UICollectionViewLayoutAttributes]? {
+                var visibleLayoutAttributes: [UICollectionViewLayoutAttributes] = []
+                
+                // Loop through the cache and look for items in the rect
+                for attributes in cache {
+                    if attributes.frame.intersects(rect) {
+                        visibleLayoutAttributes.append(attributes)
+                    }
+                }
+                return visibleLayoutAttributes
+        }
+        
+        func layoutAttributesForItem(at indexPath: IndexPath)
+            -> UICollectionViewLayoutAttributes? {
+                return cache[indexPath.item]
+        }
+
+}
+    
+    
     /* THE CHINO CODE
     var numberOfColums: CGFloat = 2
     var cellPading: CGFloat = 5.0
@@ -113,8 +135,14 @@ class PrayCollectionViewLayout: UICollectionViewLayout {
 
 }
 
+ */
+
+/*
+
 protocol PinterestLayoutDelegate: AnyObject {
     func collectionView(
         _ collectionView: UICollectionView,
         heightForPhotoAtIndexPath indexPath: IndexPath) -> CGFloat
 }
+*/
+

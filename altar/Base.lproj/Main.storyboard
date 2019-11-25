@@ -245,24 +245,19 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5u2-uL-Jyf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1354" y="-1146"/>
+            <point key="canvasLocation" x="1220" y="-1142"/>
         </scene>
-        <!--Newsfeed Collection View Controller-->
+        <!--Photo Stream View Controller-->
         <scene sceneID="xQs-xu-7zz">
             <objects>
-                <collectionViewController id="0vC-eS-Zqe" customClass="NewsfeedCollectionViewController" customModule="altar" customModuleProvider="target" sceneMemberID="viewController">
+                <collectionViewController id="0vC-eS-Zqe" customClass="PhotoStreamViewController" customModule="altar" customModuleProvider="target" sceneMemberID="viewController">
                     <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="Txl-2c-QoG">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="PMj-uP-s5m">
-                            <size key="itemSize" width="50" height="50"/>
-                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
-                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
-                        </collectionViewFlowLayout>
+                        <collectionViewLayout key="collectionViewLayout" id="urs-pj-t2I" customClass="PinterestLayout" customModule="altar" customModuleProvider="target"/>
                         <cells>
-                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="PostCell" id="TqY-zt-wgZ" customClass="PostCollectionViewCell" customModule="altar" customModuleProvider="target">
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="PostCell" id="TqY-zt-wgZ" customClass="AnnotatedPhotoCell" customModule="altar" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="200" height="318"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
@@ -307,7 +302,9 @@
                                 </constraints>
                                 <size key="customSize" width="200" height="318"/>
                                 <connections>
-                                    <outlet property="captionLabel" destination="L3R-ks-JIL" id="K7a-sQ-PEp"/>
+                                    <outlet property="captionLabel" destination="L3R-ks-JIL" id="vbw-uy-D3d"/>
+                                    <outlet property="commentLabel" destination="OHc-3R-AJq" id="AcC-oQ-qCW"/>
+                                    <outlet property="imageView" destination="1vM-b3-fid" id="Mzl-9B-Sdk"/>
                                     <outlet property="postImageView" destination="1vM-b3-fid" id="MCf-9p-jo4"/>
                                     <outlet property="usernameLabel" destination="OHc-3R-AJq" id="D1e-Rb-Ks7"/>
                                 </connections>
@@ -319,9 +316,6 @@
                         </connections>
                     </collectionView>
                     <navigationItem key="navigationItem" id="Gk3-QE-OW6"/>
-                    <connections>
-                        <outlet property="feedCollections" destination="Txl-2c-QoG" id="cHb-DJ-13q"/>
-                    </connections>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uoM-Al-DnX" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -335,17 +329,22 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="0l8-dJ-D7a" customClass="DynamicHeightCollectionView" customModule="altar" customModuleProvider="target">
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="0l8-dJ-D7a">
                                 <rect key="frame" x="0.0" y="88" width="414" height="725"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <collectionViewLayout key="collectionViewLayout" id="doq-0A-fPm" customClass="PrayCollectionViewLayout" customModule="altar" customModuleProvider="target"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="HI4-Hc-7Zw">
+                                    <size key="itemSize" width="0.0" height="0.0"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="feedImage" id="6eb-as-JMK" customClass="FeedImageOnlyCollectionViewCell" customModule="altar" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="286"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
-                                            <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="286"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bGj-Oa-G2h" userLabel="Foto Author">
@@ -380,6 +379,7 @@
                                                 </button>
                                             </subviews>
                                         </view>
+                                        <size key="customSize" width="414" height="286"/>
                                         <connections>
                                             <outlet property="fotoAuthor" destination="bGj-Oa-G2h" id="nR3-AK-XRu"/>
                                             <outlet property="nameAutor" destination="esq-bz-5Mw" id="xZU-dN-zhs"/>
@@ -389,10 +389,10 @@
                                         </connections>
                                     </collectionViewCell>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="OnlyText" id="USN-sc-lKv" userLabel="OnlyText" customClass="FeedOnlyTextCollectionViewCell" customModule="altar" customModuleProvider="target">
-                                        <rect key="frame" x="364" y="0.0" width="50" height="50"/>
+                                        <rect key="frame" x="0.0" y="296" width="414" height="282"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
-                                            <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="282"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nqA-wH-deE">
@@ -431,6 +431,7 @@
                                                 </button>
                                             </subviews>
                                         </view>
+                                        <size key="customSize" width="414" height="282"/>
                                         <connections>
                                             <outlet property="fotoAuthor" destination="nqA-wH-deE" id="o4S-VT-hco"/>
                                             <outlet property="message" destination="dNJ-Td-0sR" id="Vdd-v1-DSE"/>
@@ -440,10 +441,10 @@
                                         </connections>
                                     </collectionViewCell>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="feed" id="x4F-Dp-yGh" customClass="FeedCollectionViewCell" customModule="altar" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="60" width="414" height="367"/>
+                                        <rect key="frame" x="11.5" y="588" width="391" height="318"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="367"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="391" height="318"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0M4-n8-VKX">
@@ -486,7 +487,7 @@
                                                 </textView>
                                             </subviews>
                                         </view>
-                                        <size key="customSize" width="414" height="367"/>
+                                        <size key="customSize" width="391" height="318"/>
                                         <connections>
                                             <outlet property="fotoAuthor" destination="0M4-n8-VKX" id="MHl-at-dGy"/>
                                             <outlet property="message" destination="ZMA-6U-zMI" id="6km-8u-Q2D"/>
@@ -523,7 +524,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6a8-XC-ieJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2217" y="75"/>
+            <point key="canvasLocation" x="2215.9420289855075" y="75"/>
         </scene>
         <!--Pray Post View Controller-->
         <scene sceneID="48J-oD-yOv">

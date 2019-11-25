@@ -25,6 +25,15 @@ class PrayViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // ------ DEL TUTORIAL RAYWENDRICH
+        
+     //   if let layout = feedCollection.collectionViewLayout as? PrayCollectionViewLayout {
+  //          layout.delegate = self
+     //   }
+
+        
+        // ----------------------
+        
         self.feedCollection.reloadData()
         self.feedCollection.layoutIfNeeded()
         
@@ -169,7 +178,11 @@ extension PrayViewController: UICollectionViewDelegate, UICollectionViewDataSour
 }
 
 
+/*
 extension PrayViewController: UICollectionViewDelegateFlowLayout {
+    
+    
+  
     
     // MARK: - Collection View Flow Layout Delegate
 
@@ -202,5 +215,32 @@ extension PrayViewController: UICollectionViewDelegateFlowLayout {
         }
 
     
-    
+ 
 }
+*/
+
+// --------------- DEL TUTORIAL RAYWENDRICH
+/*
+extension PrayViewController: PinterestLayoutDelegate {
+    
+    
+    
+    func collectionView(
+        _ collectionView: UICollectionView,
+        heightForPhotoAtIndexPath indexPath:IndexPath) -> CGFloat {
+        
+        var imagen = UIImageView ()
+        imagen.downloadImage(imgURL: posts[indexPath.row].userPhoto)
+        
+        
+       // return imagen.image!.size.height
+        
+        return 200.0
+        
+
+    }
+}
+
+// ------------
+*/
+
