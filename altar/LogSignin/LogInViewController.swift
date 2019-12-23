@@ -11,16 +11,22 @@ import Firebase
 
 
 
-class logInViewController: UIViewController {
+class logInViewController: UIViewController, UITextFieldDelegate {
     
 
 
     @IBOutlet weak var emailLogin: UITextField!
-    @IBOutlet weak var passwordLogin: UITextField!
+    @IBOutlet weak var passwordLogin: UITextField! 
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+       emailLogin.delegate = self
+       passwordLogin.delegate = self
+        
+        
+      //  emailLogin.anchor(top: view.topAnchor, left: nil, bottom: nil, right: nil, paddingTop: 100, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 0)
         
         
         Auth.auth().addStateDidChangeListener() { auth, user in
@@ -45,7 +51,10 @@ class logInViewController: UIViewController {
     }
     
 
-
+    func textFieldShouldReturn(_ scoreText: UITextField) -> Bool {
+        self.view.endEditing(true)
+        return true
+    }
     
     
     

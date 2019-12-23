@@ -10,6 +10,7 @@
 		47A39922668B2238F9B2BB13 /* Pods_altar.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DA57ADF581AF8A6E36DBF695 /* Pods_altar.framework */; };
 		6526F5ED23832CAE00DA2433 /* FeedImageOnlyCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6526F5EC23832CAE00DA2433 /* FeedImageOnlyCollectionViewCell.swift */; };
 		6526F5EF23836C7300DA2433 /* DynamicHeightCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6526F5EE23836C7300DA2433 /* DynamicHeightCollectionView.swift */; };
+		65421CCE23AAABFE000B0437 /* extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65421CCD23AAABFE000B0437 /* extensions.swift */; };
 		654F95D923306ABC00175A7E /* PrayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 654F95D823306ABC00175A7E /* PrayViewController.swift */; };
 		654F95DB23306E7F00175A7E /* PrayPostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 654F95DA23306E7F00175A7E /* PrayPostViewController.swift */; };
 		654F95DD2331B93B00175A7E /* FeedCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 654F95DC2331B93B00175A7E /* FeedCollectionViewCell.swift */; };
@@ -19,9 +20,10 @@
 		655BF70323847C11002F0C7C /* PostCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 655BF70223847C11002F0C7C /* PostCell.swift */; };
 		655BF7052385DA1A002F0C7C /* PrayCollectionViewLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 655BF7042385DA1A002F0C7C /* PrayCollectionViewLayout.swift */; };
 		655BF7082388C4D1002F0C7C /* PhotoStreamViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 655BF7072388C4D1002F0C7C /* PhotoStreamViewController.swift */; };
-		655BF70A2388C4F1002F0C7C /* Photo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 655BF7092388C4F1002F0C7C /* Photo.swift */; };
-		655BF70C2388C4FC002F0C7C /* PinterestLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 655BF70B2388C4FC002F0C7C /* PinterestLayout.swift */; };
 		655BF70E2388C5A5002F0C7C /* AnnotatedPhotoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 655BF70D2388C5A5002F0C7C /* AnnotatedPhotoCell.swift */; };
+		655EDF0223AD4926005E6DB6 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 655EDF0423AD4926005E6DB6 /* Localizable.strings */; };
+		655EDF0823AD6F50005E6DB6 /* CustomImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 655EDF0723AD6F50005E6DB6 /* CustomImageView.swift */; };
+		655EDF0A23B002C4005E6DB6 /* textOnlyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 655EDF0923B002C4005E6DB6 /* textOnlyCell.swift */; };
 		657F2B472325F5CA00187C9D /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 657F2B462325F5CA00187C9D /* SignUpViewController.swift */; };
 		65ABFC83232C069000729B57 /* UsersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65ABFC82232C069000729B57 /* UsersViewController.swift */; };
 		65ABFC85232C0E1D00729B57 /* UserTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65ABFC84232C0E1D00729B57 /* UserTableViewCell.swift */; };
@@ -42,6 +44,7 @@
 		499F25A3C25A7466F9176978 /* Pods-altar.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-altar.release.xcconfig"; path = "Target Support Files/Pods-altar/Pods-altar.release.xcconfig"; sourceTree = "<group>"; };
 		6526F5EC23832CAE00DA2433 /* FeedImageOnlyCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedImageOnlyCollectionViewCell.swift; sourceTree = "<group>"; };
 		6526F5EE23836C7300DA2433 /* DynamicHeightCollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DynamicHeightCollectionView.swift; sourceTree = "<group>"; };
+		65421CCD23AAABFE000B0437 /* extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = extensions.swift; sourceTree = "<group>"; };
 		654F95D823306ABC00175A7E /* PrayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrayViewController.swift; sourceTree = "<group>"; };
 		654F95DA23306E7F00175A7E /* PrayPostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrayPostViewController.swift; sourceTree = "<group>"; };
 		654F95DC2331B93B00175A7E /* FeedCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -51,9 +54,12 @@
 		655BF70223847C11002F0C7C /* PostCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostCell.swift; sourceTree = "<group>"; };
 		655BF7042385DA1A002F0C7C /* PrayCollectionViewLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrayCollectionViewLayout.swift; sourceTree = "<group>"; };
 		655BF7072388C4D1002F0C7C /* PhotoStreamViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoStreamViewController.swift; sourceTree = "<group>"; };
-		655BF7092388C4F1002F0C7C /* Photo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Photo.swift; sourceTree = "<group>"; };
-		655BF70B2388C4FC002F0C7C /* PinterestLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PinterestLayout.swift; sourceTree = "<group>"; };
 		655BF70D2388C5A5002F0C7C /* AnnotatedPhotoCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnnotatedPhotoCell.swift; sourceTree = "<group>"; };
+		655EDEFE23AD4630005E6DB6 /* es-419 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "es-419"; path = "es-419.lproj/Main.strings"; sourceTree = "<group>"; };
+		655EDEFF23AD4631005E6DB6 /* es-419 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "es-419"; path = "es-419.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
+		655EDF0323AD4926005E6DB6 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		655EDF0723AD6F50005E6DB6 /* CustomImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomImageView.swift; sourceTree = "<group>"; };
+		655EDF0923B002C4005E6DB6 /* textOnlyCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = textOnlyCell.swift; sourceTree = "<group>"; };
 		657F2B462325F5CA00187C9D /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		65ABFC82232C069000729B57 /* UsersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersViewController.swift; sourceTree = "<group>"; };
 		65ABFC84232C0E1D00729B57 /* UserTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserTableViewCell.swift; sourceTree = "<group>"; };
@@ -94,12 +100,20 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		65421CCF23AAAC68000B0437 /* LogSignin */ = {
+			isa = PBXGroup;
+			children = (
+				657F2B462325F5CA00187C9D /* SignUpViewController.swift */,
+				65D4242F23258A2D00DB286E /* LogInViewController.swift */,
+			);
+			path = LogSignin;
+			sourceTree = "<group>";
+		};
 		655BF7062388C4BB002F0C7C /* Try */ = {
 			isa = PBXGroup;
 			children = (
 				655BF70D2388C5A5002F0C7C /* AnnotatedPhotoCell.swift */,
-				655BF70B2388C4FC002F0C7C /* PinterestLayout.swift */,
-				655BF7092388C4F1002F0C7C /* Photo.swift */,
+				655EDF0923B002C4005E6DB6 /* textOnlyCell.swift */,
 				655BF7072388C4D1002F0C7C /* PhotoStreamViewController.swift */,
 			);
 			path = Try;
@@ -108,6 +122,7 @@
 		65D4240C232576A800DB286E = {
 			isa = PBXGroup;
 			children = (
+				655EDF0423AD4926005E6DB6 /* Localizable.strings */,
 				65D42417232576A800DB286E /* altar */,
 				65D42416232576A800DB286E /* Products */,
 				69C2338FAB26ED92AA2C9206 /* Pods */,
@@ -126,6 +141,7 @@
 		65D42417232576A800DB286E /* altar */ = {
 			isa = PBXGroup;
 			children = (
+				65421CCF23AAAC68000B0437 /* LogSignin */,
 				655BF7062388C4BB002F0C7C /* Try */,
 				65DE618D233945DD00A7895C /* Controller */,
 				65DE618C233945BF00A7895C /* View */,
@@ -133,6 +149,7 @@
 				65D42418232576A800DB286E /* AppDelegate.swift */,
 				65D42422232576AA00DB286E /* Assets.xcassets */,
 				65D4241C232576A800DB286E /* Main.storyboard */,
+				65421CCD23AAABFE000B0437 /* extensions.swift */,
 				65C7FE07237CF5B0000D6D80 /* OnlyVideoPostViewController.swift */,
 				65D42424232576AA00DB286E /* LaunchScreen.storyboard */,
 				65D42427232576AA00DB286E /* Info.plist */,
@@ -145,6 +162,7 @@
 		65DE618B233945A900A7895C /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				655EDF0723AD6F50005E6DB6 /* CustomImageView.swift */,
 				65ABFC88232C170200729B57 /* Advengers.swift */,
 				654F95DE2332AD8700175A7E /* Posts.swift */,
 				65ABFC86232C12C200729B57 /* User.swift */,
@@ -173,8 +191,6 @@
 				654F95DA23306E7F00175A7E /* PrayPostViewController.swift */,
 				654F95D823306ABC00175A7E /* PrayViewController.swift */,
 				65ABFC82232C069000729B57 /* UsersViewController.swift */,
-				657F2B462325F5CA00187C9D /* SignUpViewController.swift */,
-				65D4242F23258A2D00DB286E /* LogInViewController.swift */,
 				65C7FE05237B3E3B000D6D80 /* PhotoVideoPostViewController.swift */,
 			);
 			path = Controller;
@@ -234,6 +250,7 @@
 			knownRegions = (
 				en,
 				Base,
+				"es-419",
 			);
 			mainGroup = 65D4240C232576A800DB286E;
 			productRefGroup = 65D42416232576A800DB286E /* Products */;
@@ -250,6 +267,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				655EDF0223AD4926005E6DB6 /* Localizable.strings in Resources */,
 				65D42426232576AA00DB286E /* LaunchScreen.storyboard in Resources */,
 				65D4242E232586E200DB286E /* GoogleService-Info.plist in Resources */,
 				65D42423232576AA00DB286E /* Assets.xcassets in Resources */,
@@ -324,11 +342,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				6526F5ED23832CAE00DA2433 /* FeedImageOnlyCollectionViewCell.swift in Sources */,
-				655BF70C2388C4FC002F0C7C /* PinterestLayout.swift in Sources */,
+				655EDF0823AD6F50005E6DB6 /* CustomImageView.swift in Sources */,
 				65D42421232576A800DB286E /* altar.xcdatamodeld in Sources */,
 				65ABFC89232C170200729B57 /* Advengers.swift in Sources */,
 				654F95E52339307F00175A7E /* FeedOnlyTextCollectionViewCell.swift in Sources */,
 				654F95DD2331B93B00175A7E /* FeedCollectionViewCell.swift in Sources */,
+				655EDF0A23B002C4005E6DB6 /* textOnlyCell.swift in Sources */,
 				654F95DB23306E7F00175A7E /* PrayPostViewController.swift in Sources */,
 				655BF7052385DA1A002F0C7C /* PrayCollectionViewLayout.swift in Sources */,
 				654F95D923306ABC00175A7E /* PrayViewController.swift in Sources */,
@@ -338,12 +357,12 @@
 				65D42419232576A800DB286E /* AppDelegate.swift in Sources */,
 				655BF7082388C4D1002F0C7C /* PhotoStreamViewController.swift in Sources */,
 				654F95DF2332AD8700175A7E /* Posts.swift in Sources */,
+				65421CCE23AAABFE000B0437 /* extensions.swift in Sources */,
 				655BF70323847C11002F0C7C /* PostCell.swift in Sources */,
 				657F2B472325F5CA00187C9D /* SignUpViewController.swift in Sources */,
 				65ABFC85232C0E1D00729B57 /* UserTableViewCell.swift in Sources */,
 				65D4243023258A2D00DB286E /* LogInViewController.swift in Sources */,
 				655BF70E2388C5A5002F0C7C /* AnnotatedPhotoCell.swift in Sources */,
-				655BF70A2388C4F1002F0C7C /* Photo.swift in Sources */,
 				655BF70123847B4A002F0C7C /* NewsfeedCollectionViewController.swift in Sources */,
 				6526F5EF23836C7300DA2433 /* DynamicHeightCollectionView.swift in Sources */,
 				65ABFC87232C12C200729B57 /* User.swift in Sources */,
@@ -353,10 +372,19 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
+		655EDF0423AD4926005E6DB6 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				655EDF0323AD4926005E6DB6 /* en */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
 		65D4241C232576A800DB286E /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
 				65D4241D232576A800DB286E /* Base */,
+				655EDEFE23AD4630005E6DB6 /* es-419 */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -365,6 +393,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				65D42425232576AA00DB286E /* Base */,
+				655EDEFF23AD4631005E6DB6 /* es-419 */,
 			);
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
@@ -376,6 +405,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -437,6 +467,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";

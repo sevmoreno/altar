@@ -73,7 +73,9 @@ class NewsfeedCollectionViewController : UICollectionViewController
                 {
                     //      let eachpost = value as! [String:Any]
                     
-                    let temporarioPost = Posts ()
+                    let temporarioPost = Posts (dictionary: postfeed)
+                    
+                    /*
                     temporarioPost.author = value["author"] as? String
                     temporarioPost.photoImage = value["pathtoPost"] as? String
                     temporarioPost.likes = value["prays"] as? Int
@@ -82,6 +84,7 @@ class NewsfeedCollectionViewController : UICollectionViewController
                     temporarioPost.userID = value["userid"] as? String
                     temporarioPost.postType = value["postType"] as? String
                     temporarioPost.message = value["message"] as? String
+ */
                     self.posts.append(temporarioPost)
                     self.collectionView.reloadData()
                     print("Cargo uno")

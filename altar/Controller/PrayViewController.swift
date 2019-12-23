@@ -71,16 +71,30 @@ class PrayViewController: UIViewController {
             for (_,value) in postfeed
             {
           //      let eachpost = value as! [String:Any]
+            
+                /*
+                let diction: [String:Any] = [
                     
-                let temporarioPost = Posts ()
-                temporarioPost.author = value["author"] as! String
-                temporarioPost.photoImage = value["pathtoPost"] as? String
-                temporarioPost.likes = value["prays"] as! Int
-                temporarioPost.userPhoto = value["userPhoto"] as! String
-                temporarioPost.postID = value["postID"] as! String
-                temporarioPost.userID = value["userid"] as! String
-                temporarioPost.postType = value["postType"] as! String
-                temporarioPost.message = value["message"] as! String
+                    "author":"temporario",
+                    "pathtoPost" : "",
+                    "prays": "",
+                    "userPhoto": "",
+                    "postID":"",
+                    "userid":"",
+                    
+                ]
+ 
+ */
+                
+                let temporarioPost = Posts (dictionary: postfeed)
+              //  temporarioPost.author = value["author"] as! String
+              //  temporarioPost.photoImage = value["pathtoPost"] as? String
+              //  temporarioPost.likes = value["prays"] as! Int
+              //  temporarioPost.userPhoto = value["userPhoto"] as! String
+              //  temporarioPost.postID = value["postID"] as! String
+              //  temporarioPost.userID = value["userid"] as! String
+               // temporarioPost.postType = value["postType"] as! String
+              
                 self.posts.append(temporarioPost)
                 
                 
