@@ -63,53 +63,45 @@ class PhotoStreamViewController: UICollectionViewController, UICollectionViewDel
             }
         }
     }
-
+    
+    
+    
     
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
         
-        
         switch photos[indexPath.item].postType {
         case advengers.postType.imageOnly.rawValue:
-           
-            var height: CGFloat = 40 + 8 + 8 //username userprofileimageview
+            
+
+            var height: CGFloat = 80 + 8 + 8 //username userprofileimageview
             height += view.frame.width
             height += 50
             height += 60
             
             return CGSize(width: view.frame.width, height: height)
+      
             
         default:
-            var height: CGFloat = 40 + 8 + 8 //username userprofileimageview
-            height += view.frame.width
 
+
+            let frame = CGRect(x: 0, y: 0, width: view.frame.width, height: 50)
+            let dummyCell = textOnlyCell(frame: frame)
+            dummyCell.post = photos[indexPath.item]
+            dummyCell.layoutIfNeeded()
             
-            return CGSize(width: view.frame.width, height: 100)
+            let targetSize = CGSize(width: view.frame.width, height: 1000)
+            let estimatedSize = dummyCell.systemLayoutSizeFitting(targetSize)
+            
+            let height = max(20 + 8 + 8, estimatedSize.height)
+            print("Esta es la altura")
+            print(height)
+            return CGSize(width: view.frame.width, height: height)
+            
+ 
         }
-        
-        //     let photoTemp = CustomImageView()
-        //  photoTemp.loadImage(urlString: posts[indexPath.row].imageUrl)
-        //     let altura = photoTemp.image!.size.height
-        
-        // var height: CGFloat = 40 + 8 + 8 //username userprofileimageview
-       
-        
-        /*
-         let frame = CGRect(x: 0, y: 0, width: view.frame.width, height: 50)
-         let dummyCell = HomePostCell(frame: frame)
-         // dummyCell.comment = comments[indexPath.item]
-         let photoTemp = CustomImageView()
-         photoTemp.loadImage(urlString: posts[indexPath.row].imageUrl)
-         dummyCell.photoImageView = photoTemp
-         dummyCell.layoutIfNeeded()
-         
-         let targetSize = CGSize(width: view.frame.width, height: 1000)
-         let estimatedSize = dummyCell.systemLayoutSizeFitting(targetSize)
-         
-         let height = max(40 + 8 + 8, estimatedSize.height)
-         return CGSize(width: view.frame.width, height: height)
-         */
+
     }
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {

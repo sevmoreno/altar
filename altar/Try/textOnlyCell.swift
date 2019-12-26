@@ -148,11 +148,22 @@ class textOnlyCell: UICollectionViewCell {
         return button
     }()
     
-    let captionLabel: UILabel = {
-        let label = UILabel()
-        label.numberOfLines = 0
-        return label
+    
+    let captionLabel: UITextView = {
+        let textView = UITextView()
+        textView.font = UIFont.systemFont(ofSize: 14)
+        //        label.numberOfLines = 0
+        //        label.backgroundColor = .lightGray
+        textView.isScrollEnabled = false
+        return textView
     }()
+    
+ //   let captionLabel: UILabel = {
+ //       let label = UILabel()
+ //       label.numberOfLines = 0
+ //       label.isScrollEnabled = false
+ //       return label
+ //   }()
     
     
     
@@ -187,21 +198,24 @@ class textOnlyCell: UICollectionViewCell {
         addSubview(usernameLabel)
         addSubview(optionsButton)
 
-        userProfileImageView.anchor(top: topAnchor, left: leftAnchor, bottom: nil, right: nil, paddingTop: 8, paddingLeft: 8, paddingBottom: 0, paddingRight: 0, width: 40, height: 40)
-        
+      
         userProfileImageView.anchor(top: topAnchor, left: leftAnchor, bottom: nil, right: nil, paddingTop: 8, paddingLeft: 8, paddingBottom: 0, paddingRight: 0, width: 40, height: 40)
         userProfileImageView.layer.cornerRadius = 40 / 2
         
-        usernameLabel.anchor(top: topAnchor, left: userProfileImageView.rightAnchor, bottom: optionsButton.topAnchor, right: optionsButton.leftAnchor, paddingTop: 0, paddingLeft: 8, paddingBottom: 0, paddingRight: 0, width: 0, height: 0)
+        usernameLabel.anchor(top: topAnchor, left: userProfileImageView.rightAnchor, bottom: nil, right: nil, paddingTop: 16, paddingLeft: 8, paddingBottom: 0, paddingRight: 0, width: 0, height: 0)
         
-        optionsButton.anchor(top: topAnchor, left: nil, bottom: nil, right: rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 44, height: 0)
+        
+        
+       //  optionsButton.anchor(top: topAnchor, left: nil, bottom: nil, right: rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 44, height: 0)
         
 
         
-      //  setupActionButtons()
+     
         
-      //  addSubview(captionLabel)
-      //  captionLabel.anchor(top: likeButton.bottomAnchor, left: leftAnchor, bottom: bottomAnchor, right: rightAnchor, paddingTop: 0, paddingLeft: 8, paddingBottom: 0, paddingRight: 8, width: 0, height: 0)
+        addSubview(captionLabel)
+        captionLabel.anchor(top: userProfileImageView.bottomAnchor, left: leftAnchor, bottom: nil, right: rightAnchor, paddingTop: 0, paddingLeft: 8, paddingBottom: 0, paddingRight: 8, width: 0, height: 0)
+        
+        setupActionButtons()
         
         
      
@@ -216,7 +230,7 @@ class textOnlyCell: UICollectionViewCell {
         stackView.distribution = .fillEqually
         
         addSubview(stackView)
-        stackView.anchor(top: captionLabel.bottomAnchor, left: leftAnchor, bottom: nil, right: nil, paddingTop: 0, paddingLeft: 4, paddingBottom: 0, paddingRight: 0, width: 120, height: 50)
+        stackView.anchor(top: captionLabel.bottomAnchor, left: leftAnchor, bottom: nil, right: nil, paddingTop: 8, paddingLeft: 4, paddingBottom: 0, paddingRight: 0, width: 120, height: 50)
         
         
     }

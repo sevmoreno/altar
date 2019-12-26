@@ -41,10 +41,8 @@ class AnnotatedPhotoCell: UICollectionViewCell {
     var post: Posts? {
         
         didSet {
-            print("Esto es cuando se setup Post")
+           
             
-             print(post?.author)
-             print(post?.postType)
             
             
             guard let postImageUrl = post?.photoImage else { return }
@@ -109,8 +107,9 @@ class AnnotatedPhotoCell: UICollectionViewCell {
         
      //   let timeAgoDisplay = post.timeAgoDisplay()
      //   attributedText.append(NSAttributedString(string: timeAgoDisplay, attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 14), NSAttributedString.Key.foregroundColor: UIColor.gray]))
-        
+        captionLabel.isScrollEnabled = false
         captionLabel.attributedText = attributedText
+        
     }
     
     
@@ -188,12 +187,14 @@ class AnnotatedPhotoCell: UICollectionViewCell {
         return button
     }()
     
-    let captionLabel: UILabel = {
-        let label = UILabel()
-        label.numberOfLines = 0
-        return label
+    let captionLabel: UITextView = {
+        let textView = UITextView()
+        textView.font = UIFont.systemFont(ofSize: 14)
+        
+        textView.backgroundColor = .lightGray
+        textView.isScrollEnabled = false
+        return textView
     }()
-    
     
     
     
@@ -231,20 +232,21 @@ class AnnotatedPhotoCell: UICollectionViewCell {
         userProfileImageView.anchor(top: topAnchor, left: leftAnchor, bottom: nil, right: nil, paddingTop: 8, paddingLeft: 8, paddingBottom: 0, paddingRight: 0, width: 40, height: 40)
         userProfileImageView.layer.cornerRadius = 40 / 2
         
-        usernameLabel.anchor(top: topAnchor, left: userProfileImageView.rightAnchor, bottom: photoImageView.topAnchor, right: optionsButton.leftAnchor, paddingTop: 0, paddingLeft: 8, paddingBottom: 0, paddingRight: 0, width: 0, height: 0)
+        usernameLabel.anchor(top: topAnchor, left: userProfileImageView.rightAnchor, bottom: nil, right: nil, paddingTop: 16, paddingLeft: 8, paddingBottom: 0, paddingRight: 0, width: 0, height: 0)
         
-        optionsButton.anchor(top: topAnchor, left: nil, bottom: photoImageView.topAnchor, right: rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 44, height: 0)
+    //    optionsButton.anchor(top: topAnchor, left: nil, bottom: photoImageView.topAnchor, right: rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 44, height: 0)
         
         photoImageView.anchor(top: userProfileImageView.bottomAnchor, left: leftAnchor, bottom: nil, right: rightAnchor, paddingTop: 8, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 0)
         photoImageView.heightAnchor.constraint(equalTo: widthAnchor, multiplier: 1).isActive = true
         
-        setupActionButtons()
+        
         
         addSubview(captionLabel)
-        captionLabel.anchor(top: likeButton.bottomAnchor, left: leftAnchor, bottom: bottomAnchor, right: rightAnchor, paddingTop: 0, paddingLeft: 8, paddingBottom: 0, paddingRight: 8, width: 0, height: 0)
+        
+        captionLabel.anchor(top: photoImageView.bottomAnchor, left: leftAnchor, bottom: nil, right: rightAnchor, paddingTop: 0, paddingLeft: 8, paddingBottom: 0, paddingRight: 8, width: 0, height: 0)
         
         
-        
+        setupActionButtons()
     }
     
 
@@ -255,7 +257,7 @@ class AnnotatedPhotoCell: UICollectionViewCell {
         stackView.distribution = .fillEqually
         
         addSubview(stackView)
-        stackView.anchor(top: photoImageView.bottomAnchor, left: leftAnchor, bottom: nil, right: nil, paddingTop: 0, paddingLeft: 4, paddingBottom: 0, paddingRight: 0, width: 120, height: 50)
+        stackView.anchor(top: captionLabel.bottomAnchor, left: leftAnchor, bottom: bottomAnchor, right: nil, paddingTop: 0, paddingLeft: 4, paddingBottom: -8, paddingRight: 0, width: 120, height: 50)
         
         
     }
