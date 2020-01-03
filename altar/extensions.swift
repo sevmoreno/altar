@@ -93,3 +93,12 @@ extension Date {
     }
 }
 
+extension UIImage {
+    func getImageRatio() -> CGFloat {
+        let imageRatio = CGFloat(self.size.width / self.size.height)
+        return imageRatio
+    }
+}
+
+
+

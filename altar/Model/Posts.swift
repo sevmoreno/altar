@@ -19,6 +19,8 @@ class Posts {
     var userPhoto: String!
     var postType: String!
     var message: String!
+    var photoW: CGFloat?
+    var photoH: CGFloat?
     
     
     var whoLikes: [String] = [String] ()
@@ -29,12 +31,14 @@ class Posts {
         self.author = dictionary["author"] as? String ?? ""
         self.church = dictionary["church"] as? String ?? ""
         self.likes = dictionary["likes"] as? Int ?? 0
-        self.photoImage = dictionary["photoImage"] as? String ?? "No image"
+        self.photoImage = dictionary["pathtoPost"] as? String ?? "No image"
         self.userID = dictionary["userID"] as? String ?? ""
         self.postID = dictionary["postID"] as? String ?? ""
         self.userPhoto = dictionary["userPhoto"] as? String ?? ""
         self.postType = dictionary["postType"] as? String ?? ""
         self.message = dictionary["message"] as? String ?? ""
+        self.photoH = dictionary["photoW"] as? CGFloat ?? 764.0
+        self.photoW = dictionary["photoH"] as? CGFloat ?? 694.0
       //  let secondsFrom1970 = dictionary["creationDate"] as? Double ?? 0
       //  self.creationDate = Date(timeIntervalSince1970: secondsFrom1970)
     }

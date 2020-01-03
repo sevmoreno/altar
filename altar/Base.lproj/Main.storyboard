@@ -1,19 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
-    <device id="retina6_1" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="collection view cell content view" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
         <!--Log In View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="logInViewController" customModule="altar" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController modalPresentationStyle="fullScreen" id="BYZ-38-t0r" customClass="logInViewController" customModule="altar" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -90,27 +89,28 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
+                    <navigationItem key="navigationItem" id="XZB-un-zAS"/>
                     <connections>
                         <outlet property="emailLogin" destination="5e4-Yk-Fsu" id="ZUT-AM-94U"/>
                         <outlet property="passwordLogin" destination="sDZ-Z7-Pva" id="S0k-p0-vHF"/>
-                        <segue destination="vWx-L6-goc" kind="show" identifier="accesoSignIN" id="BO6-Ti-jNe"/>
-                        <segue destination="Leq-eS-bcM" kind="show" identifier="accesoOK" id="7cR-iW-vX2"/>
+                        <segue destination="vWx-L6-goc" kind="presentation" identifier="accesoSignIN" id="BO6-Ti-jNe"/>
+                        <segue destination="Leq-eS-bcM" kind="presentation" identifier="accesoOK" id="7cR-iW-vX2"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1344.9275362318842" y="59.598214285714285"/>
+            <point key="canvasLocation" x="-1930" y="21"/>
         </scene>
         <!--Sign Up View Controller-->
         <scene sceneID="wfu-gD-6re">
             <objects>
                 <viewController id="vWx-L6-goc" customClass="SignUpViewController" customModule="altar" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="nkb-UM-KFp">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="mQz-XB-Wbz">
-                                <rect key="frame" x="32" y="105" width="350" height="686"/>
+                                <rect key="frame" x="32" y="78" width="350" height="686"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="altar" translatesAutoresizingMaskIntoConstraints="NO" id="mrp-mf-z97">
                                         <rect key="frame" x="87" y="0.0" width="176" height="63"/>
@@ -210,12 +210,12 @@
                         <outlet property="password" destination="qVH-1X-tyT" id="h9A-lb-AsJ"/>
                         <outlet property="passwordvalidator" destination="umP-gQ-xSf" id="FAn-KZ-rYs"/>
                         <outlet property="signInBtt" destination="RNC-D6-GfG" id="c2A-ow-D6o"/>
-                        <segue destination="Leq-eS-bcM" kind="show" identifier="accesoOK" id="t9C-jd-6oV"/>
+                        <segue destination="Leq-eS-bcM" kind="presentation" identifier="accesoOK" id="t9C-jd-6oV"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BWf-gt-Un9" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-501.44927536231887" y="-1064.0625"/>
+            <point key="canvasLocation" x="-654" y="-449"/>
         </scene>
         <!--Altar-->
         <scene sceneID="TiS-yx-EPF">
@@ -237,7 +237,7 @@
                                         <barButtonItem key="leftBarButtonItem" title="logout" id="T38-kH-M16" userLabel="logout">
                                             <connections>
                                                 <action selector="logout:" destination="2E5-vo-rva" id="rE7-d9-fzz"/>
-                                                <segue destination="BYZ-38-t0r" kind="show" id="bxx-9m-bmf"/>
+                                                <segue destination="BYZ-38-t0r" kind="presentation" id="bxx-9m-bmf"/>
                                             </connections>
                                         </barButtonItem>
                                         <barButtonItem key="rightBarButtonItem" title="Item" id="03H-q2-U51" userLabel="Reload Data">
@@ -256,12 +256,12 @@
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" accessoryType="detailDisclosureButton" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="userCell" rowHeight="150" id="dRQ-MP-GRQ" customClass="UserTableViewCell" customModule="altar" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="414" height="150"/>
                                         <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="dRQ-MP-GRQ" id="FHA-Fa-V5A">
-                                            <rect key="frame" x="0.0" y="0.0" width="342" height="149.5"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="dRQ-MP-GRQ" id="FHA-Fa-V5A">
+                                            <rect key="frame" x="0.0" y="0.0" width="351" height="150"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" tag="201" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="lRK-Kg-Ro1">
-                                                    <rect key="frame" x="30" y="50" width="50" height="50"/>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" tag="201" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="lRK-Kg-Ro1">
+                                                    <rect key="frame" x="89" y="50" width="50" height="50"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="50" id="bOQ-WI-JAD"/>
                                                         <constraint firstAttribute="height" constant="50" id="jfE-Xh-O0l"/>
@@ -273,20 +273,14 @@
                                                         <userDefinedRuntimeAttribute type="boolean" keyPath="layer.maskToBounds" value="YES"/>
                                                     </userDefinedRuntimeAttributes>
                                                 </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" tag="200" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Full Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1oU-4q-a5u">
-                                                    <rect key="frame" x="99" y="64.5" width="77" height="21"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" tag="200" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Full Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1oU-4q-a5u">
+                                                    <rect key="frame" x="167" y="65" width="77" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
-                                            <constraints>
-                                                <constraint firstItem="lRK-Kg-Ro1" firstAttribute="centerX" secondItem="FHA-Fa-V5A" secondAttribute="centerX" constant="-152" id="4Hw-hF-JVk"/>
-                                                <constraint firstItem="lRK-Kg-Ro1" firstAttribute="centerY" secondItem="FHA-Fa-V5A" secondAttribute="centerY" id="LE3-eH-zWp"/>
-                                                <constraint firstItem="1oU-4q-a5u" firstAttribute="leading" secondItem="lRK-Kg-Ro1" secondAttribute="trailing" constant="19" id="Z3O-df-BwK"/>
-                                                <constraint firstItem="lRK-Kg-Ro1" firstAttribute="leading" secondItem="FHA-Fa-V5A" secondAttribute="leading" constant="30" id="kET-Y1-v09"/>
-                                                <constraint firstItem="1oU-4q-a5u" firstAttribute="centerY" secondItem="FHA-Fa-V5A" secondAttribute="centerY" id="vsh-C5-ud5"/>
-                                            </constraints>
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="foto" destination="lRK-Kg-Ro1" id="h4z-A8-YVC"/>
@@ -331,10 +325,14 @@
                         </connections>
                     </collectionView>
                     <navigationItem key="navigationItem" id="Gk3-QE-OW6"/>
+                    <splitViewMasterSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <connections>
+                        <segue destination="q9L-LC-sol" kind="show" identifier="prueba" id="If4-AZ-ReL"/>
+                    </connections>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uoM-Al-DnX" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3260.8695652173915" y="-710.49107142857144"/>
+            <point key="canvasLocation" x="2877" y="398"/>
         </scene>
         <!--Power of Prayer-->
         <scene sceneID="zAQ-tN-L7N">
@@ -527,11 +525,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="Power of Prayer" id="pkq-IK-ZeI">
                         <barButtonItem key="leftBarButtonItem" title="Item" id="Gxn-Ua-1xY"/>
-                        <barButtonItem key="rightBarButtonItem" title="Add prayer" id="BEb-rR-cC1">
-                            <connections>
-                                <segue destination="q9L-LC-sol" kind="show" id="NPy-yK-Dfw"/>
-                            </connections>
-                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="Add prayer" id="BEb-rR-cC1"/>
                     </navigationItem>
                     <connections>
                         <outlet property="feedCollection" destination="0l8-dJ-D7a" id="fUQ-ol-1z3"/>
@@ -539,7 +533,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6a8-XC-ieJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2215.9420289855075" y="75"/>
+            <point key="canvasLocation" x="3493" y="-1935"/>
         </scene>
         <!--Pray Post View Controller-->
         <scene sceneID="48J-oD-yOv">
@@ -551,9 +545,6 @@
                         <subviews>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="justified" translatesAutoresizingMaskIntoConstraints="NO" id="pvp-hd-VXQ">
                                 <rect key="frame" x="33.5" y="176" width="347" height="382"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="100" id="qtN-cG-Nq6"/>
-                                </constraints>
                                 <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim</string>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -561,7 +552,7 @@
                             <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="mNI-A5-TrO" userLabel="Usuario ">
                                 <rect key="frame" x="161" y="110" width="92" height="50"/>
                                 <subviews>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="sWZ-aQ-PjT">
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="default" translatesAutoresizingMaskIntoConstraints="NO" id="sWZ-aQ-PjT">
                                         <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="50" id="6H6-pj-IO1"/>
@@ -677,15 +668,17 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Wyf-ML-dlq"/>
                     </view>
+                    <navigationItem key="navigationItem" id="xrh-2Q-rTC"/>
                     <connections>
                         <outlet property="textoIngresado" destination="pvp-hd-VXQ" id="thA-JE-HXF"/>
+                        <outlet property="usuarioFoto" destination="sWZ-aQ-PjT" id="dPg-yy-dRD"/>
                         <segue destination="Ip3-5D-A7D" kind="show" identifier="photoVideoPost" id="NXk-HO-q3a"/>
                         <segue destination="ifa-pJ-W0n" kind="show" identifier="onlyVideoPost" id="NqG-QH-OhX"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xDi-d3-anm" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3037.68115942029" y="75"/>
+            <point key="canvasLocation" x="4193" y="398"/>
         </scene>
         <!--Photo Video Post View Controller-->
         <scene sceneID="z6h-di-fxl">
@@ -745,7 +738,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="c9Q-dH-lAi" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5050.7246376811599" y="-141.29464285714286"/>
+            <point key="canvasLocation" x="5451" y="21"/>
         </scene>
         <!--Only Video Post View Controller-->
         <scene sceneID="9Ig-jU-V3N">
@@ -785,52 +778,68 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5Ka-iD-p1s" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4140.579710144928" y="515.625"/>
+            <point key="canvasLocation" x="5451" y="856"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="nF9-zY-BAG">
             <objects>
-                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="Leq-eS-bcM" sceneMemberID="viewController">
+                <tabBarController autoresizesArchivedViewToFullSize="NO" automaticallyAdjustsScrollViewInsets="NO" modalPresentationStyle="fullScreen" id="Leq-eS-bcM" sceneMemberID="viewController">
                     <toolbarItems/>
+                    <navigationItem key="navigationItem" id="gGw-oa-mcc"/>
+                    <nil key="simulatedBottomBarMetrics"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="7ht-gb-uwh">
                         <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tabBar>
                     <connections>
-                        <segue destination="RyO-YI-Hhq" kind="relationship" relationship="viewControllers" id="w7n-s8-BZq"/>
-                        <segue destination="2E5-vo-rva" kind="relationship" relationship="viewControllers" id="2IR-9q-3me"/>
                         <segue destination="xMq-hf-NLb" kind="relationship" relationship="viewControllers" id="AVj-kd-onP"/>
+                        <segue destination="2E5-vo-rva" kind="relationship" relationship="viewControllers" id="2IR-9q-3me"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4Rp-Pe-VqO" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="520" y="-175"/>
+            <point key="canvasLocation" x="399" y="21"/>
+        </scene>
+        <!--Collection View Controller-->
+        <scene sceneID="nfx-7E-HWm">
+            <objects>
+                <collectionViewController id="deT-Sv-Js6" sceneMemberID="viewController">
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="9Ot-3H-C13">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="4v0-ZW-14y">
+                            <size key="itemSize" width="50" height="50"/>
+                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                        </collectionViewFlowLayout>
+                        <cells>
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="Z1c-YQ-sMB">
+                                <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="XMp-kM-WeB">
+                                    <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </collectionViewCellContentView>
+                            </collectionViewCell>
+                        </cells>
+                        <connections>
+                            <outlet property="dataSource" destination="deT-Sv-Js6" id="iUC-d4-8Xi"/>
+                            <outlet property="delegate" destination="deT-Sv-Js6" id="LYa-BN-miL"/>
+                        </connections>
+                    </collectionView>
+                </collectionViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Hua-hs-Ak9" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1752" y="-368"/>
         </scene>
         <!--Power of Pray-->
-        <scene sceneID="YfA-NO-ev4">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="RyO-YI-Hhq" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Power of Pray" id="53m-hi-SVr"/>
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="CDC-65-onB">
-                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="1ME-OJ-6H4" kind="relationship" relationship="rootViewController" id="2qC-c9-AeN"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="dPb-zV-EZu" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1353.6231884057972" y="75"/>
-        </scene>
-        <!--Item-->
         <scene sceneID="gRE-6C-JuJ">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="xMq-hf-NLb" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="89g-8m-uDk"/>
+                    <tabBarItem key="tabBarItem" title="Power of Pray" id="89g-8m-uDk"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="ikQ-Wl-BqW">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
@@ -843,11 +852,12 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6JL-qM-w1M" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2133" y="-647"/>
+            <point key="canvasLocation" x="1699" y="399"/>
         </scene>
     </scenes>
     <resources>
         <image name="altar" width="176" height="104"/>
+        <image name="default" width="256" height="256"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="t9C-jd-6oV"/>

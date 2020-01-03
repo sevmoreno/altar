@@ -23,6 +23,11 @@ class PrayPostViewController: UIViewController, UIImagePickerControllerDelegate,
     
     @IBOutlet weak var textoIngresado: UITextView!
     
+    @IBOutlet weak var usuarioFoto: UIImageView!
+        
+    
+
+    
     var attributes: [NSAttributedString.Key: Any] = [
         .font: UIFont.systemFont(ofSize: 75),
         .foregroundColor : UIColor.white
@@ -33,18 +38,36 @@ class PrayPostViewController: UIViewController, UIImagePickerControllerDelegate,
     override func viewDidLoad() {
         super.viewDidLoad()
         
+ 
+        
        
        picker.delegate = self
-     textoIngresado.text = "What is your prayer"
-     textoIngresado.textColor = .lightGray
-     textoIngresado.delegate = self
+       textoIngresado.text = "What is your prayer"
+       textoIngresado.textColor = .lightGray
+       textoIngresado.delegate = self
      
-        
-        
+        let imagenUsuario = CustomImageView ()
+        if let foto = advengers.shared.currenUSer["photoURL"] {
+            imagenUsuario.loadImage(urlString: foto)
+             DispatchQueue.main.async {
+                 
+                 self.usuarioFoto.image = imagenUsuario.image
+                // self.usuarioFoto.loadImage(urlString: foto)
+             }
+            
+        }
+        else { return }
+ 
+       
         
         
         // Do any additional setup after loading the view.
     }
+
+
+    
+ 
+    
     
     @IBAction func photoVideoButton(_ sender: Any) {
                    selectionVideoPhoto = "photo"
@@ -142,10 +165,16 @@ class PrayPostViewController: UIViewController, UIImagePickerControllerDelegate,
         let imageRef = advengers.shared.PostPrayStorage.child(uid!).child("\(key!).jpg")
 
         
-        let data = textViewImage().jpegData(compressionQuality: 0.6)
-       
+
+        //let cg = CGPoint(x: 0.0,y: 200.0)
+        textoIngresado.tintColor = .clear
+      
+        let data = textoToImage().jpegData(compressionQuality: 0.6)
         
         
+        let imagenCapturada = UIImage(data: data!)
+  
+
         if hasImage {
             
             let uploadTask = imageRef.putData(data!, metadata: nil) { (matadata, error) in
@@ -165,7 +194,12 @@ class PrayPostViewController: UIViewController, UIImagePickerControllerDelegate,
                                     "userPhoto": userphot,
                                     "postID": key,
                                     "postType": advengers.postType.imageOnly.rawValue,
-                                    "message": self.textoIngresado.text] as! [String:Any]
+                                    "message": self.textoIngresado.text as String,
+                                    "imagH:": imagenCapturada!.size.height,
+                                    "imagW:": imagenCapturada?.size.width
+                            
+                            
+                                    ] as! [String:Any]
                         
                         let postfeed = ["\(key!)" : feed] as! [String:Any]
                         
@@ -185,6 +219,21 @@ class PrayPostViewController: UIViewController, UIImagePickerControllerDelegate,
             
             
         } else {
+           
+            let feed = [                       "userid": uid,
+                                               "pathtoPost":"",
+                                               "prays": 0,
+                                               "author": nombreToDisplay,
+                                               "userPhoto": userphot,
+                                               "postID": key,
+                                               "postType": advengers.postType.textOnly.rawValue,
+                                               "message": self.textoIngresado.text as String,
+                                               "imagH:": 0,
+                                               "imagW:": 0
+                                       
+                                       
+                                               ] as! [String:Any]
+            /*
             
             let feed = ["userid": uid,
                         "pathtoPost": nil,
@@ -193,7 +242,10 @@ class PrayPostViewController: UIViewController, UIImagePickerControllerDelegate,
                         "userPhoto": userphot,
                         "postID": key,
                         "postType": advengers.postType.textOnly.rawValue,
-                        "message": self.textoIngresado.text] as! [String:Any]
+                        "message": self.textoIngresado.text as String,
+                        "imagH:": 0,
+                        "imagW:": 0] as! [String:Any]
+            */
             
             let postfeed = ["\(key!)" : feed] as! [String:Any]
             
@@ -210,24 +262,25 @@ class PrayPostViewController: UIViewController, UIImagePickerControllerDelegate,
         
     }
     
-    func textViewImage() -> UIImage {
+    func textoToImage() -> UIImage {
         
         var image: UIImage? = nil
         
         
-        UIGraphicsBeginImageContextWithOptions(textoIngresado.visibleSize, textoIngresado.isOpaque, 0.0)
-        
-        let savedContentOffset: CGPoint = textoIngresado.contentOffset
+     //   UIGraphicsBeginImageContextWithOptions(textoIngresado.visibleSize, textoIngresado.isOpaque, 0.0)
+        UIGraphicsBeginImageContextWithOptions(textoIngresado.frame.size, textoIngresado.isOpaque, 0.0)
+        //let savedContentOffset: CGPoint = textoIngresado.contentOffset
         let savedFrame: CGRect = textoIngresado.frame
         
-        textoIngresado.contentOffset = .zero
-        textoIngresado.frame = CGRect(x: 0, y: 0, width: textoIngresado.visibleSize.width, height: textoIngresado.visibleSize.height)
+       // textoIngresado.contentOffset = .zero
+       // textoIngresado.frame = CGRect(x: 0, y: 0, width: textoIngresado.frame.size.width, height: textoIngresado.frame.size.height)
         
         textoIngresado.layer.render(in: UIGraphicsGetCurrentContext()!)
+        
         image = UIGraphicsGetImageFromCurrentImageContext()
         
-        textoIngresado.contentOffset = savedContentOffset
-        textoIngresado.frame = savedFrame
+        // rtextoIngresado.contentOffset = savedContentOffset
+       // textoIngresado.frame = savedFrame
         
         UIGraphicsEndImageContext()
         
@@ -339,6 +392,7 @@ extension PrayPostViewController: UITextViewDelegate {
         
         // adjustUITextViewHeight(arg: textView)
         
+        /* AVER
         if textoIngresado.text.count > 10 {
             
             let quote = textoIngresado.text!
@@ -355,6 +409,7 @@ extension PrayPostViewController: UITextViewDelegate {
             textoIngresado.attributedText = attributedQuote
             
         }
+ */
     }
     
     

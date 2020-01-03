@@ -14,14 +14,18 @@ class textOnlyCell: UICollectionViewCell {
     var post: Posts? {
         
         didSet {
+
+                       //  print("Este es el conentido de la altura: \(photoImageView.image?.size.height)")
+                    //   post?.imageH = photoImageView.image?.size.height
+                       usernameLabel.text = post?.author
+                       guard let profileuserURL = post?.userPhoto else {return}
+                       userProfileImageView.loadImage(urlString: profileuserURL)
        
           //  guard let postImageUrl = post?.photoImage else { return }
            
          //   photoImageView.loadImage(urlString: postImageUrl)
          
-            usernameLabel.text = post?.author
-            guard let profileuserURL = post?.userPhoto else {return}
-            userProfileImageView.loadImage(urlString: profileuserURL)
+
     
             setupAttributedCaption()
             
@@ -74,6 +78,7 @@ class textOnlyCell: UICollectionViewCell {
     }
     
     
+    
     let userProfileImageView: CustomImageView = {
         let iv = CustomImageView()
         iv.contentMode = .scaleAspectFill
@@ -82,14 +87,6 @@ class textOnlyCell: UICollectionViewCell {
         return iv
     }()
     
-    var photoImageView: CustomImageView = {
-        let iv = CustomImageView()
-        //  iv.contentMode = .scaleAspectFill
-        
-        iv.contentMode = .scaleAspectFit
-        iv.clipsToBounds = true
-        return iv
-    }()
     
     let usernameLabel: UILabel = {
         let label = UILabel()
@@ -170,14 +167,35 @@ class textOnlyCell: UICollectionViewCell {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        print("Esto es Init")
-        print("Nombre del autor en init \(post?.author)")
-        print("Nombre del tipo en init \(post?.postType)")
         
+            
+    
         
-        
-        defaultCell()
-        
+             addSubview(userProfileImageView)
+             addSubview(usernameLabel)
+             addSubview(optionsButton)
+
+           
+             userProfileImageView.anchor(top: topAnchor, left: leftAnchor, bottom: nil, right: nil, paddingTop: 8, paddingLeft: 8, paddingBottom: 0, paddingRight: 0, width: 40, height: 40)
+             userProfileImageView.layer.cornerRadius = 40 / 2
+             
+             usernameLabel.anchor(top: topAnchor, left: userProfileImageView.rightAnchor, bottom: nil, right: nil, paddingTop: 16, paddingLeft: 8, paddingBottom: 0, paddingRight: 0, width: 0, height: 0)
+             
+             
+             
+            //  optionsButton.anchor(top: topAnchor, left: nil, bottom: nil, right: rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 44, height: 0)
+             
+
+             
+          
+             
+             addSubview(captionLabel)
+             captionLabel.anchor(top: userProfileImageView.bottomAnchor, left: leftAnchor, bottom: nil, right: rightAnchor, paddingTop: 10, paddingLeft: 8, paddingBottom: 0, paddingRight: 8, width: 0, height: 0)
+             
+             setupActionButtons()
+             
+             
+
         
         
         
@@ -190,39 +208,7 @@ class textOnlyCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func defaultCell () {
-        
-       
-        
-        addSubview(userProfileImageView)
-        addSubview(usernameLabel)
-        addSubview(optionsButton)
-
-      
-        userProfileImageView.anchor(top: topAnchor, left: leftAnchor, bottom: nil, right: nil, paddingTop: 8, paddingLeft: 8, paddingBottom: 0, paddingRight: 0, width: 40, height: 40)
-        userProfileImageView.layer.cornerRadius = 40 / 2
-        
-        usernameLabel.anchor(top: topAnchor, left: userProfileImageView.rightAnchor, bottom: nil, right: nil, paddingTop: 16, paddingLeft: 8, paddingBottom: 0, paddingRight: 0, width: 0, height: 0)
-        
-        
-        
-       //  optionsButton.anchor(top: topAnchor, left: nil, bottom: nil, right: rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 44, height: 0)
-        
-
-        
-     
-        
-        addSubview(captionLabel)
-        captionLabel.anchor(top: userProfileImageView.bottomAnchor, left: leftAnchor, bottom: nil, right: rightAnchor, paddingTop: 0, paddingLeft: 8, paddingBottom: 0, paddingRight: 8, width: 0, height: 0)
-        
-        setupActionButtons()
-        
-        
-     
-        
-    }
-    
-   
+  
     
     fileprivate func setupActionButtons() {
         

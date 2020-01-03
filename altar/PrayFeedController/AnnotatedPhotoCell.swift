@@ -1,38 +1,5 @@
 
 
-
-/*
-import UIKit
-
-class AnnotatedPhotoCell: UICollectionViewCell {
-  @IBOutlet private weak var containerView: UIView!
-  @IBOutlet var imageView: UIImageView!
-  @IBOutlet var captionLabel: UILabel!
-  @IBOutlet var commentLabel: UILabel!
-  
-  override func awakeFromNib() {
-    super.awakeFromNib()
-    containerView.layer.cornerRadius = 6
-    containerView.layer.masksToBounds = true
-  }
-  
-    /*
-  var photo: Photo? {
-    didSet {
-      if let photo = photo {
-        imageView.image = photo.image
-        captionLabel.text = photo.caption
-        commentLabel.text = photo.comment
-      }
-    }
-  }
- */
-    
-}
-
- 
- */
-
 import UIKit
 
 class AnnotatedPhotoCell: UICollectionViewCell {
@@ -68,33 +35,7 @@ class AnnotatedPhotoCell: UICollectionViewCell {
         
     }
     
-   // var delegate: HomePostCellDelegate?
-    
-    /*
-    var post: Post? {
-        
-        didSet {
-            guard let postImageUrl = post?.imageUrl else { return }
-            likeButton.setImage(post?.hasLiked == true ? #imageLiteral(resourceName: "like_selected").withRenderingMode(.alwaysOriginal) : #imageLiteral(resourceName: "like_unselected").withRenderingMode(.alwaysOriginal), for: .normal)
-            
-            photoImageView.loadImage(urlString: postImageUrl)
-            //  print("Este es el conentido de la altura: \(photoImageView.image?.size.height)")
-            post?.imageH = photoImageView.image?.size.height
-            usernameLabel.text = post?.user.username
-            guard let profileuserURL = post?.user.profileImageUrl else {return}
-            userProfileImageView.loadImage(urlString: profileuserURL)
-            //print("ESTE ES EL USUERNAME CELL")
-            //  print(post?.user.username)
-            // usernameLabel.text = post?.user.username
-            
-            //guard let profileuserURL = post?.user.profileImageUrl else {return}
-            // userProfileImageView.loadImage(urlString: profileuserURL)
-            
-            setupAttributedCaption()
-        }
-    }
- 
- */
+
     
     fileprivate func setupAttributedCaption() {
         guard let post = self.post else { return }
@@ -200,16 +141,16 @@ class AnnotatedPhotoCell: UICollectionViewCell {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        print("Esto es Init")
-        print("Nombre del autor en init \(post?.author)")
-        print("Nombre del tipo en init \(post?.postType)")
         
+        print("Este es el frame de la cell: \(frame.width),\(frame.height)")
+        
+      
 
            
         defaultCell()
     
         
-        
+    
       
         
         
@@ -222,34 +163,96 @@ class AnnotatedPhotoCell: UICollectionViewCell {
     
     func defaultCell () {
         
+        
         addSubview(userProfileImageView)
         addSubview(usernameLabel)
-        addSubview(optionsButton)
+        
+        
+        photoImageView.contentMode = .scaleAspectFill
+        photoImageView.clipsToBounds = true
         addSubview(photoImageView)
         
-        userProfileImageView.anchor(top: topAnchor, left: leftAnchor, bottom: nil, right: nil, paddingTop: 8, paddingLeft: 8, paddingBottom: 0, paddingRight: 0, width: 40, height: 40)
+        let stackView = UIStackView(arrangedSubviews: [likeButton, commentButton])
+        stackView.distribution = .fillEqually
         
-        userProfileImageView.anchor(top: topAnchor, left: leftAnchor, bottom: nil, right: nil, paddingTop: 8, paddingLeft: 8, paddingBottom: 0, paddingRight: 0, width: 40, height: 40)
+        addSubview(stackView)
+        
+        userProfileImageView.translatesAutoresizingMaskIntoConstraints = false
         userProfileImageView.layer.cornerRadius = 40 / 2
+        userProfileImageView.topAnchor.constraint(equalTo: topAnchor, constant:8).isActive = true
+        userProfileImageView.leftAnchor.constraint(equalTo: self.leftAnchor, constant:8).isActive = true
+        userProfileImageView.widthAnchor.constraint(equalToConstant: 40).isActive = true
+        userProfileImageView.heightAnchor.constraint(equalToConstant: 40).isActive = true
+        userProfileImageView.bottomAnchor.constraint(equalTo: photoImageView.topAnchor, constant: -8).isActive = true
+       // userProfileImageView.rightAnchor.constraint(equalTo: self.rightAnchor).isActive = true
+       // userProfileImageView.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
         
-        usernameLabel.anchor(top: topAnchor, left: userProfileImageView.rightAnchor, bottom: nil, right: nil, paddingTop: 16, paddingLeft: 8, paddingBottom: 0, paddingRight: 0, width: 0, height: 0)
+       // userProfileImageView.anchor(top: topAnchor, left: leftAnchor, bottom: nil, right: nil, paddingTop: 8, paddingLeft: 8, paddingBottom: 0, paddingRight: 0, width: 40, height: 40)
+        
+        usernameLabel.translatesAutoresizingMaskIntoConstraints = false
+       
+         usernameLabel.topAnchor.constraint(equalTo: userProfileImageView.topAnchor, constant:10).isActive = true
+        usernameLabel.leftAnchor.constraint(equalTo: userProfileImageView.rightAnchor, constant: 8).isActive = true
+        
+          
+       //  usernameLabel.anchor(top: topAnchor, left: userProfileImageView.rightAnchor, bottom: nil, right: nil, paddingTop: 16, paddingLeft: 8, paddingBottom: 0, paddingRight: 0, width: 0, height: 0)
+        
+        // NEW CODE
+        
+ 
+
+        photoImageView.translatesAutoresizingMaskIntoConstraints = false
+        photoImageView.topAnchor.constraint(equalTo: userProfileImageView.bottomAnchor, constant: 8).isActive = true
+        photoImageView.leftAnchor.constraint(equalTo: self.leftAnchor).isActive = true
+        photoImageView.rightAnchor.constraint(equalTo: self.rightAnchor).isActive = true
+        photoImageView.bottomAnchor.constraint(equalTo: stackView.topAnchor ).isActive = true
+        photoImageView.widthAnchor.constraint(equalToConstant: frame.width).isActive = true
+       
+        
+        
+        stackView.anchor(top: photoImageView.bottomAnchor, left: leftAnchor, bottom: bottomAnchor, right: nil, paddingTop: 0, paddingLeft: 4, paddingBottom: -8, paddingRight: 0, width: 120, height: 50)
+        
+        /*
+             stackView.translatesAutoresizingMaskIntoConstraints = false
+              stackView.topAnchor.constraint(equalTo: photoImageView.bottomAnchor, constant: 0).isActive = true
+              stackView.leftAnchor.constraint(equalTo: self.leftAnchor).isActive = true
+              stackView.rightAnchor.constraint(equalTo: self.rightAnchor).isActive = true
+              stackView.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
+              stackView.widthAnchor.constraint(equalToConstant: 120).isActive = true
+            stackView.heightAnchor.constraint(equalToConstant: 120).isActive = true
+        
+        */
+        
+        
+       //      stackView.anchor(top: captionLabel.bottomAnchor, left: leftAnchor, bottom: bottomAnchor, right: nil, paddingTop: 0, paddingLeft: 4, paddingBottom: -8, paddingRight: 0, width: 120, height: 50)
+        
+       // setupUser()
+        
+      //  addSubview(optionsButton)
+      //  addSubview(photoImageView)
+        
+      //  userProfileImageView.anchor(top: topAnchor, left: leftAnchor, bottom: nil, right: nil, paddingTop: 8, paddingLeft: 8, paddingBottom: 0, paddingRight: 0, width: 40, height: 40)
+        
+ 
         
     //    optionsButton.anchor(top: topAnchor, left: nil, bottom: photoImageView.topAnchor, right: rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 44, height: 0)
         
-        photoImageView.anchor(top: userProfileImageView.bottomAnchor, left: leftAnchor, bottom: nil, right: rightAnchor, paddingTop: 8, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 0)
-        photoImageView.heightAnchor.constraint(equalTo: widthAnchor, multiplier: 1).isActive = true
+       
+        
+     //   photoImageView.anchor(top: nil, left: leftAnchor, bottom: nil, right: rightAnchor, paddingTop: 8, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 0)
+       // photoImageView.heightAnchor.constraint(equalTo: widthAnchor, multiplier: 1).isActive = true
         
         
         
-        addSubview(captionLabel)
+     //   addSubview(captionLabel)
         
-        captionLabel.anchor(top: photoImageView.bottomAnchor, left: leftAnchor, bottom: nil, right: rightAnchor, paddingTop: 0, paddingLeft: 8, paddingBottom: 0, paddingRight: 8, width: 0, height: 0)
+     //   captionLabel.anchor(top: photoImageView.bottomAnchor, left: leftAnchor, bottom: nil, right: rightAnchor, paddingTop: 0, paddingLeft: 8, paddingBottom: 0, paddingRight: 8, width: 0, height: 0)
         
         
-        setupActionButtons()
+     //   setupActionButtons()
     }
     
-
+  
     
     fileprivate func setupActionButtons() {
 
