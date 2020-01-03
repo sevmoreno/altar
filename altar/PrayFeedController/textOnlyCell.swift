@@ -15,16 +15,11 @@ class textOnlyCell: UICollectionViewCell {
         
         didSet {
 
-                       //  print("Este es el conentido de la altura: \(photoImageView.image?.size.height)")
-                    //   post?.imageH = photoImageView.image?.size.height
                        usernameLabel.text = post?.author
                        guard let profileuserURL = post?.userPhoto else {return}
                        userProfileImageView.loadImage(urlString: profileuserURL)
        
-          //  guard let postImageUrl = post?.photoImage else { return }
-           
-         //   photoImageView.loadImage(urlString: postImageUrl)
-         
+      
 
     
             setupAttributedCaption()
@@ -34,33 +29,7 @@ class textOnlyCell: UICollectionViewCell {
         
     }
     
-    // var delegate: HomePostCellDelegate?
-    
-    /*
-     var post: Post? {
-     
-     didSet {
-     guard let postImageUrl = post?.imageUrl else { return }
-     likeButton.setImage(post?.hasLiked == true ? #imageLiteral(resourceName: "like_selected").withRenderingMode(.alwaysOriginal) : #imageLiteral(resourceName: "like_unselected").withRenderingMode(.alwaysOriginal), for: .normal)
-     
-     photoImageView.loadImage(urlString: postImageUrl)
-     //  print("Este es el conentido de la altura: \(photoImageView.image?.size.height)")
-     post?.imageH = photoImageView.image?.size.height
-     usernameLabel.text = post?.user.username
-     guard let profileuserURL = post?.user.profileImageUrl else {return}
-     userProfileImageView.loadImage(urlString: profileuserURL)
-     //print("ESTE ES EL USUERNAME CELL")
-     //  print(post?.user.username)
-     // usernameLabel.text = post?.user.username
-     
-     //guard let profileuserURL = post?.user.profileImageUrl else {return}
-     // userProfileImageView.loadImage(urlString: profileuserURL)
-     
-     setupAttributedCaption()
-     }
-     }
-     
-     */
+
     
     fileprivate func setupAttributedCaption() {
         guard let post = self.post else { return }
@@ -70,9 +39,7 @@ class textOnlyCell: UICollectionViewCell {
         attributedText.append(NSAttributedString(string: " \(post.message ?? "Defaul Value")", attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 14)]))
         
         attributedText.append(NSAttributedString(string: "\n\n", attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 4)]))
-        
-        //   let timeAgoDisplay = post.timeAgoDisplay()
-        //   attributedText.append(NSAttributedString(string: timeAgoDisplay, attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 14), NSAttributedString.Key.foregroundColor: UIColor.gray]))
+
         
         captionLabel.attributedText = attributedText
     }
@@ -216,7 +183,7 @@ class textOnlyCell: UICollectionViewCell {
         stackView.distribution = .fillEqually
         
         addSubview(stackView)
-        stackView.anchor(top: captionLabel.bottomAnchor, left: leftAnchor, bottom: nil, right: nil, paddingTop: 8, paddingLeft: 4, paddingBottom: 0, paddingRight: 0, width: 120, height: 50)
+        stackView.anchor(top: captionLabel.bottomAnchor, left: leftAnchor, bottom: bottomAnchor, right: nil, paddingTop: 8, paddingLeft: 4, paddingBottom: 0, paddingRight: 0, width: 120, height: 50)
         
         
     }

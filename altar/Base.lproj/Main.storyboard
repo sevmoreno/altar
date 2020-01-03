@@ -5,7 +5,6 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
-        <capability name="collection view cell content view" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -294,7 +293,7 @@
                         <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="4oW-gN-YA2"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Users" id="uPw-uh-Mzn"/>
+                    <tabBarItem key="tabBarItem" title="Community" id="uPw-uh-Mzn"/>
                     <navigationItem key="navigationItem" title="Altar" id="fLZ-C6-76v"/>
                     <connections>
                         <outlet property="tablaUsuarios" destination="XYd-Qr-9k8" id="HFm-xQ-iV2"/>
@@ -302,7 +301,23 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5u2-uL-Jyf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1354" y="-1139"/>
+            <point key="canvasLocation" x="830" y="-966"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="nMc-BH-U9j">
+            <objects>
+                <viewController id="g36-A7-wu5" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="PkX-s9-8fL">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="wBR-CF-Un3"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="q8i-9B-cxF"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dDX-ZN-ehd" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2635" y="-680"/>
         </scene>
         <!--Photo Stream View Controller-->
         <scene sceneID="xQs-xu-7zz">
@@ -738,7 +753,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="c9Q-dH-lAi" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5451" y="21"/>
+            <point key="canvasLocation" x="6360.8695652173919" y="20.758928571428569"/>
         </scene>
         <!--Only Video Post View Controller-->
         <scene sceneID="9Ig-jU-V3N">
@@ -794,17 +809,19 @@
                     </tabBar>
                     <connections>
                         <segue destination="xMq-hf-NLb" kind="relationship" relationship="viewControllers" id="AVj-kd-onP"/>
+                        <segue destination="kKw-Lh-Qgu" kind="relationship" relationship="viewControllers" id="Ywf-e0-M5e"/>
+                        <segue destination="jVU-Pf-UWI" kind="relationship" relationship="viewControllers" id="g8O-rg-Nde"/>
                         <segue destination="2E5-vo-rva" kind="relationship" relationship="viewControllers" id="2IR-9q-3me"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4Rp-Pe-VqO" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="399" y="21"/>
+            <point key="canvasLocation" x="414" y="21"/>
         </scene>
-        <!--Collection View Controller-->
+        <!--Power Of Word Collection View-->
         <scene sceneID="nfx-7E-HWm">
             <objects>
-                <collectionViewController id="deT-Sv-Js6" sceneMemberID="viewController">
+                <collectionViewController id="deT-Sv-Js6" customClass="PowerOfWordCollectionView" customModule="altar" customModuleProvider="target" sceneMemberID="viewController">
                     <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="9Ot-3H-C13">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -815,25 +832,17 @@
                             <size key="footerReferenceSize" width="0.0" height="0.0"/>
                             <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                         </collectionViewFlowLayout>
-                        <cells>
-                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="Z1c-YQ-sMB">
-                                <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="XMp-kM-WeB">
-                                    <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                </collectionViewCellContentView>
-                            </collectionViewCell>
-                        </cells>
+                        <cells/>
                         <connections>
                             <outlet property="dataSource" destination="deT-Sv-Js6" id="iUC-d4-8Xi"/>
                             <outlet property="delegate" destination="deT-Sv-Js6" id="LYa-BN-miL"/>
                         </connections>
                     </collectionView>
+                    <navigationItem key="navigationItem" id="UZ2-UH-Ag5"/>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Hua-hs-Ak9" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1752" y="-368"/>
+            <point key="canvasLocation" x="3811.594202898551" y="-413.16964285714283"/>
         </scene>
         <!--Power of Pray-->
         <scene sceneID="gRE-6C-JuJ">
@@ -852,7 +861,45 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6JL-qM-w1M" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1699" y="399"/>
+            <point key="canvasLocation" x="1648" y="765"/>
+        </scene>
+        <!--Power of the Word-->
+        <scene sceneID="fkg-gJ-Gk9">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="kKw-Lh-Qgu" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Power of the Word" id="sfn-Cb-dDy"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="OJV-VT-6QO">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="deT-Sv-Js6" kind="relationship" relationship="rootViewController" id="azH-sp-aNe"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="doe-gm-TkN" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1648" y="48"/>
+        </scene>
+        <!--Power of Worship-->
+        <scene sceneID="jUI-dq-Kp0">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="jVU-Pf-UWI" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Power of Worship" id="ysI-dt-3cy"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="6CL-a7-VRn">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="g36-A7-wu5" kind="relationship" relationship="rootViewController" id="yID-A4-9SH"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="DcX-PS-9is" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1648" y="-680"/>
         </scene>
     </scenes>
     <resources>

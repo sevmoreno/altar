@@ -11,7 +11,7 @@ import UIKit
 import AVFoundation
 import Firebase
 
-class PowerOfWordCollectionViewCell: UICollectionViewCell,  UICollectionViewDelegateFlowLayout  {
+class PowerOfWordCollectionView: UICollectionViewController,  UICollectionViewDelegateFlowLayout  {
     
     
     let cellId = "cellId"
@@ -19,16 +19,17 @@ class PowerOfWordCollectionViewCell: UICollectionViewCell,  UICollectionViewDele
        
        override func viewDidLoad() {
            
+           collectionView?.register(UserHeaderCollectionViewCell.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "headerWord")
+
+        
            collectionView?.register(AnnotatedPhotoCell.self, forCellWithReuseIdentifier: "OtraPostCell")
            collectionView?.register(textOnlyCell.self, forCellWithReuseIdentifier: "textOnlyCelll")
            collectionView?.backgroundColor = .lightGray
-          // navigationItem.rightBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "icon-share").withRenderingMode(.alwaysOriginal), style: .plain, target: self, action: #selector(handleLogOut))
+
            navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Add Prayer", style: .plain, target: self, action: #selector(addprayer))
 
-          // collectionView?.backgroundColor = .clear
-          // collectionView?.contentInset = UIEdgeInsets(top: 23, left: 16, bottom: 10, right: 16)
-           loadCurrentUserInfo ()
-           fetchPost ()
+     //      loadCurrentUserInfo ()
+     //      fetchPost ()
        
            
        }
@@ -91,7 +92,26 @@ class PowerOfWordCollectionViewCell: UICollectionViewCell,  UICollectionViewDele
               
               
           }
-       
+    
+    
+    
+ // ------------------------------------------------------------------------ HEADER  -----------------------------------------------------------------------------------
+    
+    override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+        let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "headerWord", for: indexPath) as! UserHeaderCollectionViewCell
+        
+        
+        return header
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
+        return CGSize(width: view.frame.width, height: 200)
+    }
+    
+    
+    // ------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    
+    // ------------------------------------------------------------------ COLLECTION CELLS -----------------------------------------------------------------------------
 
        func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
 
