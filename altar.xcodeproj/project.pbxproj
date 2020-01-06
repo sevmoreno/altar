@@ -31,8 +31,9 @@
 		65ABFC89232C170200729B57 /* Advengers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65ABFC88232C170200729B57 /* Advengers.swift */; };
 		65C7FE06237B3E3B000D6D80 /* PhotoVideoPostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65C7FE05237B3E3B000D6D80 /* PhotoVideoPostViewController.swift */; };
 		65C7FE08237CF5B0000D6D80 /* OnlyVideoPostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65C7FE07237CF5B0000D6D80 /* OnlyVideoPostViewController.swift */; };
-		65CB7E8623BFF01F0018526D /* PowerOfWordCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65CB7E8523BFF01F0018526D /* PowerOfWordCollectionViewCell.swift */; };
+		65CB7E8623BFF01F0018526D /* PowerOfWordCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65CB7E8523BFF01F0018526D /* PowerOfWordCollection.swift */; };
 		65CB7E8923BFF15D0018526D /* UserHeaderCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65CB7E8823BFF15D0018526D /* UserHeaderCollectionViewCell.swift */; };
+		65CB7E8B23C3CBAD0018526D /* DevotionalCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65CB7E8A23C3CBAD0018526D /* DevotionalCollectionViewCell.swift */; };
 		65D42419232576A800DB286E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65D42418232576A800DB286E /* AppDelegate.swift */; };
 		65D4241E232576A800DB286E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 65D4241C232576A800DB286E /* Main.storyboard */; };
 		65D42421232576A800DB286E /* altar.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 65D4241F232576A800DB286E /* altar.xcdatamodeld */; };
@@ -69,8 +70,9 @@
 		65ABFC88232C170200729B57 /* Advengers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Advengers.swift; sourceTree = "<group>"; };
 		65C7FE05237B3E3B000D6D80 /* PhotoVideoPostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoVideoPostViewController.swift; sourceTree = "<group>"; };
 		65C7FE07237CF5B0000D6D80 /* OnlyVideoPostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = OnlyVideoPostViewController.swift; path = Controller/OnlyVideoPostViewController.swift; sourceTree = "<group>"; };
-		65CB7E8523BFF01F0018526D /* PowerOfWordCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PowerOfWordCollectionViewCell.swift; sourceTree = "<group>"; };
+		65CB7E8523BFF01F0018526D /* PowerOfWordCollection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PowerOfWordCollection.swift; sourceTree = "<group>"; };
 		65CB7E8823BFF15D0018526D /* UserHeaderCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserHeaderCollectionViewCell.swift; sourceTree = "<group>"; };
+		65CB7E8A23C3CBAD0018526D /* DevotionalCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DevotionalCollectionViewCell.swift; sourceTree = "<group>"; };
 		65D42415232576A800DB286E /* altar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = altar.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		65D42418232576A800DB286E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		65D4241D232576A800DB286E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -127,8 +129,9 @@
 		65CB7E8723BFF0280018526D /* PowerOfWord */ = {
 			isa = PBXGroup;
 			children = (
-				65CB7E8523BFF01F0018526D /* PowerOfWordCollectionViewCell.swift */,
+				65CB7E8523BFF01F0018526D /* PowerOfWordCollection.swift */,
 				65CB7E8823BFF15D0018526D /* UserHeaderCollectionViewCell.swift */,
+				65CB7E8A23C3CBAD0018526D /* DevotionalCollectionViewCell.swift */,
 			);
 			path = PowerOfWord;
 			sourceTree = "<group>";
@@ -360,6 +363,7 @@
 				65D42421232576A800DB286E /* altar.xcdatamodeld in Sources */,
 				65ABFC89232C170200729B57 /* Advengers.swift in Sources */,
 				654F95E52339307F00175A7E /* FeedOnlyTextCollectionViewCell.swift in Sources */,
+				65CB7E8B23C3CBAD0018526D /* DevotionalCollectionViewCell.swift in Sources */,
 				654F95DD2331B93B00175A7E /* FeedCollectionViewCell.swift in Sources */,
 				655EDF0A23B002C4005E6DB6 /* textOnlyCell.swift in Sources */,
 				654F95DB23306E7F00175A7E /* PrayPostViewController.swift in Sources */,
@@ -369,7 +373,7 @@
 				65ABFC83232C069000729B57 /* UsersViewController.swift in Sources */,
 				65C7FE06237B3E3B000D6D80 /* PhotoVideoPostViewController.swift in Sources */,
 				65CB7E8923BFF15D0018526D /* UserHeaderCollectionViewCell.swift in Sources */,
-				65CB7E8623BFF01F0018526D /* PowerOfWordCollectionViewCell.swift in Sources */,
+				65CB7E8623BFF01F0018526D /* PowerOfWordCollection.swift in Sources */,
 				65D42419232576A800DB286E /* AppDelegate.swift in Sources */,
 				655BF7082388C4D1002F0C7C /* PhotoStreamViewController.swift in Sources */,
 				654F95DF2332AD8700175A7E /* Posts.swift in Sources */,

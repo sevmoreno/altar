@@ -14,7 +14,7 @@ import Firebase
 class PowerOfWordCollectionView: UICollectionViewController,  UICollectionViewDelegateFlowLayout  {
     
     
-    let cellId = "cellId"
+       let cellId = "cellId"
        var photos = [Posts] ()
        
        override func viewDidLoad() {
@@ -122,6 +122,7 @@ class PowerOfWordCollectionView: UICollectionViewController,  UICollectionViewDe
        func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
               
 
+        /*
            
            if photos[indexPath.row].postType == advengers.postType.textOnly.rawValue {
                
@@ -163,19 +164,24 @@ class PowerOfWordCollectionView: UICollectionViewController,  UICollectionViewDe
            }
                
  
-           
+          */
+        
+        return CGSize(width: view.frame.width, height:  500 )
           
        }
        
        
        override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
           
-
-            return photos.count
+            return 4
+        
+            // return photos.count
        }
        
        override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
            
+        
+        /*
            switch photos[indexPath.item].postType {
            case advengers.postType.imageOnly.rawValue:
                
@@ -201,6 +207,9 @@ class PowerOfWordCollectionView: UICollectionViewController,  UICollectionViewDe
            
    
        }
+ 
+ */
+        
        
     
 }
