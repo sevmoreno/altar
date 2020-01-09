@@ -19,9 +19,14 @@ class DevotionalCollectionViewCell: UICollectionViewCell {
     } ()
     
     override init(frame: CGRect) {
+        super.init(frame: frame)
         
         addSubview(viewGeneral)
-        
+        viewGeneral.translatesAutoresizingMaskIntoConstraints = false
+        viewGeneral.heightAnchor.constraint(equalToConstant: 140).isActive = true
+        viewGeneral.widthAnchor.constraint(equalToConstant: 140).isActive = true
+        viewGeneral.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
+        viewGeneral.topAnchor.constraint(equalTo: topAnchor, constant: 0).isActive = true
         
         
        

@@ -14,9 +14,16 @@ class PhotoStreamViewController: UICollectionViewController, UICollectionViewDel
         
         collectionView?.register(AnnotatedPhotoCell.self, forCellWithReuseIdentifier: "OtraPostCell")
         collectionView?.register(textOnlyCell.self, forCellWithReuseIdentifier: "textOnlyCelll")
+        
+        collectionView?.register(PhotoTextoCollectionViewCell.self, forCellWithReuseIdentifier: "textImageCell")
+        
+        
+        collectionView?.register(AudioCollectionViewCell.self, forCellWithReuseIdentifier: "audioCell")
+        
         collectionView?.backgroundColor = .lightGray
 
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Add Prayer", style: .plain, target: self, action: #selector(addprayer))
+        navigationItem.title = advengers.shared.currentChurch
 
 
        // collectionView?.contentInset = UIEdgeInsets(top: 23, left: 16, bottom: 10, right: 16)
@@ -112,7 +119,48 @@ class PhotoStreamViewController: UICollectionViewController, UICollectionViewDel
 
                        return CGSize(width: view.frame.width, height:  usuarioInfo + botones + texto.height + 10 )
             
-        } else {
+        }
+        
+        if photos[indexPath.row].postType == advengers.postType.textImage.rawValue {
+            
+            let botones: CGFloat = 50.0
+                                  let usuarioInfo: CGFloat = 50.0
+                        
+                                  let dummyframe = CGRect(x: 0, y: 0, width: view.frame.width, height: 1000)
+                                  let dummycell = textOnlyCell (frame: dummyframe)
+                                  dummycell.captionLabel.text = photos[indexPath.row].message
+                             
+                                  
+                                  
+
+                                 let size = CGSize(width: view.frame.width, height: .infinity)
+                                 let texto = dummycell.captionLabel.sizeThatFits(size)
+            
+             let imageRatio = CGFloat(photos[indexPath.row].photoW! / photos[indexPath.row].photoH!)
+                                 
+
+            return CGSize(width: view.frame.width, height:  usuarioInfo + botones + texto.height + 10 + (view.frame.width /  imageRatio) )
+                  
+        
+        }
+            
+            if photos[indexPath.row].postType == advengers.postType.audio.rawValue {
+              let botones: CGFloat = 50.0
+              let usuarioInfo: CGFloat = 50.0
+                                     
+
+                return CGSize(width: view.frame.width, height:  usuarioInfo + botones + 100 )
+                
+                
+                
+            
+                
+            
+            }
+        
+        
+        
+        else {
             
 
                         let botones: CGFloat = 50.0
@@ -141,6 +189,7 @@ class PhotoStreamViewController: UICollectionViewController, UICollectionViewDel
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         switch photos[indexPath.item].postType {
+            
         case advengers.postType.imageOnly.rawValue:
             
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "OtraPostCell", for: indexPath as IndexPath) as! AnnotatedPhotoCell
@@ -154,6 +203,20 @@ class PhotoStreamViewController: UICollectionViewController, UICollectionViewDel
             cell.contentView.backgroundColor = .white
             cell.post = photos[indexPath.item]
             return cell
+            
+        //textImage
+        
+        case advengers.postType.textImage.rawValue:
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "textImageCell", for: indexPath as IndexPath) as! PhotoTextoCollectionViewCell
+        cell.contentView.backgroundColor = .white
+        cell.post = photos[indexPath.item]
+        return cell
+        
+        case advengers.postType.audio.rawValue:
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "audioCell", for: indexPath as IndexPath) as! AudioCollectionViewCell
+        cell.contentView.backgroundColor = .white
+        cell.post = photos[indexPath.item]
+        return cell
             
         default:
             

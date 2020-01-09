@@ -39,16 +39,16 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "898E013D-F7B4-4E37-BD16-6384EC4E1CA2"
-            shouldBeEnabled = "Yes"
+            uuid = "410D84E1-F241-48F7-B665-EFF11CB5139E"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "altar/PrayFeedController/PhotoStreamViewController.swift"
+            filePath = "altar/PrayFeedController/Post/PrayPostViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "32"
-            endingLineNumber = "32"
-            landmarkName = "addprayer()"
+            startingLineNumber = "94"
+            endingLineNumber = "94"
+            landmarkName = "prepare(for:sender:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

@@ -9,17 +9,29 @@
 import UIKit
 import Firebase
 
-class UsersViewController: UIViewController {
+class UsersViewController: UIViewController, UIPageViewControllerDelegate {
 
     @IBOutlet weak var tablaUsuarios: UITableView!
     
+    @IBOutlet weak var contenedor: UIView!
+    
     var users = [User] ()
+    @IBOutlet weak var pageController: UIPageControl!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        contenedor.backgroundColor = #colorLiteral(red: 0.2392156869, green: 0.6745098233, blue: 0.9686274529, alpha: 1)
+    
+        
         tablaUsuarios.delegate = self
         tablaUsuarios.dataSource = self
+        
+        
+        pageController.numberOfPages = 6
+        
+        navigationItem.title = advengers.shared.currentChurch
+        
         retriveUsers()
         
         

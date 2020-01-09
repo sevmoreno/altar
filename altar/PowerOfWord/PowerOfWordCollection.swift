@@ -19,15 +19,16 @@ class PowerOfWordCollectionView: UICollectionViewController,  UICollectionViewDe
        
        override func viewDidLoad() {
            
-           collectionView?.register(UserHeaderCollectionViewCell.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "headerWord")
+           collectionView?.register(DevotionalCollectionViewCell.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "headerWord")
 
         
-           collectionView?.register(AnnotatedPhotoCell.self, forCellWithReuseIdentifier: "OtraPostCell")
-           collectionView?.register(textOnlyCell.self, forCellWithReuseIdentifier: "textOnlyCelll")
+           collectionView?.register(DevotionalCollectionViewCell.self, forCellWithReuseIdentifier: "oldWord")
+          // collectionView?.register(textOnlyCell.self, forCellWithReuseIdentifier: "textOnlyCelll")
            collectionView?.backgroundColor = .lightGray
 
-           navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Add Prayer", style: .plain, target: self, action: #selector(addprayer))
-
+           //navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Add Prayer", style: .plain, target: self, action: #selector(addprayer))
+        
+            navigationItem.title = advengers.shared.currentChurch
      //      loadCurrentUserInfo ()
      //      fetchPost ()
        
@@ -97,17 +98,21 @@ class PowerOfWordCollectionView: UICollectionViewController,  UICollectionViewDe
     
  // ------------------------------------------------------------------------ HEADER  -----------------------------------------------------------------------------------
     
+  
+    
     override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-        let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "headerWord", for: indexPath) as! UserHeaderCollectionViewCell
+        let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "headerWord", for: indexPath) as! DevotionalCollectionViewCell
+        header.viewGeneral.backgroundColor = .red
         
         
         return header
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
-        return CGSize(width: view.frame.width, height: 200)
+        return CGSize(width: view.frame.width, height: 500)
     }
     
+
     
     // ------------------------------------------------------------------------------------------------------------------------------------------------------------------
     
@@ -205,10 +210,16 @@ class PowerOfWordCollectionView: UICollectionViewController,  UICollectionViewDe
                return cell
            }
            
-   
+   */
+        
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "oldWord", for: indexPath)
+        
+        
+        return cell
+        
        }
  
- */
+
         
        
     
