@@ -7,29 +7,183 @@
 //
 
 import UIKit
+import AVFoundation
+import WebKit
 
-class PowerOfWorshipViewController: UIViewController {
+class PowerOfWorshipViewController:  UIViewController{
+    
+    var videos: [Video] = {
+           var kanyeChannel = Channel()
+           kanyeChannel.name = "KanyeIsTheBestChannel"
+           kanyeChannel.profileImageName = "kanye_profile"
+           
+           var blankSpaceVideo = Video()
+           blankSpaceVideo.title = "Taylor Swift - Blank Space"
+           blankSpaceVideo.thumbnailImageName = "taylor_swift_blank_space"
+           blankSpaceVideo.channel = kanyeChannel
+           blankSpaceVideo.numberOfViews = 23932843093
+           
+           var badBloodVideo = Video()
+           badBloodVideo.title = "Taylor Swift - Bad Blood featuring Kendrick Lamar"
+           badBloodVideo.thumbnailImageName = "taylor_swift_bad_blood"
+           badBloodVideo.channel = kanyeChannel
+           badBloodVideo.numberOfViews = 57989654934
+           
+           return [blankSpaceVideo, badBloodVideo]
+       }()
+    
+    @IBOutlet weak var playerWeb: WKWebView!
+    var videoURL:URL!  // has the form "https://www.youtube.com/embed/videoID"
+    var didLoadVideo = false
 
+    
     override func viewDidLoad() {
-        super.viewDidLoad()
         
-        view.backgroundColor = . green
+        videoURL = URL(string: "https://www.youtube.com/embed/F4sTcCcVkPw")
+        playerWeb.configuration.mediaTypesRequiringUserActionForPlayback = []
         
-        navigationItem.title = advengers.shared.currentChurch
+        fetchVideos()
         
-
-        // Do any additional setup after loading the view.
+        
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        // Size of the webView is used to size the YT player frame in the JS code
+        // and the size of the webView is only known in `viewDidLayoutSubviews`,
+        // however, this function is called again once the HTML is loaded, so need
+        // to store a bool indicating whether the HTML has already been loaded once
+        if !didLoadVideo {
+            playerWeb.loadHTMLString(embedVideoHtml, baseURL: nil)
+            didLoadVideo = true
+        }
     }
-    */
+
+    var embedVideoHtml:String {
+        return """
+        <!DOCTYPE html>
+        <html>
+        <body>
+        <!-- 1. The <iframe> (and video player) will replace this <div> tag. -->
+        <div id="player"></div>
+
+        <script>
+        var tag = document.createElement('script');
+
+        tag.src = "https://www.youtube.com/iframe_api";
+        var firstScriptTag = document.getElementsByTagName('script')[0];
+        firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+        var player;
+        function onYouTubeIframeAPIReady() {
+        player = new YT.Player('player', {
+        playerVars: { 'autoplay': 1, 'controls': 0, 'playsinline': 1 },
+        height: '\(playerWeb.frame.height)',
+        width: '\(playerWeb.frame.width)',
+        videoId: '\(videoURL.lastPathComponent)',
+        events: {
+        'onReady': onPlayerReady
+        }
+        });
+        }
+
+        function onPlayerReady(event) {
+        event.target.playVideo();
+        }
+        </script>
+        </body>
+        </html>
+        """
+    }
+
+    func fetchVideos() {
+        let url = NSURL(string: "https://s3-us-west-2.amazonaws.com/youtubeassets/home.json")
+        URLSession.shared.dataTask(with: url! as URL) { (data, response, error) in
+            
+            if error != nil {
+                print(error)
+                return
+            }
+            
+            do {
+                let json = try JSONSerialization.jsonObject(with: data!, options: .mutableContainers)
+                
+                self.videos = [Video]()
+                
+                for dictionary in json as! [[String: AnyObject]] {
+                    
+                    let video = Video()
+                    video.title = dictionary["title"] as? String
+                    video.thumbnailImageName = dictionary["thumbnail_image_name"] as? String
+                    
+                    let channelDictionary = dictionary["channel"] as! [String: AnyObject]
+                    
+                    let channel = Channel()
+                    channel.name = channelDictionary["name"] as? String
+                    channel.profileImageName = channelDictionary["profile_image_name"] as? String
+                    
+                    video.channel = channel
+                    
+                    self.videos.append(video)
+                    print (self.videos[0].channel)
+                    print (self.videos[0].thumbnailImageName)
+                    print (self.videos[0].title)
+                    
+                }
+                
+             //   self.collectionView?.reloadData()
+                
+            } catch let jsonError {
+                print(jsonError)
+            }
+            
+            
+            
+        }.resume()
+        
+
+    }
+ 
+
 
 }
+
+
+        /*  --------------- como que funciona
+        var mywkwebview: WKWebView?
+        let mywkwebviewConfig = WKWebViewConfiguration()
+
+        mywkwebviewConfig.allowsInlineMediaPlayback = true
+        mywkwebview = WKWebView(frame: self.view.frame, configuration: mywkwebviewConfig)
+
+        let myURL = URL(string: "https://www.youtube.com/embed/F4sTcCcVkPw?playsinline=1?autoplay=1")
+        var youtubeRequest = URLRequest(url: myURL!)
+
+        mywkwebview?.load(youtubeRequest)
+        
+        guard let webView = mywkwebview else { return }
+        
+        
+        self.view.addSubview(webView)
+ 
+ */
+/*
+      //  let urlString = "https://firebasestorage.googleapis.com/v0/b/gameofchats-762ca.appspot.com/o/message_movies%2F12323439-9729-4941-BA07-2BAE970967C7.mov?alt=media&token=3e37a093-3bc8-410f-84d3-38332af9c726"
+        
+        //https://www.youtube.com/watch?v=F4sTcCcVkPw
+        
+        let urlString = "https://www.youtube.com/watch?v=F4sTcCcVkPw"
+        
+             if let url = NSURL(string: urlString) {
+                let player = AVPlayer(url: url as URL)
+                 
+                 let playerLayer = AVPlayerLayer(player: player)
+                 view.layer.addSublayer(playerLayer)
+                playerLayer.frame = self.view.frame
+                 
+                 player.play()
+                
+                
+             }
+ 
+  */

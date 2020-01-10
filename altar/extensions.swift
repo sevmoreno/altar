@@ -98,6 +98,10 @@ extension UIImage {
         let imageRatio = CGFloat(self.size.width / self.size.height)
         return imageRatio
     }
+    
+    
+    
+    
 }
 
 

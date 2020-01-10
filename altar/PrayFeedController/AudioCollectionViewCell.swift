@@ -8,11 +8,12 @@
 
 import UIKit
 import AVFoundation
-
+import Firebase
 
 class AudioCollectionViewCell: UICollectionViewCell {
     
     var audioPlayer: AVAudioPlayer?
+    let storage = Storage.storage()
     
     var post: Posts? {
            
@@ -65,14 +66,16 @@ class AudioCollectionViewCell: UICollectionViewCell {
            return iv
        }()
        
-       var audioView: UIButton = {
-           let iv = UIButton()
+       lazy var audioView: UIButton = {
+        let iv = UIButton(type: .system)
+        iv.setTitle("Play", for: .normal)
+        iv.setTitleColor(.black, for: .normal)
            //  iv.contentMode = .scaleAspectFill
-           iv.layer.backgroundColor = #colorLiteral(red: 0.1764705926, green: 0.4980392158, blue: 0.7568627596, alpha: 1)
+          // iv.layer.backgroundColor = #colorLiteral(red: 0.1764705926, green: 0.4980392158, blue: 0.7568627596, alpha: 1)
         
-           iv.contentMode = .scaleAspectFit
-           iv.clipsToBounds = true
-           iv.a
+         //  iv.contentMode = .scaleAspectFit
+          // iv.clipsToBounds = true
+           iv.addTarget(self, action: #selector (hadlePlay), for: .touchUpInside)
            return iv
        }()
        
@@ -153,6 +156,7 @@ class AudioCollectionViewCell: UICollectionViewCell {
 
               
            defaultCell()
+           
        
            
        
@@ -210,7 +214,7 @@ class AudioCollectionViewCell: UICollectionViewCell {
            audioView.leftAnchor.constraint(equalTo: self.leftAnchor).isActive = true
            audioView.rightAnchor.constraint(equalTo: self.rightAnchor).isActive = true
            audioView.bottomAnchor.constraint(equalTo: stackView.topAnchor ).isActive = true
-           audioView.widthAnchor.constraint(equalToConstant: frame.width).isActive = true
+         //  audioView.widthAnchor.constraint(equalToConstant: frame.width).isActive = true
           
            
            
@@ -271,16 +275,50 @@ class AudioCollectionViewCell: UICollectionViewCell {
            
        }
     
-    func playContent (url: URL)
+    
+    @objc func hadlePlay ()  {
+        
+        
+        let httpsReference = storage.reference(forURL: post!.photoImage)
+        
+        httpsReference.getData(maxSize: 1 * 1024 * 1024) { data, error in
+          if let error = error {
+            // Uh-oh, an error occurred!
+          } else {
+            
+            
+            self.playContent(data: data!)
+            // Data for "images/island.jpg" is returned
+            //let image = URL(data: data!)
+            
+          }
+        }
+        
+        
+        let url = URL(fileURLWithPath: post!.photoImage)
+        
+        print ("Click ok")
+        print (post!.photoImage)
+        print(url.absoluteString)
+        
+        
+    
+        
+    }
+    
+    func playContent (data: Data)
     
     {
         
 
         do {
-            audioPlayer = try AVAudioPlayer(contentsOf: url)
+            
+            audioPlayer = try AVAudioPlayer(data: data)
             audioPlayer?.play()
+            print("Playing ....")
         } catch {
-            // couldn't load file :(
+            print ("No Playing")
+            //print(url.absoluteString)
         }
         
         
