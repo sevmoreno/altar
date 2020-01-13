@@ -44,6 +44,8 @@ class FieldMask {
  public:
   using const_iterator = std::set<FieldPath>::const_iterator;
 
+  FieldMask() = default;
+
   FieldMask(std::initializer_list<FieldPath> list) : fields_{list} {
   }
   template <class InputIt>
@@ -67,26 +69,14 @@ class FieldMask {
   }
 
   /**
-   * Verifies that `fieldPath` is included by at least one field in this field
+   * Verifies that `field_path` is included by at least one field in this field
    * mask.
    *
    * This is an O(n) operation, where `n` is the size of the field mask.
    */
-  bool covers(const FieldPath& fieldPath) const;
-
-  /**
-   * Applies this field mask to the provided object value and returns an object
-   * that only contains fields that are specified in both the input object and
-   * this field mask.
-   */
-  ObjectValue ApplyTo(const ObjectValue& data) const;
+  bool covers(const FieldPath& field_path) const;
 
   std::string ToString() const;
-
-#if defined(__OBJC__)
-  FieldMask() {
-  }
-#endif
 
   size_t Hash() const;
 

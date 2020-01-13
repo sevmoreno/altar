@@ -23,29 +23,14 @@ namespace firebase {
 namespace firestore {
 namespace model {
 
-bool FieldMask::covers(const FieldPath& fieldPath) const {
-  for (const FieldPath& fieldMaskPath : fields_) {
-    if (fieldMaskPath.IsPrefixOf(fieldPath)) {
+bool FieldMask::covers(const FieldPath& field_path) const {
+  for (const FieldPath& field_mask_path : fields_) {
+    if (field_mask_path.IsPrefixOf(field_path)) {
       return true;
     }
   }
 
   return false;
-}
-
-ObjectValue FieldMask::ApplyTo(const ObjectValue& data) const {
-  ObjectValue filtered = ObjectValue::Empty();
-  for (const FieldPath& path : fields_) {
-    if (path.empty()) {
-      return data;
-    } else {
-      absl::optional<FieldValue> new_value = data.Get(path);
-      if (new_value) {
-        filtered = filtered.Set(path, *new_value);
-      }
-    }
-  }
-  return filtered;
 }
 
 std::string FieldMask::ToString() const {

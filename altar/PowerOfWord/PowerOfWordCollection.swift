@@ -15,7 +15,7 @@ class PowerOfWordCollectionView: UICollectionViewController,  UICollectionViewDe
     
     
        let cellId = "cellId"
-       var photos = [Posts] ()
+       var devos = [Devo] ()
        
        override func viewDidLoad() {
            
@@ -29,15 +29,23 @@ class PowerOfWordCollectionView: UICollectionViewController,  UICollectionViewDe
            //navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Add Prayer", style: .plain, target: self, action: #selector(addprayer))
         
             navigationItem.title = advengers.shared.currentChurch
+        
+        if advengers.shared.isPastor {
+            
+            navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Add Devotional", style: .plain, target: self, action: #selector(addDevotional))
+            
+        }
+        
+            
      //      loadCurrentUserInfo ()
      //      fetchPost ()
        
            
        }
        
-       @objc func addprayer () {
+       @objc func addDevotional () {
            
-           performSegue(withIdentifier: "prueba", sender: self)
+           performSegue(withIdentifier: "devotionalCreator", sender: self)
 
        }
        
@@ -46,17 +54,17 @@ class PowerOfWordCollectionView: UICollectionViewController,  UICollectionViewDe
            print("Fechea ")
            advengers.shared.postPrayFeed.queryOrderedByKey().observe(.value) { (data) in
                
-               self.photos.removeAll()
+               self.devos.removeAll()
                
                if let postfeed = data.value as? [String:NSDictionary] {
                    
                    for (_,value) in postfeed
                    {
 
-                       let temporarioPost = Posts (dictionary: value as! [String : Any])
+                       let temporarioPost = Devo (dictionary: value as! [String : Any])
                        
                       
-                       self.photos.append(temporarioPost)
+                       self.devos.append(temporarioPost)
                        self.collectionView.reloadData()
                       
 
@@ -109,7 +117,19 @@ class PowerOfWordCollectionView: UICollectionViewController,  UICollectionViewDe
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
+        
+        if devos.count == 1 {
+            
+            return CGSize(width: view.frame.width, height: view.frame.height)
+        } else {
+        
+        
         return CGSize(width: view.frame.width, height: 500)
+            
+            
+        }
+        
+        
     }
     
 

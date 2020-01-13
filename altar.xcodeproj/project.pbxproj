@@ -40,6 +40,8 @@
 		65CB7E8923BFF15D0018526D /* UserHeaderCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65CB7E8823BFF15D0018526D /* UserHeaderCollectionViewCell.swift */; };
 		65CB7E8B23C3CBAD0018526D /* DevotionalCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65CB7E8A23C3CBAD0018526D /* DevotionalCollectionViewCell.swift */; };
 		65CB7E8F23C3D5FB0018526D /* PowerOfWorshipViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65CB7E8E23C3D5FB0018526D /* PowerOfWorshipViewController.swift */; };
+		65CFE1C423CCE1BD006C4E76 /* Devo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65CFE1C323CCE1BD006C4E76 /* Devo.swift */; };
+		65CFE1C623CCE442006C4E76 /* DevotionalCreatorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65CFE1C523CCE442006C4E76 /* DevotionalCreatorViewController.swift */; };
 		65D42419232576A800DB286E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65D42418232576A800DB286E /* AppDelegate.swift */; };
 		65D4241E232576A800DB286E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 65D4241C232576A800DB286E /* Main.storyboard */; };
 		65D42421232576A800DB286E /* altar.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 65D4241F232576A800DB286E /* altar.xcdatamodeld */; };
@@ -85,6 +87,8 @@
 		65CB7E8823BFF15D0018526D /* UserHeaderCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserHeaderCollectionViewCell.swift; sourceTree = "<group>"; };
 		65CB7E8A23C3CBAD0018526D /* DevotionalCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DevotionalCollectionViewCell.swift; sourceTree = "<group>"; };
 		65CB7E8E23C3D5FB0018526D /* PowerOfWorshipViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PowerOfWorshipViewController.swift; sourceTree = "<group>"; };
+		65CFE1C323CCE1BD006C4E76 /* Devo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Devo.swift; sourceTree = "<group>"; };
+		65CFE1C523CCE442006C4E76 /* DevotionalCreatorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DevotionalCreatorViewController.swift; sourceTree = "<group>"; };
 		65D42415232576A800DB286E /* altar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = altar.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		65D42418232576A800DB286E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		65D4241D232576A800DB286E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -162,6 +166,7 @@
 			isa = PBXGroup;
 			children = (
 				65CB7E8523BFF01F0018526D /* PowerOfWordCollection.swift */,
+				65CFE1C523CCE442006C4E76 /* DevotionalCreatorViewController.swift */,
 				65CB7E8823BFF15D0018526D /* UserHeaderCollectionViewCell.swift */,
 				65CB7E8A23C3CBAD0018526D /* DevotionalCollectionViewCell.swift */,
 			);
@@ -236,6 +241,7 @@
 				65ABFC88232C170200729B57 /* Advengers.swift */,
 				654F95DE2332AD8700175A7E /* Posts.swift */,
 				65ABFC86232C12C200729B57 /* User.swift */,
+				65CFE1C323CCE1BD006C4E76 /* Devo.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -424,6 +430,7 @@
 				654F95D923306ABC00175A7E /* PrayViewController.swift in Sources */,
 				65C7FE08237CF5B0000D6D80 /* OnlyVideoPostViewController.swift in Sources */,
 				65ABFC83232C069000729B57 /* UsersViewController.swift in Sources */,
+				65CFE1C423CCE1BD006C4E76 /* Devo.swift in Sources */,
 				65C7FE06237B3E3B000D6D80 /* PhotoVideoPostViewController.swift in Sources */,
 				65CB7E8923BFF15D0018526D /* UserHeaderCollectionViewCell.swift in Sources */,
 				65913B1E23C7AE90009B8537 /* AudioCollectionViewCell.swift in Sources */,
@@ -431,6 +438,7 @@
 				65D42419232576A800DB286E /* AppDelegate.swift in Sources */,
 				655BF7082388C4D1002F0C7C /* PhotoStreamViewController.swift in Sources */,
 				654F95DF2332AD8700175A7E /* Posts.swift in Sources */,
+				65CFE1C623CCE442006C4E76 /* DevotionalCreatorViewController.swift in Sources */,
 				65421CCE23AAABFE000B0437 /* extensions.swift in Sources */,
 				655BF70323847C11002F0C7C /* PostCell.swift in Sources */,
 				657F2B472325F5CA00187C9D /* SignUpViewController.swift in Sources */,
@@ -603,7 +611,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 5766G78FC9;
 				INFOPLIST_FILE = altar/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -623,7 +631,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 5766G78FC9;
 				INFOPLIST_FILE = altar/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

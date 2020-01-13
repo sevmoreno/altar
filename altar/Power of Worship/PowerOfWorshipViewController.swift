@@ -9,6 +9,10 @@
 import UIKit
 import AVFoundation
 import WebKit
+import Alamofire
+
+
+
 
 class PowerOfWorshipViewController:  UIViewController{
     
@@ -39,14 +43,20 @@ class PowerOfWorshipViewController:  UIViewController{
     
     override func viewDidLoad() {
         
-        videoURL = URL(string: "https://www.youtube.com/embed/F4sTcCcVkPw")
-        playerWeb.configuration.mediaTypesRequiringUserActionForPlayback = []
         
-        fetchVideos()
+        
+    
+        
+       // videoURL = URL(string: "https://www.youtube.com/embed/F4sTcCcVkPw")
+       // playerWeb.configuration.mediaTypesRequiringUserActionForPlayback = []
+        
+        
+   //     fetchVideos()
         
         
     }
     
+    /*
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         // Size of the webView is used to size the YT player frame in the JS code
@@ -58,7 +68,7 @@ class PowerOfWorshipViewController:  UIViewController{
             didLoadVideo = true
         }
     }
-
+*/
     var embedVideoHtml:String {
         return """
         <!DOCTYPE html>

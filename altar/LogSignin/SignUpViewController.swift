@@ -10,7 +10,7 @@ import UIKit
 import Firebase
 import FirebaseUI
 
-class SignUpViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate{
+class SignUpViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate {
     
     @IBOutlet weak var churchChose: UIPickerView!
     @IBOutlet weak var image: UIImageView!
@@ -29,19 +29,48 @@ class SignUpViewController: UIViewController, UIImagePickerControllerDelegate, U
     
     var selectedChurch = "Favorday Church"
     var churchList = ["Favorday Church","River Church","Not listed"]
+    
+   @IBOutlet weak var mainScrollViewBottomConstraint: NSLayoutConstraint!
   
    // let userStorage =
     override func viewDidLoad() {
         super.viewDidLoad()
         
+    //    let notificationCenter = NotificationCenter.default
+  //      notificationCenter.addObserver(self, selector: #selector(adjustForKeyboard), name: UIResponder.keyboardWillHideNotification, object: nil)
+
+   //     notificationCenter.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
+
         image.image = UIImage.init(named: "default")
         
         picker.delegate = self
+        name.delegate = self
+        email.delegate = self
+        password.delegate = self
+        passwordvalidator.delegate = self
         
         churchChose.dataSource = self
         churchChose.delegate = self
 
     }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        self.view.endEditing(true)
+        return false
+    }
+    
+    
+    /*
+    @objc func adjustForKeyboard (_ notification: Notification) {
+       let userInfo = (notification as NSNotification).userInfo!
+    let keyboardSize = (userInfo[UIResponder.keyboardFrameEndUserInfoKey] as! NSValue).cgRectValue
+       mainScrollViewBottomConstraint.constant = keyboardSize.height
+   }
+
+    @objc func keyboardWillHide(_ notification: Notification) {
+       mainScrollViewBottomConstraint.constant = 0
+   }
+ */
 
     @IBAction func signIn(_ sender: Any) {
         
