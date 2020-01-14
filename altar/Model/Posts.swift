@@ -22,7 +22,7 @@ class Posts {
     var photoW: CGFloat?
     var photoH: CGFloat?
     
-    
+    var hasLiked = false
     var whoLikes: [String] = [String] ()
     
     

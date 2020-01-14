@@ -9,6 +9,7 @@ target 'altar' do
 
 	# add the Firebase pod for Google Analytics
 
+pod 'MessageKit'
 pod 'Alamofire'
 pod 'Firebase/Analytics'
 pod 'FirebaseUI'

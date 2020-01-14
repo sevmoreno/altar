@@ -8,8 +8,14 @@
 
 import UIKit
 
+protocol textOnlyCellDelegate {
+    func didTapComment(post: Posts)
+    func didLike(for cell: textOnlyCell)
+}
+
 class textOnlyCell: UICollectionViewCell {
     
+    var delegate: textOnlyCellDelegate?
     
     var post: Posts? {
         
@@ -18,6 +24,10 @@ class textOnlyCell: UICollectionViewCell {
                        usernameLabel.text = post?.author
                        guard let profileuserURL = post?.userPhoto else {return}
                        userProfileImageView.loadImage(urlString: profileuserURL)
+            
+            
+            
+            likeButton.setImage(post?.hasLiked == true ? #imageLiteral(resourceName: "pray").withRenderingMode(.alwaysOriginal) : #imageLiteral(resourceName: "pray2").withRenderingMode(.alwaysOriginal), for: .normal)
        
       
 
@@ -77,8 +87,8 @@ class textOnlyCell: UICollectionViewCell {
     }()
     
     @objc func handleLike() {
-        print("Handling like from within cell...")
-        //    delegate?.didLike(for: self)
+        print("Handling like from within cell...text only")
+        delegate?.didLike(for: self)
     }
     
     lazy var commentButton: UIButton = {
@@ -93,22 +103,22 @@ class textOnlyCell: UICollectionViewCell {
     
     
     @objc func handleComment() {
-        print("Trying to show comments...")
+        print("Trying to show comments...on only text")
         guard let post = post else { return }
         
-        //   delegate?.didTapComment(post: post)
+        delegate?.didTapComment(post: post)
         
     }
     
     let sendMessageButton: UIButton = {
         let button = UIButton(type: .system)
-        button.setImage(#imageLiteral(resourceName: "icon-messenger").withRenderingMode(.alwaysOriginal), for: .normal)
+        button.setImage(#imageLiteral(resourceName: "icon-play").withRenderingMode(.alwaysOriginal), for: .normal)
         return button
     }()
     
     let bookmarkButton: UIButton = {
         let button = UIButton(type: .system)
-        button.setImage(#imageLiteral(resourceName: "icon-notification-1").withRenderingMode(.alwaysOriginal), for: .normal)
+        button.setImage(#imageLiteral(resourceName: "icon-play").withRenderingMode(.alwaysOriginal), for: .normal)
         return button
     }()
     
@@ -116,6 +126,7 @@ class textOnlyCell: UICollectionViewCell {
     let captionLabel: UITextView = {
         let textView = UITextView()
         textView.font = UIFont.systemFont(ofSize: 14)
+        textView.isEditable = false
         //        label.numberOfLines = 0
         //        label.backgroundColor = .lightGray
         textView.isScrollEnabled = false

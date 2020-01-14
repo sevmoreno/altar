@@ -4,8 +4,82 @@ import UIKit
 import AVFoundation
 import Firebase
 
-class PhotoStreamViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
-   
+class PhotoStreamViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout, HomePostCellDelegate,textOnlyCellDelegate  {
+    
+    func didLike(for cell: textOnlyCell) {
+          guard let indexPath = collectionView?.indexPath(for: cell) else { return }
+                
+                var post =  self.photos[indexPath.item]
+                print(post.message)
+                
+                
+                
+                guard let postId = post.postID else { return }
+                
+                guard let uid = Auth.auth().currentUser?.uid else { return }
+                
+                let values = [uid: post.hasLiked == true ? 0 : 1]
+                Database.database().reference().child("likes").child(postId).updateChildValues(values) { (err, _) in
+                    
+                    if let err = err {
+                        print("Failed to like post:", err)
+                        return
+                    }
+                    
+                    print("Successfully liked post.")
+                    
+                    post.hasLiked = !post.hasLiked
+                    
+                    self.photos[indexPath.item] = post
+                    
+                    self.collectionView?.reloadItems(at: [indexPath])
+                    
+                }
+    }
+    
+    
+   func didLike(for cell: AnnotatedPhotoCell) {
+          
+          guard let indexPath = collectionView?.indexPath(for: cell) else { return }
+          
+          var post =  self.photos[indexPath.item]
+          print(post.message)
+          
+          
+          
+          guard let postId = post.postID else { return }
+          
+          guard let uid = Auth.auth().currentUser?.uid else { return }
+          
+          let values = [uid: post.hasLiked == true ? 0 : 1]
+          Database.database().reference().child("likes").child(postId).updateChildValues(values) { (err, _) in
+              
+              if let err = err {
+                  print("Failed to like post:", err)
+                  return
+              }
+              
+              print("Successfully liked post.")
+              
+              post.hasLiked = !post.hasLiked
+              
+              self.photos[indexPath.item] = post
+              
+              self.collectionView?.reloadItems(at: [indexPath])
+              
+          }
+      }
+      
+      
+      func didTapComment(post: Posts) {
+          print("Message coming from HomeController")
+          print(post.message)
+          let commentsController = CommentsController(collectionViewLayout: UICollectionViewFlowLayout())
+          commentsController.post = post
+          navigationController?.pushViewController(commentsController, animated: true)
+      }
+      
+      
     
     let cellId = "cellId"
     var photos = [Posts] ()
@@ -24,6 +98,9 @@ class PhotoStreamViewController: UICollectionViewController, UICollectionViewDel
 
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Add Prayer", style: .plain, target: self, action: #selector(addprayer))
         navigationItem.title = advengers.shared.currentChurch
+        
+        
+        
 
 
        // collectionView?.contentInset = UIEdgeInsets(top: 23, left: 16, bottom: 10, right: 16)
@@ -201,6 +278,7 @@ class PhotoStreamViewController: UICollectionViewController, UICollectionViewDel
         case advengers.postType.textOnly.rawValue:
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "textOnlyCelll", for: indexPath as IndexPath) as! textOnlyCell
             cell.contentView.backgroundColor = .white
+            cell.delegate = self
             cell.post = photos[indexPath.item]
             return cell
             
@@ -223,6 +301,7 @@ class PhotoStreamViewController: UICollectionViewController, UICollectionViewDel
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "textOnlyCelll", for: indexPath as IndexPath) as! textOnlyCell
             cell.contentView.backgroundColor = .white
             cell.post = photos[indexPath.item]
+            cell.delegate = self
             return cell
         }
 

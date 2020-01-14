@@ -126,20 +126,20 @@ class PhotoTextoCollectionViewCell: UICollectionViewCell {
         
         let sendMessageButton: UIButton = {
             let button = UIButton(type: .system)
-            button.setImage(#imageLiteral(resourceName: "icon-messenger").withRenderingMode(.alwaysOriginal), for: .normal)
+            button.setImage(#imageLiteral(resourceName: "icon-comment").withRenderingMode(.alwaysOriginal), for: .normal)
             return button
         }()
         
         let bookmarkButton: UIButton = {
             let button = UIButton(type: .system)
-            button.setImage(#imageLiteral(resourceName: "icon-notification-1").withRenderingMode(.alwaysOriginal), for: .normal)
+            button.setImage(#imageLiteral(resourceName: "icon-like").withRenderingMode(.alwaysOriginal), for: .normal)
             return button
         }()
         
         let captionLabel: UITextView = {
             let textView = UITextView()
             textView.font = UIFont.systemFont(ofSize: 14)
-            
+            textView.isEditable = false
             textView.backgroundColor = .lightGray
             textView.isScrollEnabled = false
             return textView

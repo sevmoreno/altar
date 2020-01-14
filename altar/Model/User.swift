@@ -15,5 +15,16 @@ class User: NSObject {
     var fullName: String = ""
     var churchUser: String = ""
     var email: String = ""
+    var uid: String = ""
+    
 
+    init(uid: String, dictionary: [String: Any]) {
+           self.fullName = dictionary["username"] as? String ?? ""
+           self.photoUser = dictionary["photo"]  as? String ?? ""
+           self.userID = dictionary["userid"] as? String ?? ""
+           self.churchUser = dictionary["church"]  as? String ?? ""
+        
+           self.uid = uid
+       }
+    
 }

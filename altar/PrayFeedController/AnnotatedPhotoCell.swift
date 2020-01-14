@@ -2,9 +2,16 @@
 
 import UIKit
 
+
+protocol HomePostCellDelegate {
+    func didTapComment(post: Posts)
+    func didLike(for cell: AnnotatedPhotoCell)
+}
+
+
 class AnnotatedPhotoCell: UICollectionViewCell {
     
-    
+    var delegate: HomePostCellDelegate?
     var post: Posts? {
         
         didSet {
@@ -94,7 +101,7 @@ class AnnotatedPhotoCell: UICollectionViewCell {
     
     @objc func handleLike() {
         print("Handling like from within cell...")
-    //    delegate?.didLike(for: self)
+         delegate?.didLike(for: self)
     }
     
     lazy var commentButton: UIButton = {
@@ -112,26 +119,26 @@ class AnnotatedPhotoCell: UICollectionViewCell {
         print("Trying to show comments...")
         guard let post = post else { return }
         
-     //   delegate?.didTapComment(post: post)
+        delegate?.didTapComment(post: post)
         
     }
     
     let sendMessageButton: UIButton = {
         let button = UIButton(type: .system)
-        button.setImage(#imageLiteral(resourceName: "icon-messenger").withRenderingMode(.alwaysOriginal), for: .normal)
+        button.setImage(#imageLiteral(resourceName: "icon-play-1").withRenderingMode(.alwaysOriginal), for: .normal)
         return button
     }()
     
     let bookmarkButton: UIButton = {
         let button = UIButton(type: .system)
-        button.setImage(#imageLiteral(resourceName: "icon-notification-1").withRenderingMode(.alwaysOriginal), for: .normal)
+        button.setImage(#imageLiteral(resourceName: "icon-play-1").withRenderingMode(.alwaysOriginal), for: .normal)
         return button
     }()
     
     let captionLabel: UITextView = {
         let textView = UITextView()
         textView.font = UIFont.systemFont(ofSize: 14)
-        
+        textView.isEditable = false
         textView.backgroundColor = .lightGray
         textView.isScrollEnabled = false
         return textView

@@ -126,13 +126,13 @@ class AudioCollectionViewCell: UICollectionViewCell {
        
        let sendMessageButton: UIButton = {
            let button = UIButton(type: .system)
-           button.setImage(#imageLiteral(resourceName: "icon-messenger").withRenderingMode(.alwaysOriginal), for: .normal)
+           button.setImage(#imageLiteral(resourceName: "icon-play-1").withRenderingMode(.alwaysOriginal), for: .normal)
            return button
        }()
        
        let bookmarkButton: UIButton = {
            let button = UIButton(type: .system)
-           button.setImage(#imageLiteral(resourceName: "icon-notification-1").withRenderingMode(.alwaysOriginal), for: .normal)
+           button.setImage(#imageLiteral(resourceName: "icon-play").withRenderingMode(.alwaysOriginal), for: .normal)
            return button
        }()
        

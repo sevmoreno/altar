@@ -34,6 +34,7 @@ class UsersViewController: UIViewController, UIPageViewControllerDelegate {
         
         retriveUsers()
         
+    
         
 
        
@@ -61,7 +62,7 @@ class UsersViewController: UIViewController, UIPageViewControllerDelegate {
                     {
                         if advengers.shared.currentChurch == value["church"] as? String {
                             
-                            var userToShow = User()
+                            let userToShow = User(uid: value["userid"] as? String ?? "", dictionary: value as! [String : Any])
                             userToShow.userID = value["userid"] as? String ?? ""
                             userToShow.fullName = value["name"] as? String ?? ""
                             userToShow.email = value["email"] as? String ?? ""
@@ -132,7 +133,7 @@ func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> U
      }
      
      cell.nombre.text = users[indexPath.row].fullName
-    cell.userId = users[indexPath.row].userID
+     cell.userId = users[indexPath.row].userID
     cell.foto.downloadImage(imgURL: users[indexPath.row].photoUser)
     
                             }
@@ -141,6 +142,17 @@ func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> U
     return cell
     
 }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        let chat = ChatViewController ()
+        chat.user2Name = users[indexPath.row].fullName
+        chat.user2UID = users[indexPath.row].uid
+        chat.user2ImgUrl = users[indexPath.row].photoUser
+        navigationController?.pushViewController(chat, animated: true)
+        
+        
+    }
     
 }
 
