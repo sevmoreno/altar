@@ -61,8 +61,8 @@ class PowerOfWordCollectionView: UICollectionViewController,  UICollectionViewDe
                    for (_,value) in postfeed
                    {
 
-                       let temporarioPost = Devo (dictionary: value as! [String : Any])
-                       
+                      // let temporarioPost = Devo (dictionary: value as! [String : Any])
+                    let temporarioPost = Devo ()
                       
                        self.devos.append(temporarioPost)
                        self.collectionView.reloadData()

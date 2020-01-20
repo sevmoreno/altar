@@ -52,6 +52,9 @@ class advengers {
         case textImage = "textImage"
         case textBkground = "textBkground"
     }
+    
+    
+    var seleccionVideo = elementoVideo ()
 
     
     

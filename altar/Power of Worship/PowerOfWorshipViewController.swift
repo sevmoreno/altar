@@ -39,12 +39,15 @@ class PowerOfWorshipViewController:  UIViewController{
     @IBOutlet weak var playerWeb: WKWebView!
     var videoURL:URL!  // has the form "https://www.youtube.com/embed/videoID"
     var didLoadVideo = false
-
+    
     
     override func viewDidLoad() {
         
+        print("Conectando a Youtube")
         
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Create Playlist", style: .plain, target: self, action: #selector(addPlaylist))
         
+
     
         
        // videoURL = URL(string: "https://www.youtube.com/embed/F4sTcCcVkPw")
@@ -56,6 +59,10 @@ class PowerOfWorshipViewController:  UIViewController{
         
     }
     
+    @objc func addPlaylist () {
+        
+        performSegue(withIdentifier: "addPlaylist", sender: self)
+    }
     /*
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
@@ -69,42 +76,7 @@ class PowerOfWorshipViewController:  UIViewController{
         }
     }
 */
-    var embedVideoHtml:String {
-        return """
-        <!DOCTYPE html>
-        <html>
-        <body>
-        <!-- 1. The <iframe> (and video player) will replace this <div> tag. -->
-        <div id="player"></div>
-
-        <script>
-        var tag = document.createElement('script');
-
-        tag.src = "https://www.youtube.com/iframe_api";
-        var firstScriptTag = document.getElementsByTagName('script')[0];
-        firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
-
-        var player;
-        function onYouTubeIframeAPIReady() {
-        player = new YT.Player('player', {
-        playerVars: { 'autoplay': 1, 'controls': 0, 'playsinline': 1 },
-        height: '\(playerWeb.frame.height)',
-        width: '\(playerWeb.frame.width)',
-        videoId: '\(videoURL.lastPathComponent)',
-        events: {
-        'onReady': onPlayerReady
-        }
-        });
-        }
-
-        function onPlayerReady(event) {
-        event.target.playVideo();
-        }
-        </script>
-        </body>
-        </html>
-        """
-    }
+    
 
     func fetchVideos() {
         let url = NSURL(string: "https://s3-us-west-2.amazonaws.com/youtubeassets/home.json")

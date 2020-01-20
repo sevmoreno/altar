@@ -338,11 +338,106 @@
                     <navigationItem key="navigationItem" id="q8i-9B-cxF"/>
                     <connections>
                         <outlet property="playerWeb" destination="YCj-Yr-AI7" id="aux-az-jX8"/>
+                        <segue destination="hWn-ra-yyO" kind="show" identifier="addPlaylist" id="RcI-Gc-HHF"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dDX-ZN-ehd" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2634.7826086956525" y="-680.35714285714278"/>
+            <point key="canvasLocation" x="3509" y="-1010"/>
+        </scene>
+        <!--Playlist View Controller-->
+        <scene sceneID="phb-QH-rMv">
+            <objects>
+                <viewController id="hWn-ra-yyO" customClass="PlaylistViewController" customModule="altar" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="p9e-Zq-tbi">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="SgF-di-FUm"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="Ns9-W8-Mpz"/>
+                    <connections>
+                        <segue destination="aQq-G7-J80" kind="show" identifier="searchSong" id="vJA-Pn-S0h"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="iKy-XE-bIS" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4609" y="-1010"/>
+        </scene>
+        <!--Search Song View Controller-->
+        <scene sceneID="qSM-dR-AFk">
+            <objects>
+                <viewController id="aQq-G7-J80" customClass="searchSongViewController" customModule="altar" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="21P-h3-Mql">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <searchBar contentMode="redraw" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cQc-hA-STo">
+                                <rect key="frame" x="0.0" y="88" width="414" height="56"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </searchBar>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="n2X-6U-oqt">
+                                <rect key="frame" x="0.0" y="144" width="414" height="562"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="HO7-0i-xzE">
+                                    <size key="itemSize" width="50" height="50"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells/>
+                            </collectionView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="Swn-aZ-J0t"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="Aif-br-5SP"/>
+                    <connections>
+                        <outlet property="searchBar" destination="cQc-hA-STo" id="jR4-Z1-DO6"/>
+                        <segue destination="UTs-b0-XUU" kind="show" identifier="selecionVideo" id="V8h-vK-0QN"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="B9w-7j-ndu" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="5553.6231884057979" y="-1150.4464285714284"/>
+        </scene>
+        <!--Seleccion Video View Controller-->
+        <scene sceneID="Ydw-c0-rU8">
+            <objects>
+                <viewController id="UTs-b0-XUU" customClass="seleccionVideoViewController" customModule="altar" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="bae-Li-t7c">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <wkWebView contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="IuR-I5-brV">
+                                <rect key="frame" x="-33" y="194" width="480" height="270"/>
+                                <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="480" id="sBX-9Z-6ES"/>
+                                    <constraint firstAttribute="height" constant="270" id="sTV-T2-irc"/>
+                                </constraints>
+                                <wkWebViewConfiguration key="configuration">
+                                    <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
+                                    <wkPreferences key="preferences"/>
+                                </wkWebViewConfiguration>
+                            </wkWebView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="IuR-I5-brV" firstAttribute="top" secondItem="TgA-12-ZLx" secondAttribute="top" constant="106" id="2Dm-uI-7Pa"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="TgA-12-ZLx"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="06e-Wt-t10"/>
+                    <connections>
+                        <outlet property="videoConteiner" destination="IuR-I5-brV" id="Zme-aI-RIg"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="bst-xZ-dRJ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="6427.5362318840589" y="-1150.4464285714284"/>
         </scene>
         <!--Photo Stream View Controller-->
         <scene sceneID="xQs-xu-7zz">
@@ -837,7 +932,7 @@
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Hua-hs-Ak9" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3761" y="-501"/>
+            <point key="canvasLocation" x="3510" y="-230"/>
         </scene>
         <!--Devotional Creator View Controller-->
         <scene sceneID="fM2-1U-gkN">
@@ -859,20 +954,6 @@
                                                 <rect key="frame" x="0.0" y="0.0" width="414" height="158"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             </imageView>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vge-Jn-fy5">
-                                                <rect key="frame" x="111" y="54" width="192" height="50"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <attributedString key="attributedText">
-                                                    <fragment content="Title">
-                                                        <attributes>
-                                                            <color key="NSColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                            <font key="NSFont" metaFont="system" size="17"/>
-                                                            <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
-                                                        </attributes>
-                                                    </fragment>
-                                                </attributedString>
-                                                <nil key="highlightedColor"/>
-                                            </label>
                                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kMm-3v-ja1">
                                                 <rect key="frame" x="360" y="120" width="46" height="30"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -881,6 +962,19 @@
                                                     <action selector="bold:" destination="18V-nR-zRw" eventType="touchUpInside" id="8cV-DX-iyp"/>
                                                 </connections>
                                             </button>
+                                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" usesAttributedText="YES" allowsEditingTextAttributes="YES" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="xlA-R7-he0">
+                                                <rect key="frame" x="122" y="62" width="171" height="34"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <attributedString key="attributedText">
+                                                    <fragment content="El Espíritu Santo">
+                                                        <attributes>
+                                                            <font key="NSFont" metaFont="smallSystem"/>
+                                                            <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                        </attributes>
+                                                    </fragment>
+                                                </attributedString>
+                                                <textInputTraits key="textInputTraits"/>
+                                            </textField>
                                         </subviews>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                     </view>
@@ -1048,11 +1142,12 @@ Creador. ¡Eres templo del Espíritu Santo!</string>
                     <connections>
                         <outlet property="devText" destination="HOT-j5-YZL" id="Z7Q-Eo-XXM"/>
                         <outlet property="scroll" destination="nPC-0V-JpO" id="FbM-jH-vB2"/>
+                        <outlet property="titulo" destination="xlA-R7-he0" id="par-1g-jC0"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Gpa-Rh-587" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4760.8695652173919" y="-898.66071428571422"/>
+            <point key="canvasLocation" x="5128.985507246377" y="-230.35714285714283"/>
         </scene>
         <!--Power of Pray-->
         <scene sceneID="gRE-6C-JuJ">

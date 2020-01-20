@@ -7,12 +7,28 @@
 //
 
 import UIKit
+import Firebase
 
 class DevotionalCreatorViewController: UIViewController {
 
     @IBOutlet weak var devText: UITextView!
     
+    var attributedString = NSMutableAttributedString(string: "Want to learn iOS? You should visit the best source of free iOS tutorials!")
+    
+    struct devocionalFormato {
+        
+        var texto: String!
+        var atributos: [NSAttributedString.Key:Any]
+        
+    }
+    var devocionalRichText = [NSAttributedString] ()
+    var decocionalToSave = [devocionalFormato] ()
+    
     @IBOutlet weak var scroll: UIScrollView!
+    
+    @IBOutlet var titulo: UITextField!
+    
+    
     let accessory: UIView = {
         let accessoryView = UIView(frame: .zero)
         accessoryView.backgroundColor = .lightGray
@@ -88,15 +104,18 @@ class DevotionalCreatorViewController: UIViewController {
  
         let attributes = [
             
-            NSAttributedString.Key.underlineStyle : 1,
-            NSAttributedString.Key.foregroundColor : UIColor.red,
-            NSAttributedString.Key.strokeWidth : 3.0
+          //  NSAttributedString.Key.underlineStyle : 1,
+            NSAttributedString.Key.foregroundColor : UIColor.lightGray
+          //  NSAttributedString.Key.font: UIFont.systemFontSize
+          //  NSAttributedString.Key.strokeWidth : 3.0
                
             ] as [NSAttributedString.Key : Any]
         
-        devText.attributedText = NSAttributedString(string: "NSAttributedString", attributes: attributes)
+        if devocionalRichText.isEmpty {
         
+        devText.attributedText = NSAttributedString(string: "Add your devotional here...", attributes: attributes)
         
+        }
       //  devText.selectedRange
         
 
@@ -108,12 +127,86 @@ class DevotionalCreatorViewController: UIViewController {
     @objc func nextButton()
     {
          print("do something")
+        print(devText.selectedRange)
+        
+        //devText.attributedText!
+        
+       // attributedString.append(secondString)
+       // let rango = devText.selectedRange
+       // let prueba = devText.attributedText as! NSMutableAttributedString
+        
+       // prueba.addAttribute(.foregroundColor, value: UIColor.red, range: rango)
+       // devText.attributedText = prueba
+        let creatMutable = NSMutableAttributedString(attributedString: devText.attributedText)
+        
+        creatMutable.addAttribute(.foregroundColor, value: UIColor.red, range: devText.selectedRange)
+        devText.attributedText = creatMutable
+        
     }
     @IBAction func bold(_ sender: Any) {
         print(devText.selectedRange)
+        
+        
+        attributedString.addAttribute(.foregroundColor, value: UIColor.red, range: devText.selectedRange)
+        devText.attributedText = attributedString
+        
     }
     
     @objc func postDevotional () {
+        
+        let iglesia = advengers.shared.currentChurch
+        let userPostRef = Database.database().reference().child("devocionales").child(iglesia)
+        let ref = userPostRef.childByAutoId()
+        
+        let storageRefDB = Storage.storage().reference().child("devotionales").child(iglesia)
+        let refDB = storageRefDB.childByAutoId()
+        
+        
+        storageRef.putData(uploadData, metadata: nil, completion: { (metadata, err) in
+                      
+                      if let err = err {
+                          print("Failed to upload profile image:", err)
+                          return
+                      }
+                      
+                      // Firebase 5 Update: Must now retrieve downloadURL
+                      storageRef.downloadURL(completion: { (downloadURL, err) in
+                          if let err = err {
+                              print("Failed to fetch downloadURL:", err)
+                              return
+                          }
+                          
+                          guard let profileImageUrl = downloadURL?.absoluteString else { return }
+                          
+                          guard let uid = authResult?.user.uid else {return}
+                          
+                          let usuariovalores = ["username":username, "photo":profileImageUrl]
+                          let valores = [uid:usuariovalores]
+                          
+                          print(authResult?.user.uid)
+                          Database.database().reference().child("users").updateChildValues(valores, withCompletionBlock: { (error, dataref) in
+                              if let err = error {
+                                  print ("error al salvar info")
+                              }
+                              
+                              print("Succefully saved user")
+                          })
+                  
+                      })
+                  })
+        
+        let devo = ["texto": devText.attributedText, "title": titulo.text!, "creationDate": Date().timeIntervalSince1970] as [String : Any]
+        
+        ref.updateChildValues(devo) { (err, ref) in
+            if let err = err {
+                //self.navigationItem.rightBarButtonItem?.isEnabled = true
+                print("Failed to save post to DB", err)
+                return
+            }
+            
+            print("Successfully saved post to DB")
+            
+        }
         
         print("editing")
     }
@@ -133,13 +226,49 @@ class DevotionalCreatorViewController: UIViewController {
 extension DevotionalCreatorViewController: UITextViewDelegate {
     
     func textViewDidBeginEditing(_ textView: UITextView) {
-        scroll.setContentOffset(CGPoint(x: 0, y: (textView.superview?.frame.origin.y)!), animated: true)
+      //  scroll.setContentOffset(CGPoint(x: 0, y: (textView.superview?.frame.origin.y)!), animated: true)
+        
+    let attributes = [
+               
+             //  NSAttributedString.Key.underlineStyle : 1,
+               NSAttributedString.Key.foregroundColor : UIColor.black
+             //  NSAttributedString.Key.font: UIFont.systemFontSize
+             //  NSAttributedString.Key.strokeWidth : 3.0
+                  
+               ] as [NSAttributedString.Key : Any]
+           
+           if devocionalRichText.isEmpty {
+            
+            
+           // attributedString.addAttribute(.link, value: "https://www.hackingwithswift.com", range: NSRange(location: 19, length: 55))
+            let secondString = NSAttributedString(string: "gonna HATEEEE ", attributes: attributes)
+            attributedString.append(secondString)
+
+           devText.attributedText = attributedString
+           
+        //   devText.attributedText = NSAttributedString(string: "", attributes: attributes)
+            
+           
+           
+           }
+               
+       // devText.t
+        
+
         
         
     }
     
     func textViewDidEndEditing(_ textView: UITextView) {
-        scroll.setContentOffset(CGPoint(x: 0, y: 0), animated: true)
+        
+        devText.attributedText = attributedString
+      //  scroll.setContentOffset(CGPoint(x: 0, y: 0), animated: true)
+    }
+    
+    func textViewDidChange(_ textView: UITextView) { //Handle the text changes here
+        
+     let prueba = devText.attributedText as? NSMutableAttributedString
+      //  attributedString = devText.attributedText as! NSMutableAttributedString
     }
     
     /*

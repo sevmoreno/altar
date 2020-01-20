@@ -36,6 +36,12 @@
 		65913B1E23C7AE90009B8537 /* AudioCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65913B1D23C7AE90009B8537 /* AudioCollectionViewCell.swift */; };
 		65913B2023C8E245009B8537 /* VideoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65913B1F23C8E245009B8537 /* VideoCell.swift */; };
 		65913B2223C8F956009B8537 /* File.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65913B2123C8F956009B8537 /* File.swift */; };
+		659595C223D0EE96007FB09C /* PlaylistViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 659595C123D0EE96007FB09C /* PlaylistViewController.swift */; };
+		659595C423D0EFC1007FB09C /* searchSongViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 659595C323D0EFC1007FB09C /* searchSongViewController.swift */; };
+		659595C623D0F4B4007FB09C /* VideoResultcolCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 659595C523D0F4B4007FB09C /* VideoResultcolCollectionViewCell.swift */; };
+		659595C923D0F521007FB09C /* YTResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 659595C823D0F521007FB09C /* YTResult.swift */; };
+		659595CB23D0FCE9007FB09C /* elementoVideo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 659595CA23D0FCE9007FB09C /* elementoVideo.swift */; };
+		659595CD23D21C3C007FB09C /* seleccionVideoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 659595CC23D21C3C007FB09C /* seleccionVideoViewController.swift */; };
 		65ABFC83232C069000729B57 /* UsersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65ABFC82232C069000729B57 /* UsersViewController.swift */; };
 		65ABFC85232C0E1D00729B57 /* UserTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65ABFC84232C0E1D00729B57 /* UserTableViewCell.swift */; };
 		65ABFC87232C12C200729B57 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65ABFC86232C12C200729B57 /* User.swift */; };
@@ -89,6 +95,12 @@
 		65913B1D23C7AE90009B8537 /* AudioCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioCollectionViewCell.swift; sourceTree = "<group>"; };
 		65913B1F23C8E245009B8537 /* VideoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoCell.swift; sourceTree = "<group>"; };
 		65913B2123C8F956009B8537 /* File.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = File.swift; sourceTree = "<group>"; };
+		659595C123D0EE96007FB09C /* PlaylistViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaylistViewController.swift; sourceTree = "<group>"; };
+		659595C323D0EFC1007FB09C /* searchSongViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = searchSongViewController.swift; sourceTree = "<group>"; };
+		659595C523D0F4B4007FB09C /* VideoResultcolCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoResultcolCollectionViewCell.swift; sourceTree = "<group>"; };
+		659595C823D0F521007FB09C /* YTResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YTResult.swift; sourceTree = "<group>"; };
+		659595CA23D0FCE9007FB09C /* elementoVideo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = elementoVideo.swift; sourceTree = "<group>"; };
+		659595CC23D21C3C007FB09C /* seleccionVideoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = seleccionVideoViewController.swift; sourceTree = "<group>"; };
 		65ABFC82232C069000729B57 /* UsersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersViewController.swift; sourceTree = "<group>"; };
 		65ABFC84232C0E1D00729B57 /* UserTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserTableViewCell.swift; sourceTree = "<group>"; };
 		65ABFC86232C12C200729B57 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
@@ -166,6 +178,15 @@
 			path = Cells;
 			sourceTree = "<group>";
 		};
+		659595C723D0F4F2007FB09C /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				659595C823D0F521007FB09C /* YTResult.swift */,
+				659595CA23D0FCE9007FB09C /* elementoVideo.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		65AAEB2F23C55C0D0063DF04 /* Post */ = {
 			isa = PBXGroup;
 			children = (
@@ -201,9 +222,14 @@
 		65CB7E8D23C3D3C50018526D /* Power of Worship */ = {
 			isa = PBXGroup;
 			children = (
+				659595C723D0F4F2007FB09C /* Model */,
 				65CB7E8E23C3D5FB0018526D /* PowerOfWorshipViewController.swift */,
 				65913B2123C8F956009B8537 /* File.swift */,
 				65913B1F23C8E245009B8537 /* VideoCell.swift */,
+				659595C123D0EE96007FB09C /* PlaylistViewController.swift */,
+				659595C323D0EFC1007FB09C /* searchSongViewController.swift */,
+				659595C523D0F4B4007FB09C /* VideoResultcolCollectionViewCell.swift */,
+				659595CC23D21C3C007FB09C /* seleccionVideoViewController.swift */,
 			);
 			path = "Power of Worship";
 			sourceTree = "<group>";
@@ -437,11 +463,14 @@
 				655EDF0823AD6F50005E6DB6 /* CustomImageView.swift in Sources */,
 				65D42421232576A800DB286E /* altar.xcdatamodeld in Sources */,
 				65ABFC89232C170200729B57 /* Advengers.swift in Sources */,
+				659595C423D0EFC1007FB09C /* searchSongViewController.swift in Sources */,
 				654F95E52339307F00175A7E /* FeedOnlyTextCollectionViewCell.swift in Sources */,
 				65CB7E8B23C3CBAD0018526D /* DevotionalCollectionViewCell.swift in Sources */,
+				659595CD23D21C3C007FB09C /* seleccionVideoViewController.swift in Sources */,
 				65913B1923C653FA009B8537 /* PhotoTextoCollectionViewCell.swift in Sources */,
 				654F95DD2331B93B00175A7E /* FeedCollectionViewCell.swift in Sources */,
 				655EDF0A23B002C4005E6DB6 /* textOnlyCell.swift in Sources */,
+				659595C223D0EE96007FB09C /* PlaylistViewController.swift in Sources */,
 				654F95DB23306E7F00175A7E /* PrayPostViewController.swift in Sources */,
 				65913B2223C8F956009B8537 /* File.swift in Sources */,
 				655BF7052385DA1A002F0C7C /* PrayCollectionViewLayout.swift in Sources */,
@@ -460,9 +489,11 @@
 				654F95DF2332AD8700175A7E /* Posts.swift in Sources */,
 				6501259223CE3000009FAD55 /* Comments.swift in Sources */,
 				65626CD723CE63E900B41386 /* Message.swift in Sources */,
+				659595C623D0F4B4007FB09C /* VideoResultcolCollectionViewCell.swift in Sources */,
 				65CFE1C623CCE442006C4E76 /* DevotionalCreatorViewController.swift in Sources */,
 				65421CCE23AAABFE000B0437 /* extensions.swift in Sources */,
 				655BF70323847C11002F0C7C /* PostCell.swift in Sources */,
+				659595CB23D0FCE9007FB09C /* elementoVideo.swift in Sources */,
 				657F2B472325F5CA00187C9D /* SignUpViewController.swift in Sources */,
 				65ABFC85232C0E1D00729B57 /* UserTableViewCell.swift in Sources */,
 				65D4243023258A2D00DB286E /* LogInViewController.swift in Sources */,
@@ -470,6 +501,7 @@
 				6501259423CE3117009FAD55 /* CommentsCollectionViewCell.swift in Sources */,
 				65626CD523CE62EF00B41386 /* chat.swift in Sources */,
 				655BF70123847B4A002F0C7C /* NewsfeedCollectionViewController.swift in Sources */,
+				659595C923D0F521007FB09C /* YTResult.swift in Sources */,
 				65913B2023C8E245009B8537 /* VideoCell.swift in Sources */,
 				6526F5EF23836C7300DA2433 /* DynamicHeightCollectionView.swift in Sources */,
 				65ABFC87232C12C200729B57 /* User.swift in Sources */,
