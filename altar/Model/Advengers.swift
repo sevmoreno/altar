@@ -56,7 +56,7 @@ class advengers {
     
     var seleccionVideo = elementoVideo ()
 
-    
+    var devocionalSeleccinado = Devo ()
     
     private init() {
         

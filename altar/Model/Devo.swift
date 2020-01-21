@@ -15,12 +15,18 @@ struct Devo {
     var author: String! = ""
     var title: String! = ""
   //  var likes: Int!
-    var photoImage: String! = ""
+    var photoURL: String! = ""
   //  var userID: String!
+    
+    var urltexto: String! = ""
+    
     var postID: String! = ""
   //  var userPhoto: String!
 //var postType: String!
     var message: String! = ""
+    
+    var creationDate: String! = ""
+    
  //   var photoW: CGFloat?
  //   var photoH: CGFloat?
     

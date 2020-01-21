@@ -23,8 +23,9 @@ class DevotionalCollectionViewCell: UICollectionViewCell {
         
         addSubview(viewGeneral)
         viewGeneral.translatesAutoresizingMaskIntoConstraints = false
-        viewGeneral.heightAnchor.constraint(equalToConstant: 140).isActive = true
-        viewGeneral.widthAnchor.constraint(equalToConstant: 140).isActive = true
+        viewGeneral.anchor(top: topAnchor, left: leftAnchor, bottom: bottomAnchor, right: rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 0)
+    //    viewGeneral.heightAnchor.constraint(equalToConstant: 140).isActive = true
+     //   viewGeneral.widthAnchor.constraint(equalToConstant: 140).isActive = true
         viewGeneral.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
         viewGeneral.topAnchor.constraint(equalTo: topAnchor, constant: 0).isActive = true
         

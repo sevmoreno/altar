@@ -42,6 +42,7 @@
 		659595C923D0F521007FB09C /* YTResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 659595C823D0F521007FB09C /* YTResult.swift */; };
 		659595CB23D0FCE9007FB09C /* elementoVideo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 659595CA23D0FCE9007FB09C /* elementoVideo.swift */; };
 		659595CD23D21C3C007FB09C /* seleccionVideoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 659595CC23D21C3C007FB09C /* seleccionVideoViewController.swift */; };
+		659595CF23D64192007FB09C /* DevocionalSeleccionado.swift in Sources */ = {isa = PBXBuildFile; fileRef = 659595CE23D64192007FB09C /* DevocionalSeleccionado.swift */; };
 		65ABFC83232C069000729B57 /* UsersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65ABFC82232C069000729B57 /* UsersViewController.swift */; };
 		65ABFC85232C0E1D00729B57 /* UserTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65ABFC84232C0E1D00729B57 /* UserTableViewCell.swift */; };
 		65ABFC87232C12C200729B57 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65ABFC86232C12C200729B57 /* User.swift */; };
@@ -101,6 +102,7 @@
 		659595C823D0F521007FB09C /* YTResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YTResult.swift; sourceTree = "<group>"; };
 		659595CA23D0FCE9007FB09C /* elementoVideo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = elementoVideo.swift; sourceTree = "<group>"; };
 		659595CC23D21C3C007FB09C /* seleccionVideoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = seleccionVideoViewController.swift; sourceTree = "<group>"; };
+		659595CE23D64192007FB09C /* DevocionalSeleccionado.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DevocionalSeleccionado.swift; sourceTree = "<group>"; };
 		65ABFC82232C069000729B57 /* UsersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersViewController.swift; sourceTree = "<group>"; };
 		65ABFC84232C0E1D00729B57 /* UserTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserTableViewCell.swift; sourceTree = "<group>"; };
 		65ABFC86232C12C200729B57 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
@@ -204,6 +206,7 @@
 				65CFE1C523CCE442006C4E76 /* DevotionalCreatorViewController.swift */,
 				65CB7E8823BFF15D0018526D /* UserHeaderCollectionViewCell.swift */,
 				65CB7E8A23C3CBAD0018526D /* DevotionalCollectionViewCell.swift */,
+				659595CE23D64192007FB09C /* DevocionalSeleccionado.swift */,
 			);
 			path = PowerOfWord;
 			sourceTree = "<group>";
@@ -468,6 +471,7 @@
 				65CB7E8B23C3CBAD0018526D /* DevotionalCollectionViewCell.swift in Sources */,
 				659595CD23D21C3C007FB09C /* seleccionVideoViewController.swift in Sources */,
 				65913B1923C653FA009B8537 /* PhotoTextoCollectionViewCell.swift in Sources */,
+				659595CF23D64192007FB09C /* DevocionalSeleccionado.swift in Sources */,
 				654F95DD2331B93B00175A7E /* FeedCollectionViewCell.swift in Sources */,
 				655EDF0A23B002C4005E6DB6 /* textOnlyCell.swift in Sources */,
 				659595C223D0EE96007FB09C /* PlaylistViewController.swift in Sources */,

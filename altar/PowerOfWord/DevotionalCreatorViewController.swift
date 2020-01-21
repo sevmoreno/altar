@@ -158,67 +158,77 @@ class DevotionalCreatorViewController: UIViewController {
         let userPostRef = Database.database().reference().child("devocionales").child(iglesia)
         let ref = userPostRef.childByAutoId()
         
-        let storageRefDB = Storage.storage().reference().child("devotionales").child(iglesia)
-        let refDB = storageRefDB.childByAutoId()
         
-        
-        storageRef.putData(uploadData, metadata: nil, completion: { (metadata, err) in
-                      
-                      if let err = err {
-                          print("Failed to upload profile image:", err)
-                          return
-                      }
-                      
-                      // Firebase 5 Update: Must now retrieve downloadURL
-                      storageRef.downloadURL(completion: { (downloadURL, err) in
-                          if let err = err {
-                              print("Failed to fetch downloadURL:", err)
-                              return
-                          }
-                          
-                          guard let profileImageUrl = downloadURL?.absoluteString else { return }
-                          
-                          guard let uid = authResult?.user.uid else {return}
-                          
-                          let usuariovalores = ["username":username, "photo":profileImageUrl]
-                          let valores = [uid:usuariovalores]
-                          
-                          print(authResult?.user.uid)
-                          Database.database().reference().child("users").updateChildValues(valores, withCompletionBlock: { (error, dataref) in
-                              if let err = error {
-                                  print ("error al salvar info")
-                              }
-                              
-                              print("Succefully saved user")
-                          })
-                  
-                      })
-                  })
-        
-        let devo = ["texto": devText.attributedText, "title": titulo.text!, "creationDate": Date().timeIntervalSince1970] as [String : Any]
-        
-        ref.updateChildValues(devo) { (err, ref) in
-            if let err = err {
-                //self.navigationItem.rightBarButtonItem?.isEnabled = true
-                print("Failed to save post to DB", err)
-                return
+       
+
+       
+        let attrString = devText.attributedText
+        guard let x = attrString else {return}
+        var resultHtmlText = ""
+        do {
+
+            let r = NSRange(location: 0, length: x.length)
+            let att = [NSAttributedString.DocumentAttributeKey.documentType: NSAttributedString.DocumentType.html]
+            let d = try x.data(from: r, documentAttributes: att)
+
+            if let h = String(data: d, encoding: .utf8) {
+                resultHtmlText = h
+                
+   // ------------------------------------ ACA SALVAMOS AL STORAGE LA DATA  ---------------------------------
+                let filename = NSUUID().uuidString
+                let storageRefDB = Storage.storage().reference().child("devotionales").child(iglesia).child(filename)
+                storageRefDB.putData(d, metadata: nil, completion: { (metadata, err) in
+                    
+                    if let err = err {
+                        print("Failed to upload profile image:", err)
+                        return
+                    }
+                    
+                    // Firebase 5 Update: Must now retrieve downloadURL
+                    storageRefDB.downloadURL(completion: { (downloadURL, err) in
+                        if let err = err {
+                            print("Failed to fetch downloadURL:", err)
+                            return
+                        }
+                        
+                        guard let profileImageUrl = downloadURL?.absoluteString else { return }
+                        
+                        guard let uid = Auth.auth().currentUser?.uid else {return}
+                        
+                        
+                        
+                        let devo = ["urltexto": profileImageUrl,"texto": self.devText.text ,"title": self.titulo.text!, "creationDate": Date().timeIntervalSince1970, "usuarioID": Auth.auth().currentUser?.uid] as [String : Any]
+                        
+                        ref.updateChildValues(devo) { (err, ref) in
+                            if let err = err {
+                                //self.navigationItem.rightBarButtonItem?.isEnabled = true
+                                print("Failed to save post to DB", err)
+                                return
+                            }
+                            
+                            print("Successfully saved post to DB")
+                            
+                        }
+      
+                
+                    })
+                })
+                
+
+                
             }
-            
-            print("Successfully saved post to DB")
-            
         }
+        catch {
+            print("utterly failed to convert to html!!! \n>\(x)<\n")
+        }
+        print(resultHtmlText)
+        
+        
+
         
         print("editing")
     }
-    /*
-    // MARK: - Navigation
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }
 

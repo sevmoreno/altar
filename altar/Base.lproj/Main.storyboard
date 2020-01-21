@@ -816,7 +816,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xDi-d3-anm" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4193" y="398"/>
+            <point key="canvasLocation" x="3981" y="806"/>
         </scene>
         <!--Audible View Controller-->
         <scene sceneID="bur-tS-1fk">
@@ -840,7 +840,7 @@
                 <viewController id="Ip3-5D-A7D" customClass="PhotoVideoPostViewController" customModule="altar" customModuleProvider="target" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="c9Q-dH-lAi" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="6360.8695652173919" y="20.758928571428569"/>
+            <point key="canvasLocation" x="6361" y="433"/>
         </scene>
         <!--Only Video Post View Controller-->
         <scene sceneID="9Ig-jU-V3N">
@@ -928,11 +928,28 @@
                     <navigationItem key="navigationItem" id="UZ2-UH-Ag5"/>
                     <connections>
                         <segue destination="18V-nR-zRw" kind="show" identifier="devotionalCreator" id="f5V-hY-vCy"/>
+                        <segue destination="dlv-za-01o" kind="show" identifier="ADevo" id="8nf-S9-Y5k"/>
                     </connections>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Hua-hs-Ak9" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3510" y="-230"/>
+        </scene>
+        <!--Devocional Seleccionado-->
+        <scene sceneID="GHM-N1-u1h">
+            <objects>
+                <viewController id="dlv-za-01o" customClass="DevocionalSeleccionado" customModule="altar" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="jES-Sc-xtn">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="n2F-Cm-8RZ"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="1uP-dV-9w3"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ce6-Ez-DOX" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4797" y="21"/>
         </scene>
         <!--Devotional Creator View Controller-->
         <scene sceneID="fM2-1U-gkN">
@@ -1147,7 +1164,7 @@ Creador. ¡Eres templo del Espíritu Santo!</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Gpa-Rh-587" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5128.985507246377" y="-230.35714285714283"/>
+            <point key="canvasLocation" x="5365" y="-532"/>
         </scene>
         <!--Power of Pray-->
         <scene sceneID="gRE-6C-JuJ">

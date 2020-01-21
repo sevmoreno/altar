@@ -36,12 +36,59 @@ class PowerOfWordCollectionView: UICollectionViewController,  UICollectionViewDe
             
         }
         
+        loadDevocionales ()
+        
             
      //      loadCurrentUserInfo ()
      //      fetchPost ()
        
            
        }
+    
+    func loadDevocionales () {
+        
+      //  let referenciaDB = Database.database()
+        
+        Database.database().reference().child ("devocionales").child(advengers.shared.currentChurch).queryOrderedByKey().observe(.value) { (data) in
+                   
+                  // self.photos.removeAll()
+                   
+                   if let devoFeed = data.value as? [String:NSDictionary] {
+                       
+                       for (_,value) in devoFeed
+                       {
+
+                        var devocional  = Devo ()
+                        
+                        devocional.title = value["title"] as? String
+                        devocional.message = value["texto"] as? String
+                        devocional.urltexto = value["urltexto"] as? String
+                        devocional.creationDate = value["creationDate"] as? String
+                      //  print(value)
+                     //   print(devocional.title!)
+                   //     print(devocional.message!)
+                        self.devos.append(devocional)
+                        
+                        
+                        //   let temporarioPost = Posts (dictionary: value as! [String : Any])
+                           
+                          
+           //                self.photos.append(temporarioPost)
+             //              self.collectionView.reloadData()
+
+                        self.collectionView.reloadData()
+                       }
+                       
+                       
+                   }
+               }
+        
+        
+    }
+    
+    
+    
+    
        
        @objc func addDevotional () {
            
@@ -50,33 +97,7 @@ class PowerOfWordCollectionView: UICollectionViewController,  UICollectionViewDe
        }
        
        
-       func fetchPost () {
-           print("Fechea ")
-           advengers.shared.postPrayFeed.queryOrderedByKey().observe(.value) { (data) in
-               
-               self.devos.removeAll()
-               
-               if let postfeed = data.value as? [String:NSDictionary] {
-                   
-                   for (_,value) in postfeed
-                   {
 
-                      // let temporarioPost = Devo (dictionary: value as! [String : Any])
-                    let temporarioPost = Devo ()
-                      
-                       self.devos.append(temporarioPost)
-                       self.collectionView.reloadData()
-                      
-
-                       
-                       
-                       
-                   }
-                   
-                   
-               }
-           }
-       }
        
        func loadCurrentUserInfo () {
               
@@ -106,7 +127,7 @@ class PowerOfWordCollectionView: UICollectionViewController,  UICollectionViewDe
     
  // ------------------------------------------------------------------------ HEADER  -----------------------------------------------------------------------------------
     
-  
+  /*
     
     override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "headerWord", for: indexPath) as! DevotionalCollectionViewCell
@@ -121,10 +142,11 @@ class PowerOfWordCollectionView: UICollectionViewController,  UICollectionViewDe
         if devos.count == 1 {
             
             return CGSize(width: view.frame.width, height: view.frame.height)
+            
         } else {
         
         
-        return CGSize(width: view.frame.width, height: 500)
+        return CGSize(width: view.frame.width, height: view.frame.height)
             
             
         }
@@ -132,7 +154,7 @@ class PowerOfWordCollectionView: UICollectionViewController,  UICollectionViewDe
         
     }
     
-
+*/
     
     // ------------------------------------------------------------------------------------------------------------------------------------------------------------------
     
@@ -191,14 +213,26 @@ class PowerOfWordCollectionView: UICollectionViewController,  UICollectionViewDe
  
           */
         
-        return CGSize(width: view.frame.width, height:  500 )
-          
+     //   switch devos.count {
+       // case 1:
+            return CGSize(width: view.frame.width, height:  view.frame.height )
+   //     default:
+     //       return CGSize(width: view.frame.width, height:  500 )
+        //}
+            
+            
+
+        
+      
        }
        
        
        override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
           
-            return 4
+          print ("Devos Count")
+          print(devos.count)
+        
+          return devos.count
         
             // return photos.count
        }
@@ -239,6 +273,26 @@ class PowerOfWordCollectionView: UICollectionViewController,  UICollectionViewDe
         
        }
  
+    
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
+        performSegue(withIdentifier: "ADevo", sender: self)
+        
+        print("El Contenido de la sellecion")
+        print(devos[indexPath.row].title)
+        print(devos[indexPath.row].message)
+        
+        
+        advengers.shared.devocionalSeleccinado = devos[indexPath.row]
+     //  let a = DevocionalSeleccionado ()
+        
+     //   a.devo = devos[indexPath.row]
+        
+        
+        
+    }
+    
+    
 
         
        
