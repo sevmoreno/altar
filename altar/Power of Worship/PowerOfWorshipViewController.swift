@@ -10,7 +10,7 @@ import UIKit
 import AVFoundation
 import WebKit
 import Alamofire
-
+import Firebase
 
 
 
@@ -47,6 +47,9 @@ class PowerOfWorshipViewController:  UIViewController{
         
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Create Playlist", style: .plain, target: self, action: #selector(addPlaylist))
         
+        
+        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Log Out", style: .plain, target: self, action: #selector(Logout))
+        
 
     
         
@@ -58,6 +61,11 @@ class PowerOfWorshipViewController:  UIViewController{
         
         
     }
+    
+    @objc func Logout () {
+        try! Auth.auth().signOut()
+    }
+    
     
     @objc func addPlaylist () {
         

@@ -2,6 +2,15 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>UIAppFonts</key>
+	<array>
+		<string>Prompt-Black.ttf</string>
+		<string>Prompt-BoldItalic.ttf</string>
+		<string>Prompt-Bold.ttf</string>
+		<string>Prompt-Regular.ttf</string>
+	</array>
+	<key></key>
+	<string></string>
 	<key>NSMicrophoneUsageDescription</key>
 	<string>Access to your mic</string>
 	<key>CFBundleDevelopmentRegion</key>

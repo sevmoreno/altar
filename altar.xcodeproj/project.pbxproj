@@ -11,6 +11,7 @@
 		6501259223CE3000009FAD55 /* Comments.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6501259123CE3000009FAD55 /* Comments.swift */; };
 		6501259423CE3117009FAD55 /* CommentsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6501259323CE3117009FAD55 /* CommentsCollectionViewCell.swift */; };
 		6501259623CE320E009FAD55 /* CommentsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6501259523CE320E009FAD55 /* CommentsViewController.swift */; };
+		650B1E8D23DB97B0000C0E32 /* ForgottViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 650B1E8C23DB97B0000C0E32 /* ForgottViewController.swift */; };
 		6526F5ED23832CAE00DA2433 /* FeedImageOnlyCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6526F5EC23832CAE00DA2433 /* FeedImageOnlyCollectionViewCell.swift */; };
 		6526F5EF23836C7300DA2433 /* DynamicHeightCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6526F5EE23836C7300DA2433 /* DynamicHeightCollectionView.swift */; };
 		65421CCE23AAABFE000B0437 /* extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65421CCD23AAABFE000B0437 /* extensions.swift */; };
@@ -31,6 +32,36 @@
 		65626CD523CE62EF00B41386 /* chat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65626CD423CE62EF00B41386 /* chat.swift */; };
 		65626CD723CE63E900B41386 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65626CD623CE63E900B41386 /* Message.swift */; };
 		657F2B472325F5CA00187C9D /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 657F2B462325F5CA00187C9D /* SignUpViewController.swift */; };
+		658303B623DA2F2200D48ED0 /* NSMutableParagraphStyle+Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 658303AD23DA2F1F00D48ED0 /* NSMutableParagraphStyle+Utility.swift */; };
+		658303B723DA2F2200D48ED0 /* UISearchBar+Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 658303AE23DA2F1F00D48ED0 /* UISearchBar+Utility.swift */; };
+		658303B823DA2F2200D48ED0 /* SupernovaLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 658303AF23DA2F2000D48ED0 /* SupernovaLabel.swift */; };
+		658303B923DA2F2200D48ED0 /* SupernovaTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 658303B023DA2F2000D48ED0 /* SupernovaTextField.swift */; };
+		658303BA23DA2F2200D48ED0 /* UILabel+Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 658303B123DA2F2000D48ED0 /* UILabel+Utility.swift */; };
+		658303BB23DA2F2200D48ED0 /* UINavigationController+Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 658303B223DA2F2100D48ED0 /* UINavigationController+Utility.swift */; };
+		658303BC23DA2F2200D48ED0 /* UIImage+Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 658303B323DA2F2100D48ED0 /* UIImage+Utility.swift */; };
+		658303BD23DA2F2200D48ED0 /* SupernovaButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 658303B423DA2F2100D48ED0 /* SupernovaButton.swift */; };
+		658303BE23DA2F2200D48ED0 /* UITabBarController+Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 658303B523DA2F2200D48ED0 /* UITabBarController+Utility.swift */; };
+		658303C523DA43BE00D48ED0 /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 658303C423DA43BE00D48ED0 /* WelcomeViewController.swift */; };
+		658303D923DA83D500D48ED0 /* Prompt-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 658303C923DA497000D48ED0 /* Prompt-Black.ttf */; };
+		658303DA23DA83DA00D48ED0 /* Prompt-BlackItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 658303D323DA497300D48ED0 /* Prompt-BlackItalic.ttf */; };
+		658303DB23DA83DA00D48ED0 /* Prompt-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 658303D623DA497300D48ED0 /* Prompt-Bold.ttf */; };
+		658303DC23DA83DA00D48ED0 /* Prompt-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 658303D023DA497200D48ED0 /* Prompt-BoldItalic.ttf */; };
+		658303DD23DA83DA00D48ED0 /* Prompt-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 658303D223DA497300D48ED0 /* Prompt-ExtraBold.ttf */; };
+		658303DE23DA83DA00D48ED0 /* Prompt-ExtraBoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 658303D123DA497200D48ED0 /* Prompt-ExtraBoldItalic.ttf */; };
+		658303DF23DA83DA00D48ED0 /* Prompt-ExtraLight.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 658303CB23DA497000D48ED0 /* Prompt-ExtraLight.ttf */; };
+		658303E023DA83DA00D48ED0 /* Prompt-ExtraLightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 658303CE23DA497100D48ED0 /* Prompt-ExtraLightItalic.ttf */; };
+		658303E123DA83DA00D48ED0 /* Prompt-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 658303CD23DA497100D48ED0 /* Prompt-Italic.ttf */; };
+		658303E223DA83DA00D48ED0 /* Prompt-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 658303D723DA497300D48ED0 /* Prompt-Light.ttf */; };
+		658303E323DA83DA00D48ED0 /* Prompt-LightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 658303C723DA497000D48ED0 /* Prompt-LightItalic.ttf */; };
+		658303E423DA83DA00D48ED0 /* Prompt-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 658303D523DA497300D48ED0 /* Prompt-Medium.ttf */; };
+		658303E523DA83DA00D48ED0 /* Prompt-MediumItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 658303C623DA496F00D48ED0 /* Prompt-MediumItalic.ttf */; };
+		658303E623DA83DA00D48ED0 /* Prompt-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 658303CF23DA497100D48ED0 /* Prompt-Regular.ttf */; };
+		658303E723DA83DA00D48ED0 /* Prompt-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 658303D423DA497300D48ED0 /* Prompt-SemiBold.ttf */; };
+		658303E823DA83DA00D48ED0 /* Prompt-SemiBoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 658303CA23DA497000D48ED0 /* Prompt-SemiBoldItalic.ttf */; };
+		658303E923DA83DA00D48ED0 /* Prompt-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 658303C823DA497000D48ED0 /* Prompt-Thin.ttf */; };
+		658303EA23DA83DA00D48ED0 /* Prompt-ThinItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 658303CC23DA497100D48ED0 /* Prompt-ThinItalic.ttf */; };
+		658303EB23DA83E000D48ED0 /* Avenir Next.ttc in Resources */ = {isa = PBXBuildFile; fileRef = 658303C123DA327100D48ED0 /* Avenir Next.ttc */; };
+		658303EC23DA83E000D48ED0 /* Avenir.ttc in Resources */ = {isa = PBXBuildFile; fileRef = 658303C023DA327100D48ED0 /* Avenir.ttc */; };
 		65913B1923C653FA009B8537 /* PhotoTextoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65913B1823C653FA009B8537 /* PhotoTextoCollectionViewCell.swift */; };
 		65913B1C23C67026009B8537 /* AudibleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65913B1B23C67026009B8537 /* AudibleViewController.swift */; };
 		65913B1E23C7AE90009B8537 /* AudioCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65913B1D23C7AE90009B8537 /* AudioCollectionViewCell.swift */; };
@@ -69,6 +100,7 @@
 		6501259123CE3000009FAD55 /* Comments.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Comments.swift; sourceTree = "<group>"; };
 		6501259323CE3117009FAD55 /* CommentsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentsCollectionViewCell.swift; sourceTree = "<group>"; };
 		6501259523CE320E009FAD55 /* CommentsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentsViewController.swift; sourceTree = "<group>"; };
+		650B1E8C23DB97B0000C0E32 /* ForgottViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgottViewController.swift; sourceTree = "<group>"; };
 		6526F5EC23832CAE00DA2433 /* FeedImageOnlyCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedImageOnlyCollectionViewCell.swift; sourceTree = "<group>"; };
 		6526F5EE23836C7300DA2433 /* DynamicHeightCollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DynamicHeightCollectionView.swift; sourceTree = "<group>"; };
 		65421CCD23AAABFE000B0437 /* extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = extensions.swift; sourceTree = "<group>"; };
@@ -91,6 +123,36 @@
 		65626CD423CE62EF00B41386 /* chat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = chat.swift; sourceTree = "<group>"; };
 		65626CD623CE63E900B41386 /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		657F2B462325F5CA00187C9D /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
+		658303AD23DA2F1F00D48ED0 /* NSMutableParagraphStyle+Utility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSMutableParagraphStyle+Utility.swift"; sourceTree = "<group>"; };
+		658303AE23DA2F1F00D48ED0 /* UISearchBar+Utility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UISearchBar+Utility.swift"; sourceTree = "<group>"; };
+		658303AF23DA2F2000D48ED0 /* SupernovaLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SupernovaLabel.swift; sourceTree = "<group>"; };
+		658303B023DA2F2000D48ED0 /* SupernovaTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SupernovaTextField.swift; sourceTree = "<group>"; };
+		658303B123DA2F2000D48ED0 /* UILabel+Utility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UILabel+Utility.swift"; sourceTree = "<group>"; };
+		658303B223DA2F2100D48ED0 /* UINavigationController+Utility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UINavigationController+Utility.swift"; sourceTree = "<group>"; };
+		658303B323DA2F2100D48ED0 /* UIImage+Utility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+Utility.swift"; sourceTree = "<group>"; };
+		658303B423DA2F2100D48ED0 /* SupernovaButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SupernovaButton.swift; sourceTree = "<group>"; };
+		658303B523DA2F2200D48ED0 /* UITabBarController+Utility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITabBarController+Utility.swift"; sourceTree = "<group>"; };
+		658303C023DA327100D48ED0 /* Avenir.ttc */ = {isa = PBXFileReference; lastKnownFileType = file; path = Avenir.ttc; sourceTree = "<group>"; };
+		658303C123DA327100D48ED0 /* Avenir Next.ttc */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Avenir Next.ttc"; sourceTree = "<group>"; };
+		658303C423DA43BE00D48ED0 /* WelcomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeViewController.swift; sourceTree = "<group>"; };
+		658303C623DA496F00D48ED0 /* Prompt-MediumItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Prompt-MediumItalic.ttf"; sourceTree = "<group>"; };
+		658303C723DA497000D48ED0 /* Prompt-LightItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Prompt-LightItalic.ttf"; sourceTree = "<group>"; };
+		658303C823DA497000D48ED0 /* Prompt-Thin.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Prompt-Thin.ttf"; sourceTree = "<group>"; };
+		658303C923DA497000D48ED0 /* Prompt-Black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Prompt-Black.ttf"; sourceTree = "<group>"; };
+		658303CA23DA497000D48ED0 /* Prompt-SemiBoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Prompt-SemiBoldItalic.ttf"; sourceTree = "<group>"; };
+		658303CB23DA497000D48ED0 /* Prompt-ExtraLight.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Prompt-ExtraLight.ttf"; sourceTree = "<group>"; };
+		658303CC23DA497100D48ED0 /* Prompt-ThinItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Prompt-ThinItalic.ttf"; sourceTree = "<group>"; };
+		658303CD23DA497100D48ED0 /* Prompt-Italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Prompt-Italic.ttf"; sourceTree = "<group>"; };
+		658303CE23DA497100D48ED0 /* Prompt-ExtraLightItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Prompt-ExtraLightItalic.ttf"; sourceTree = "<group>"; };
+		658303CF23DA497100D48ED0 /* Prompt-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Prompt-Regular.ttf"; sourceTree = "<group>"; };
+		658303D023DA497200D48ED0 /* Prompt-BoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Prompt-BoldItalic.ttf"; sourceTree = "<group>"; };
+		658303D123DA497200D48ED0 /* Prompt-ExtraBoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Prompt-ExtraBoldItalic.ttf"; sourceTree = "<group>"; };
+		658303D223DA497300D48ED0 /* Prompt-ExtraBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Prompt-ExtraBold.ttf"; sourceTree = "<group>"; };
+		658303D323DA497300D48ED0 /* Prompt-BlackItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Prompt-BlackItalic.ttf"; sourceTree = "<group>"; };
+		658303D423DA497300D48ED0 /* Prompt-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Prompt-SemiBold.ttf"; sourceTree = "<group>"; };
+		658303D523DA497300D48ED0 /* Prompt-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Prompt-Medium.ttf"; sourceTree = "<group>"; };
+		658303D623DA497300D48ED0 /* Prompt-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Prompt-Bold.ttf"; sourceTree = "<group>"; };
+		658303D723DA497300D48ED0 /* Prompt-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Prompt-Light.ttf"; sourceTree = "<group>"; };
 		65913B1823C653FA009B8537 /* PhotoTextoCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoTextoCollectionViewCell.swift; sourceTree = "<group>"; };
 		65913B1B23C67026009B8537 /* AudibleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudibleViewController.swift; sourceTree = "<group>"; };
 		65913B1D23C7AE90009B8537 /* AudioCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -153,6 +215,8 @@
 			children = (
 				657F2B462325F5CA00187C9D /* SignUpViewController.swift */,
 				65D4242F23258A2D00DB286E /* LogInViewController.swift */,
+				658303C423DA43BE00D48ED0 /* WelcomeViewController.swift */,
+				650B1E8C23DB97B0000C0E32 /* ForgottViewController.swift */,
 			);
 			path = LogSignin;
 			sourceTree = "<group>";
@@ -171,6 +235,57 @@
 				6501259523CE320E009FAD55 /* CommentsViewController.swift */,
 			);
 			path = PrayFeedController;
+			sourceTree = "<group>";
+		};
+		658303AC23DA2EFF00D48ED0 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				658303AD23DA2F1F00D48ED0 /* NSMutableParagraphStyle+Utility.swift */,
+				658303B423DA2F2100D48ED0 /* SupernovaButton.swift */,
+				658303AF23DA2F2000D48ED0 /* SupernovaLabel.swift */,
+				658303B023DA2F2000D48ED0 /* SupernovaTextField.swift */,
+				658303B323DA2F2100D48ED0 /* UIImage+Utility.swift */,
+				658303B123DA2F2000D48ED0 /* UILabel+Utility.swift */,
+				658303B223DA2F2100D48ED0 /* UINavigationController+Utility.swift */,
+				658303AE23DA2F1F00D48ED0 /* UISearchBar+Utility.swift */,
+				658303B523DA2F2200D48ED0 /* UITabBarController+Utility.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		658303BF23DA325400D48ED0 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				658303C923DA497000D48ED0 /* Prompt-Black.ttf */,
+				658303D323DA497300D48ED0 /* Prompt-BlackItalic.ttf */,
+				658303D623DA497300D48ED0 /* Prompt-Bold.ttf */,
+				658303D023DA497200D48ED0 /* Prompt-BoldItalic.ttf */,
+				658303D223DA497300D48ED0 /* Prompt-ExtraBold.ttf */,
+				658303D123DA497200D48ED0 /* Prompt-ExtraBoldItalic.ttf */,
+				658303CB23DA497000D48ED0 /* Prompt-ExtraLight.ttf */,
+				658303CE23DA497100D48ED0 /* Prompt-ExtraLightItalic.ttf */,
+				658303CD23DA497100D48ED0 /* Prompt-Italic.ttf */,
+				658303D723DA497300D48ED0 /* Prompt-Light.ttf */,
+				658303C723DA497000D48ED0 /* Prompt-LightItalic.ttf */,
+				658303D523DA497300D48ED0 /* Prompt-Medium.ttf */,
+				658303C623DA496F00D48ED0 /* Prompt-MediumItalic.ttf */,
+				658303CF23DA497100D48ED0 /* Prompt-Regular.ttf */,
+				658303D423DA497300D48ED0 /* Prompt-SemiBold.ttf */,
+				658303CA23DA497000D48ED0 /* Prompt-SemiBoldItalic.ttf */,
+				658303C823DA497000D48ED0 /* Prompt-Thin.ttf */,
+				658303CC23DA497100D48ED0 /* Prompt-ThinItalic.ttf */,
+				658303C123DA327100D48ED0 /* Avenir Next.ttc */,
+				658303C023DA327100D48ED0 /* Avenir.ttc */,
+			);
+			path = Fonts;
+			sourceTree = "<group>";
+		};
+		658303D823DA49C100D48ED0 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				658303BF23DA325400D48ED0 /* Fonts */,
+			);
+			path = Resources;
 			sourceTree = "<group>";
 		};
 		65913B1A23C6547F009B8537 /* Cells */ = {
@@ -259,6 +374,8 @@
 		65D42417232576A800DB286E /* altar */ = {
 			isa = PBXGroup;
 			children = (
+				658303D823DA49C100D48ED0 /* Resources */,
+				658303AC23DA2EFF00D48ED0 /* Extensions */,
 				65421CCF23AAAC68000B0437 /* LogSignin */,
 				655BF7062388C4BB002F0C7C /* PrayFeedController */,
 				65CB7E8723BFF0280018526D /* PowerOfWord */,
@@ -387,11 +504,31 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				658303E123DA83DA00D48ED0 /* Prompt-Italic.ttf in Resources */,
+				658303EA23DA83DA00D48ED0 /* Prompt-ThinItalic.ttf in Resources */,
+				658303D923DA83D500D48ED0 /* Prompt-Black.ttf in Resources */,
+				658303E223DA83DA00D48ED0 /* Prompt-Light.ttf in Resources */,
 				655EDF0223AD4926005E6DB6 /* Localizable.strings in Resources */,
+				658303E323DA83DA00D48ED0 /* Prompt-LightItalic.ttf in Resources */,
 				65D42426232576AA00DB286E /* LaunchScreen.storyboard in Resources */,
+				658303E623DA83DA00D48ED0 /* Prompt-Regular.ttf in Resources */,
+				658303E423DA83DA00D48ED0 /* Prompt-Medium.ttf in Resources */,
+				658303DD23DA83DA00D48ED0 /* Prompt-ExtraBold.ttf in Resources */,
+				658303DA23DA83DA00D48ED0 /* Prompt-BlackItalic.ttf in Resources */,
+				658303DC23DA83DA00D48ED0 /* Prompt-BoldItalic.ttf in Resources */,
+				658303E723DA83DA00D48ED0 /* Prompt-SemiBold.ttf in Resources */,
 				65D4242E232586E200DB286E /* GoogleService-Info.plist in Resources */,
+				658303EB23DA83E000D48ED0 /* Avenir Next.ttc in Resources */,
+				658303DF23DA83DA00D48ED0 /* Prompt-ExtraLight.ttf in Resources */,
+				658303DE23DA83DA00D48ED0 /* Prompt-ExtraBoldItalic.ttf in Resources */,
+				658303E023DA83DA00D48ED0 /* Prompt-ExtraLightItalic.ttf in Resources */,
 				65D42423232576AA00DB286E /* Assets.xcassets in Resources */,
+				658303EC23DA83E000D48ED0 /* Avenir.ttc in Resources */,
+				658303E523DA83DA00D48ED0 /* Prompt-MediumItalic.ttf in Resources */,
 				65D4241E232576A800DB286E /* Main.storyboard in Resources */,
+				658303DB23DA83DA00D48ED0 /* Prompt-Bold.ttf in Resources */,
+				658303E923DA83DA00D48ED0 /* Prompt-Thin.ttf in Resources */,
+				658303E823DA83DA00D48ED0 /* Prompt-SemiBoldItalic.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -465,22 +602,30 @@
 				65913B1C23C67026009B8537 /* AudibleViewController.swift in Sources */,
 				655EDF0823AD6F50005E6DB6 /* CustomImageView.swift in Sources */,
 				65D42421232576A800DB286E /* altar.xcdatamodeld in Sources */,
+				658303B723DA2F2200D48ED0 /* UISearchBar+Utility.swift in Sources */,
 				65ABFC89232C170200729B57 /* Advengers.swift in Sources */,
 				659595C423D0EFC1007FB09C /* searchSongViewController.swift in Sources */,
 				654F95E52339307F00175A7E /* FeedOnlyTextCollectionViewCell.swift in Sources */,
 				65CB7E8B23C3CBAD0018526D /* DevotionalCollectionViewCell.swift in Sources */,
 				659595CD23D21C3C007FB09C /* seleccionVideoViewController.swift in Sources */,
 				65913B1923C653FA009B8537 /* PhotoTextoCollectionViewCell.swift in Sources */,
+				658303C523DA43BE00D48ED0 /* WelcomeViewController.swift in Sources */,
 				659595CF23D64192007FB09C /* DevocionalSeleccionado.swift in Sources */,
 				654F95DD2331B93B00175A7E /* FeedCollectionViewCell.swift in Sources */,
 				655EDF0A23B002C4005E6DB6 /* textOnlyCell.swift in Sources */,
+				658303BE23DA2F2200D48ED0 /* UITabBarController+Utility.swift in Sources */,
 				659595C223D0EE96007FB09C /* PlaylistViewController.swift in Sources */,
+				658303BB23DA2F2200D48ED0 /* UINavigationController+Utility.swift in Sources */,
+				650B1E8D23DB97B0000C0E32 /* ForgottViewController.swift in Sources */,
 				654F95DB23306E7F00175A7E /* PrayPostViewController.swift in Sources */,
 				65913B2223C8F956009B8537 /* File.swift in Sources */,
+				658303BA23DA2F2200D48ED0 /* UILabel+Utility.swift in Sources */,
 				655BF7052385DA1A002F0C7C /* PrayCollectionViewLayout.swift in Sources */,
+				658303B623DA2F2200D48ED0 /* NSMutableParagraphStyle+Utility.swift in Sources */,
 				654F95D923306ABC00175A7E /* PrayViewController.swift in Sources */,
 				6501259623CE320E009FAD55 /* CommentsViewController.swift in Sources */,
 				65C7FE08237CF5B0000D6D80 /* OnlyVideoPostViewController.swift in Sources */,
+				658303BC23DA2F2200D48ED0 /* UIImage+Utility.swift in Sources */,
 				65ABFC83232C069000729B57 /* UsersViewController.swift in Sources */,
 				65CFE1C423CCE1BD006C4E76 /* Devo.swift in Sources */,
 				65626CD323CE623200B41386 /* ChatViewController.swift in Sources */,
@@ -497,8 +642,11 @@
 				65CFE1C623CCE442006C4E76 /* DevotionalCreatorViewController.swift in Sources */,
 				65421CCE23AAABFE000B0437 /* extensions.swift in Sources */,
 				655BF70323847C11002F0C7C /* PostCell.swift in Sources */,
+				658303B823DA2F2200D48ED0 /* SupernovaLabel.swift in Sources */,
 				659595CB23D0FCE9007FB09C /* elementoVideo.swift in Sources */,
+				658303BD23DA2F2200D48ED0 /* SupernovaButton.swift in Sources */,
 				657F2B472325F5CA00187C9D /* SignUpViewController.swift in Sources */,
+				658303B923DA2F2200D48ED0 /* SupernovaTextField.swift in Sources */,
 				65ABFC85232C0E1D00729B57 /* UserTableViewCell.swift in Sources */,
 				65D4243023258A2D00DB286E /* LogInViewController.swift in Sources */,
 				655BF70E2388C5A5002F0C7C /* AnnotatedPhotoCell.swift in Sources */,
