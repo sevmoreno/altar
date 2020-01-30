@@ -38,11 +38,17 @@ class advengers {
     
     let mediaRef = Database.database().reference().child ("Media")
     
+    let colorBlue = UIColor.rgb(red: 32, green: 36, blue: 47)
+    let colorOrange = UIColor.rgb(red: 245, green: 75, blue: 100)
+    
+    
     var currenUSer = ["church": "",
                       "email": "",
                       "name":"",
                       "photoURL":"",
                       "userid":""] as! [String:String]
+    
+
     
     enum postType: String {
         case textOnly = "textOnly"
@@ -57,6 +63,15 @@ class advengers {
     var seleccionVideo = elementoVideo ()
 
     var devocionalSeleccinado = Devo ()
+    
+    
+    
+    
+     @objc  func settings () {
+        
+        print("Leggo")
+    }
+    
     
     private init() {
         

@@ -96,7 +96,10 @@ class WelcomeViewController: UIViewController {
                   a.layer.masksToBounds = true
                   a.setTitleColor(.white , for: .normal)
                   a.setTitle("Sign Up", for: .normal)
-                  a.setTitleColor(UIColor.white.withAlphaComponent(0.3), for: .highlighted )
+            a.setTitleColor(UIColor.white.withAlphaComponent(0.3), for: .highlighted )
+            
+            a.addTarget(self, action: #selector(sigInActtion), for: .touchUpInside)
+            
                   return a
               }()
         

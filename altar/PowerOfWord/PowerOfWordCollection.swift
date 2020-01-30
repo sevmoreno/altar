@@ -28,19 +28,48 @@ class PowerOfWordCollectionView: UICollectionViewController,  UICollectionViewDe
 
            //navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Add Prayer", style: .plain, target: self, action: #selector(addprayer))
         
-            navigationItem.title = advengers.shared.currentChurch
         
-        if advengers.shared.isPastor {
-            
-            navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Add Devotional", style: .plain, target: self, action: #selector(addDevotional))
-            
-        }
+        
+        
+        
+         //   navigationItem.title = advengers.shared.currentChurch
+        
+        // TODO: REFACTORIAR, OJO CON LAS FUNCONES QUE EJCUTAN LOS BOTONES // ----------------------------
+               // ---------------------------------------------------------------------------------------------
+               navigationController?.navigationBar.backgroundColor = advengers.shared.colorBlue
+               navigationController?.navigationBar.barTintColor = advengers.shared.colorBlue
+               
+               navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "settingsincon"), style: .plain, target: self, action: #selector(advengers.shared.settings))
+        
+               navigationItem.leftBarButtonItem?.tintColor = advengers.shared.colorOrange
+               
+               
+               let textAttributes = [NSAttributedString.Key.foregroundColor:UIColor.white,
+                                     NSAttributedString.Key.font:UIFont(name: "Avenir-Heavy", size: 15)]
+               navigationController?.navigationBar.titleTextAttributes = textAttributes as [NSAttributedString.Key : Any]
+               
+               
+               
+               
+               if advengers.shared.isPastor {
+                   
+                   navigationItem.rightBarButtonItem = UIBarButtonItem(title: "+ Devotional", style: .plain, target: self, action: #selector(addDevotional))
+                   
+               }
+        
+               let textAttributes2 = [NSAttributedString.Key.foregroundColor: advengers.shared.colorOrange,
+                                             NSAttributedString.Key.font:UIFont(name: "Avenir-Heavy", size: 15)]
+               
+               navigationItem.rightBarButtonItem?.setTitleTextAttributes(textAttributes2 as [NSAttributedString.Key : Any], for: .normal)
+               navigationItem.rightBarButtonItem?.tintColor = advengers.shared.colorOrange
+               
+               navigationItem.title = advengers.shared.currentChurch
+               
+               // -----------------------------------------------------------------------------------------
+        
         
         loadDevocionales ()
-        
-            
-     //      loadCurrentUserInfo ()
-     //      fetchPost ()
+
        
            
        }

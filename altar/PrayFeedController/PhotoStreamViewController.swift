@@ -94,11 +94,43 @@ class PhotoStreamViewController: UICollectionViewController, UICollectionViewDel
         
         collectionView?.register(AudioCollectionViewCell.self, forCellWithReuseIdentifier: "audioCell")
         
-        collectionView?.backgroundColor = .lightGray
-
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Add Prayer", style: .plain, target: self, action: #selector(addprayer))
+        collectionView?.backgroundColor =  UIColor.rgb(red: 32, green: 36, blue: 47)
+        
+        
+        // TODO: REFACTORIAR, OJO CON LAS FUNCONES QUE EJCUTAN LOS BOTONES // ----------------------------
+        // ---------------------------------------------------------------------------------------------
+        navigationController?.navigationBar.backgroundColor = advengers.shared.colorBlue
+        navigationController?.navigationBar.barTintColor = advengers.shared.colorBlue
+        
+        navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "settingsincon"), style: .plain, target: self, action: #selector(advengers.shared.settings))
+        navigationItem.leftBarButtonItem?.tintColor = advengers.shared.colorOrange
+        
+        
+        let textAttributes = [NSAttributedString.Key.foregroundColor:UIColor.white,
+                              NSAttributedString.Key.font:UIFont(name: "Avenir-Heavy", size: 15)]
+        navigationController?.navigationBar.titleTextAttributes = textAttributes as [NSAttributedString.Key : Any]
+        
+        
+        
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "+ Prayer", style: .plain, target: self, action: #selector(addprayer))
+        let textAttributes2 = [NSAttributedString.Key.foregroundColor: advengers.shared.colorOrange,
+                                      NSAttributedString.Key.font:UIFont(name: "Avenir-Heavy", size: 17)]
+        
+        navigationItem.rightBarButtonItem?.setTitleTextAttributes(textAttributes2 as [NSAttributedString.Key : Any], for: .normal)
+        navigationItem.rightBarButtonItem?.tintColor = advengers.shared.colorOrange
+        
         navigationItem.title = advengers.shared.currentChurch
         
+        // -----------------------------------------------------------------------------------------
+        
+        // ----------- solo para tener impresas las fuentes BORRAR LUEGO
+        for family: String in UIFont.familyNames {
+               print("\(family)")
+               for names: String in UIFont.fontNames(forFamilyName: family) {
+                   print("== \(names)")
+               }
+           }
+        // ---------------------
         
         
 
@@ -109,6 +141,8 @@ class PhotoStreamViewController: UICollectionViewController, UICollectionViewDel
     
         
     }
+    
+   
     
     @objc func addprayer () {
         

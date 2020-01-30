@@ -12,6 +12,10 @@
 		6501259423CE3117009FAD55 /* CommentsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6501259323CE3117009FAD55 /* CommentsCollectionViewCell.swift */; };
 		6501259623CE320E009FAD55 /* CommentsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6501259523CE320E009FAD55 /* CommentsViewController.swift */; };
 		650B1E8D23DB97B0000C0E32 /* ForgottViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 650B1E8C23DB97B0000C0E32 /* ForgottViewController.swift */; };
+		650B1E8F23DFC77C000C0E32 /* AreUaMinisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 650B1E8E23DFC77C000C0E32 /* AreUaMinisterViewController.swift */; };
+		650B1E9123E0D011000C0E32 /* ChurchSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 650B1E9023E0D011000C0E32 /* ChurchSelectionViewController.swift */; };
+		650B1E9323E20287000C0E32 /* TabBarGeneral.swift in Sources */ = {isa = PBXBuildFile; fileRef = 650B1E9223E20286000C0E32 /* TabBarGeneral.swift */; };
+		650B1E9523E207A7000C0E32 /* TabBarCambios.swift in Sources */ = {isa = PBXBuildFile; fileRef = 650B1E9423E207A7000C0E32 /* TabBarCambios.swift */; };
 		6526F5ED23832CAE00DA2433 /* FeedImageOnlyCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6526F5EC23832CAE00DA2433 /* FeedImageOnlyCollectionViewCell.swift */; };
 		6526F5EF23836C7300DA2433 /* DynamicHeightCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6526F5EE23836C7300DA2433 /* DynamicHeightCollectionView.swift */; };
 		65421CCE23AAABFE000B0437 /* extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65421CCD23AAABFE000B0437 /* extensions.swift */; };
@@ -101,6 +105,10 @@
 		6501259323CE3117009FAD55 /* CommentsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentsCollectionViewCell.swift; sourceTree = "<group>"; };
 		6501259523CE320E009FAD55 /* CommentsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentsViewController.swift; sourceTree = "<group>"; };
 		650B1E8C23DB97B0000C0E32 /* ForgottViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgottViewController.swift; sourceTree = "<group>"; };
+		650B1E8E23DFC77C000C0E32 /* AreUaMinisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AreUaMinisterViewController.swift; sourceTree = "<group>"; };
+		650B1E9023E0D011000C0E32 /* ChurchSelectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChurchSelectionViewController.swift; sourceTree = "<group>"; };
+		650B1E9223E20286000C0E32 /* TabBarGeneral.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarGeneral.swift; sourceTree = "<group>"; };
+		650B1E9423E207A7000C0E32 /* TabBarCambios.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarCambios.swift; sourceTree = "<group>"; };
 		6526F5EC23832CAE00DA2433 /* FeedImageOnlyCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedImageOnlyCollectionViewCell.swift; sourceTree = "<group>"; };
 		6526F5EE23836C7300DA2433 /* DynamicHeightCollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DynamicHeightCollectionView.swift; sourceTree = "<group>"; };
 		65421CCD23AAABFE000B0437 /* extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = extensions.swift; sourceTree = "<group>"; };
@@ -217,6 +225,8 @@
 				65D4242F23258A2D00DB286E /* LogInViewController.swift */,
 				658303C423DA43BE00D48ED0 /* WelcomeViewController.swift */,
 				650B1E8C23DB97B0000C0E32 /* ForgottViewController.swift */,
+				650B1E8E23DFC77C000C0E32 /* AreUaMinisterViewController.swift */,
+				650B1E9023E0D011000C0E32 /* ChurchSelectionViewController.swift */,
 			);
 			path = LogSignin;
 			sourceTree = "<group>";
@@ -387,12 +397,14 @@
 				65D42418232576A800DB286E /* AppDelegate.swift */,
 				65D42422232576AA00DB286E /* Assets.xcassets */,
 				65D4241C232576A800DB286E /* Main.storyboard */,
+				650B1E9423E207A7000C0E32 /* TabBarCambios.swift */,
 				65421CCD23AAABFE000B0437 /* extensions.swift */,
 				65C7FE07237CF5B0000D6D80 /* OnlyVideoPostViewController.swift */,
 				65D42424232576AA00DB286E /* LaunchScreen.storyboard */,
 				65D42427232576AA00DB286E /* Info.plist */,
 				65D4242D232586E200DB286E /* GoogleService-Info.plist */,
 				65D4241F232576A800DB286E /* altar.xcdatamodeld */,
+				650B1E9223E20286000C0E32 /* TabBarGeneral.swift */,
 			);
 			path = altar;
 			sourceTree = "<group>";
@@ -622,10 +634,13 @@
 				658303BA23DA2F2200D48ED0 /* UILabel+Utility.swift in Sources */,
 				655BF7052385DA1A002F0C7C /* PrayCollectionViewLayout.swift in Sources */,
 				658303B623DA2F2200D48ED0 /* NSMutableParagraphStyle+Utility.swift in Sources */,
+				650B1E9523E207A7000C0E32 /* TabBarCambios.swift in Sources */,
 				654F95D923306ABC00175A7E /* PrayViewController.swift in Sources */,
 				6501259623CE320E009FAD55 /* CommentsViewController.swift in Sources */,
 				65C7FE08237CF5B0000D6D80 /* OnlyVideoPostViewController.swift in Sources */,
 				658303BC23DA2F2200D48ED0 /* UIImage+Utility.swift in Sources */,
+				650B1E9123E0D011000C0E32 /* ChurchSelectionViewController.swift in Sources */,
+				650B1E9323E20287000C0E32 /* TabBarGeneral.swift in Sources */,
 				65ABFC83232C069000729B57 /* UsersViewController.swift in Sources */,
 				65CFE1C423CCE1BD006C4E76 /* Devo.swift in Sources */,
 				65626CD323CE623200B41386 /* ChatViewController.swift in Sources */,
@@ -646,6 +661,7 @@
 				659595CB23D0FCE9007FB09C /* elementoVideo.swift in Sources */,
 				658303BD23DA2F2200D48ED0 /* SupernovaButton.swift in Sources */,
 				657F2B472325F5CA00187C9D /* SignUpViewController.swift in Sources */,
+				650B1E8F23DFC77C000C0E32 /* AreUaMinisterViewController.swift in Sources */,
 				658303B923DA2F2200D48ED0 /* SupernovaTextField.swift in Sources */,
 				65ABFC85232C0E1D00729B57 /* UserTableViewCell.swift in Sources */,
 				65D4243023258A2D00DB286E /* LogInViewController.swift in Sources */,

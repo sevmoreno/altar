@@ -12,6 +12,7 @@ import FirebaseUI
 
 class SignUpViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate {
     
+    @IBOutlet var seleecionFoto: UIButton!
     @IBOutlet weak var churchChose: UIPickerView!
     @IBOutlet weak var image: UIImageView!
     @IBOutlet weak var name: UITextField!
@@ -19,7 +20,6 @@ class SignUpViewController: UIViewController, UIImagePickerControllerDelegate, U
     @IBOutlet weak var password: UITextField!
     @IBOutlet weak var passwordvalidator: UITextField!
     @IBOutlet weak var signInBtt: UIButton!
-    
     var picker = UIImagePickerController ()
     let storageReference = Storage.storage().reference(forURL: "gs://altar-92d12.appspot.com" ).child("users")
     var ref: DatabaseReference!
@@ -28,37 +28,105 @@ class SignUpViewController: UIViewController, UIImagePickerControllerDelegate, U
     let databaseReference = Database.database().reference()
     
     var selectedChurch = "Favorday Church"
-    var churchList = ["Favorday Church","River Church","Not listed"]
+    var churchList = ["Favorday Church","River Church","Rey de Reyes","Not listed"]
     
    @IBOutlet weak var mainScrollViewBottomConstraint: NSLayoutConstraint!
   
-   // let userStorage =
+    @IBOutlet var textviewBackground: UIView!
+    @IBOutlet var textbackbroundpassword: UIView!
+    @IBOutlet var textEmail: UIView!
+    @IBOutlet var textbackgroundPassValidator: UIView!
+    @IBOutlet var selectUChurch: UIView!
+    @IBOutlet var selectChurchButton: UIButton!
+    // let userStorage =
+    @IBOutlet var textviewemail: UIView!
     override func viewDidLoad() {
+        
         super.viewDidLoad()
+        
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(churchSelection), name: NSNotification.Name(rawValue: "ChurchSelection"), object: nil)
+        
+        navigationController?.navigationBar.isHidden = true
+
+        signInBtt.backgroundColor = UIColor.rgb(red: 247, green: 131, blue: 97)
+        signInBtt.layer.cornerRadius = 22
+        signInBtt.layer.masksToBounds = true
+        signInBtt.setTitleColor(.white , for: .normal)
+        signInBtt.setTitle("Sign in", for: .normal)
+        signInBtt.setTitleColor(UIColor.white.withAlphaComponent(0.3), for: .highlighted )
+        signInBtt.applyGradient(colors: [WelcomeViewController.UIColorFromRGB(0xF78361).cgColor,WelcomeViewController.UIColorFromRGB(0xF54B64).cgColor])
+    textviewBackground.layer.cornerRadius = 22
+    textviewemail.layer.cornerRadius = 22
+textbackbroundpassword.layer.cornerRadius = 22
+        
+        textEmail.layer.cornerRadius = 22
+      textbackgroundPassValidator.layer.cornerRadius = 22
+        
+        selectUChurch.layer.cornerRadius = 22
+        
+        
+            //Border
+        name.layer.cornerRadius = 22
+    //    name.layer.borderWidth = 1.5
+      //  name.layer.borderColor = .white
+
+        //Background
+        name.backgroundColor = UIColor.clear
+
+        //Text
+        name.textColor = .white
+      //  name.textAlignment = NSTextAlignment.center
+        
+        
         
     //    let notificationCenter = NotificationCenter.default
   //      notificationCenter.addObserver(self, selector: #selector(adjustForKeyboard), name: UIResponder.keyboardWillHideNotification, object: nil)
 
    //     notificationCenter.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
 
-        image.image = UIImage.init(named: "default")
+   //     image.image = UIImage.init(named: "default")
         
         picker.delegate = self
-        name.delegate = self
+        name?.delegate = self
         email.delegate = self
         password.delegate = self
         passwordvalidator.delegate = self
         
-        churchChose.dataSource = self
-        churchChose.delegate = self
+ //       churchChose.dataSource = self
+  //      churchChose.delegate = self
+        
+    
+        
+        
 
     }
+    
+    
+    @objc func churchSelection() {
+        DispatchQueue.main.async {
+            self.selectChurchButton.setTitle(advengers.shared.currentChurch, for: .normal)
+            print(advengers.shared.currentChurch)
+        }
+        
+        
+    }
+    
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        textField.text = ""
+        
+    }
+    
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         self.view.endEditing(true)
         return false
     }
     
+    @IBAction func goBack(_ sender: Any) {
+        
+        navigationController?.popViewController(animated: true)
+    }
     
     /*
     @objc func adjustForKeyboard (_ notification: Notification) {
@@ -74,7 +142,7 @@ class SignUpViewController: UIViewController, UIImagePickerControllerDelegate, U
 
     @IBAction func signIn(_ sender: Any) {
         
-        guard name.text != "", email.text != "", password.text != "", passwordvalidator.text != "" else {return}
+        guard name?.text != "", email.text != "", password.text != "", passwordvalidator.text != "" else {return}
         
         if password.text == password.text {
             
@@ -85,7 +153,7 @@ class SignUpViewController: UIViewController, UIImagePickerControllerDelegate, U
                 }
                 
                 let changeRequest = Auth.auth().currentUser?.createProfileChangeRequest()
-                changeRequest?.displayName = self.name.text
+                changeRequest?.displayName = self.name?.text
                 changeRequest?.commitChanges(completion: { (no) in
                     
                 })
@@ -94,7 +162,10 @@ class SignUpViewController: UIViewController, UIImagePickerControllerDelegate, U
                 if user != nil {
                 
                 let imageref = self.storageReference.child("picture").child("\(user!.user.uid)")
-                let data = self.image.image?.jpegData(compressionQuality: 0.5)
+                
+                    
+                    
+                    let data = self.seleecionFoto.currentBackgroundImage?.jpegData(compressionQuality: 0.5)
                     
                  
                 let uploadTask = imageref.putData(data!, metadata: nil, completion: { (metadata, error) in
@@ -107,7 +178,7 @@ class SignUpViewController: UIViewController, UIImagePickerControllerDelegate, U
                         let modoString = String (url!.absoluteString)
                         self.ref = self.databaseReference
                         
-                        let userinfo: [String:Any] = ["userid" : (user?.user.uid), "name" : self.name.text!, "email" : self.email.text!, "church": self.selectedChurch, "photoURL" : modoString ?? ""]
+                        let userinfo: [String:Any] = ["userid" : (user?.user.uid), "name" : self.name?.text!, "email" : self.email.text!, "church": advengers.shared.currentChurch, "photoURL" : modoString ?? ""]
                         let userID = String ((user?.user.uid)!) ?? "NoTiene"
                         //   self.databaseReference.child("users").child("\(user!.user.uid)").setValue(user?.user.uid, forKeyPath: "userid")
                         self.ref.child("users").child(userID).setValue(userinfo)
@@ -162,7 +233,14 @@ class SignUpViewController: UIViewController, UIImagePickerControllerDelegate, U
             fatalError("Expected a dictionary containing an image, but was provided the following: \(info)")
         }
         
-        image.image = selectedImage
+        
+     seleecionFoto.setImage(selectedImage, for: .normal )
+       seleecionFoto.layer.cornerRadius = seleecionFoto.frame.width/2
+           seleecionFoto.layer.masksToBounds = true
+           seleecionFoto.layer.borderColor = UIColor.white.cgColor
+           seleecionFoto.layer.borderWidth = 1
+            
+     //   image.image = selectedImage
      self.dismiss(animated: true, completion: nil)
         
     }
