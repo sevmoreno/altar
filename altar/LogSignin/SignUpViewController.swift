@@ -40,6 +40,9 @@ class SignUpViewController: UIViewController, UIImagePickerControllerDelegate, U
     @IBOutlet var selectChurchButton: UIButton!
     // let userStorage =
     @IBOutlet var textviewemail: UIView!
+    
+    var imageToSave: UIImage?
+    
     override func viewDidLoad() {
         
         super.viewDidLoad()
@@ -165,7 +168,7 @@ textbackbroundpassword.layer.cornerRadius = 22
                 
                     
                     
-                    let data = self.seleecionFoto.currentBackgroundImage?.jpegData(compressionQuality: 0.5)
+                let data = self.imageToSave?.jpegData(compressionQuality: 0.5)
                     
                  
                 let uploadTask = imageref.putData(data!, metadata: nil, completion: { (metadata, error) in
@@ -229,6 +232,8 @@ textbackbroundpassword.layer.cornerRadius = 22
     func imagePickerController(_ picker: UIImagePickerController,
                                didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any])
     {
+        
+        print("seactivo")
         guard let selectedImage = info[.editedImage] as? UIImage else {
             fatalError("Expected a dictionary containing an image, but was provided the following: \(info)")
         }
@@ -239,6 +244,8 @@ textbackbroundpassword.layer.cornerRadius = 22
            seleecionFoto.layer.masksToBounds = true
            seleecionFoto.layer.borderColor = UIColor.white.cgColor
            seleecionFoto.layer.borderWidth = 1
+        
+      imageToSave = selectedImage
             
      //   image.image = selectedImage
      self.dismiss(animated: true, completion: nil)

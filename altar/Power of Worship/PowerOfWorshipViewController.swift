@@ -45,10 +45,44 @@ class PowerOfWorshipViewController:  UIViewController{
         
         print("Conectando a Youtube")
         
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Create Playlist", style: .plain, target: self, action: #selector(addPlaylist))
+        // TODO: REFACTORIAR, OJO CON LAS FUNCONES QUE EJCUTAN LOS BOTONES // ----------------------------
+                 // ---------------------------------------------------------------------------------------------
+                 navigationController?.navigationBar.backgroundColor = advengers.shared.colorBlue
+                 navigationController?.navigationBar.barTintColor = advengers.shared.colorBlue
+                 
+                 navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "settingsincon"), style: .plain, target: self, action: #selector(advengers.shared.settings))
+          
+                 navigationItem.leftBarButtonItem?.tintColor = advengers.shared.colorOrange
+                 
+                 
+                 let textAttributes = [NSAttributedString.Key.foregroundColor:UIColor.white,
+                                       NSAttributedString.Key.font:UIFont(name: "Avenir-Heavy", size: 15)]
+                 navigationController?.navigationBar.titleTextAttributes = textAttributes as [NSAttributedString.Key : Any]
+                 
+                 
+                 
+                 
+                 if advengers.shared.isPastor {
+                     
+                    // navigationItem.rightBarButtonItem = UIBarButtonItem(title: "+ Devotional", style: .plain, target: self, action: #selector(addDevotional))
+                    navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Select Channel", style: .plain, target: self, action: #selector(addPlaylist))
+                     
+                 }
+          
+                 let textAttributes2 = [NSAttributedString.Key.foregroundColor: advengers.shared.colorOrange,
+                                               NSAttributedString.Key.font:UIFont(name: "Avenir-Heavy", size: 12)]
+                 
+                 navigationItem.rightBarButtonItem?.setTitleTextAttributes(textAttributes2 as [NSAttributedString.Key : Any], for: .normal)
+                 navigationItem.rightBarButtonItem?.tintColor = advengers.shared.colorOrange
+                 
+                 navigationItem.title = advengers.shared.currentChurch
+                 
+                 // -----------------------------------------------------------------------------------------
         
         
-        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Log Out", style: .plain, target: self, action: #selector(Logout))
+        
+        
+ //       navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Log Out", style: .plain, target: self, action: #selector(Logout))
         
 
     

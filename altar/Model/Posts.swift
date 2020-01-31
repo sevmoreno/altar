@@ -21,16 +21,17 @@ class Posts {
     var message: String!
     var photoW: CGFloat?
     var photoH: CGFloat?
-    
+    var comments: Int!
     var hasLiked = false
     var whoLikes: [String] = [String] ()
-    
+    var creationDate: Double?
     
     init(dictionary: [String: Any]) {
         //self.user = user
         self.author = dictionary["author"] as? String ?? ""
         self.church = dictionary["church"] as? String ?? ""
-        self.likes = dictionary["likes"] as? Int ?? 0
+        self.likes = dictionary["prays"] as? Int 
+        self.comments = dictionary["comments"] as? Int ?? 0
         self.photoImage = dictionary["pathtoPost"] as? String ?? "No image"
         self.userID = dictionary["userID"] as? String ?? ""
         self.postID = dictionary["postID"] as? String ?? ""
@@ -39,8 +40,8 @@ class Posts {
         self.message = dictionary["message"] as? String ?? ""
         self.photoH = dictionary["photoW"] as? CGFloat ?? 764.0
         self.photoW = dictionary["photoH"] as? CGFloat ?? 694.0
-      //  let secondsFrom1970 = dictionary["creationDate"] as? Double ?? 0
-      //  self.creationDate = Date(timeIntervalSince1970: secondsFrom1970)
+        self.creationDate = dictionary["creationDate"] as? Double ?? 0
+      // self.creationDate = Date(timeIntervalSince1970: secondsFrom1970)
     }
     
 }

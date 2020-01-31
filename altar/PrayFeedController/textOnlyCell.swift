@@ -8,14 +8,16 @@
 
 import UIKit
 
-protocol textOnlyCellDelegate {
-    func didTapComment(post: Posts)
-    func didLike(for cell: textOnlyCell)
+protocol textOnlyDelegate {
+    func textOnlyDelegate_didTapComment(post: Posts)
+    func textOnlyDelegate_didLike(for cell: textOnlyCell)
 }
+
+
 
 class textOnlyCell: UICollectionViewCell {
     
-    var delegate: textOnlyCellDelegate?
+    var delegate: textOnlyDelegate?
     
     var post: Posts? {
         
@@ -27,8 +29,25 @@ class textOnlyCell: UICollectionViewCell {
             
             
             
-            likeButton.setImage(post?.hasLiked == true ? #imageLiteral(resourceName: "pray").withRenderingMode(.alwaysOriginal) : #imageLiteral(resourceName: "pray2").withRenderingMode(.alwaysOriginal), for: .normal)
+         //   likeButton.setImage(post?.hasLiked == true ? #imageLiteral(resourceName: "pray").withRenderingMode(.alwaysOriginal) : #imageLiteral(resourceName: "pray2").withRenderingMode(.alwaysOriginal), for: .normal)
        
+            
+            // --------------- CODE POST DESIGN   --------------------------
+                     if post!.likes  > 0 {
+                         likeButton.setImage(UIImage(named: "cellprayiconRed")?.withRenderingMode(.alwaysOriginal), for: .normal)
+                     
+                     } else {
+                         
+                         likeButton.setImage(UIImage(named: "cellPrayIcon")?.withRenderingMode(.alwaysOriginal), for: .normal)
+                     }
+                     
+                     likeCount.text = String(post!.likes)
+                     
+                     if let tiene = post?.comments {
+                     commentCount.text = String(tiene)
+                     }
+                     
+                     // ==========================================================
       
 
     
@@ -44,17 +63,38 @@ class textOnlyCell: UICollectionViewCell {
     fileprivate func setupAttributedCaption() {
         guard let post = self.post else { return }
         
-        let attributedText = NSMutableAttributedString(string: post.author, attributes: [NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 14)])
+        let attributedText = NSMutableAttributedString(string: " \(post.message ?? "Defaul Value")", attributes: [NSAttributedString.Key.font: UIFont(name: "Avenir-Medium", size: 15)])
         
-        attributedText.append(NSAttributedString(string: " \(post.message ?? "Defaul Value")", attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 14)]))
+     //   attributedText.append(NSAttributedString(string: " \(post.message ?? "Defaul Value")", attributes: [NSAttributedString.Key.font: UIFont(name: "Avenir-Medium", size: 15)]))
         
-        attributedText.append(NSAttributedString(string: "\n\n", attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 4)]))
+     //   attributedText.append(NSAttributedString(string: "\n\n", attributes: [NSAttributedString.Key.font: UIFont(name: "Avenir-Medium", size: 15)]))
 
         
         captionLabel.attributedText = attributedText
     }
     
+    // NEW DESGIN CODE  ----------------------------------
     
+    lazy var likeCount: UILabel = {
+        let label2 = UILabel ()
+        label2.font = UIFont(name: "Avenir-Medium", size: 15)
+        label2.text = "0000"
+     //   button.setImage(UIImage(named: "cellPrayIcon")?.withRenderingMode(.alwaysOriginal), for: .normal)
+       // button.addTarget(self, action: #selector(handleLike), for: .touchUpInside)
+        return label2
+    }()
+    
+    
+    lazy var commentCount: UILabel = {
+             let label2 = UILabel ()
+             label2.font = UIFont(name: "Avenir-Medium", size: 15)
+             label2.text = "    "
+          //   button.setImage(UIImage(named: "cellPrayIcon")?.withRenderingMode(.alwaysOriginal), for: .normal)
+            // button.addTarget(self, action: #selector(handleLike), for: .touchUpInside)
+             return label2
+         }()
+    
+    // --------------------------------------------------------------------
     
     let userProfileImageView: CustomImageView = {
         let iv = CustomImageView()
@@ -68,7 +108,7 @@ class textOnlyCell: UICollectionViewCell {
     let usernameLabel: UILabel = {
         let label = UILabel()
         label.text = "Username"
-        label.font = UIFont.boldSystemFont(ofSize: 14)
+        label.font = UIFont(name: "Avenir-Medium", size: 15)
         return label
     }()
     
@@ -88,7 +128,7 @@ class textOnlyCell: UICollectionViewCell {
     
     @objc func handleLike() {
         print("Handling like from within cell...text only")
-        delegate?.didLike(for: self)
+        delegate?.textOnlyDelegate_didLike(for: self)
     }
     
     lazy var commentButton: UIButton = {
@@ -106,7 +146,7 @@ class textOnlyCell: UICollectionViewCell {
         print("Trying to show comments...on only text")
         guard let post = post else { return }
         
-        delegate?.didTapComment(post: post)
+        delegate?.textOnlyDelegate_didTapComment(post: post)
         
     }
     
@@ -125,7 +165,7 @@ class textOnlyCell: UICollectionViewCell {
     
     let captionLabel: UITextView = {
         let textView = UITextView()
-        textView.font = UIFont.systemFont(ofSize: 14)
+        textView.font = UIFont(name: "Avenir-Book", size: 15)
         textView.isEditable = false
         //        label.numberOfLines = 0
         //        label.backgroundColor = .lightGray
@@ -154,10 +194,10 @@ class textOnlyCell: UICollectionViewCell {
              addSubview(optionsButton)
 
            
-             userProfileImageView.anchor(top: topAnchor, left: leftAnchor, bottom: nil, right: nil, paddingTop: 8, paddingLeft: 8, paddingBottom: 0, paddingRight: 0, width: 40, height: 40)
-             userProfileImageView.layer.cornerRadius = 40 / 2
+             userProfileImageView.anchor(top: topAnchor, left: leftAnchor, bottom: nil, right: nil, paddingTop: 15, paddingLeft: 15, paddingBottom: 0, paddingRight: 0, width: 50, height: 50)
+             userProfileImageView.layer.cornerRadius = 50 / 2
              
-             usernameLabel.anchor(top: topAnchor, left: userProfileImageView.rightAnchor, bottom: nil, right: nil, paddingTop: 16, paddingLeft: 8, paddingBottom: 0, paddingRight: 0, width: 0, height: 0)
+             usernameLabel.anchor(top: userProfileImageView.topAnchor, left: userProfileImageView.rightAnchor, bottom: nil, right: nil, paddingTop: 10, paddingLeft: 8, paddingBottom: 0, paddingRight: 0, width: 0, height: 0)
              
              
              
@@ -190,11 +230,11 @@ class textOnlyCell: UICollectionViewCell {
     
     fileprivate func setupActionButtons() {
         
-        let stackView = UIStackView(arrangedSubviews: [likeButton, commentButton])
+        let stackView = UIStackView(arrangedSubviews: [likeButton,likeCount,commentButton,commentCount])
         stackView.distribution = .fillEqually
         
         addSubview(stackView)
-        stackView.anchor(top: captionLabel.bottomAnchor, left: leftAnchor, bottom: bottomAnchor, right: nil, paddingTop: 8, paddingLeft: 4, paddingBottom: 0, paddingRight: 0, width: 120, height: 50)
+        stackView.anchor(top: captionLabel.bottomAnchor, left: leftAnchor, bottom: bottomAnchor, right: nil, paddingTop: 8, paddingLeft: 20, paddingBottom: 0, paddingRight: 0, width: 120, height: 50)
         
         
     }

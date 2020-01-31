@@ -237,7 +237,6 @@
 				655BF70D2388C5A5002F0C7C /* AnnotatedPhotoCell.swift */,
 				65913B1823C653FA009B8537 /* PhotoTextoCollectionViewCell.swift */,
 				655EDF0923B002C4005E6DB6 /* textOnlyCell.swift */,
-				65913B1A23C6547F009B8537 /* Cells */,
 				65AAEB2F23C55C0D0063DF04 /* Post */,
 				655BF7072388C4D1002F0C7C /* PhotoStreamViewController.swift */,
 				65913B1D23C7AE90009B8537 /* AudioCollectionViewCell.swift */,
@@ -296,13 +295,6 @@
 				658303BF23DA325400D48ED0 /* Fonts */,
 			);
 			path = Resources;
-			sourceTree = "<group>";
-		};
-		65913B1A23C6547F009B8537 /* Cells */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Cells;
 			sourceTree = "<group>";
 		};
 		659595C723D0F4F2007FB09C /* Model */ = {
