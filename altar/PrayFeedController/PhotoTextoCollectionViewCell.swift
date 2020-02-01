@@ -8,10 +8,17 @@
 
 import UIKit
 
+
+protocol textImageDelegate {
+    func textImageDelegate_didTapComment(post: Posts)
+    func textImageDelegate_didLike(for cell: PhotoTextoCollectionViewCell)
+}
+
+
 class PhotoTextoCollectionViewCell: UICollectionViewCell {
  
 
-        
+        var delegate: textImageDelegate?
         
         var post: Posts? {
             
@@ -24,17 +31,28 @@ class PhotoTextoCollectionViewCell: UICollectionViewCell {
               //  likeButton.setImage(post?.hasLiked == true ? #imageLiteral(resourceName: "like_selected").withRenderingMode(.alwaysOriginal) : #imageLiteral(resourceName: "like_unselected").withRenderingMode(.alwaysOriginal), for: .normal)
                 
                 photoImageView.loadImage(urlString: postImageUrl)
-                //  print("Este es el conentido de la altura: \(photoImageView.image?.size.height)")
-             //   post?.imageH = photoImageView.image?.size.height
+
+                
                 usernameLabel.text = post?.author
                 guard let profileuserURL = post?.userPhoto else {return}
                 userProfileImageView.loadImage(urlString: profileuserURL)
-                //print("ESTE ES EL USUERNAME CELL")
-                //  print(post?.user.username)
-                // usernameLabel.text = post?.user.username
                 
-                //guard let profileuserURL = post?.user.profileImageUrl else {return}
-                // userProfileImageView.loadImage(urlString: profileuserURL)
+
+                // --------------- CODE POST DESIGN   --------------------------
+                if post!.likes  > 0 {
+                    likeButton.setImage(UIImage(named: "cellprayiconRed")?.withRenderingMode(.alwaysOriginal), for: .normal)
+                
+                } else {
+                    
+                    likeButton.setImage(UIImage(named: "cellPrayIcon")?.withRenderingMode(.alwaysOriginal), for: .normal)
+                }
+                
+                likeCount.text = String(post!.likes)
+                
+                if let tiene = post?.comments {
+                commentCount.text = String(tiene)
+                }
+
                 
                 setupAttributedCaption()
                 
@@ -44,15 +62,16 @@ class PhotoTextoCollectionViewCell: UICollectionViewCell {
         }
         
 
+    
         
         fileprivate func setupAttributedCaption() {
             guard let post = self.post else { return }
             
-            let attributedText = NSMutableAttributedString(string: post.author, attributes: [NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 14)])
+            let attributedText = NSMutableAttributedString(string: "\(post.message ?? "Defaul Value")", attributes: [NSAttributedString.Key.font: UIFont(name: "Avenir-Medium", size: 15)])
             
-            attributedText.append(NSAttributedString(string: " \(post.message ?? "Defaul Value")", attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 14)]))
+           // attributedText.append(NSAttributedString(string: " \(post.message ?? "Defaul Value")", attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 14)]))
             
-            attributedText.append(NSAttributedString(string: "\n\n", attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 4)]))
+         //   attributedText.append(NSAttributedString(string: "\n\n", attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 4)]))
             
          //   let timeAgoDisplay = post.timeAgoDisplay()
          //   attributedText.append(NSAttributedString(string: timeAgoDisplay, attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 14), NSAttributedString.Key.foregroundColor: UIColor.gray]))
@@ -82,7 +101,7 @@ class PhotoTextoCollectionViewCell: UICollectionViewCell {
         let usernameLabel: UILabel = {
             let label = UILabel()
             label.text = "Username"
-            label.font = UIFont.boldSystemFont(ofSize: 14)
+            label.font = UIFont(name: "Avenir-Medium", size: 15)
             return label
         }()
         
@@ -95,32 +114,52 @@ class PhotoTextoCollectionViewCell: UICollectionViewCell {
         
         lazy var likeButton: UIButton = {
             let button = UIButton(type: .system)
-            button.setImage(#imageLiteral(resourceName: "icon-like").withRenderingMode(.alwaysOriginal), for: .normal)
+            button.setImage(UIImage(named: "cellPrayIcon")?.withRenderingMode(.alwaysOriginal), for: .normal)
             button.addTarget(self, action: #selector(handleLike), for: .touchUpInside)
             return button
         }()
+    
+        lazy var likeCount: UILabel = {
+          let label2 = UILabel ()
+          label2.font = UIFont(name: "Avenir-Medium", size: 15)
+          label2.text = "0000"
+       //   button.setImage(UIImage(named: "cellPrayIcon")?.withRenderingMode(.alwaysOriginal), for: .normal)
+         // button.addTarget(self, action: #selector(handleLike), for: .touchUpInside)
+          return label2
+      }()
+      
         
         @objc func handleLike() {
             print("Handling like from within cell...")
-        //    delegate?.didLike(for: self)
+           delegate?.textImageDelegate_didLike(for: self)
         }
         
         lazy var commentButton: UIButton = {
             let button = UIButton(type: .system)
-            button.setImage(#imageLiteral(resourceName: "icon-comment-1").withRenderingMode(.alwaysOriginal), for: .normal)
+             button.setImage(UIImage(named: "cellComment Icone")?.withRenderingMode(.alwaysOriginal), for: .normal)
             button.addTarget(self, action: #selector(handleComment), for: .touchUpInside)
             //button.addTarget(self, action: #selector(clickcomment), for: .touchUpInside)
             
             return button
         }()
         
+        lazy var commentCount: UILabel = {
+                let label2 = UILabel ()
+                label2.font = UIFont(name: "Avenir-Medium", size: 15)
+                label2.text = "    "
+             //   button.setImage(UIImage(named: "cellPrayIcon")?.withRenderingMode(.alwaysOriginal), for: .normal)
+               // button.addTarget(self, action: #selector(handleLike), for: .touchUpInside)
+                return label2
+            }()
+            
         
         
         @objc func handleComment() {
             print("Trying to show comments...")
             guard let post = post else { return }
             
-         //   delegate?.didTapComment(post: post)
+            
+            delegate?.textImageDelegate_didTapComment(post: post)
             
         }
         
@@ -140,7 +179,7 @@ class PhotoTextoCollectionViewCell: UICollectionViewCell {
             let textView = UITextView()
             textView.font = UIFont.systemFont(ofSize: 14)
             textView.isEditable = false
-            textView.backgroundColor = .lightGray
+            textView.backgroundColor = .white
             textView.isScrollEnabled = false
             return textView
         }()
@@ -180,18 +219,27 @@ class PhotoTextoCollectionViewCell: UICollectionViewCell {
             photoImageView.clipsToBounds = true
             addSubview(photoImageView)
             
-            let stackView = UIStackView(arrangedSubviews: [likeButton, commentButton])
+            let stackView = UIStackView(arrangedSubviews: [likeButton,likeCount,commentButton,commentCount])
             stackView.distribution = .fillEqually
             addSubview(captionLabel)
             addSubview(stackView)
             
             userProfileImageView.translatesAutoresizingMaskIntoConstraints = false
-            userProfileImageView.layer.cornerRadius = 40 / 2
-            userProfileImageView.topAnchor.constraint(equalTo: topAnchor, constant:8).isActive = true
-            userProfileImageView.leftAnchor.constraint(equalTo: self.leftAnchor, constant:8).isActive = true
-            userProfileImageView.widthAnchor.constraint(equalToConstant: 40).isActive = true
-            userProfileImageView.heightAnchor.constraint(equalToConstant: 40).isActive = true
+            userProfileImageView.layer.cornerRadius = 50 / 2
+            userProfileImageView.topAnchor.constraint(equalTo: topAnchor, constant:15).isActive = true
+            userProfileImageView.leftAnchor.constraint(equalTo: leftAnchor, constant:15).isActive = true
+            userProfileImageView.widthAnchor.constraint(equalToConstant: 50).isActive = true
+            userProfileImageView.heightAnchor.constraint(equalToConstant: 50).isActive = true
             userProfileImageView.bottomAnchor.constraint(equalTo: photoImageView.topAnchor, constant: -8).isActive = true
+            
+            // --------------------------------- BORDER COLOR -----------------------
+            
+            userProfileImageView.layer.borderWidth = 1
+            userProfileImageView.layer.borderColor = advengers.shared.colorOrange.cgColor
+            
+            // -------------------------
+            
+            
            // userProfileImageView.rightAnchor.constraint(equalTo: self.rightAnchor).isActive = true
            // userProfileImageView.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
             
@@ -217,10 +265,10 @@ class PhotoTextoCollectionViewCell: UICollectionViewCell {
             photoImageView.widthAnchor.constraint(equalToConstant: frame.width).isActive = true
            
             
-            captionLabel.anchor(top: photoImageView.bottomAnchor, left: leftAnchor, bottom: stackView.topAnchor, right: rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 0)
+            captionLabel.anchor(top: photoImageView.bottomAnchor, left: leftAnchor, bottom: stackView.topAnchor, right: rightAnchor, paddingTop: 0, paddingLeft: 8, paddingBottom: 0, paddingRight: 0, width: 0, height: 0)
             
             
-            stackView.anchor(top: captionLabel.bottomAnchor, left: leftAnchor, bottom: bottomAnchor, right: nil, paddingTop: 0, paddingLeft: 4, paddingBottom: -8, paddingRight: 0, width: 120, height: 50)
+            stackView.anchor(top: captionLabel.bottomAnchor, left: leftAnchor, bottom: bottomAnchor, right: nil, paddingTop: 0, paddingLeft: 20, paddingBottom: -8, paddingRight: 0, width: 120, height: 50)
            
             
             
@@ -271,7 +319,7 @@ class PhotoTextoCollectionViewCell: UICollectionViewCell {
         
         fileprivate func setupActionButtons() {
 
-            let stackView = UIStackView(arrangedSubviews: [likeButton, commentButton])
+            let stackView = UIStackView(arrangedSubviews: [likeButton,likeCount,commentButton,commentCount])
             stackView.distribution = .fillEqually
             
             addSubview(stackView)

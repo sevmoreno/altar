@@ -21,9 +21,15 @@ class PrayPostViewController: UIViewController, UIImagePickerControllerDelegate,
     var imageToSend: UIImage?
     var videoToSend: String?
     
+    @IBOutlet var nombreUsuario: UILabel? {
+        didSet {
+            
+            nombreUsuario?.text = advengers.shared.currenUSer["name"]
+        }
+    }
     @IBOutlet weak var textoIngresado: UITextView!
     
-    @IBOutlet weak var usuarioFoto: UIImageView!
+    @IBOutlet weak var usuarioFoto: CustomImageView!
         
     
 
@@ -38,6 +44,10 @@ class PrayPostViewController: UIViewController, UIImagePickerControllerDelegate,
     override func viewDidLoad() {
         super.viewDidLoad()
         
+     //  navigationItem.rightBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "gear").withRenderingMode(.alwaysOriginal), style: .plain, target: self, action: #selector(handleLogOut))
+        
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Post", style: .plain, target: self, action: #selector(postAction))
+        
  
         
        
@@ -46,17 +56,27 @@ class PrayPostViewController: UIViewController, UIImagePickerControllerDelegate,
        textoIngresado.textColor = .lightGray
        textoIngresado.delegate = self
      
-        let imagenUsuario = CustomImageView ()
-        if let foto = advengers.shared.currenUSer["photoURL"] {
-            imagenUsuario.loadImage(urlString: foto)
-             DispatchQueue.main.async {
+         DispatchQueue.main.async {
+            print("Esta es la foto")
+            print(advengers.shared.currenUSer["photoURL"])
+            self.usuarioFoto.loadImage(urlString: advengers.shared.currenUSer["photoURL"]!)
+        
+        }
+     //   let imagenUsuario = CustomImageView ()
+        
+        
+      //  if let foto = advengers.shared.currenUSer["photoURL"] {
+        //    imagenUsuario.loadImage(urlString: foto)
+          
+         /*
+            DispatchQueue.main.async {
                  
-                 self.usuarioFoto.image = imagenUsuario.image
+                self.usuarioFoto.image = advengers.shared.currenUSer["photoURL"]
                 // self.usuarioFoto.loadImage(urlString: foto)
              }
-            
-        }
-        else { return }
+            */
+       // }
+       // else { return }
  
        
         
@@ -151,7 +171,7 @@ class PrayPostViewController: UIViewController, UIImagePickerControllerDelegate,
         self.dismiss(animated: true, completion: nil)
     }
     
-    @IBAction func postAction(_ sender: Any) {
+    @objc func postAction(_ sender: Any) {
         
         AppDelegate.instance().showActivityIndicatior()
         
@@ -291,14 +311,16 @@ class PrayPostViewController: UIViewController, UIImagePickerControllerDelegate,
     @IBAction func style1(_ sender: Any) {
         textoIngresado.backgroundColor = UIColor(red:81.0/255.0, green:224.0/255.0, blue:225.0/255.0, alpha:1.0)
 
-        
+        textoIngresado.backgroundColor = UIColor(patternImage: UIImage (named: "fondo1")!)
         let quote = textoIngresado.text!
-        let font = UIFont.systemFont(ofSize: CGFloat(fontSize))
+        let font = UIFont(name: "LeagueGothic", size: CGFloat(fontSize))
+     //   let font = UIFont.systemFont(ofSize: CGFloat(fontSize))
         let paragraphStyle = NSMutableParagraphStyle()
         paragraphStyle.alignment = .center
         
-        attributes[.font] = font
+       attributes[.font] = font
         
+   
         
         let attributedQuote = NSAttributedString(string: quote, attributes: attributes)
 
@@ -429,5 +451,12 @@ extension PrayPostViewController: UITextViewDelegate {
             textView.textColor = UIColor.lightGray
         }
     }
+    
+  
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        self.view.endEditing(true)
+        return false
+    }
+ 
 }
 

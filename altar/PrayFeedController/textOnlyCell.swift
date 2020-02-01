@@ -192,6 +192,10 @@ class textOnlyCell: UICollectionViewCell {
              addSubview(userProfileImageView)
              addSubview(usernameLabel)
              addSubview(optionsButton)
+        
+            
+        userProfileImageView.layer.borderWidth = 1
+        userProfileImageView.layer.borderColor = advengers.shared.colorOrange.cgColor
 
            
              userProfileImageView.anchor(top: topAnchor, left: leftAnchor, bottom: nil, right: nil, paddingTop: 15, paddingLeft: 15, paddingBottom: 0, paddingRight: 0, width: 50, height: 50)
@@ -227,7 +231,7 @@ class textOnlyCell: UICollectionViewCell {
     }
     
   
-    
+   
     fileprivate func setupActionButtons() {
         
         let stackView = UIStackView(arrangedSubviews: [likeButton,likeCount,commentButton,commentCount])
@@ -238,7 +242,6 @@ class textOnlyCell: UICollectionViewCell {
         
         
     }
-    
     
 }
 

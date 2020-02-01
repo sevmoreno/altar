@@ -4,7 +4,84 @@ import UIKit
 import AVFoundation
 import Firebase
 
-class PhotoStreamViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout, ImageOnlyDelegate,textOnlyDelegate  {
+class PhotoStreamViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout, ImageOnlyDelegate,textOnlyDelegate, textImageDelegate  {
+    
+    func textImageDelegate_didTapComment(post: Posts) {
+        
+        print("llego al protocolo")
+
+               let commentsController = CommentsController(collectionViewLayout: UICollectionViewFlowLayout())
+               commentsController.post = post
+               navigationController?.pushViewController(commentsController, animated: true)
+    }
+    
+    func textImageDelegate_didLike(for cell: PhotoTextoCollectionViewCell) {
+        
+        
+        print("llego al protocolo")
+                      
+                      guard let indexPath = collectionView?.indexPath(for: cell) else { return }
+                            
+                             var post =  self.photos[indexPath.item]
+                              print("Cuantos Likes tiene antes")
+                              print(post.likes)
+
+                            
+                            guard let postId = post.postID else { return }
+                            
+                            guard let uid = Auth.auth().currentUser?.uid else { return }
+                      
+                      
+                            post.hasLiked = true
+                            let values = [uid: post.hasLiked]
+                              
+                          
+                      
+                            
+                      //      let values = [uid: post.hasLiked == true ? 0 : 1]
+                            Database.database().reference().child("likes").child(postId).updateChildValues(values) { (err, _) in
+                                
+                                if let err = err {
+                                    print("Failed to like post lista de likes", err)
+                                    return
+                                }
+                                
+                                print("Lista de likes ok.")
+                              
+                              
+                                   post.likes = post.likes + 1
+                              
+                                  let cuentadeLikes = ["prays": post.likes!,
+                              
+                                  ]
+                              
+                              Database.database().reference().child("post_pray_feed").child(postId).updateChildValues(cuentadeLikes) { (err, _) in
+                                  
+                                  if let err = err {
+                                      print("Failed to like post:", err)
+                                      return
+                                  }
+                                  
+                                  print("Successfully actualiza el post")
+                                  
+
+                                  
+                              //    self.photos[indexPath.item] = post
+                                  
+                              // self.collectionView?.reloadItems(at: [indexPath])
+                                  
+                              }
+                                
+
+                                
+                            }
+               
+
+        
+    }
+    
+    // TEXT & IMAGE FRECATORE THIS PLEASE  !!!
+    
     
     func textOnlyDelegate_didTapComment(post: Posts) {
         
@@ -66,9 +143,9 @@ class PhotoStreamViewController: UICollectionViewController, UICollectionViewDel
                            
 
                            
-                           self.photos[indexPath.item] = post
+                       //    self.photos[indexPath.item] = post
                            
-                           self.collectionView?.reloadItems(at: [indexPath])
+                        //   self.collectionView?.reloadItems(at: [indexPath])
                            
                        }
                          
@@ -134,9 +211,9 @@ class PhotoStreamViewController: UICollectionViewController, UICollectionViewDel
                     
 
                     
-                    self.photos[indexPath.item] = post
+               //     self.photos[indexPath.item] = post
                     
-                    self.collectionView?.reloadItems(at: [indexPath])
+              //      self.collectionView?.reloadItems(at: [indexPath])
                     
                 }
                   
@@ -484,6 +561,7 @@ class PhotoStreamViewController: UICollectionViewController, UICollectionViewDel
             
         case advengers.postType.textImage.rawValue:
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "textImageCell", for: indexPath as IndexPath) as! PhotoTextoCollectionViewCell
+            cell.delegate = self
             cell.contentView.backgroundColor = .white
             cell.post = photos[indexPath.item]
             return cell
@@ -497,7 +575,7 @@ class PhotoStreamViewController: UICollectionViewController, UICollectionViewDel
         default:
             
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "textOnlyCelll", for: indexPath as IndexPath) as! textOnlyCell
-            cell.contentView.backgroundColor = .white
+            cell.contentView.backgroundColor = .red
             cell.post = photos[indexPath.item]
             cell.delegate = self
             return cell

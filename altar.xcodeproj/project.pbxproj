@@ -111,6 +111,7 @@
 		650B1E9423E207A7000C0E32 /* TabBarCambios.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarCambios.swift; sourceTree = "<group>"; };
 		6526F5EC23832CAE00DA2433 /* FeedImageOnlyCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedImageOnlyCollectionViewCell.swift; sourceTree = "<group>"; };
 		6526F5EE23836C7300DA2433 /* DynamicHeightCollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DynamicHeightCollectionView.swift; sourceTree = "<group>"; };
+		6541434123E4ED2300EB8BA8 /* leaguegothic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = leaguegothic.ttf; sourceTree = "<group>"; };
 		65421CCD23AAABFE000B0437 /* extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = extensions.swift; sourceTree = "<group>"; };
 		654F95D823306ABC00175A7E /* PrayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrayViewController.swift; sourceTree = "<group>"; };
 		654F95DA23306E7F00175A7E /* PrayPostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrayPostViewController.swift; sourceTree = "<group>"; };
@@ -265,6 +266,7 @@
 		658303BF23DA325400D48ED0 /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
+				6541434123E4ED2300EB8BA8 /* leaguegothic.ttf */,
 				658303C923DA497000D48ED0 /* Prompt-Black.ttf */,
 				658303D323DA497300D48ED0 /* Prompt-BlackItalic.ttf */,
 				658303D623DA497300D48ED0 /* Prompt-Bold.ttf */,
