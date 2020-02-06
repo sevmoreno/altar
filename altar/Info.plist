@@ -6,10 +6,10 @@
 	<string></string>
 	<key>CFBundleIdentifier</key>
 	<string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
-	<key>CFBundleName</key>
-	<string>$(PRODUCT_NAME)</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
+	<key>UIMainStoryboardFile</key>
+	<string>Main</string>
 	<key>CFBundleVersion</key>
 	<string>1</string>
 	<key>UILaunchStoryboardName</key>
@@ -18,18 +18,17 @@
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>UIAppFonts</key>
 	<array>
-		<string>leaguegothic.ttf</string>
+		<string>league-gothic.ttf</string>
+		<string>league-gothic.ttf</string>
 		<string>Prompt-Black.ttf</string>
 		<string>Prompt-BoldItalic.ttf</string>
 		<string>Prompt-Bold.ttf</string>
 		<string>Prompt-Regular.ttf</string>
 	</array>
-	<key>NSMicrophoneUsageDescription</key>
-	<string>Access to your mic</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
-	<key>UIMainStoryboardFile</key>
-	<string>Main</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>Access to your mic</string>
 	<key>UIRequiredDeviceCapabilities</key>
 	<array>
 		<string>armv7</string>
@@ -38,6 +37,8 @@
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
 	</array>
+	<key>CFBundleShortVersionString</key>
+	<string>1.0</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>We need to save your audio</string>
 	<key>CFBundlePackageType</key>
@@ -51,7 +52,7 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
-	<key>CFBundleShortVersionString</key>
-	<string>1.0</string>
+	<key>CFBundleName</key>
+	<string>$(PRODUCT_NAME)</string>
 </dict>
 </plist>

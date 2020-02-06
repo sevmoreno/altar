@@ -108,7 +108,7 @@ class CommentsController: UICollectionViewController, UICollectionViewDelegateFl
     lazy var containerView: UIView = {
         let containerView = UIView()
         containerView.backgroundColor = .white
-        containerView.frame = CGRect(x: 0, y: 0, width: 100, height: 50)
+        containerView.frame = CGRect(x: 0, y: 0, width: 100, height: 100)
         
         let submitButton = UIButton(type: .system)
         submitButton.setTitle("Submit", for: .normal)
@@ -116,10 +116,10 @@ class CommentsController: UICollectionViewController, UICollectionViewDelegateFl
         submitButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 14)
         submitButton.addTarget(self, action: #selector(handleSubmit), for: .touchUpInside)
         containerView.addSubview(submitButton)
-        submitButton.anchor(top: containerView.topAnchor, left: nil, bottom: containerView.bottomAnchor, right: containerView.rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 12, width: 50, height: 0)
+        submitButton.anchor(top: containerView.topAnchor, left: nil, bottom: nil, right: containerView.rightAnchor, paddingTop: 20, paddingLeft: 0, paddingBottom: 0, paddingRight: 12, width: 50, height: 0)
         
         containerView.addSubview(self.commentTextField)
-        self.commentTextField.anchor(top: containerView.topAnchor, left: containerView.leftAnchor, bottom: containerView.bottomAnchor, right: submitButton.leftAnchor, paddingTop: 0, paddingLeft: 12, paddingBottom: 0, paddingRight: 0, width: 0, height: 0)
+        self.commentTextField.anchor(top: containerView.topAnchor, left: containerView.leftAnchor, bottom: nil, right: submitButton.leftAnchor, paddingTop: 20, paddingLeft: 12, paddingBottom: 0, paddingRight: 0, width: 0, height: 0)
         
         let lineSeparatorView = UIView()
         lineSeparatorView.backgroundColor = UIColor.rgb(red: 230, green: 230, blue: 230)

@@ -138,6 +138,16 @@ extension Date {
         return "\(quotient) \(unit)\(quotient == 1 ? "" : "s") ago"
         
     }
+    
+
+        var millisecondsSince1970:Int64 {
+            return Int64((self.timeIntervalSince1970 * 1000.0).rounded())
+        }
+
+        init(milliseconds:Int64) {
+            self = Date(timeIntervalSince1970: TimeInterval(milliseconds) / 1000)
+        }
+  
 }
 
 extension UIImage {
@@ -206,3 +216,37 @@ extension UITextView {
 
 }
 
+extension UITextView {
+
+    func centerVertically() {
+        let fittingSize = CGSize(width: bounds.width, height: CGFloat.greatestFiniteMagnitude)
+        let size = sizeThatFits(fittingSize)
+        let topOffset = (bounds.size.height - size.height * zoomScale) / 2
+        let positiveTopOffset = max(1, topOffset)
+        contentOffset.y = -positiveTopOffset
+    }
+
+    func returnVertical () {
+        /*
+        let fittingSize = CGSize(width: bounds.width, height: CGFloat.greatestFiniteMagnitude)
+              let size = sizeThatFits(fittingSize)
+              let topOffset = (bounds.size.height - size.height * zoomScale) / 2
+              let positiveTopOffset = max(1, topOffset)
+ */
+        
+        contentOffset.y  = 0
+        
+    }
+}
+
+extension NSLayoutManager {
+    var numberOfLines: Int {
+        guard let textStorage = textStorage else { return 0 }
+
+        var count = 0
+        enumerateLineFragments(forGlyphRange: NSMakeRange(0, numberOfGlyphs)) { _, _, _, _, _ in
+            count += 1
+        }
+        return count
+    }
+}

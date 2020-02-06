@@ -54,6 +54,8 @@ class PhotoVideoPostViewController: UIViewController, UIImagePickerControllerDel
         picker.delegate = self
         textoIngresado.text = "Say something about this photo ..."
         
+
+
         
         if isImage != nil {
             
