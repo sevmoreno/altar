@@ -4,7 +4,79 @@ import UIKit
 import AVFoundation
 import Firebase
 
-class PhotoStreamViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout, ImageOnlyDelegate,textOnlyDelegate, textImageDelegate  {
+class PhotoStreamViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout, ImageOnlyDelegate,textOnlyDelegate, textImageDelegate, AudibleDelegate  {
+    func AudibleDelegate_didTapComment(post: Posts) {
+        
+         print("llego al protocolo")
+
+                      let commentsController = CommentsController(collectionViewLayout: UICollectionViewFlowLayout())
+                      commentsController.post = post
+                      navigationController?.pushViewController(commentsController, animated: true)
+    }
+    
+    func AudibleDelegate_didLike(for cell: AudioCollectionViewCell) {
+        
+        
+        print("llego al protocolo")
+                      
+                      guard let indexPath = collectionView?.indexPath(for: cell) else { return }
+                            
+                             var post =  self.photos[indexPath.item]
+                              print("Cuantos Likes tiene antes")
+                              print(post.likes)
+
+                            
+                            guard let postId = post.postID else { return }
+                            
+                            guard let uid = Auth.auth().currentUser?.uid else { return }
+                      
+                      
+                            post.hasLiked = true
+                            let values = [uid: post.hasLiked]
+                              
+                          
+                      
+                            
+                      //      let values = [uid: post.hasLiked == true ? 0 : 1]
+                            Database.database().reference().child("likes").child(postId).updateChildValues(values) { (err, _) in
+                                
+                                if let err = err {
+                                    print("Failed to like post lista de likes", err)
+                                    return
+                                }
+                                
+                                print("Lista de likes ok.")
+                              
+                              
+                                   post.likes = post.likes + 1
+                              
+                                  let cuentadeLikes = ["prays": post.likes!,
+                              
+                                  ]
+                              
+                              Database.database().reference().child("post_pray_feed").child(postId).updateChildValues(cuentadeLikes) { (err, _) in
+                                  
+                                  if let err = err {
+                                      print("Failed to like post:", err)
+                                      return
+                                  }
+                                  
+                                  print("Successfully actualiza el post")
+                               //   self.handleUpdateFeed()
+
+                                  
+                              //    self.photos[indexPath.item] = post
+                                  
+                              // self.collectionView?.reloadItems(at: [indexPath])
+                                  
+                              }
+                                
+
+                                
+                            }
+               
+    }
+    
     
     func textImageDelegate_didTapComment(post: Posts) {
         
@@ -140,6 +212,8 @@ class PhotoStreamViewController: UICollectionViewController, UICollectionViewDel
                            }
                            
                            print("Successfully actualiza el post")
+                        
+                         
                            
 
                            
@@ -318,8 +392,10 @@ class PhotoStreamViewController: UICollectionViewController, UICollectionViewDel
     
     let cellId = "cellId"
     var photos = [Posts] ()
+    let refreshControl = UIRefreshControl()
     
     override func viewDidLoad() {
+        NotificationCenter.default.addObserver(self, selector: #selector(handleUpdateFeed), name: NSNotification.Name(rawValue: "UpdateFeed"), object: nil)
         
         collectionView?.register(AnnotatedPhotoCell.self, forCellWithReuseIdentifier: "OtraPostCell")
         collectionView?.register(textOnlyCell.self, forCellWithReuseIdentifier: "textOnlyCelll")
@@ -337,7 +413,7 @@ class PhotoStreamViewController: UICollectionViewController, UICollectionViewDel
         navigationController?.navigationBar.backgroundColor = advengers.shared.colorBlue
         navigationController?.navigationBar.barTintColor = advengers.shared.colorBlue
         
-        navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "settingsincon"), style: .plain, target: self, action: #selector(advengers.shared.settings))
+        navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "settingsincon"), style: .plain, target: self, action: #selector(logoutFirebase))
         navigationItem.leftBarButtonItem?.tintColor = advengers.shared.colorOrange
         
         
@@ -369,30 +445,73 @@ class PhotoStreamViewController: UICollectionViewController, UICollectionViewDel
          */
         // ---------------------
         
+        refreshControl.addTarget(self, action: #selector(handleRefresh), for: .valueChanged)
+        collectionView?.refreshControl = refreshControl
         
-        
+        fetchPost ()
         
         // collectionView?.contentInset = UIEdgeInsets(top: 23, left: 16, bottom: 10, right: 16)
         loadCurrentUserInfo ()
-        fetchPost ()
+       
         
         
     }
     
+    @objc func handleRefresh() {
+        photos.removeAll()
+        fetchPost ()
+        DispatchQueue.main.async {
+           self.refreshControl.endRefreshing()
+        }
+    }
+    
+    @objc func handleUpdateFeed() {
+        
+        photos.removeAll()
+        
+        print("llego update")
+       
+           photos.removeAll()
+            collectionView.reloadData()
+         //  fetchPost ()
+        
+       }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        
+    }
+    
+    @objc func logoutFirebase () {
+        
+       
+        
+        let settingsController = SettingsViewController()
+       // navigationController?.pushViewController(signUpController, animated: true)
+        
+         present(settingsController, animated: true, completion: nil)
+        // dismiss(animated: true, completion: nil)
+        
+        /*
+        if let storyboard = self.storyboard {
+            let vc = storyboard.instantiateViewController(withIdentifier: "WelcomeViewController") as! WelcomeViewController
+            self.present(vc, animated: false, completion: nil)
+        }
+ */
+    }
     
     
     @objc func addprayer () {
         
         performSegue(withIdentifier: "prueba", sender: self)
-        
+
     }
     
     
     func fetchPost () {
-        print("Fechea ")
+      //  print("Fechea ")
         advengers.shared.postPrayFeed.queryOrderedByKey().observe(.value) { (data) in
             
-            self.photos.removeAll()
+           // self.photos.removeAll()
             
             if let postfeed = data.value as? [String:NSDictionary] {
                 
@@ -402,12 +521,17 @@ class PhotoStreamViewController: UICollectionViewController, UICollectionViewDel
                     
                     let temporarioPost = Posts (dictionary: value as! [String : Any])
                     
-                    print("Cuenta de links cuando lo leo")
-                    print(temporarioPost.postType)
-                    print(temporarioPost.likes)
                     
                     self.photos.append(temporarioPost)
-                    self.collectionView.reloadData()
+                    
+                    self.photos.sort(by: { (p1, p2) -> Bool in
+                        return p1.creationDate?.compare(p2.creationDate!) == .orderedDescending
+                    })
+                    
+                    DispatchQueue.main.async {
+                              self.collectionView.reloadData()
+                          }
+                   
                     
                     
                 }
@@ -500,7 +624,7 @@ class PhotoStreamViewController: UICollectionViewController, UICollectionViewDel
             let usuarioInfo: CGFloat = 50.0
             
             
-            return CGSize(width: view.frame.width, height:  usuarioInfo + botones + 100 )
+            return CGSize(width: view.frame.width, height:  usuarioInfo + botones + 200 )
             
             
             
@@ -568,6 +692,7 @@ class PhotoStreamViewController: UICollectionViewController, UICollectionViewDel
             
         case advengers.postType.audio.rawValue:
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "audioCell", for: indexPath as IndexPath) as! AudioCollectionViewCell
+            cell.delegate = self
             cell.contentView.backgroundColor = .white
             cell.post = photos[indexPath.item]
             return cell

@@ -13,6 +13,24 @@ import Firebase
 
 class AudibleViewController: UIViewController, AVAudioRecorderDelegate {
     
+    let userProfileImageView: CustomImageView = {
+             let iv = CustomImageView()
+             iv.contentMode = .scaleAspectFill
+             iv.clipsToBounds = true
+             iv.backgroundColor = .blue
+             return iv
+         }()
+         
+         
+         let usernameLabel: UILabel = {
+             let label = UILabel()
+             label.text = "Username"
+             label.font = UIFont(name: "Avenir-Medium", size: 15)
+             return label
+         }()
+    
+    let timer = Timer ()
+    
     let viewToRercord: UIView = {
            
            let imagen = UIView ()
@@ -23,7 +41,8 @@ class AudibleViewController: UIViewController, AVAudioRecorderDelegate {
     let playRercord: UIButton = {
              
              let imagen = UIButton ()
-            imagen.layer.backgroundColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
+           // imagen.layer.backgroundColor = #colorLiteral(red: 0.2588235438, green: 0.7568627596, blue: 0.9686274529, alpha: 1)
+            imagen.setImage(UIImage(named: "payAudio"), for: .normal)
              imagen.addTarget(self, action: #selector (playAudio), for: .touchUpInside)
                 
         
@@ -32,7 +51,14 @@ class AudibleViewController: UIViewController, AVAudioRecorderDelegate {
          } ()
     
     
+    let PlayLalel: UILabel = {
+                let label = UILabel()
+                label.text = "Audible Prayer"
+                label.font = UIFont(name: "Avenir-Medium", size: 14)
+                return label
+            }()
     
+   /*
     let postRercord: UIButton = {
              
              let boton = UIButton ()
@@ -44,7 +70,7 @@ class AudibleViewController: UIViewController, AVAudioRecorderDelegate {
             
              return boton
          } ()
-    
+    */
     var activeMemory: URL!
     var urlTemporario: URL!
     var audioRecorder: AVAudioRecorder?
@@ -53,32 +79,76 @@ class AudibleViewController: UIViewController, AVAudioRecorderDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        view.backgroundColor = .black
+        playRercord.isEnabled = false
+        playRercord.tintColor = .gray
+        
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Post", style: .plain, target: self, action: #selector(postAudio))
+
+        
+        view.addSubview(userProfileImageView)
+        view.addSubview(usernameLabel)
+               
+               DispatchQueue.main.async {
+                   self.usernameLabel.text = advengers.shared.currenUSer["name"]
+                          
+                    guard let profileuserURL = advengers.shared.currenUSer["photoURL"] else {return}
+                   self.userProfileImageView.loadImage(urlString: profileuserURL)
+               }
+               
+                userProfileImageView.translatesAutoresizingMaskIntoConstraints = false
+                userProfileImageView.layer.borderWidth = 1
+               
+                userProfileImageView.layer.borderColor = advengers.shared.colorOrange.cgColor
+                
+                userProfileImageView.layer.cornerRadius = 50 / 2
+               userProfileImageView.topAnchor.constraint(equalTo: view.topAnchor, constant:120).isActive = true
+               userProfileImageView.leftAnchor.constraint(equalTo: view.leftAnchor, constant:15).isActive = true
+                userProfileImageView.widthAnchor.constraint(equalToConstant: 50).isActive = true
+                userProfileImageView.heightAnchor.constraint(equalToConstant: 50).isActive = true
+             //   userProfileImageView.bottomAnchor.constraint(equalTo: photoImageView.topAnchor, constant: -8).isActive = true
+
+                usernameLabel.translatesAutoresizingMaskIntoConstraints = false
+               
+                 usernameLabel.topAnchor.constraint(equalTo: userProfileImageView.topAnchor, constant:10).isActive = true
+                usernameLabel.leftAnchor.constraint(equalTo: userProfileImageView.rightAnchor, constant: 8).isActive = true
+        
+        view.backgroundColor = .white
         checkPermissions()
    
         let recognizer = UILongPressGestureRecognizer(target: self, action: #selector(memoryLongPress))
             recognizer.minimumPressDuration = 0.25
             viewToRercord.addGestureRecognizer(recognizer)
-            viewToRercord.layer.backgroundColor = #colorLiteral(red: 0.9686274529, green: 0.78039217, blue: 0.3450980484, alpha: 1)
-            viewToRercord.layer.borderColor = UIColor.white.cgColor
-            viewToRercord.layer.borderWidth = 3
-            viewToRercord.layer.cornerRadius = 10
+        let image = UIImage(named: "pressRecord")
+        let imageView = UIImageView(image: image!)
+        let ratio = CGFloat((image?.size.width)!) / CGFloat ((image?.size.height)!)
+        
+        imageView.frame = CGRect(x: 0, y: 0, width: view.frame.width, height: view.frame.width / ratio)
+        viewToRercord.addSubview(imageView)
+     
+        //    viewToRercord.layer.backgroundColor = #colorLiteral(red: 0.9686274529, green: 0.78039217, blue: 0.3450980484, alpha: 1)
+      //      viewToRercord.layer.borderColor = UIColor.white.cgColor
+      //      viewToRercord.layer.borderWidth = 3
+      //      viewToRercord.layer.cornerRadius = 10
         
         view.addSubview(viewToRercord)
         
         view.addSubview(playRercord)
         
-        view.addSubview(postRercord)
+     //   view.addSubview(postRercord)
         
-        viewToRercord.anchor(top: view.topAnchor, left: nil, bottom: nil, right: nil, paddingTop: 400, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 60, height: 60)
+        viewToRercord.anchor(top: userProfileImageView.bottomAnchor, left: nil, bottom: nil, right: nil, paddingTop: 15, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: view.frame.width, height: view.frame.width / ratio)
         viewToRercord.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         
         
-        playRercord.anchor(top: viewToRercord.bottomAnchor, left: nil, bottom: nil, right: nil, paddingTop: 10, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 60, height: 60)
+        playRercord.anchor(top: viewToRercord.bottomAnchor, left: nil, bottom: nil, right: nil, paddingTop: 10, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 73, height: 73)
         playRercord.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         
-        postRercord.anchor(top: playRercord.bottomAnchor, left: nil, bottom: nil, right: nil, paddingTop: 10, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 60, height: 60)
-        postRercord.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        view.addSubview(PlayLalel)
+        PlayLalel.anchor(top: playRercord.bottomAnchor, left: nil, bottom: nil, right: nil, paddingTop: 10, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 0)
+        PlayLalel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        
+  //      postRercord.anchor(top: playRercord.bottomAnchor, left: nil, bottom: nil, right: nil, paddingTop: 10, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 60, height: 60)
+   //     postRercord.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
       
         // Do any additional setup after loading the view.
     }
@@ -99,7 +169,7 @@ class AudibleViewController: UIViewController, AVAudioRecorderDelegate {
         
         
     }
-    
+  
     @objc func memoryLongPress (sender: UILongPressGestureRecognizer) {
         
         if sender.state == .began {
@@ -108,9 +178,16 @@ class AudibleViewController: UIViewController, AVAudioRecorderDelegate {
                    
             urlTemporario = urlTemporario.appendingPathComponent("recording.m4a")
             
+            
+            
+             animateRecording ()
             recordMemory()
+            
         } else if sender.state == .ended {
-            print ("OKEY")
+            
+            
+            stopAnimation ()
+            
             finishRecording(success: true)
             
         }
@@ -118,12 +195,61 @@ class AudibleViewController: UIViewController, AVAudioRecorderDelegate {
         
         
     }
+    func stopAnimation () {
+        UIView.animate(withDuration: 0.5, animations:{
+            self.viewToRercord.transform = CGAffineTransform(scaleX: 0.8, y: 0.8)
+        }, completion: { _ in
+            UIView.animate(withDuration: 0.5, animations: {
+                self.viewToRercord.transform = .identity
+            })
+        })
+        
+    }
+    func animateRecording () {
+        
+        UIView.animate(withDuration: 0.5,
+                       delay: 0,
+                       options: [.repeat, .autoreverse, .beginFromCurrentState],
+                       animations: {
+                        self.viewToRercord.transform = CGAffineTransform(scaleX: 0.8, y: 0.8)
+
+        }, completion: { _ in
+                              UIView.animate(withDuration: 0.5, animations: {
+                                  self.viewToRercord.transform = .identity
+                              })
+                          })
+        
+    /*
+        UIView.animate(withDuration: 0.5, animations:{
+                       self.viewToRercord.transform = CGAffineTransform(scaleX: 0.8, y: 0.8)
+                   }, completion: { _ in
+                       UIView.animate(withDuration: 0.5, animations: {
+                           self.viewToRercord.transform = .identity
+                       })
+                   })
+ */
+    }
+    
     
     func recordMemory() {
         
+        playRercord.isEnabled = false
+        playRercord.tintColor = .gray
         
         
-        viewToRercord.backgroundColor = .red
+        /*
+        UIView.animate(withDuration: 0.6,
+                       delay: 0.5,
+                       options: .curveEaseInOut,
+                       animations: {
+                        self.viewToRercord.center.x += self.viewToRercord.frame.size.width
+                        self.viewToRercord.frame.size.width = 0
+        }, completion: { _ in
+            self.viewToRercord.backgroundColor = .red
+        })
+        */
+        
+         viewToRercord.tintColor = .red
 
         // this just saves me writing AVAudioSession.sharedInstance() everywhere
         let recordingSession = AVAudioSession.sharedInstance()
@@ -180,8 +306,11 @@ class AudibleViewController: UIViewController, AVAudioRecorderDelegate {
     }
 
     func finishRecording(success: Bool) {
+        
+        playRercord.tintColor = .clear
+        playRercord.isEnabled = true
         // 1
-        viewToRercord.backgroundColor = UIColor.darkGray
+      
 
         // 2
         audioRecorder?.stop()
@@ -288,6 +417,7 @@ class AudibleViewController: UIViewController, AVAudioRecorderDelegate {
                                                     "author": nombreToDisplay,
                                                     "userPhoto": userphot,
                                                     "postID": key,
+                                                    "creationDate": Date().millisecondsSince1970,
                                                     "postType": advengers.postType.audio.rawValue,
                                                     "message": "audio" as String,
                                                     "imagH:": 0.0,
@@ -301,7 +431,7 @@ class AudibleViewController: UIViewController, AVAudioRecorderDelegate {
                                         advengers.shared.postPrayFeed.updateChildValues(postfeed)
                                         
                                         AppDelegate.instance().dismissActivityIndicator()
-                                        
+                                        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "UpdateFeed"), object: nil)
                                         _ = self.navigationController?.popViewController(animated: true)
                                         
                                         

@@ -24,7 +24,7 @@ class Posts {
     var comments: Int!
     var hasLiked = false
     var whoLikes: [String] = [String] ()
-    var creationDate: Double?
+    var creationDate: Date?
     
     init(dictionary: [String: Any]) {
         //self.user = user
@@ -40,8 +40,9 @@ class Posts {
         self.message = dictionary["message"] as? String ?? ""
         self.photoH = dictionary["photoW"] as? CGFloat ?? 764.0
         self.photoW = dictionary["photoH"] as? CGFloat ?? 694.0
-        self.creationDate = dictionary["creationDate"] as? Double ?? 0
-      // self.creationDate = Date(timeIntervalSince1970: secondsFrom1970)
+       // self.creationDate = dictionary["creationDate"] as? Double ?? 0
+        let secondsFrom1970 = dictionary["creationDate"] as? Int64 ?? 0
+         self.creationDate = Date(milliseconds: secondsFrom1970)
     }
     
 }

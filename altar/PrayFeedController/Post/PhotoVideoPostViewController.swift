@@ -11,6 +11,23 @@ import Firebase
 
 class PhotoVideoPostViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
+    
+    let userProfileImageView: CustomImageView = {
+          let iv = CustomImageView()
+          iv.contentMode = .scaleAspectFill
+          iv.clipsToBounds = true
+          iv.backgroundColor = .blue
+          return iv
+      }()
+      
+      
+      let usernameLabel: UILabel = {
+          let label = UILabel()
+          label.text = "Username"
+          label.font = UIFont(name: "Avenir-Medium", size: 15)
+          return label
+      }()
+    
     let  textoIngresado: UITextView = {
         
         let a = UITextView ()
@@ -44,16 +61,70 @@ class PhotoVideoPostViewController: UIViewController, UIImagePickerControllerDel
 
     } ()
     
+    let accessory: UIView = {
+          
+          let accessoryView = UIView(frame: .zero)
+          accessoryView.backgroundColor = .lightGray
+          accessoryView.alpha = 0.6
+          return accessoryView
+      }()
+      
+      let cancelButton: UIButton = {
+           let cancelButton = UIButton(type: .custom)
+           cancelButton.setTitle("Done", for: .normal)
+           cancelButton.setTitleColor(UIColor.blue, for: .normal)
+           cancelButton.addTarget(self, action:
+           #selector(nextButton), for: .touchUpInside)
+           cancelButton.showsTouchWhenHighlighted = true
+           return cancelButton
+       }()
+      
+    @objc func nextButton () {
+        self.view.endEditing(true)
+    }
+    
+    
     
     var isImage: UIImage?
     var isVideo: String?
     
     override func viewDidLoad() {
         
+        let notificationCenter = NotificationCenter.default
+        notificationCenter.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
+        notificationCenter.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillChangeFrameNotification, object: nil)
+        
+        view.addSubview(userProfileImageView)
+        view.addSubview(usernameLabel)
+        
+        DispatchQueue.main.async {
+            self.usernameLabel.text = advengers.shared.currenUSer["name"]
+                   
+             guard let profileuserURL = advengers.shared.currenUSer["photoURL"] else {return}
+            self.userProfileImageView.loadImage(urlString: profileuserURL)
+        }
+        
+         userProfileImageView.translatesAutoresizingMaskIntoConstraints = false
+         userProfileImageView.layer.borderWidth = 1
+        
+         userProfileImageView.layer.borderColor = advengers.shared.colorOrange.cgColor
+         
+         userProfileImageView.layer.cornerRadius = 50 / 2
+        userProfileImageView.topAnchor.constraint(equalTo: view.topAnchor, constant:120).isActive = true
+        userProfileImageView.leftAnchor.constraint(equalTo: view.leftAnchor, constant:15).isActive = true
+         userProfileImageView.widthAnchor.constraint(equalToConstant: 50).isActive = true
+         userProfileImageView.heightAnchor.constraint(equalToConstant: 50).isActive = true
+      //   userProfileImageView.bottomAnchor.constraint(equalTo: photoImageView.topAnchor, constant: -8).isActive = true
+
+         usernameLabel.translatesAutoresizingMaskIntoConstraints = false
+        
+          usernameLabel.topAnchor.constraint(equalTo: userProfileImageView.topAnchor, constant:10).isActive = true
+         usernameLabel.leftAnchor.constraint(equalTo: userProfileImageView.rightAnchor, constant: 8).isActive = true
+        
         textoIngresado.delegate = self
         picker.delegate = self
         textoIngresado.text = "Say something about this photo ..."
-        
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Post", style: .plain, target: self, action: #selector(postImageAndText))
 
 
         
@@ -68,24 +139,24 @@ class PhotoVideoPostViewController: UIViewController, UIImagePickerControllerDel
         textoIngresado.backgroundColor = .white
         
         
-        view.backgroundColor = .purple
+        view.backgroundColor = .white
         
         view.addSubview(imageToDisplay)
         let ratio: CGFloat = isImage!.size.width / isImage!.size.height
-        imageToDisplay.anchor(top: view.topAnchor, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, paddingTop: 100, paddingLeft: 30, paddingBottom: 0, paddingRight: 30, width: view.frame.width - 60, height: view.frame.width / ratio)
+        imageToDisplay.anchor(top: userProfileImageView.bottomAnchor, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, paddingTop: 20, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: view.frame.width , height: view.frame.width / ratio)
       
  
    //     imageToDisplay.anchor(top: view.topAnchor, left: nil, bottom: nil, right: nil, paddingTop: 10, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 400, height: 400)
 
         
          view.addSubview(textoIngresado)
-        view.addSubview(postIt)
+      //  view.addSubview(postIt)
         
         
-        textoIngresado.anchor(top: imageToDisplay.bottomAnchor, left: view.leftAnchor, bottom: postIt.bottomAnchor, right: view.rightAnchor, paddingTop: 0, paddingLeft: 30, paddingBottom: 80, paddingRight: 30, width: 0, height: 0)
+        textoIngresado.anchor(top: imageToDisplay.bottomAnchor, left: view.leftAnchor, bottom: view.bottomAnchor, right: view.rightAnchor, paddingTop: 10, paddingLeft: 30, paddingBottom: 80, paddingRight: 30, width: 0, height: 0)
         
         
-        
+        addAccessory()
         
        // postIt.heightAnchor.constraint(equalToConstant: 40).isActive = true
        // postIt.widthAnchor.constraint(equalToConstant: 140).isActive = true
@@ -93,9 +164,9 @@ class PhotoVideoPostViewController: UIViewController, UIImagePickerControllerDel
       //  postIt.topAnchor.constraint(equalTo: textoIngresado.bottomAnchor, constant: 100).isActive = true
              
         
-          postIt.anchor(top: nil, left: nil, bottom: view.bottomAnchor, right: nil, paddingTop: 0, paddingLeft: 0, paddingBottom: 100, paddingRight: 0, width: 200, height: 30)
+     //     postIt.anchor(top: nil, left: nil, bottom: view.bottomAnchor, right: nil, paddingTop: 0, paddingLeft: 0, paddingBottom: 100, paddingRight: 0, width: 200, height: 30)
      
-          postIt.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+      //    postIt.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
 
        
     }
@@ -134,6 +205,7 @@ class PhotoVideoPostViewController: UIViewController, UIImagePickerControllerDel
                                 "author": nombreToDisplay,
                                 "userPhoto": userphot,
                                 "postID": key,
+                                "creationDate": Date().millisecondsSince1970,
                                 "postType": advengers.postType.textImage.rawValue,
                                 "message": self.textoIngresado.text,
                                 "imagH:": self.isImage!.size.height,
@@ -148,7 +220,7 @@ class PhotoVideoPostViewController: UIViewController, UIImagePickerControllerDel
                     advengers.shared.postPrayFeed.updateChildValues(postfeed)
                     
                     AppDelegate.instance().dismissActivityIndicator()
-                    
+                    NotificationCenter.default.post(name: NSNotification.Name(rawValue: "UpdateFeed"), object: nil)
                     _ = self.navigationController?.popToRootViewController(animated: true)
                     
                     
@@ -162,7 +234,49 @@ class PhotoVideoPostViewController: UIViewController, UIImagePickerControllerDel
         
     }
     
-   
+    func addAccessory() {
+              accessory.frame = CGRect(x: 0, y: 0, width: view.frame.width, height: 45)
+              accessory.translatesAutoresizingMaskIntoConstraints = false
+              cancelButton.translatesAutoresizingMaskIntoConstraints = false
+       //       charactersLeftLabel.translatesAutoresizingMaskIntoConstraints = false
+         //     sendButton.translatesAutoresizingMaskIntoConstraints = false
+              textoIngresado.inputAccessoryView = accessory
+              accessory.addSubview(cancelButton)
+             
+       //    cancelButton.anchor(top: nil, left: nil, bottom: nil, right: view.rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 4, width: 0, height: 0)
+           
+            //  accessory.addSubview(charactersLeftLabel)
+             // accessory.addSubview(sendButton)
+         
+              NSLayoutConstraint.activate([
+              cancelButton.trailingAnchor.constraint(equalTo:
+              accessory.trailingAnchor, constant: -20),
+              cancelButton.centerYAnchor.constraint(equalTo:
+              accessory.centerYAnchor)
+              ])
+          
+          }
+    
+   @objc func keyboardWillShow(notification: NSNotification) {
+    
+    guard let userInfo = notification.userInfo else {return}
+    guard let keyboardSize = userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue else {return}
+    let keyboardFrame = keyboardSize.cgRectValue
+    if self.view.frame.origin.y == 0{
+        self.view.frame.origin.y -= (keyboardFrame.height - 100)
+    }
+    
+    }
+    
+    
+   @objc func keyboardWillHide(notification: NSNotification) {
+    guard let userInfo = notification.userInfo else {return}
+    guard let keyboardSize = userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue else {return}
+    let keyboardFrame = keyboardSize.cgRectValue
+    if self.view.frame.origin.y != 0{
+        self.view.frame.origin.y += (keyboardFrame.height - 100)
+    }
+    }
     
 }
 

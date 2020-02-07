@@ -46,6 +46,11 @@ class AnnotatedPhotoCell: UICollectionViewCell {
             commentCount.text = String(tiene)
             }
             
+            let fecha = post?.creationDate
+          //  let fecha = Date(milliseconds: Int64(post?.creationDate ?? 0))
+            
+            praysDate.text = fecha!.timeAgoDisplay()
+            
             // ==========================================================
             setupAttributedCaption()
             
@@ -72,6 +77,15 @@ class AnnotatedPhotoCell: UICollectionViewCell {
         
     }
     
+    lazy var praysDate: UILabel = {
+              let label2 = UILabel ()
+              label2.font = UIFont(name: "Avenir-Medium", size: 12)
+              label2.text = "You prayed 1"
+           label2.textColor = .lightGray
+           //   button.setImage(UIImage(named: "cellPrayIcon")?.withRenderingMode(.alwaysOriginal), for: .normal)
+             // button.addTarget(self, action: #selector(handleLike), for: .touchUpInside)
+              return label2
+          }()
     
     let userProfileImageView: CustomImageView = {
         let iv = CustomImageView()
@@ -242,7 +256,9 @@ class AnnotatedPhotoCell: UICollectionViewCell {
         photoImageView.bottomAnchor.constraint(equalTo: stackView.topAnchor ).isActive = true
         photoImageView.widthAnchor.constraint(equalToConstant: frame.width).isActive = true
        
-        
+        addSubview(praysDate)
+        praysDate.anchor(top: nil, left: nil, bottom: nil, right: rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 30, width: 0, height: 0)
+         praysDate.centerYAnchor.constraint(equalTo: usernameLabel.centerYAnchor).isActive = true
         
         stackView.anchor(top: photoImageView.bottomAnchor, left: leftAnchor, bottom: bottomAnchor, right: nil, paddingTop: 0, paddingLeft: 20, paddingBottom: -8, paddingRight: 0, width: 120, height: 50)
         

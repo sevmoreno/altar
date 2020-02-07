@@ -10,7 +10,7 @@
         <!--Welcome View Controller-->
         <scene sceneID="Qfh-Id-NYJ">
             <objects>
-                <viewController id="bPD-DY-6v8" customClass="WelcomeViewController" customModule="altar" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="WelcomeViewController" id="bPD-DY-6v8" customClass="WelcomeViewController" customModule="altar" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="YQk-fP-aDq">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1122,67 +1122,11 @@
                                 <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="15"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
-                            <view alpha="0.55000000000000004" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JYh-y5-eMa">
-                                <rect key="frame" x="-10" y="574" width="434" height="1"/>
-                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <color key="tintColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="434" id="7B8-gV-6hn"/>
-                                    <constraint firstAttribute="height" constant="1" id="A0R-cr-2NO"/>
-                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="1" id="Q1c-6h-e6W"/>
-                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="434" id="bp8-Ng-6Xk"/>
-                                </constraints>
-                            </view>
-                            <view alpha="0.55000001192092896" contentMode="scaleToFill" id="ORb-NA-8cd">
-                                <rect key="frame" x="-10" y="671" width="434" height="1"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <color key="tintColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <viewLayoutGuide key="safeArea" id="Y6N-SV-Ys0"/>
-                            </view>
-                            <stackView opaque="NO" contentMode="scaleToFill" placeholderIntrinsicWidth="341" placeholderIntrinsicHeight="66" axis="vertical" distribution="equalCentering" alignment="center" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="sgg-j8-1A5">
-                                <rect key="frame" x="36.5" y="676" width="341" height="96"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" spacing="3" translatesAutoresizingMaskIntoConstraints="NO" id="y6f-mT-a0n" userLabel="Text Editing">
+                                <rect key="frame" x="55" y="594" width="304" height="40"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Csx-GS-71j">
-                                        <rect key="frame" x="20.5" y="0.0" width="300" height="45"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="300" id="gej-zb-N1R"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="16"/>
-                                        <inset key="titleEdgeInsets" minX="17" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                        <state key="normal" title="Photo / Video" image="iconphoto&amp;video">
-                                            <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="photoVideoButton:" destination="q9L-LC-sol" eventType="touchUpInside" id="T47-7X-AOS"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ooa-gF-WHf" userLabel="Audible Prayer">
-                                        <rect key="frame" x="20.5" y="51" width="300" height="45"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="300" id="v6v-0z-veg"/>
-                                        </constraints>
-                                        <inset key="titleEdgeInsets" minX="17" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                        <state key="normal" title="Audible Prayer" image="Audible">
-                                            <color key="titleColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        </state>
-                                        <connections>
-                                            <segue destination="IWm-r2-Xso" kind="show" id="Xh9-OY-jxQ"/>
-                                        </connections>
-                                    </button>
-                                </subviews>
-                            </stackView>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="3" translatesAutoresizingMaskIntoConstraints="NO" id="y6f-mT-a0n" userLabel="Text Editing">
-                                <rect key="frame" x="55" y="594" width="304" height="59.5"/>
-                                <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Background Color" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uiL-wg-zhO" userLabel="text editing">
-                                        <rect key="frame" x="0.0" y="0.0" width="304" height="16.5"/>
-                                        <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="12"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" alignment="center" spacing="26" translatesAutoresizingMaskIntoConstraints="NO" id="Q35-pq-SCj" userLabel="Styles">
-                                        <rect key="frame" x="0.0" y="19.5" width="304" height="40"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="304" height="40"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yWf-SN-EX8">
                                                 <rect key="frame" x="0.0" y="0.0" width="40" height="40"/>
@@ -1238,33 +1182,54 @@
                                     </stackView>
                                 </subviews>
                             </stackView>
+                            <stackView opaque="NO" contentMode="scaleToFill" placeholderIntrinsicWidth="341" placeholderIntrinsicHeight="66" axis="vertical" distribution="equalCentering" alignment="center" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="sgg-j8-1A5">
+                                <rect key="frame" x="36.5" y="676" width="341" height="96"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Csx-GS-71j">
+                                        <rect key="frame" x="97.5" y="0.0" width="146" height="45"/>
+                                        <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="16"/>
+                                        <inset key="titleEdgeInsets" minX="17" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                        <state key="normal" title="Photo / Video" image="iconphoto&amp;video">
+                                            <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="photoVideoButton:" destination="q9L-LC-sol" eventType="touchUpInside" id="T47-7X-AOS"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ooa-gF-WHf" userLabel="Audible Prayer">
+                                        <rect key="frame" x="89" y="51" width="163" height="45"/>
+                                        <inset key="titleEdgeInsets" minX="17" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                        <state key="normal" title="Audible Prayer" image="Audible">
+                                            <color key="titleColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <connections>
+                                            <segue destination="IWm-r2-Xso" kind="show" id="Xh9-OY-jxQ"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="sgg-j8-1A5" firstAttribute="top" secondItem="ORb-NA-8cd" secondAttribute="bottom" constant="4" id="25c-UY-DVD"/>
-                            <constraint firstItem="Wyf-ML-dlq" firstAttribute="trailing" secondItem="sgg-j8-1A5" secondAttribute="trailing" constant="36.5" id="2eG-0o-shn"/>
                             <constraint firstItem="9Pc-eT-O4O" firstAttribute="top" secondItem="mNI-A5-TrO" secondAttribute="bottom" constant="14" id="6qJ-vw-GcN"/>
                             <constraint firstItem="sgg-j8-1A5" firstAttribute="centerX" secondItem="tNG-42-u8f" secondAttribute="centerX" id="82m-Tu-Env"/>
                             <constraint firstItem="pvp-hd-VXQ" firstAttribute="leading" secondItem="Wyf-ML-dlq" secondAttribute="leading" constant="15" id="DIY-y2-Roc"/>
                             <constraint firstItem="mNI-A5-TrO" firstAttribute="leading" secondItem="Wyf-ML-dlq" secondAttribute="leading" constant="15" id="Eyy-hD-c1v"/>
                             <constraint firstItem="y6f-mT-a0n" firstAttribute="centerX" secondItem="tNG-42-u8f" secondAttribute="centerX" id="IeB-71-yi8"/>
-                            <constraint firstItem="ORb-NA-8cd" firstAttribute="top" secondItem="y6f-mT-a0n" secondAttribute="bottom" constant="17.5" id="QbV-Zm-VN7"/>
                             <constraint firstItem="pvp-hd-VXQ" firstAttribute="top" secondItem="mNI-A5-TrO" secondAttribute="bottom" constant="14" id="QmA-3P-ybs"/>
-                            <constraint firstItem="sgg-j8-1A5" firstAttribute="leading" secondItem="Wyf-ML-dlq" secondAttribute="leading" constant="36.5" id="SKZ-Wo-nv5"/>
-                            <constraint firstItem="y6f-mT-a0n" firstAttribute="top" secondItem="JYh-y5-eMa" secondAttribute="bottom" constant="19" id="YWk-DX-Tub"/>
+                            <constraint firstItem="Wyf-ML-dlq" firstAttribute="bottom" secondItem="sgg-j8-1A5" secondAttribute="bottom" constant="41" id="aRD-dw-dQX"/>
                             <constraint firstItem="Wyf-ML-dlq" firstAttribute="trailing" secondItem="9Pc-eT-O4O" secondAttribute="trailing" constant="15" id="bR7-AN-Giu"/>
                             <constraint firstItem="mNI-A5-TrO" firstAttribute="top" secondItem="Wyf-ML-dlq" secondAttribute="top" constant="10" id="h0H-lo-Mdz"/>
                             <constraint firstItem="Wyf-ML-dlq" firstAttribute="trailing" secondItem="pvp-hd-VXQ" secondAttribute="trailing" constant="15" id="ij0-J1-z6F"/>
-                            <constraint firstItem="Wyf-ML-dlq" firstAttribute="bottom" secondItem="sgg-j8-1A5" secondAttribute="bottom" constant="41" id="j7y-wr-NU0"/>
-                            <constraint firstItem="JYh-y5-eMa" firstAttribute="centerX" secondItem="tNG-42-u8f" secondAttribute="centerX" id="osS-S4-xG5"/>
-                            <constraint firstItem="JYh-y5-eMa" firstAttribute="centerX" secondItem="tNG-42-u8f" secondAttribute="centerX" id="xts-XI-8lB"/>
                             <constraint firstItem="9Pc-eT-O4O" firstAttribute="leading" secondItem="Wyf-ML-dlq" secondAttribute="leading" constant="15" id="yca-UH-Mjt"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Wyf-ML-dlq"/>
                     </view>
                     <navigationItem key="navigationItem" id="xrh-2Q-rTC"/>
                     <connections>
+                        <outlet property="audible" destination="ooa-gF-WHf" id="EIk-nG-qKm"/>
                         <outlet property="nombreUsuario" destination="8RK-md-cSH" id="VwS-dw-b3B"/>
+                        <outlet property="photovideo" destination="Csx-GS-71j" id="ZD7-Cw-enX"/>
                         <outlet property="siTieneFoto" destination="9Pc-eT-O4O" id="MXk-Ev-4F2"/>
                         <outlet property="style1" destination="yWf-SN-EX8" id="95t-3Y-S1R"/>
                         <outlet property="style2" destination="tHQ-Wq-q99" id="LY1-hZ-aB8"/>
@@ -1305,7 +1270,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="c9Q-dH-lAi" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="7010" y="1416"/>
+            <point key="canvasLocation" x="6516" y="1664"/>
         </scene>
         <!--Only Video Post View Controller-->
         <scene sceneID="9Ig-jU-V3N">
@@ -1345,7 +1310,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5Ka-iD-p1s" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="7271.0144927536239" y="661.60714285714278"/>
+            <point key="canvasLocation" x="6186" y="805"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="nF9-zY-BAG">
@@ -1750,7 +1715,7 @@ Creador. ¡Eres templo del Espíritu Santo!</string>
         <image name="worshipicon" width="30" height="23"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="t9C-jd-6oV"/>
-        <segue reference="ykW-h1-pG1"/>
+        <segue reference="7cR-iW-vX2"/>
+        <segue reference="BJb-6s-AhC"/>
     </inferredMetricsTieBreakers>
 </document>

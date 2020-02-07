@@ -19,6 +19,8 @@
 		6526F5ED23832CAE00DA2433 /* FeedImageOnlyCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6526F5EC23832CAE00DA2433 /* FeedImageOnlyCollectionViewCell.swift */; };
 		6526F5EF23836C7300DA2433 /* DynamicHeightCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6526F5EE23836C7300DA2433 /* DynamicHeightCollectionView.swift */; };
 		65372DD323E9F4ED0078778A /* league-gothic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6541434123E4ED2300EB8BA8 /* league-gothic.ttf */; };
+		65372DD523EC9D890078778A /* Satisfy-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 65372DD423EC9D890078778A /* Satisfy-Regular.ttf */; };
+		65372DD823ECFEF30078778A /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65372DD723ECFEF30078778A /* SettingsViewController.swift */; };
 		65421CCE23AAABFE000B0437 /* extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65421CCD23AAABFE000B0437 /* extensions.swift */; };
 		654F95D923306ABC00175A7E /* PrayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 654F95D823306ABC00175A7E /* PrayViewController.swift */; };
 		654F95DB23306E7F00175A7E /* PrayPostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 654F95DA23306E7F00175A7E /* PrayPostViewController.swift */; };
@@ -112,6 +114,8 @@
 		650B1E9423E207A7000C0E32 /* TabBarCambios.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarCambios.swift; sourceTree = "<group>"; };
 		6526F5EC23832CAE00DA2433 /* FeedImageOnlyCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedImageOnlyCollectionViewCell.swift; sourceTree = "<group>"; };
 		6526F5EE23836C7300DA2433 /* DynamicHeightCollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DynamicHeightCollectionView.swift; sourceTree = "<group>"; };
+		65372DD423EC9D890078778A /* Satisfy-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Satisfy-Regular.ttf"; sourceTree = "<group>"; };
+		65372DD723ECFEF30078778A /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		6541434123E4ED2300EB8BA8 /* league-gothic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "league-gothic.ttf"; sourceTree = "<group>"; };
 		65421CCD23AAABFE000B0437 /* extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = extensions.swift; sourceTree = "<group>"; };
 		654F95D823306ABC00175A7E /* PrayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrayViewController.swift; sourceTree = "<group>"; };
@@ -220,6 +224,14 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		65372DD623ECFEC90078778A /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				65372DD723ECFEF30078778A /* SettingsViewController.swift */,
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
 		65421CCF23AAAC68000B0437 /* LogSignin */ = {
 			isa = PBXGroup;
 			children = (
@@ -267,6 +279,7 @@
 		658303BF23DA325400D48ED0 /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
+				65372DD423EC9D890078778A /* Satisfy-Regular.ttf */,
 				6541434123E4ED2300EB8BA8 /* league-gothic.ttf */,
 				658303C923DA497000D48ED0 /* Prompt-Black.ttf */,
 				658303D323DA497300D48ED0 /* Prompt-BlackItalic.ttf */,
@@ -379,6 +392,7 @@
 		65D42417232576A800DB286E /* altar */ = {
 			isa = PBXGroup;
 			children = (
+				65372DD623ECFEC90078778A /* Settings */,
 				658303D823DA49C100D48ED0 /* Resources */,
 				658303AC23DA2EFF00D48ED0 /* Extensions */,
 				65421CCF23AAAC68000B0437 /* LogSignin */,
@@ -520,6 +534,7 @@
 				658303E323DA83DA00D48ED0 /* Prompt-LightItalic.ttf in Resources */,
 				65D42426232576AA00DB286E /* LaunchScreen.storyboard in Resources */,
 				658303E623DA83DA00D48ED0 /* Prompt-Regular.ttf in Resources */,
+				65372DD523EC9D890078778A /* Satisfy-Regular.ttf in Resources */,
 				658303E423DA83DA00D48ED0 /* Prompt-Medium.ttf in Resources */,
 				658303DD23DA83DA00D48ED0 /* Prompt-ExtraBold.ttf in Resources */,
 				658303DA23DA83DA00D48ED0 /* Prompt-BlackItalic.ttf in Resources */,
@@ -629,6 +644,7 @@
 				65913B2223C8F956009B8537 /* File.swift in Sources */,
 				658303BA23DA2F2200D48ED0 /* UILabel+Utility.swift in Sources */,
 				655BF7052385DA1A002F0C7C /* PrayCollectionViewLayout.swift in Sources */,
+				65372DD823ECFEF30078778A /* SettingsViewController.swift in Sources */,
 				658303B623DA2F2200D48ED0 /* NSMutableParagraphStyle+Utility.swift in Sources */,
 				650B1E9523E207A7000C0E32 /* TabBarCambios.swift in Sources */,
 				654F95D923306ABC00175A7E /* PrayViewController.swift in Sources */,

@@ -52,7 +52,11 @@ class PhotoTextoCollectionViewCell: UICollectionViewCell {
                 if let tiene = post?.comments {
                 commentCount.text = String(tiene)
                 }
-
+                
+                let fecha = post?.creationDate
+               // let fecha = Date(milliseconds: Int64(post?.creationDate ?? 0))
+                   
+                praysDate.text = fecha!.timeAgoDisplay()
                 
                 setupAttributedCaption()
                 
@@ -79,7 +83,16 @@ class PhotoTextoCollectionViewCell: UICollectionViewCell {
             captionLabel.attributedText = attributedText
             
         }
-        
+    
+        lazy var praysDate: UILabel = {
+               let label2 = UILabel ()
+               label2.font = UIFont(name: "Avenir-Medium", size: 12)
+               label2.text = "You prayed 1"
+            label2.textColor = .lightGray
+            //   button.setImage(UIImage(named: "cellPrayIcon")?.withRenderingMode(.alwaysOriginal), for: .normal)
+              // button.addTarget(self, action: #selector(handleLike), for: .touchUpInside)
+               return label2
+           }()
         
         let userProfileImageView: CustomImageView = {
             let iv = CustomImageView()
@@ -185,6 +198,15 @@ class PhotoTextoCollectionViewCell: UICollectionViewCell {
         }()
         
         
+    let viewContenedro: UIView = {
+        
+        let a = UIView ()
+        
+       
+        
+        return a
+        
+    } ()
         
         override init(frame: CGRect) {
             super.init(frame: frame)
@@ -267,6 +289,9 @@ class PhotoTextoCollectionViewCell: UICollectionViewCell {
             
             captionLabel.anchor(top: photoImageView.bottomAnchor, left: leftAnchor, bottom: stackView.topAnchor, right: rightAnchor, paddingTop: 0, paddingLeft: 8, paddingBottom: 0, paddingRight: 0, width: 0, height: 0)
             
+            addSubview(praysDate)
+            praysDate.anchor(top: nil, left: nil, bottom: nil, right: rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 30, width: 0, height: 0)
+            praysDate.centerYAnchor.constraint(equalTo: usernameLabel.centerYAnchor).isActive = true
             
             stackView.anchor(top: captionLabel.bottomAnchor, left: leftAnchor, bottom: bottomAnchor, right: nil, paddingTop: 0, paddingLeft: 20, paddingBottom: -8, paddingRight: 0, width: 120, height: 50)
            

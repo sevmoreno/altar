@@ -46,7 +46,9 @@ class textOnlyCell: UICollectionViewCell {
                      if let tiene = post?.comments {
                      commentCount.text = String(tiene)
                      }
-                     
+          //  let fecha = Date(milliseconds: Int64(post?.creationDate ?? 0))
+            let fecha = post?.creationDate
+            praysDate.text = fecha!.timeAgoDisplay()
                      // ==========================================================
       
 
@@ -74,6 +76,17 @@ class textOnlyCell: UICollectionViewCell {
     }
     
     // NEW DESGIN CODE  ----------------------------------
+    
+    lazy var praysDate: UILabel = {
+           let label2 = UILabel ()
+           label2.font = UIFont(name: "Avenir-Medium", size: 12)
+           label2.text = "You prayed 1"
+        label2.textColor = .lightGray
+        //   button.setImage(UIImage(named: "cellPrayIcon")?.withRenderingMode(.alwaysOriginal), for: .normal)
+          // button.addTarget(self, action: #selector(handleLike), for: .touchUpInside)
+           return label2
+       }()
+    
     
     lazy var likeCount: UILabel = {
         let label2 = UILabel ()
@@ -203,8 +216,9 @@ class textOnlyCell: UICollectionViewCell {
              
              usernameLabel.anchor(top: userProfileImageView.topAnchor, left: userProfileImageView.rightAnchor, bottom: nil, right: nil, paddingTop: 10, paddingLeft: 8, paddingBottom: 0, paddingRight: 0, width: 0, height: 0)
              
-             
-             
+         addSubview(praysDate)
+        praysDate.anchor(top: nil, left: nil, bottom: nil, right: rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 30, width: 0, height: 0)
+         praysDate.centerYAnchor.constraint(equalTo: usernameLabel.centerYAnchor).isActive = true
             //  optionsButton.anchor(top: topAnchor, left: nil, bottom: nil, right: rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 44, height: 0)
              
 
@@ -214,9 +228,20 @@ class textOnlyCell: UICollectionViewCell {
              addSubview(captionLabel)
              captionLabel.anchor(top: userProfileImageView.bottomAnchor, left: leftAnchor, bottom: nil, right: rightAnchor, paddingTop: 10, paddingLeft: 8, paddingBottom: 0, paddingRight: 8, width: 0, height: 0)
              
-             setupActionButtons()
+             let stackView = UIStackView(arrangedSubviews: [likeButton,likeCount,commentButton,commentCount])
+            stackView.distribution = .fillEqually
+                    
+            addSubview(stackView)
+         //   addSubview(praysCount)
+           stackView.anchor(top: captionLabel.bottomAnchor, left: leftAnchor, bottom: bottomAnchor, right: nil, paddingTop: 8, paddingLeft: 20, paddingBottom: 0, paddingRight: 0, width: 120, height: 50)
+      //  praysCount.anchor(top: captionLabel.bottomAnchor, left: nil, bottom: bottomAnchor, right: rightAnchor, paddingTop: 8, paddingLeft: 0, paddingBottom: 0, paddingRight: 20, width: 100, height: 50)
+           // praysCount.text = "Hola"
+           // addSubview(praysCount)
+           // praysCount.centerYAnchor.constraint(equalTo: stackView.centerYAnchor).isActive = true
+            //raysCount.rightAnchor.constraint(equalTo: rightAnchor, constant: 8).isActive = true
              
-             
+            
+            
 
         
         
@@ -234,12 +259,8 @@ class textOnlyCell: UICollectionViewCell {
    
     fileprivate func setupActionButtons() {
         
-        let stackView = UIStackView(arrangedSubviews: [likeButton,likeCount,commentButton,commentCount])
-        stackView.distribution = .fillEqually
-        
-        addSubview(stackView)
-        stackView.anchor(top: captionLabel.bottomAnchor, left: leftAnchor, bottom: bottomAnchor, right: nil, paddingTop: 8, paddingLeft: 20, paddingBottom: 0, paddingRight: 0, width: 120, height: 50)
-        
+       
+
         
     }
     

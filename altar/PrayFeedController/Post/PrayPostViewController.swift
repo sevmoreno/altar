@@ -16,6 +16,8 @@ class PrayPostViewController: UIViewController, UIImagePickerControllerDelegate,
     
     var hasImage: Bool = false
 
+    @IBOutlet var audible: UIButton!
+    @IBOutlet var photovideo: UIButton!
     var typeOfPost: String = ""
     
     var imageToSend: UIImage?
@@ -36,11 +38,26 @@ class PrayPostViewController: UIViewController, UIImagePickerControllerDelegate,
     @IBOutlet weak var usuarioFoto: CustomImageView!
         
     @IBOutlet var siTieneFoto: UIImageView!
-    @IBOutlet var style1: UIButton!
+    @IBOutlet var style1: UIButton! {
+        didSet{
+         
+        
+        }
+    }
     @IBOutlet var style2: UIButton!
     @IBOutlet var style3: UIButton!
     @IBOutlet var style4: UIButton!
     @IBOutlet var style5: UIButton!
+    
+    let separador: UIView = {
+        
+        let a = UIView ()
+        
+        a.backgroundColor = .lightGray
+        
+        return a
+        
+    } ()
     
     /*
     @IBOutlet var colorPicker1: UIButton!
@@ -59,6 +76,53 @@ class PrayPostViewController: UIViewController, UIImagePickerControllerDelegate,
     
     var fontSize: CGFloat = 14
     
+    let accessory: UIView = {
+        
+        let accessoryView = UIView(frame: .zero)
+        accessoryView.backgroundColor = .lightGray
+        accessoryView.alpha = 0.6
+        return accessoryView
+    }()
+    
+    let cancelButton: UIButton = {
+         let cancelButton = UIButton(type: .custom)
+         cancelButton.setTitle("Done", for: .normal)
+         cancelButton.setTitleColor(UIColor.blue, for: .normal)
+         cancelButton.addTarget(self, action:
+         #selector(nextButton), for: .touchUpInside)
+         cancelButton.showsTouchWhenHighlighted = true
+         return cancelButton
+     }()
+    
+    @objc func nextButton () {
+        self.view.endEditing(true)
+    }
+    
+
+    
+    func addAccessory() {
+           accessory.frame = CGRect(x: 0, y: 0, width: view.frame.width, height: 45)
+           accessory.translatesAutoresizingMaskIntoConstraints = false
+           cancelButton.translatesAutoresizingMaskIntoConstraints = false
+    //       charactersLeftLabel.translatesAutoresizingMaskIntoConstraints = false
+      //     sendButton.translatesAutoresizingMaskIntoConstraints = false
+           textoIngresado.inputAccessoryView = accessory
+           accessory.addSubview(cancelButton)
+          
+    //    cancelButton.anchor(top: nil, left: nil, bottom: nil, right: view.rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 4, width: 0, height: 0)
+        
+         //  accessory.addSubview(charactersLeftLabel)
+          // accessory.addSubview(sendButton)
+      
+           NSLayoutConstraint.activate([
+           cancelButton.trailingAnchor.constraint(equalTo:
+           accessory.trailingAnchor, constant: -20),
+           cancelButton.centerYAnchor.constraint(equalTo:
+           accessory.centerYAnchor)
+           ])
+       
+       }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -67,21 +131,117 @@ class PrayPostViewController: UIViewController, UIImagePickerControllerDelegate,
         style1.layer.cornerRadius = 5
         style1.layer.masksToBounds = true
         
-        style2.backgroundColor = UIColor.rgb(red: 255, green: 204, blue: 0)
+       // style2.backgroundColor = UIColor.rgb(red: 255, green: 204, blue: 0)
+        style2.setBackgroundImage(UIImage(named: "fondo2"), for: .normal)
         style2.layer.cornerRadius = 5
+        style2.layer.masksToBounds = true
         
-        style3.backgroundColor = UIColor.rgb(red: 0, green: 122, blue: 255)
+        
+      //  style3.backgroundColor = UIColor.rgb(red: 0, green: 122, blue: 255)
+        style3.setBackgroundImage(UIImage(named: "fondo3"), for: .normal)
         style3.layer.cornerRadius = 5
-        
-        style4.backgroundColor = UIColor.rgb(red: 255, green: 149, blue: 0)
-        style4.layer.cornerRadius = 5
-        
-        style5.backgroundColor = UIColor.rgb(red: 218, green: 202, blue: 229)
-        style5.layer.cornerRadius = 5
+        style3.layer.masksToBounds = true
 
         
+   //     style4.backgroundColor = UIColor.rgb(red: 255, green: 149, blue: 0)
+        style4.setBackgroundImage(UIImage(named: "fondo4"), for: .normal)
+        style4.layer.cornerRadius = 5
+        style4.layer.masksToBounds = true
         
-        /*
+     //   style5.backgroundColor = UIColor.rgb(red: 218, green: 202, blue: 229)
+        style5.setBackgroundImage(UIImage(named: "fondo5"), for: .normal)
+        style5.layer.cornerRadius = 5
+        style5.layer.masksToBounds = true
+
+        
+        view.addSubview(usuarioFoto)
+        view.addSubview(nombreUsuario!)
+        
+        usuarioFoto.translatesAutoresizingMaskIntoConstraints = false
+        usuarioFoto.layer.borderWidth = 1
+                      
+        usuarioFoto.layer.borderColor = advengers.shared.colorOrange.cgColor
+                       
+        usuarioFoto.layer.cornerRadius = 50 / 2
+        usuarioFoto.topAnchor.constraint(equalTo: view.topAnchor, constant:90).isActive = true
+        usuarioFoto.leftAnchor.constraint(equalTo: view.leftAnchor, constant:15).isActive = true
+        usuarioFoto.widthAnchor.constraint(equalToConstant: 50).isActive = true
+        usuarioFoto.heightAnchor.constraint(equalToConstant: 50).isActive = true
+                    //   userProfileImageView.bottomAnchor.constraint(equalTo: photoImageView.topAnchor, constant: -8).isActive = true
+
+        nombreUsuario?.translatesAutoresizingMaskIntoConstraints = false
+                      
+        nombreUsuario?.topAnchor.constraint(equalTo: usuarioFoto.topAnchor, constant:10).isActive = true
+        nombreUsuario?.leftAnchor.constraint(equalTo: usuarioFoto.rightAnchor, constant: 8).isActive = true
+        
+        view.addSubview(textoIngresado)
+        textoIngresado.anchor(top: usuarioFoto.bottomAnchor, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, paddingTop: 10, paddingLeft: 10, paddingBottom: 0, paddingRight: 10, width: 0, height: 380)
+        
+        view.addSubview(separador)
+        separador.anchor(top: textoIngresado.bottomAnchor, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, paddingTop: 5, paddingLeft: 10, paddingBottom: 0, paddingRight: 10, width: 0, height: 1)
+        
+       // style1.anchor(top: 0, left: 0, bottom: 0, right: 0, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 40, height: 40)
+        
+        style1.translatesAutoresizingMaskIntoConstraints = false
+        style1.widthAnchor.constraint(equalToConstant: 50).isActive = true
+        style1.heightAnchor.constraint(equalToConstant: 50).isActive = true
+        
+        style2.translatesAutoresizingMaskIntoConstraints = false
+        style2.widthAnchor.constraint(equalToConstant: 50).isActive = true
+        style2.heightAnchor.constraint(equalToConstant: 50).isActive = true
+        
+        style3.translatesAutoresizingMaskIntoConstraints = false
+        style3.widthAnchor.constraint(equalToConstant: 50).isActive = true
+        style3.heightAnchor.constraint(equalToConstant: 50).isActive = true
+        
+        style4.translatesAutoresizingMaskIntoConstraints = false
+        style4.widthAnchor.constraint(equalToConstant: 50).isActive = true
+        style4.heightAnchor.constraint(equalToConstant: 50).isActive = true
+        
+        style5.translatesAutoresizingMaskIntoConstraints = false
+        style5.widthAnchor.constraint(equalToConstant: 50).isActive = true
+        style5.heightAnchor.constraint(equalToConstant: 50).isActive = true
+        
+        let stackView = UIStackView(arrangedSubviews: [style1,style2,style3,style4,style5])
+        
+        
+               
+               stackView.translatesAutoresizingMaskIntoConstraints = false
+               
+            stackView.distribution = .equalSpacing
+               stackView.axis = .horizontal
+               stackView.spacing = 10
+               
+               view.addSubview(stackView)
+        
+        stackView.anchor(top: textoIngresado.bottomAnchor, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, paddingTop: 20, paddingLeft: 30, paddingBottom: 0, paddingRight: 30, width: 0, height: 0)
+        
+        
+        
+        photovideo.translatesAutoresizingMaskIntoConstraints = false
+        photovideo.widthAnchor.constraint(equalToConstant: 250).isActive = true
+        
+        audible.translatesAutoresizingMaskIntoConstraints = false
+        audible.widthAnchor.constraint(equalToConstant: 250).isActive = true
+      //  style5.heightAnchor.constraint(equalToConstant: 50).isActive = true
+        
+        let stackView2 = UIStackView(arrangedSubviews: [photovideo,audible])
+        
+        
+               
+               stackView2.translatesAutoresizingMaskIntoConstraints = false
+               
+            stackView2.distribution = .equalSpacing
+               stackView2.axis = .vertical
+               stackView2.spacing = 10
+               
+               view.addSubview(stackView2)
+        
+        stackView2.anchor(top: stackView.bottomAnchor, left: stackView.leftAnchor, bottom: nil, right: nil, paddingTop: 10, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 0)
+      //  stackView2.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        
+        
+/*
         
                    for family: String in UIFont.familyNames {
                    print("\(family)")
@@ -89,7 +249,7 @@ class PrayPostViewController: UIViewController, UIImagePickerControllerDelegate,
                    print("== \(names)")
                    }
                    }
-        */
+   */
      //  navigationItem.rightBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "gear").withRenderingMode(.alwaysOriginal), style: .plain, target: self, action: #selector(handleLogOut))
         
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Post", style: .plain, target: self, action: #selector(postAction))
@@ -98,7 +258,7 @@ class PrayPostViewController: UIViewController, UIImagePickerControllerDelegate,
         
         
        picker.delegate = self
-       textoIngresado.text = "What is your prayer"
+       textoIngresado.text = "What is your prayer?"
     //   textoIngresado.textColor = .lightGray
        textoIngresado.delegate = self
         textoIngresado.isScrollEnabled = true
@@ -126,7 +286,7 @@ class PrayPostViewController: UIViewController, UIImagePickerControllerDelegate,
        // }
        // else { return }
  
-       
+       addAccessory()
         
         
         // Do any additional setup after loading the view.
@@ -240,7 +400,7 @@ class PrayPostViewController: UIViewController, UIImagePickerControllerDelegate,
         //let cg = CGPoint(x: 0.0,y: 200.0)
         textoIngresado.backgroundColor = .clear
       
-        let data = textoToImage().jpegData(compressionQuality: 0.6)
+        let data = captureScreen().jpegData(compressionQuality: 0.6)
         
         
         let imagenCapturada = UIImage(data: data!)
@@ -260,7 +420,7 @@ class PrayPostViewController: UIViewController, UIImagePickerControllerDelegate,
                         
                         let feed = ["userid": uid,
                                     "pathtoPost":url.absoluteString,
-                                    "date": Date().millisecondsSince1970,
+                                    "creationDate": Date().millisecondsSince1970,
                                     "prays": 0,
                                     "author": nombreToDisplay,
                                     "userPhoto": userphot,
@@ -278,7 +438,7 @@ class PrayPostViewController: UIViewController, UIImagePickerControllerDelegate,
                         advengers.shared.postPrayFeed.updateChildValues(postfeed)
                         
                         AppDelegate.instance().dismissActivityIndicator()
-                        
+                        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "UpdateFeed"), object: nil)
                         _ = self.navigationController?.popViewController(animated: true)
                         
                         
@@ -295,6 +455,7 @@ class PrayPostViewController: UIViewController, UIImagePickerControllerDelegate,
             let feed = [                       "userid": uid,
                                                "pathtoPost":"",
                                                "prays": 0,
+                                               "creationDate": Date().millisecondsSince1970,
                                                "author": nombreToDisplay,
                                                "userPhoto": userphot,
                                                "postID": key,
@@ -325,6 +486,7 @@ class PrayPostViewController: UIViewController, UIImagePickerControllerDelegate,
             
             AppDelegate.instance().dismissActivityIndicator()
             
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "UpdateFeed"), object: nil)
             _ = self.navigationController?.popViewController(animated: true)
 
             
@@ -336,59 +498,79 @@ class PrayPostViewController: UIViewController, UIImagePickerControllerDelegate,
     
     func captureScreen() -> UIImage
     {
-      //  var tamano = siTieneFoto.bounds.size
-        //   tamano.height = 380
-        // tamano.width = 384
-   //     var limite = view.bounds
-    //    limite.origin = CGPoint(x: 15, y: 162)
-    //    limite.size = tamano
-   //     limite.size.height = limite.size.height
-  //      view.backgroundColor = .clear
-      let renderer = UIGraphicsImageRenderer(size: siTieneFoto.bounds.size)
+      let img = UIImageView(frame: textoIngresado.bounds)
+          img.image = siTieneFoto.image
+          img.contentMode = .scaleToFill
+          img.tag = 100
+          textoIngresado.backgroundColor = UIColor.clear
+          textoIngresado.addSubview( img)
+          //  self.view.addSubview(textView)
+          textoIngresado.sendSubviewToBack(img)
+        textoIngresado.tintColor = .clear
+      let renderer = UIGraphicsImageRenderer(size: siTieneFoto.frame.size)
 
         let image = renderer.image(actions: { context in
             textoIngresado.drawHierarchy(in: siTieneFoto.bounds, afterScreenUpdates: true)
         })
 
+        textoIngresado.tintColor = .black
         return image
     }
     
     func textoToImage() -> UIImage {
         
-        
+      /*
         let img = UIImageView(frame: textoIngresado.bounds)
         img.image = siTieneFoto.image
-                 
+        img.contentMode = .scaleToFill
         img.tag = 100
-                 textoIngresado.backgroundColor = UIColor.clear
-                 textoIngresado.addSubview( img)
-               //  self.view.addSubview(textView)
-                 textoIngresado.sendSubviewToBack(img)
-                 
+        textoIngresado.backgroundColor = UIColor.clear
+        textoIngresado.addSubview( img)
+        //  self.view.addSubview(textView)
+        textoIngresado.sendSubviewToBack(img)
+      */
         
+        var image: UIImage? = nil
+        
+        
+        // ----------------- let seee
+        let fotoCaptura = CALayer ()
+      //  fotoCaptura.frame = CGRect(x: 0, y: 0, width: siTieneFoto!.frame.width, height: siTieneFoto!.frame.height)
+        print("Posicion")
        
+        fotoCaptura.addSublayer(textoIngresado.layer)
+        
+        UIGraphicsBeginImageContextWithOptions(siTieneFoto!.frame.size, true, 0.0)
+      //  siTieneFoto.layer.render(in: UIGraphicsGetCurrentContext()!)
+        fotoCaptura.render(in: UIGraphicsGetCurrentContext()!)
+        image = UIGraphicsGetImageFromCurrentImageContext()
+        
+        // --------------------
         
         
-   //    UIGraphicsBeginImageContextWithOptions(textoIngresado.visibleSize, textoIngresado.isOpaque, 0.0)
-    
-       
+        /*
+        siTieneFoto.frame = CGRect(x: siTieneFoto.frame.origin.x, y: siTieneFoto.frame.origin.y, width: siTieneFoto.frame.size.width, height: siTieneFoto.frame.size.width)
+        
+        //   UIGraphicsBeginImageContextWithOptions(textoIngresado.visibleSize, textoIngresado.isOpaque, 0.0)
         UIGraphicsBeginImageContextWithOptions(textoIngresado.frame.size, textoIngresado.isOpaque, 0.0)
-       let savedContentOffset: CGPoint = textoIngresado.contentOffset
-        let savedFrame: CGRect = textoIngresado.frame
+        //let savedContentOffset: CGPoint = textoIngresado.contentOffset
+        // var savedFrame: CGRect = textoIngresado.frame
         
-        textoIngresado.contentOffset = .zero
-      textoIngresado.frame = CGRect(x: 0, y: 0, width: textoIngresado.frame.size.width, height: textoIngresado.frame.size.height)
         
-        textoIngresado.layer.render(in: UIGraphicsGetCurrentContext()!)
+        // textoIngresado.contentOffset = .zero
+        // textoIngresado.frame = CGRect(x: 0, y: 0, width: textoIngresado.frame.size.width, height: textoIngresado.frame.size.height)
         
-        let imagena = UIGraphicsGetImageFromCurrentImageContext()
+        siTieneFoto.layer.render(in: UIGraphicsGetCurrentContext()!)
         
-        textoIngresado.contentOffset = savedContentOffset
-        textoIngresado.frame = savedFrame
+        image = UIGraphicsGetImageFromCurrentImageContext()
+        
+        // rtextoIngresado.contentOffset = savedContentOffset
+        // textoIngresado.frame = savedFrame
         
         UIGraphicsEndImageContext()
+        */
         
-        return imagena!
+        return image!
     }
     // MARK:   --------------------------------------- TEXT STYLE --------------------------------------
     func backToNormal () {
@@ -433,7 +615,7 @@ class PrayPostViewController: UIViewController, UIImagePickerControllerDelegate,
         textoIngresado.isScrollEnabled = false
         
         styleEnable = 1
-        textoIngresado.centerVertically()
+        
       //  RGB: (246, 246, 214) (218, 202, 229)
         
         
@@ -480,16 +662,20 @@ class PrayPostViewController: UIViewController, UIImagePickerControllerDelegate,
             self.textoIngresado.isScrollEnabled = false
             self.textoIngresado.backgroundColor = .clear
             
+            textoIngresado.centerVertically()
+            
           DispatchQueue.main.async {
             self.siTieneFoto.image = UIImage(named: "fondo1")
             self.siTieneFoto.contentMode = .scaleAspectFill
             self.siTieneFoto.setNeedsDisplay()
             
             }
-        }
+    }
         
         
 
+        
+        
         
        // let img = UIImageView(frame: textoIngresado.bounds)
         //img.image = UIImage(named: "fondo1")
@@ -506,6 +692,63 @@ class PrayPostViewController: UIViewController, UIImagePickerControllerDelegate,
     
     @IBAction func style2(_ sender: Any) {
         
+        if styleEnable == 2 {
+                  
+                 backToNormal()
+             
+                  
+              } else {
+              
+        
+              
+              textoIngresado.isScrollEnabled = false
+              
+              styleEnable = 2
+   
+        
+           let quote = textoIngresado.text!
+             
+             switch quote.count {
+                 
+             case 1...50:
+             fontSize = 60
+             case 50...60:
+             fontSize = 50
+             case 60...70:
+             fontSize = 40
+             default:
+                 fontSize = 14
+             }
+             
+             
+          
+                 let font = UIFont(name: "Satisfy-Regular", size: CGFloat(self.fontSize))
+          //   let font = UIFont.systemFont(ofSize: CGFloat(fontSize))
+             let paragraphStyle = NSMutableParagraphStyle()
+             paragraphStyle.alignment = .center
+                 self.attributes[.paragraphStyle] = paragraphStyle
+                 self.attributes[.foregroundColor] = UIColor.white
+                 self.attributes[.font] = font
+                 
+                 
+                 hasImage = true
+             
+        
+             
+                 let attributedQuote = NSAttributedString(string: quote, attributes: self.attributes)
+
+                 self.textoIngresado.attributedText = attributedQuote
+                 self.textoIngresado.isScrollEnabled = false
+                 self.textoIngresado.backgroundColor = .clear
+                 textoIngresado.centerVertically()
+               DispatchQueue.main.async {
+                 self.siTieneFoto.image = UIImage(named: "fondo2")
+                 self.siTieneFoto.contentMode = .scaleAspectFill
+                 self.siTieneFoto.setNeedsDisplay()
+                 
+                 }
+        }
+        /*
         hasImage = true
         textoIngresado.backgroundColor = UIColor.rgb(red: 246, green: 109, blue: 48)
         
@@ -518,10 +761,13 @@ class PrayPostViewController: UIViewController, UIImagePickerControllerDelegate,
         let attributedQuote = NSAttributedString(string: quote, attributes: attributes)
         
         textoIngresado.attributedText = attributedQuote
+ */
+        
+        
     }
     
     @IBAction func style3(_ sender: Any) {
-        
+        /*
         hasImage = true
         textoIngresado.backgroundColor = UIColor(red:47.0/255.0, green:72.0/255.0, blue:88.0/255.0, alpha:1.0)
         
@@ -533,36 +779,187 @@ class PrayPostViewController: UIViewController, UIImagePickerControllerDelegate,
         
         let attributedQuote = NSAttributedString(string: quote, attributes: attributes)
         
-        textoIngresado.attributedText = attributedQuote    }
+        textoIngresado.attributedText = attributedQuote
+ 
+ */
+        if styleEnable == 3 {
+                    
+                   backToNormal()
+               
+                    
+                } else {
+                
+          
+                
+                textoIngresado.isScrollEnabled = false
+                
+                styleEnable = 3
+                textoIngresado.centerVertically()
+          
+             let quote = textoIngresado.text!
+               
+               switch quote.count {
+                   
+               case 1...50:
+               fontSize = 60
+               case 50...60:
+               fontSize = 50
+               case 60...70:
+               fontSize = 40
+               default:
+                   fontSize = 14
+               }
+               
+               
+            
+                   let font = UIFont(name: "TimesNewRomanPSMT", size: CGFloat(self.fontSize))
+            //   let font = UIFont.systemFont(ofSize: CGFloat(fontSize))
+               let paragraphStyle = NSMutableParagraphStyle()
+               paragraphStyle.alignment = .center
+                   self.attributes[.paragraphStyle] = paragraphStyle
+                   self.attributes[.foregroundColor] = UIColor.white
+                   self.attributes[.font] = font
+                   
+                   
+                   hasImage = true
+               
+          
+               
+                   let attributedQuote = NSAttributedString(string: quote, attributes: self.attributes)
+
+                   self.textoIngresado.attributedText = attributedQuote
+                   self.textoIngresado.isScrollEnabled = false
+                   self.textoIngresado.backgroundColor = .clear
+                   textoIngresado.centerVertically()
+                 DispatchQueue.main.async {
+                   self.siTieneFoto.image = UIImage(named: "fondo3")
+                   self.siTieneFoto.contentMode = .scaleAspectFill
+                   self.siTieneFoto.setNeedsDisplay()
+                   
+                   }
+          }
+ 
+ 
+ }
     
     @IBAction func style4(_ sender: Any) {
         
-        hasImage = true
-        textoIngresado.backgroundColor = UIColor(red:246.0/255.0, green:174.0/255.0, blue:45.0/255.0, alpha:1.0)
-        let quote = textoIngresado.text!
-        let font = UIFont.systemFont(ofSize: CGFloat(fontSize))
-        let paragraphStyle = NSMutableParagraphStyle()
-        paragraphStyle.alignment = .center
-        attributes[.font] = font
-        
-        let attributedQuote = NSAttributedString(string: quote, attributes: attributes)
-        
-        textoIngresado.attributedText = attributedQuote
+     if styleEnable == 4 {
+                           
+                          backToNormal()
+                      
+                           
+                       } else {
+                       
+                 
+                       
+                       textoIngresado.isScrollEnabled = false
+                       
+                       styleEnable = 4
+                       textoIngresado.centerVertically()
+                 
+                    let quote = textoIngresado.text!
+                      
+                      switch quote.count {
+                          
+                      case 1...50:
+                      fontSize = 60
+                      case 50...60:
+                      fontSize = 50
+                      case 60...70:
+                      fontSize = 40
+                      default:
+                          fontSize = 14
+                      }
+                      
+                      
+                   
+                          let font = UIFont(name: "LeagueGothic", size: CGFloat(self.fontSize))
+                   //   let font = UIFont.systemFont(ofSize: CGFloat(fontSize))
+                      let paragraphStyle = NSMutableParagraphStyle()
+                      paragraphStyle.alignment = .center
+                          self.attributes[.paragraphStyle] = paragraphStyle
+                          self.attributes[.foregroundColor] = UIColor.white
+                          self.attributes[.font] = font
+                          
+                          
+                          hasImage = true
+                      
+                 
+                      
+                          let attributedQuote = NSAttributedString(string: quote, attributes: self.attributes)
+
+                          self.textoIngresado.attributedText = attributedQuote
+                          self.textoIngresado.isScrollEnabled = false
+                          self.textoIngresado.backgroundColor = .clear
+                          textoIngresado.centerVertically()
+                        DispatchQueue.main.async {
+                          self.siTieneFoto.image = UIImage(named: "fondo4")
+                          self.siTieneFoto.contentMode = .scaleAspectFill
+                          self.siTieneFoto.setNeedsDisplay()
+                          
+                          }
+                 }
     }
     
     @IBAction func style5(_ sender: Any) {
         
-        hasImage = true
-        textoIngresado.backgroundColor = UIColor(red:244.0/255.0, green:100.0/255.0, blue:25.0/255.0, alpha:1.0)
-        let quote = textoIngresado.text!
-        let font = UIFont.systemFont(ofSize: CGFloat(fontSize))
-        let paragraphStyle = NSMutableParagraphStyle()
-        paragraphStyle.alignment = .center
-        attributes[.font] = font
-        
-        let attributedQuote = NSAttributedString(string: quote, attributes: attributes)
-        
-        textoIngresado.attributedText = attributedQuote
+      if styleEnable == 4 {
+                              
+                             backToNormal()
+                         
+                              
+                          } else {
+                          
+                    
+                          
+                          textoIngresado.isScrollEnabled = false
+                          
+                          styleEnable = 4
+                          textoIngresado.centerVertically()
+                    
+                       let quote = textoIngresado.text!
+                         
+                         switch quote.count {
+                             
+                         case 1...50:
+                         fontSize = 60
+                         case 50...60:
+                         fontSize = 50
+                         case 60...70:
+                         fontSize = 40
+                         default:
+                             fontSize = 14
+                         }
+                         
+                         
+                      
+                             let font = UIFont(name: "LeagueGothic", size: CGFloat(self.fontSize))
+                      //   let font = UIFont.systemFont(ofSize: CGFloat(fontSize))
+                         let paragraphStyle = NSMutableParagraphStyle()
+                         paragraphStyle.alignment = .center
+                             self.attributes[.paragraphStyle] = paragraphStyle
+                             self.attributes[.foregroundColor] = UIColor.white
+                             self.attributes[.font] = font
+                             
+                             
+                             hasImage = true
+                         
+                    
+                         
+                             let attributedQuote = NSAttributedString(string: quote, attributes: self.attributes)
+
+                             self.textoIngresado.attributedText = attributedQuote
+                             self.textoIngresado.isScrollEnabled = false
+                             self.textoIngresado.backgroundColor = .clear
+                             textoIngresado.centerVertically()
+                           DispatchQueue.main.async {
+                             self.siTieneFoto.image = UIImage(named: "fondo5")
+                             self.siTieneFoto.contentMode = .scaleAspectFill
+                             self.siTieneFoto.setNeedsDisplay()
+                             
+                             }
+                    }
     }
     
     
@@ -700,7 +1097,7 @@ extension PrayPostViewController: UITextViewDelegate {
         }
           */
         let numberOfLines = textoIngresado.layoutManager.numberOfLines
-        
+        if styleEnable != 0 {
         if textoIngresado.text.count > 50 && textoIngresado.text.count  < 60  || numberOfLines < 6 {
             print ("Entre 50 y 60")
             print (numberOfLines)
@@ -785,7 +1182,7 @@ extension PrayPostViewController: UITextViewDelegate {
                       }
       
         
-
+        }
     }
     
     
