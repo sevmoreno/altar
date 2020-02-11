@@ -24,7 +24,8 @@ class PowerOfWordCollectionView: UICollectionViewController,  UICollectionViewDe
         
            collectionView?.register(DevotionalCollectionViewCell.self, forCellWithReuseIdentifier: "oldWord")
           // collectionView?.register(textOnlyCell.self, forCellWithReuseIdentifier: "textOnlyCelll")
-           collectionView?.backgroundColor = .lightGray
+         collectionView?.backgroundColor = advengers.shared.colorBlue
+        
 
            //navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Add Prayer", style: .plain, target: self, action: #selector(addprayer))
         
@@ -39,7 +40,7 @@ class PowerOfWordCollectionView: UICollectionViewController,  UICollectionViewDe
                navigationController?.navigationBar.backgroundColor = advengers.shared.colorBlue
                navigationController?.navigationBar.barTintColor = advengers.shared.colorBlue
                
-               navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "settingsincon"), style: .plain, target: self, action: #selector(advengers.shared.settings))
+               navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "settingsincon"), style: .plain, target: self, action: #selector(settings))
         
                navigationItem.leftBarButtonItem?.tintColor = advengers.shared.colorOrange
                
@@ -73,6 +74,15 @@ class PowerOfWordCollectionView: UICollectionViewController,  UICollectionViewDe
        
            
        }
+    
+    @objc func settings () {
+        
+        
+              let settingsController = SettingsViewController()
+             // navigationController?.pushViewController(signUpController, animated: true)
+              
+               present(settingsController, animated: true, completion: nil)
+    }
     
     func loadDevocionales () {
         

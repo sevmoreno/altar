@@ -12,7 +12,7 @@ class DevotionalCollectionViewCell: UICollectionViewCell {
     
     let viewGeneral: UIView  = {
         let a = UIView ()
-        a.backgroundColor = .cyan
+        a.backgroundColor = advengers.shared.colorBlue
         
         
         return a

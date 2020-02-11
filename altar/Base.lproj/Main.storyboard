@@ -1310,7 +1310,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5Ka-iD-p1s" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="6186" y="805"/>
+            <point key="canvasLocation" x="5765" y="1019"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="nF9-zY-BAG">
@@ -1382,7 +1382,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ce6-Ez-DOX" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="6615.9420289855079" y="20.758928571428569"/>
+            <point key="canvasLocation" x="6867" y="236"/>
         </scene>
         <!--Devotional Creator View Controller-->
         <scene sceneID="fM2-1U-gkN">
@@ -1392,212 +1392,64 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="813"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nPC-0V-JpO">
-                                <rect key="frame" x="0.0" y="88" width="414" height="736"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <subviews>
-                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wkN-RJ-P8C">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="158"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <subviews>
-                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Background" translatesAutoresizingMaskIntoConstraints="NO" id="LRX-oU-wxq">
-                                                <rect key="frame" x="0.0" y="0.0" width="414" height="158"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            </imageView>
-                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kMm-3v-ja1">
-                                                <rect key="frame" x="360" y="120" width="46" height="30"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <state key="normal" title="Button"/>
-                                                <connections>
-                                                    <action selector="bold:" destination="18V-nR-zRw" eventType="touchUpInside" id="8cV-DX-iyp"/>
-                                                </connections>
-                                            </button>
-                                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" usesAttributedText="YES" allowsEditingTextAttributes="YES" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="xlA-R7-he0">
-                                                <rect key="frame" x="122" y="62" width="171" height="34"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <attributedString key="attributedText">
-                                                    <fragment content="El Espíritu Santo">
-                                                        <attributes>
-                                                            <font key="NSFont" metaFont="smallSystem"/>
-                                                            <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
-                                                        </attributes>
-                                                    </fragment>
-                                                </attributedString>
-                                                <textInputTraits key="textInputTraits"/>
-                                            </textField>
-                                        </subviews>
-                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                                    </view>
-                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" pagingEnabled="YES" usesAttributedText="YES" translatesAutoresizingMaskIntoConstraints="NO" id="HOT-j5-YZL">
-                                        <rect key="frame" x="8" y="166" width="398" height="551"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                                        <attributedString key="attributedText">
-                                            <fragment>
-                                                <string key="content">Somos el templo del Espíritu Santo
-“¿O ignoráis que vuestro cuerpo es templo del Espíritu Santo, el cual está en vosotros,
-el cual tenéis de Dios, y que no sois vuestros?” 1 Corintios 6:19
-Un misionero plantaba una iglesia en una ciudad cuyos habitantes, hasta el día de hoy, sienten orgullo por una enorme
-e imponente catedral que allí se levanta. Es más, muchos peregrinos viajan para conocerla por su lujo y amplitud. Tal es
-así, que un día, este misionero, recorría la plaza frente a la catedral predicando el evangelio cuando se fijó en un hombre
-completamente ebrio que se encontraba tirado en ese lugar. Ajeno a la realidad, esta persona estaba envuelta en
-harapos y despedía un fuerte olor nauseabundo. La imagen era contrastante: este hombre perdido en su adicción, con
-toda su miseria, tirado en el piso, y a lo lejos, la imponente catedral en todo su esplendor. En aquel momento, el Señor
-habló al corazón del misionero y le dijo: “No es en ese gran edificio, sino en ese hombre necesitado, donde quiero vivir.
-Ese es el templo en el que quiero habitar.”
-Este tema es vital para cada cristiano. Es necesario que podamos comprender realmente la voluntad y
-la visión que tiene Dios sobre cada uno de sus hijos. Por ello, en la clase de hoy hablaremos acerca del
-significado de esta ilustración y el valor que tiene nuestro propio cuerpo al servicio del Señor. Veamos
-los siguientes puntos:
-1) Dios habita en nuestro corazón por su Espíritu.
-¡Dios mismo habita dentro nuestro! Cuando reconocemos a Jesús como el Señor y Salvador de
-nuestra vida, él viene a hacer morada en nuestro corazón (Juan 14:23, 1 Corintios 3:16, Efesios 2:22).
-La presencia del Espíritu Santo en nuestros corazones es una experiencia real y consciente. En
-palabras de Jesús es un volver a nacer del Espíritu. Marca un antes y un después. Al punto tal que el
-apóstol Pablo dice que si alguno no tiene el Espíritu de Cristo, no es de él (Romanos 8:9).
-Sentimos a Dios en nuestra vida, podemos sentir su dulce presencia en nuestro corazón, su suave voz
-guiándonos a hacer lo correcto, su poder obrando a través nuestro y cambiándonos día a día, para
-que seamos más parecidos a Jesús.
-Debemos honrar la presencia de Dios en nuestra vida, obedeciendo sus mandamientos y buscando su
-comunión diariamente.
-** Actividad: Que un participante responda “¿Qué cosas pueden apagar al Espíritu Santo en nuestros
-corazones?” y otro pueda proponer: “¿Cómo podemos hacerlo sentir bienvenido en nuestra vida?”
-(motivando a que todos participen)**
-2) Nuestro cuerpo es el templo del Espíritu Santo.
-Dios no habita en templos de piedra, sino que habita en personas que se rinden a él. Nuestros
-cuerpos son el templo de Dios. (La Iglesia es el Cuerpo de Cristo).
-¿Qué significa esto?
-a) Que Dios, que es Espíritu, se da a conocer, se revela, se expresa a través nuestro.
-Nuestras manos, deben ser sus manos. Nuestra boca, debe dejar oír su voz. Nuestra fuerza
-debe estar a su servicio y el de los otros. Nuestro cuerpo debe “encarnar la Palabra de
-Dios”.
-b) Jesús es el verbo (la palabra) hecha carne, a través de su humanidad, de su cuerpo, él
-reveló a Dios de manera perfecta. “El que me ha visto a mí, ha visto al Padre” (Juan 14:9).
-</string>
-                                                <attributes>
-                                                    <color key="NSColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                    <font key="NSFont" metaFont="system" size="14"/>
-                                                </attributes>
-                                            </fragment>
-                                            <fragment content="">
-                                                <attributes>
-                                                    <color key="NSColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                    <font key="NSFont" size="14" name="LastResort"/>
-                                                    <font key="NSOriginalFont" size="14" name="LastResort"/>
-                                                </attributes>
-                                            </fragment>
-                                            <fragment>
-                                                <string key="content"> ¿Nuestra vida refleja a Cristo?
-c) El apóstol Pablo nos enseña que los miembros de nuestro cuerpo pueden servir a la
-justicia o pueden servir a la iniquidad y la inmundicia (Romanos 6:19).
-d) Los pecados de inmoralidad sexual contaminan el templo del Espíritu Santo (1 Corintios
-6:15-20).
-</string>
-                                                <attributes>
-                                                    <color key="NSColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                    <font key="NSFont" metaFont="system" size="14"/>
-                                                </attributes>
-                                            </fragment>
-                                            <fragment content="">
-                                                <attributes>
-                                                    <color key="NSColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                    <font key="NSFont" size="14" name="LastResort"/>
-                                                    <font key="NSOriginalFont" size="14" name="LastResort"/>
-                                                </attributes>
-                                            </fragment>
-                                            <fragment>
-                                                <string key="content"> ¿De qué manera práctica podemos huir de la fornicación?
-</string>
-                                                <attributes>
-                                                    <color key="NSColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                    <font key="NSFont" metaFont="system" size="14"/>
-                                                </attributes>
-                                            </fragment>
-                                            <fragment content="">
-                                                <attributes>
-                                                    <color key="NSColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                    <font key="NSFont" size="14" name="LastResort"/>
-                                                    <font key="NSOriginalFont" size="14" name="LastResort"/>
-                                                </attributes>
-                                            </fragment>
-                                            <fragment>
-                                                <string key="content"> ¿Cómo mantenernos alejados de la inmoralidad sexual?
-e) Los pecados de división en la iglesia, los pleitos, egoísmos y resentimientos entre los
-hermanos, atentan contra la unidad del Cuerpo de Cristo. Porque somos UN Cuerpo. Y
-debemos tener discernimiento de esta verdad (1 Corintios 11:17-22 y 27-34). Veamos
-también Efesios 4:1-3.
-</string>
-                                                <attributes>
-                                                    <color key="NSColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                    <font key="NSFont" metaFont="system" size="14"/>
-                                                </attributes>
-                                            </fragment>
-                                            <fragment content="">
-                                                <attributes>
-                                                    <color key="NSColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                    <font key="NSFont" size="14" name="LastResort"/>
-                                                    <font key="NSOriginalFont" size="14" name="LastResort"/>
-                                                </attributes>
-                                            </fragment>
-                                            <fragment>
-                                                <string key="content"> ¿Qué relación podemos encontrar entre estar unidos como hermanos espirituales y
-tener autoridad espiritual? Si yo guardo enojo en mi corazón, ¿esto afecta a la
-iglesia?
-f) Tu propio cuerpo también es valioso y debe ser tratado con cuidado. Los vicios,
-adicciones o el descuido, son síntomas que el templo de Dios no está siendo valorado
-adecuadamente.
-</string>
-                                                <attributes>
-                                                    <color key="NSColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                    <font key="NSFont" metaFont="system" size="14"/>
-                                                </attributes>
-                                            </fragment>
-                                            <fragment content="">
-                                                <attributes>
-                                                    <color key="NSColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                    <font key="NSFont" size="14" name="LastResort"/>
-                                                    <font key="NSOriginalFont" size="14" name="LastResort"/>
-                                                </attributes>
-                                            </fragment>
-                                            <fragment>
-                                                <string key="content"> Entonces, ¿cómo debemos cuidar nuestro Cuerpo, si es el templo de Dios?
-Conclusión
-Por tanto, es tiempo de recordar y disfrutar la presencia de Dios en tu vida. Así también como la
-responsabilidad de reflejar cada día que has tomado la decisión de seguir a Cristo y ser la
-continuación de su ministerio en la Tierra. Si Dios mora en tu vida, ya no estás solo y desamparado,
-sino, por el contrario, tienes el poder para levantarte y anunciar la poderosa buena voluntad del
-Creador. ¡Eres templo del Espíritu Santo!</string>
-                                                <attributes>
-                                                    <color key="NSColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                    <font key="NSFont" metaFont="system" size="14"/>
-                                                </attributes>
-                                            </fragment>
-                                        </attributedString>
-                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                                    </textView>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wFi-QL-zwG">
-                                        <rect key="frame" x="300" y="8" width="106" height="30"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <state key="normal" title="Change Picture"/>
-                                    </button>
-                                </subviews>
-                                <viewLayoutGuide key="contentLayoutGuide" id="x39-jd-hqG"/>
-                                <viewLayoutGuide key="frameLayoutGuide" id="a92-ze-869"/>
-                            </scrollView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Background" translatesAutoresizingMaskIntoConstraints="NO" id="LRX-oU-wxq">
+                                <rect key="frame" x="0.0" y="88" width="414" height="137"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" relation="lessThanOrEqual" constant="137" id="84r-Y2-xJG"/>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="137" id="Oc2-37-Bu0"/>
+                                    <constraint firstAttribute="height" constant="137" id="lpB-lI-zgn"/>
+                                </constraints>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wFi-QL-zwG">
+                                <rect key="frame" x="340" y="99" width="54" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="7"/>
+                                <state key="normal" title="Change Picture">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="seleccionFoto:" destination="18V-nR-zRw" eventType="touchUpInside" id="3r2-HQ-Hp9"/>
+                                </connections>
+                            </button>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" usesAttributedText="YES" allowsEditingTextAttributes="YES" translatesAutoresizingMaskIntoConstraints="NO" id="HOT-j5-YZL">
+                                <rect key="frame" x="8" y="233" width="398" height="500"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <attributedString key="attributedText"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="The Holy Spirit" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="1G2-fX-vzX">
+                                <rect key="frame" x="20" y="180" width="374" height="29"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <fontDescription key="fontDescription" name="Avenir-Black" family="Avenir" pointSize="20"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="u7U-76-Nyi" firstAttribute="trailing" secondItem="HOT-j5-YZL" secondAttribute="trailing" constant="8" id="03g-vE-2Pe"/>
+                            <constraint firstItem="u7U-76-Nyi" firstAttribute="trailing" secondItem="1G2-fX-vzX" secondAttribute="trailing" constant="20" id="6vd-9e-X7R"/>
+                            <constraint firstItem="LRX-oU-wxq" firstAttribute="leading" secondItem="u7U-76-Nyi" secondAttribute="leading" id="8nn-2e-QPF"/>
+                            <constraint firstItem="HOT-j5-YZL" firstAttribute="top" secondItem="LRX-oU-wxq" secondAttribute="bottom" constant="8" id="9fG-YB-SPa"/>
+                            <constraint firstItem="1G2-fX-vzX" firstAttribute="leading" secondItem="u7U-76-Nyi" secondAttribute="leading" constant="20" id="DsF-Dy-HJ0"/>
+                            <constraint firstItem="wFi-QL-zwG" firstAttribute="leading" secondItem="LRX-oU-wxq" secondAttribute="trailing" constant="-74" id="GwQ-Cd-c3f"/>
+                            <constraint firstItem="HOT-j5-YZL" firstAttribute="leading" secondItem="u7U-76-Nyi" secondAttribute="leading" constant="8" id="IF5-bo-Jam"/>
+                            <constraint firstItem="LRX-oU-wxq" firstAttribute="trailing" secondItem="u7U-76-Nyi" secondAttribute="trailing" id="M8F-IT-ELR"/>
+                            <constraint firstItem="1G2-fX-vzX" firstAttribute="top" secondItem="7vh-g7-yYp" secondAttribute="topMargin" constant="92" id="Ucr-Dn-bgv"/>
+                            <constraint firstItem="LRX-oU-wxq" firstAttribute="top" secondItem="wFi-QL-zwG" secondAttribute="bottom" constant="-32" id="vlh-dE-7V3"/>
+                            <constraint firstItem="u7U-76-Nyi" firstAttribute="bottom" secondItem="HOT-j5-YZL" secondAttribute="bottom" constant="80" id="yv1-QV-PzY"/>
+                            <constraint firstItem="LRX-oU-wxq" firstAttribute="top" secondItem="u7U-76-Nyi" secondAttribute="top" id="zBX-UD-uVb"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="u7U-76-Nyi"/>
                     </view>
                     <navigationItem key="navigationItem" id="vQF-yb-tb1"/>
                     <connections>
                         <outlet property="devText" destination="HOT-j5-YZL" id="Z7Q-Eo-XXM"/>
-                        <outlet property="scroll" destination="nPC-0V-JpO" id="FbM-jH-vB2"/>
-                        <outlet property="titulo" destination="xlA-R7-he0" id="par-1g-jC0"/>
+                        <outlet property="titulo" destination="1G2-fX-vzX" id="XNu-3N-fEU"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Gpa-Rh-587" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="7184.057971014493" y="-532.36607142857144"/>
+            <point key="canvasLocation" x="6918.8405797101459" y="-480.13392857142856"/>
         </scene>
         <!--Power of Pray-->
         <scene sceneID="gRE-6C-JuJ">

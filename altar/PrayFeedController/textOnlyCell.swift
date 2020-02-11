@@ -41,7 +41,7 @@ class textOnlyCell: UICollectionViewCell {
                          likeButton.setImage(UIImage(named: "cellPrayIcon")?.withRenderingMode(.alwaysOriginal), for: .normal)
                      }
                      
-                     likeCount.text = String(post!.likes)
+                     likeCount.text = " " + String(post!.likes) + " Praying "
                      
                      if let tiene = post?.comments {
                      commentCount.text = String(tiene)
@@ -229,11 +229,11 @@ class textOnlyCell: UICollectionViewCell {
              captionLabel.anchor(top: userProfileImageView.bottomAnchor, left: leftAnchor, bottom: nil, right: rightAnchor, paddingTop: 10, paddingLeft: 8, paddingBottom: 0, paddingRight: 8, width: 0, height: 0)
              
              let stackView = UIStackView(arrangedSubviews: [likeButton,likeCount,commentButton,commentCount])
-            stackView.distribution = .fillEqually
+            stackView.distribution = .fillProportionally
                     
             addSubview(stackView)
          //   addSubview(praysCount)
-           stackView.anchor(top: captionLabel.bottomAnchor, left: leftAnchor, bottom: bottomAnchor, right: nil, paddingTop: 8, paddingLeft: 20, paddingBottom: 0, paddingRight: 0, width: 120, height: 50)
+           stackView.anchor(top: captionLabel.bottomAnchor, left: leftAnchor, bottom: bottomAnchor, right: nil, paddingTop: 8, paddingLeft: 20, paddingBottom: 0, paddingRight: 0, width: 200, height: 50)
       //  praysCount.anchor(top: captionLabel.bottomAnchor, left: nil, bottom: bottomAnchor, right: rightAnchor, paddingTop: 8, paddingLeft: 0, paddingBottom: 0, paddingRight: 20, width: 100, height: 50)
            // praysCount.text = "Hola"
            // addSubview(praysCount)

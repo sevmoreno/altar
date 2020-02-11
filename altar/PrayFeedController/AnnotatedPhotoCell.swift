@@ -40,7 +40,7 @@ class AnnotatedPhotoCell: UICollectionViewCell {
                 likeButton.setImage(UIImage(named: "cellPrayIcon")?.withRenderingMode(.alwaysOriginal), for: .normal)
             }
             
-            likeCount.text = String(post!.likes)
+            likeCount.text = " " + String(post!.likes) + " Praying "
             
             if let tiene = post?.comments {
             commentCount.text = String(tiene)
@@ -128,7 +128,7 @@ class AnnotatedPhotoCell: UICollectionViewCell {
     lazy var likeCount: UILabel = {
         let label2 = UILabel ()
         label2.font = UIFont(name: "Avenir-Medium", size: 15)
-        label2.text = "0000"
+        label2.text = "0000" + "Praying"
      //   button.setImage(UIImage(named: "cellPrayIcon")?.withRenderingMode(.alwaysOriginal), for: .normal)
        // button.addTarget(self, action: #selector(handleLike), for: .touchUpInside)
         return label2
@@ -225,8 +225,17 @@ class AnnotatedPhotoCell: UICollectionViewCell {
         photoImageView.clipsToBounds = true
         addSubview(photoImageView)
         
+      
+        
+        
+        
         let stackView = UIStackView(arrangedSubviews: [likeButton,likeCount,commentButton,commentCount])
-        stackView.distribution = .fillEqually
+        stackView.distribution = .fillProportionally
+     //   stackView.alignment = .leading
+        
+       // stackView.spacing = 4
+        
+        
         
         addSubview(stackView)
         
@@ -260,7 +269,7 @@ class AnnotatedPhotoCell: UICollectionViewCell {
         praysDate.anchor(top: nil, left: nil, bottom: nil, right: rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 30, width: 0, height: 0)
          praysDate.centerYAnchor.constraint(equalTo: usernameLabel.centerYAnchor).isActive = true
         
-        stackView.anchor(top: photoImageView.bottomAnchor, left: leftAnchor, bottom: bottomAnchor, right: nil, paddingTop: 0, paddingLeft: 20, paddingBottom: -8, paddingRight: 0, width: 120, height: 50)
+        stackView.anchor(top: photoImageView.bottomAnchor, left: leftAnchor, bottom: bottomAnchor, right: nil, paddingTop: 0, paddingLeft: 20, paddingBottom: -8, paddingRight: 0, width: 200, height: 50)
         
 
     }

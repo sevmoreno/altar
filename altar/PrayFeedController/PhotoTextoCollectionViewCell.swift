@@ -47,7 +47,7 @@ class PhotoTextoCollectionViewCell: UICollectionViewCell {
                     likeButton.setImage(UIImage(named: "cellPrayIcon")?.withRenderingMode(.alwaysOriginal), for: .normal)
                 }
                 
-                likeCount.text = String(post!.likes)
+                likeCount.text = " " + String(post!.likes) + " Praying "
                 
                 if let tiene = post?.comments {
                 commentCount.text = String(tiene)
@@ -242,7 +242,7 @@ class PhotoTextoCollectionViewCell: UICollectionViewCell {
             addSubview(photoImageView)
             
             let stackView = UIStackView(arrangedSubviews: [likeButton,likeCount,commentButton,commentCount])
-            stackView.distribution = .fillEqually
+            stackView.distribution = .fillProportionally
             addSubview(captionLabel)
             addSubview(stackView)
             
@@ -293,7 +293,7 @@ class PhotoTextoCollectionViewCell: UICollectionViewCell {
             praysDate.anchor(top: nil, left: nil, bottom: nil, right: rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 30, width: 0, height: 0)
             praysDate.centerYAnchor.constraint(equalTo: usernameLabel.centerYAnchor).isActive = true
             
-            stackView.anchor(top: captionLabel.bottomAnchor, left: leftAnchor, bottom: bottomAnchor, right: nil, paddingTop: 0, paddingLeft: 20, paddingBottom: -8, paddingRight: 0, width: 120, height: 50)
+            stackView.anchor(top: captionLabel.bottomAnchor, left: leftAnchor, bottom: bottomAnchor, right: nil, paddingTop: 0, paddingLeft: 20, paddingBottom: -8, paddingRight: 0, width: 200, height: 50)
            
             
             
@@ -341,18 +341,19 @@ class PhotoTextoCollectionViewCell: UICollectionViewCell {
         }
         
       
-        
+     /*
         fileprivate func setupActionButtons() {
 
             let stackView = UIStackView(arrangedSubviews: [likeButton,likeCount,commentButton,commentCount])
             stackView.distribution = .fillEqually
             
             addSubview(stackView)
-            stackView.anchor(top: captionLabel.bottomAnchor, left: leftAnchor, bottom: bottomAnchor, right: nil, paddingTop: 0, paddingLeft: 4, paddingBottom: -8, paddingRight: 0, width: 120, height: 50)
+            stackView.anchor(top: captionLabel.bottomAnchor, left: leftAnchor, bottom: bottomAnchor, right: nil, paddingTop: 0, paddingLeft: 4, paddingBottom: -8, paddingRight: 0, width: 200, height: 50)
             
             
         }
-        
+      */
+    
 
     }
 

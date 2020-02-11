@@ -22,8 +22,7 @@ class PhotoStreamViewController: UICollectionViewController, UICollectionViewDel
                       guard let indexPath = collectionView?.indexPath(for: cell) else { return }
                             
                              var post =  self.photos[indexPath.item]
-                              print("Cuantos Likes tiene antes")
-                              print(post.likes)
+                              
 
                             
                             guard let postId = post.postID else { return }
@@ -62,12 +61,15 @@ class PhotoStreamViewController: UICollectionViewController, UICollectionViewDel
                                   }
                                   
                                   print("Successfully actualiza el post")
-                               //   self.handleUpdateFeed()
+                                
+                                
+                                
+                              //     self.handleUpdateFeed()
 
                                   
-                              //    self.photos[indexPath.item] = post
+                         self.photos[indexPath.item] = post
                                   
-                              // self.collectionView?.reloadItems(at: [indexPath])
+                        self.collectionView?.reloadItems(at: [indexPath])
                                   
                               }
                                 
@@ -138,9 +140,9 @@ class PhotoStreamViewController: UICollectionViewController, UICollectionViewDel
                                   
 
                                   
-                              //    self.photos[indexPath.item] = post
+                             self.photos[indexPath.item] = post
                                   
-                              // self.collectionView?.reloadItems(at: [indexPath])
+                              self.collectionView?.reloadItems(at: [indexPath])
                                   
                               }
                                 
@@ -217,9 +219,9 @@ class PhotoStreamViewController: UICollectionViewController, UICollectionViewDel
                            
 
                            
-                       //    self.photos[indexPath.item] = post
+                        self.photos[indexPath.item] = post
                            
-                        //   self.collectionView?.reloadItems(at: [indexPath])
+                        self.collectionView?.reloadItems(at: [indexPath])
                            
                        }
                          
@@ -285,9 +287,9 @@ class PhotoStreamViewController: UICollectionViewController, UICollectionViewDel
                     
 
                     
-               //     self.photos[indexPath.item] = post
+               self.photos[indexPath.item] = post
                     
-              //      self.collectionView?.reloadItems(at: [indexPath])
+               self.collectionView?.reloadItems(at: [indexPath])
                     
                 }
                   
@@ -432,6 +434,8 @@ class PhotoStreamViewController: UICollectionViewController, UICollectionViewDel
         
         navigationItem.title = advengers.shared.currentChurch
         
+        
+        collectionView.reloadData()
         // -----------------------------------------------------------------------------------------
         
         // ----------- solo para tener impresas las fuentes BORRAR LUEGO
@@ -467,13 +471,11 @@ class PhotoStreamViewController: UICollectionViewController, UICollectionViewDel
     
     @objc func handleUpdateFeed() {
         
-        photos.removeAll()
-        
-        print("llego update")
+
        
            photos.removeAll()
             collectionView.reloadData()
-         //  fetchPost ()
+           fetchPost ()
         
        }
     
@@ -508,8 +510,12 @@ class PhotoStreamViewController: UICollectionViewController, UICollectionViewDel
     
     
     func fetchPost () {
+        
+        
+  
+     //  ref.observeSingleEvent(of: .value, with: { (snapshot) in
       //  print("Fechea ")
-        advengers.shared.postPrayFeed.queryOrderedByKey().observe(.value) { (data) in
+        advengers.shared.postPrayFeed.observeSingleEvent(of: .value, with: { (data) in
             
            // self.photos.removeAll()
             
@@ -538,24 +544,25 @@ class PhotoStreamViewController: UICollectionViewController, UICollectionViewDel
                 
                 
             }
-        }
+        })
     }
-    
+
     func loadCurrentUserInfo () {
         
         advengers.shared.usersStatusRef.queryOrderedByKey().observe(.value) { (datasnap) in
             
-            let userinfo = datasnap.value as! [String:NSDictionary]
+            guard let userinfo = datasnap.value as? [String:NSDictionary] else {return}
+            
             
             for (key, value) in userinfo {
                 
                 if key == Auth.auth().currentUser?.uid {
-                    advengers.shared.currenUSer["userid"] = value["userid"] as! String
-                    advengers.shared.currenUSer["email"] = value["email"] as! String
-                    advengers.shared.currenUSer["name"] = value["name"] as! String
-                    advengers.shared.currenUSer["photoURL"] = value["photoURL"] as! String
-                    advengers.shared.currenUSer["church"] = value["church"] as! String
-                    advengers.shared.currentChurch = value["church"] as! String
+                    advengers.shared.currenUSer["userid"] = value["userid"] as? String
+                    advengers.shared.currenUSer["email"] = value["email"] as? String
+                    advengers.shared.currenUSer["name"] = value["name"] as? String
+                    advengers.shared.currenUSer["photoURL"] = value["photoURL"] as? String
+                    advengers.shared.currenUSer["church"] = value["church"] as? String
+                    advengers.shared.currentChurch = (value["church"] as? String)!
                 }
             }
             

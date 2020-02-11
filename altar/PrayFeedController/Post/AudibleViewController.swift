@@ -270,10 +270,10 @@ class AudibleViewController: UIViewController, AVAudioRecorderDelegate {
             ]
  */
             let settings:[String:Any] = [AVFormatIDKey:kAudioFormatAppleLossless,
-            AVEncoderAudioQualityKey:AVAudioQuality.max.rawValue,
-            AVEncoderBitRateKey:320000,
-            AVNumberOfChannelsKey:2,
-            AVSampleRateKey:44100.0 ] as [String : Any]
+                                         AVEncoderAudioQualityKey:AVAudioQuality.medium.rawValue,
+            AVEncoderBitRateKey:160000,
+            AVNumberOfChannelsKey:1,
+            AVSampleRateKey:24000.0 ] as [String : Any]
 
             // 4. create the audio recording, and assign ourselves as the delegate
           audioRecorder = try AVAudioRecorder(url: urlTemporario, settings: settings)

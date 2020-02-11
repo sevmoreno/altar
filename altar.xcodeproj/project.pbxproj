@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		47A39922668B2238F9B2BB13 /* Pods_altar.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DA57ADF581AF8A6E36DBF695 /* Pods_altar.framework */; };
+		650102F323F1E56000FE84CC /* SeleccionFotoCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 650102F223F1E56000FE84CC /* SeleccionFotoCollectionViewController.swift */; };
+		650102F523F1E61F00FE84CC /* FotoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 650102F423F1E61F00FE84CC /* FotoCollectionViewCell.swift */; };
 		6501259223CE3000009FAD55 /* Comments.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6501259123CE3000009FAD55 /* Comments.swift */; };
 		6501259423CE3117009FAD55 /* CommentsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6501259323CE3117009FAD55 /* CommentsCollectionViewCell.swift */; };
 		6501259623CE320E009FAD55 /* CommentsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6501259523CE320E009FAD55 /* CommentsViewController.swift */; };
@@ -104,6 +106,8 @@
 
 /* Begin PBXFileReference section */
 		499F25A3C25A7466F9176978 /* Pods-altar.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-altar.release.xcconfig"; path = "Target Support Files/Pods-altar/Pods-altar.release.xcconfig"; sourceTree = "<group>"; };
+		650102F223F1E56000FE84CC /* SeleccionFotoCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeleccionFotoCollectionViewController.swift; sourceTree = "<group>"; };
+		650102F423F1E61F00FE84CC /* FotoCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FotoCollectionViewCell.swift; sourceTree = "<group>"; };
 		6501259123CE3000009FAD55 /* Comments.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Comments.swift; sourceTree = "<group>"; };
 		6501259323CE3117009FAD55 /* CommentsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentsCollectionViewCell.swift; sourceTree = "<group>"; };
 		6501259523CE320E009FAD55 /* CommentsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentsViewController.swift; sourceTree = "<group>"; };
@@ -340,6 +344,8 @@
 				65CB7E8823BFF15D0018526D /* UserHeaderCollectionViewCell.swift */,
 				65CB7E8A23C3CBAD0018526D /* DevotionalCollectionViewCell.swift */,
 				659595CE23D64192007FB09C /* DevocionalSeleccionado.swift */,
+				650102F223F1E56000FE84CC /* SeleccionFotoCollectionViewController.swift */,
+				650102F423F1E61F00FE84CC /* FotoCollectionViewCell.swift */,
 			);
 			path = PowerOfWord;
 			sourceTree = "<group>";
@@ -631,6 +637,7 @@
 				654F95E52339307F00175A7E /* FeedOnlyTextCollectionViewCell.swift in Sources */,
 				65CB7E8B23C3CBAD0018526D /* DevotionalCollectionViewCell.swift in Sources */,
 				659595CD23D21C3C007FB09C /* seleccionVideoViewController.swift in Sources */,
+				650102F323F1E56000FE84CC /* SeleccionFotoCollectionViewController.swift in Sources */,
 				65913B1923C653FA009B8537 /* PhotoTextoCollectionViewCell.swift in Sources */,
 				658303C523DA43BE00D48ED0 /* WelcomeViewController.swift in Sources */,
 				659595CF23D64192007FB09C /* DevocionalSeleccionado.swift in Sources */,
@@ -670,6 +677,7 @@
 				65421CCE23AAABFE000B0437 /* extensions.swift in Sources */,
 				655BF70323847C11002F0C7C /* PostCell.swift in Sources */,
 				658303B823DA2F2200D48ED0 /* SupernovaLabel.swift in Sources */,
+				650102F523F1E61F00FE84CC /* FotoCollectionViewCell.swift in Sources */,
 				659595CB23D0FCE9007FB09C /* elementoVideo.swift in Sources */,
 				658303BD23DA2F2200D48ED0 /* SupernovaButton.swift in Sources */,
 				657F2B472325F5CA00187C9D /* SignUpViewController.swift in Sources */,

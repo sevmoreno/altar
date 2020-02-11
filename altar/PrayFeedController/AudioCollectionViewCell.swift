@@ -54,7 +54,7 @@ class AudioCollectionViewCell: UICollectionViewCell {
                 likeButton.setImage(UIImage(named: "cellPrayIcon")?.withRenderingMode(.alwaysOriginal), for: .normal)
             }
             
-            likeCount.text = String(post!.likes)
+            likeCount.text = " " + String(post!.likes) + " Praying "
             
             if let tiene = post?.comments {
                 commentCount.text = String(tiene)
@@ -88,6 +88,19 @@ class AudioCollectionViewCell: UICollectionViewCell {
         captionLabel.attributedText = attributedText
         
     }
+    
+    lazy var statusAudio: UILabel = {
+           let label2 = UILabel ()
+           label2.font = UIFont(name: "Avenir-Medium", size: 12)
+           label2.text = "Loading audio file ..."
+           label2.textColor = .white
+           //   button.setImage(UIImage(named: "cellPrayIcon")?.withRenderingMode(.alwaysOriginal), for: .normal)
+           // button.addTarget(self, action: #selector(handleLike), for: .touchUpInside)
+           return label2
+       }()
+    
+    
+    
     
     lazy var praysDate: UILabel = {
         let label2 = UILabel ()
@@ -134,8 +147,13 @@ class AudioCollectionViewCell: UICollectionViewCell {
         iv.setImage(#imageLiteral(resourceName: "payAudio").withRenderingMode(.alwaysOriginal), for: .normal)
       //  iv.setTitleColor(.black, for: .normal)
         //  iv.contentMode = .scaleAspectFill
-        iv.layer.backgroundColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
+        iv.layer.backgroundColor = #colorLiteral(red: 0.2588235438, green: 0.7568627596, blue: 0.9686274529, alpha: 1)
         
+        
+        
+     
+
+
         //  iv.contentMode = .scaleAspectFit
         // iv.clipsToBounds = true
         iv.addTarget(self, action: #selector (hadlePlay), for: .touchUpInside)
@@ -143,8 +161,8 @@ class AudioCollectionViewCell: UICollectionViewCell {
     }()
     
     
-    /*
-    lazy var audioView: UIView = {
+
+    lazy var audioViewBack: UIView = {
         
         let a = UIView()
         let fondo: String = {
@@ -154,9 +172,9 @@ class AudioCollectionViewCell: UICollectionViewCell {
         
         let imagen = UIImageView(image: UIImage(named: fondo))
         
-        imagen.contentMode = .scaleToFill
+        imagen.contentMode = .scaleAspectFit
     
-        
+        a.bounds = CGRect(x: 0, y: 0, width: frame.width, height: 80)
         a.addSubview(imagen)
         a.alpha = 0.6
         
@@ -164,7 +182,7 @@ class AudioCollectionViewCell: UICollectionViewCell {
         return a
     } ()
     
-    */
+ 
     
     
     
@@ -266,7 +284,7 @@ class AudioCollectionViewCell: UICollectionViewCell {
         addSubview(usernameLabel)
         
         
-        
+        //addSubview(audioViewBack)
         addSubview(audioView)
         
         
@@ -288,6 +306,13 @@ class AudioCollectionViewCell: UICollectionViewCell {
         addSubview(praysDate)
         praysDate.anchor(top: nil, left: nil, bottom: nil, right: rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 30, width: 0, height: 0)
         praysDate.centerYAnchor.constraint(equalTo: usernameLabel.centerYAnchor).isActive = true
+        
+        
+        addSubview(statusAudio)
+        
+        
+        
+        
         
         /*
          let stackView = UIStackView(arrangedSubviews: [likeButton,likeCount,commentButton,commentCount])
@@ -320,8 +345,7 @@ class AudioCollectionViewCell: UICollectionViewCell {
          */
         
         let stackView = UIStackView(arrangedSubviews: [likeButton,likeCount,commentButton,commentCount])
-        stackView.distribution = .fillEqually
-        
+        stackView.distribution = .fillProportionally
         addSubview(stackView)
         //   addSubview(praysCount)
    //     stackView.anchor(top: captionLabel.bottomAnchor, left: leftAnchor, bottom: bottomAnchor, right: nil, paddingTop: 8, paddingLeft: 20, paddingBottom: 0, paddingRight: 0, width: 120, height: 50)
@@ -336,9 +360,15 @@ class AudioCollectionViewCell: UICollectionViewCell {
                audioView.rightAnchor.constraint(equalTo: self.rightAnchor).isActive = true
                audioView.bottomAnchor.constraint(equalTo: stackView.topAnchor ).isActive = true
         */
-        
+
         audioView.anchor(top: userProfileImageView.bottomAnchor, left: leftAnchor, bottom: stackView.topAnchor, right: rightAnchor, paddingTop: 8, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 120)
-       stackView.anchor(top: audioView.bottomAnchor, left: leftAnchor, bottom: bottomAnchor, right: nil, paddingTop: 0, paddingLeft: 20, paddingBottom: 0, paddingRight: 0, width: 120, height: 50)
+       stackView.anchor(top: audioView.bottomAnchor, left: leftAnchor, bottom: bottomAnchor, right: nil, paddingTop: 0, paddingLeft: 20, paddingBottom: 0, paddingRight: 0, width: 200, height: 50)
+        
+        
+        statusAudio.anchor(top: nil, left: nil, bottom: audioView.bottomAnchor, right: nil, paddingTop: 8, paddingLeft: 0, paddingBottom: 10, paddingRight: 0, width: 0, height: 0)
+        
+        statusAudio.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
+        statusAudio.isHidden = true
         
         /*
          stackView.translatesAutoresizingMaskIntoConstraints = false
@@ -383,7 +413,7 @@ class AudioCollectionViewCell: UICollectionViewCell {
     
     
     
-    
+    /*
     fileprivate func setupActionButtons() {
         
         let stackView = UIStackView(arrangedSubviews: [likeButton, commentButton])
@@ -394,6 +424,7 @@ class AudioCollectionViewCell: UICollectionViewCell {
         
         
     }
+    */
     
     
     @objc func hadlePlay ()  {
@@ -404,7 +435,8 @@ class AudioCollectionViewCell: UICollectionViewCell {
         if isPlaying{
             audioView.setImage(#imageLiteral(resourceName: "pausebutton").withRenderingMode(.alwaysOriginal), for: .normal)
         
-        
+        statusAudio.isHidden = false
+            
         let httpsReference = storage.reference(forURL: post!.photoImage)
         
         httpsReference.getData(maxSize: 1 * 1024 * 1024) { data, error in
@@ -414,6 +446,7 @@ class AudioCollectionViewCell: UICollectionViewCell {
                 
                 
                 self.playContent(data: data!)
+                self.statusAudio.isHidden = true
                 // Data for "images/island.jpg" is returned
                 //let image = URL(data: data!)
                 

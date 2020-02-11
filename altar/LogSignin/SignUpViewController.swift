@@ -168,7 +168,7 @@ textbackbroundpassword.layer.cornerRadius = 22
                 
                     
                     
-                let data = self.imageToSave?.jpegData(compressionQuality: 0.5)
+                    let data = self.imageToSave?.jpegData(compressionQuality: 0.5) ?? UIImage(named: "Rectangle")!.jpegData(compressionQuality: 0.5)
                     
                  
                 let uploadTask = imageref.putData(data!, metadata: nil, completion: { (metadata, error) in
