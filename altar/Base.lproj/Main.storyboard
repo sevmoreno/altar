@@ -1392,7 +1392,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="813"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Background" translatesAutoresizingMaskIntoConstraints="NO" id="LRX-oU-wxq">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="devoback4" translatesAutoresizingMaskIntoConstraints="NO" id="LRX-oU-wxq" customClass="CustomImageView" customModule="altar" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="88" width="414" height="137"/>
                                 <constraints>
                                     <constraint firstAttribute="height" relation="lessThanOrEqual" constant="137" id="84r-Y2-xJG"/>
@@ -1444,6 +1444,7 @@
                     <navigationItem key="navigationItem" id="vQF-yb-tb1"/>
                     <connections>
                         <outlet property="devText" destination="HOT-j5-YZL" id="Z7Q-Eo-XXM"/>
+                        <outlet property="fondovisual" destination="LRX-oU-wxq" id="QW8-WH-8kq"/>
                         <outlet property="titulo" destination="1G2-fX-vzX" id="XNu-3N-fEU"/>
                     </connections>
                 </viewController>
@@ -1552,7 +1553,6 @@
     </scenes>
     <resources>
         <image name="Audible" width="45" height="45"/>
-        <image name="Background" width="800" height="419"/>
         <image name="Fire" width="15" height="20"/>
         <image name="Rectangle" width="106" height="106"/>
         <image name="background_Login" width="375" height="812"/>
@@ -1562,6 +1562,7 @@
         <image name="bg_dark_F" width="375" height="812"/>
         <image name="bg_darkogin" width="375" height="812"/>
         <image name="comunitiyicone" width="22" height="21.5"/>
+        <image name="devoback4" width="396" height="594"/>
         <image name="iconphoto&amp;video" width="45" height="45"/>
         <image name="wordicon" width="25" height="19"/>
         <image name="worshipicon" width="30" height="23"/>

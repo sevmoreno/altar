@@ -62,10 +62,11 @@ class advengers {
     
     var seleccionVideo = elementoVideo ()
 
-    var devocionalSeleccinado = Devo ()
+    var devocionalSeleccinado = Devo (dictionary: ["fsd":"FDSFSD"])
     
+    var fondoSeleccionado = ""
     
-    
+    var fondoSeleccionadoIndex = ""
     
      @objc  func settings () {
         

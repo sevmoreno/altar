@@ -10,7 +10,25 @@ import UIKit
 import Firebase
 
 
+
 class DevotionalCreatorViewController: UIViewController {
+    
+    @objc internal func didChangePic() {
+        
+        print("Llego protocolo")
+        if advengers.shared.fondoSeleccionado != "" {
+                 
+          
+            DispatchQueue.main.async {
+                self.fondovisual.loadImage(urlString: advengers.shared.fondoSeleccionado)
+            }
+                 
+
+             }
+             
+        
+    }
+    
 
     @IBOutlet weak var devText: UITextView!
     
@@ -22,6 +40,21 @@ class DevotionalCreatorViewController: UIViewController {
         var atributos: [NSAttributedString.Key:Any]
         
     }
+    
+    var devocionalFondo = ["type": "",
+                            "index" : 0,
+                            "url": ""
+                            ] as [String : Any]
+    
+    @IBOutlet var fondovisual: CustomImageView!
+    
+//    struct devocionalFondo {
+//        var type = "altar"
+//        var index = ""
+//        var url = "https://firebasestorage.googleapis.com/v0/b/altar-92d12.appspot.com/o/backgroundsDevSR%2F7A54A739-2252-404D-9960-B6DD8B6FB88D?alt=media&token=2dad600e-54a1-483b-9c57-b3f203c29b8f"
+//    }
+    
+    
     var devocionalRichText = [NSAttributedString] ()
     var decocionalToSave = [devocionalFormato] ()
     
@@ -39,6 +72,7 @@ class DevotionalCreatorViewController: UIViewController {
                ] as [NSAttributedString.Key : Any]
     
     var boldActive = false
+    var italicIsActive = false
     
     lazy var accessory: UIView = {
         let accessoryView = UIView(frame: .zero)
@@ -111,6 +145,19 @@ class DevotionalCreatorViewController: UIViewController {
             return cancelButton
         }()
     
+    let fontSize: UILabel = {
+        
+        let a = UILabel ()
+        
+        a.font = UIFont(name: "Avenir",size: 15)
+        a.textColor = .white
+        a.text = String (15)
+        a.sizeToFit()
+      //  a.sizeThatFits(10)
+        return a
+        
+    } ()
+    
     let small: UIButton = {
              let cancelButton = UIButton(type: .custom)
             // cancelButton.setTitle("-", for: .normal)
@@ -144,10 +191,12 @@ class DevotionalCreatorViewController: UIViewController {
       //  IndexButton.translatesAutoresizingMaskIntoConstraints = false
       //  IndexButton.translatesAutoresizingMaskIntoConstraints = false
      //   boldsButton.translatesAutoresizingMaskIntoConstraints = false
-        
-        let stackView = UIStackView(arrangedSubviews: [IndexButton, captialsButton, boldsButton, italicButton,bigger
-        ,small,doneButton ])
+        fontSize.anchor(top: nil, left: nil, bottom: nil, right: nil, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 10, height: 0)
+      //  let stackView = UIStackView(arrangedSubviews: [IndexButton, boldsButton, italicButton,small,fontSize
+      //  ,bigger,doneButton ])
                
+        
+        let stackView = UIStackView(arrangedSubviews: [IndexButton, boldsButton, italicButton,small,bigger,doneButton ])
             stackView.translatesAutoresizingMaskIntoConstraints = false
     
         stackView.distribution = .fillEqually
@@ -280,6 +329,31 @@ class DevotionalCreatorViewController: UIViewController {
 
     @objc func italicButtonAction () {
         
+        
+        
+        if devText.selectedRange.length == 0 {
+            
+            if italicIsActive {
+                let imagen = UIImage(named: "italicButton")
+                self.attributes[NSAttributedString.Key.font] = UIFont(name: "Avenir-Book", size: 12)
+                
+                DispatchQueue.main.async {
+                    self.italicButton.setImage(imagen?.withRenderingMode(.alwaysOriginal), for: .normal)
+                }
+                italicIsActive = false
+                
+            } else {
+                let imagen = UIImage(named: "notitalick")
+                self.attributes[NSAttributedString.Key.font] = UIFont(name: "Avenir-BookOblique", size: 12)
+                DispatchQueue.main.async {
+                        self.italicButton.setImage(imagen?.withRenderingMode(.alwaysOriginal), for: .normal)
+                               }
+                italicIsActive = true
+            }
+            
+        }
+        
+        
         let creatMutable = NSMutableAttributedString(attributedString: devText.attributedText)
               
               creatMutable.enumerateAttribute(.font, in: devText.selectedRange) { value, range, stop in
@@ -374,12 +448,24 @@ class DevotionalCreatorViewController: UIViewController {
          devText.endEditing(true)
         
     }
+   
+  //  var loqueviene: SeleccionFotoCollectionViewController?
+    
+    let model = SeleccionFotoCollectionViewController()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         // NAVIGATION SETTINGS
         
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Post Devotional", style: .plain, target: self, action: #selector(postDevotional))
+        NotificationCenter.default.addObserver(self, selector: #selector(didChangePic), name: NSNotification.Name("changePic"), object: nil)
+
+       
+      //  model.delegate = self
+        
+      //  model.didChange(<#NSKeyValueChange#>)
+     
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "+ Devotional", style: .plain, target: self, action: #selector(postDevotional))
         navigationItem.leftBarButtonItem?.title = "Back"
         
         
@@ -397,42 +483,17 @@ class DevotionalCreatorViewController: UIViewController {
         navigationItem.rightBarButtonItem?.tintColor = advengers.shared.colorOrange
         
         // VIEW SETTINGS
-        
-        print(devText.selectedRange)
         /*
-        let attributes2 = devText.attributedText.attributes(at: 0, effectiveRange: nil)
-
-        // iterate each attribute
-        for attr in attributes2 {
-          print(attr.key, attr.value)
+        for counter in 1...10
+        {
+        postBackgrounds (contador: counter)
         }
-        
-        */
-        
-        //devText.attributedText
-    
-        /*
-        
-        let yourButton = UIButton(frame: CGRect(x: 0, y: 0, width: view.frame.size.width/8, height: 40))
-        yourButton.backgroundColor = UIColor.blue
-        yourButton.setTitle("Bold", for: .normal)
-        yourButton.setTitleColor(UIColor.white, for: .normal)
-        yourButton.addTarget(self, action: #selector(nextButton), for: .touchUpInside)
-      //  devText.inputAccessoryView = yourButton
-        */
+*/
         
         addAccessory()
       
         devText.delegate = self
-        
-        for family: String in UIFont.familyNames {
-               print("\(family)")
-               for names: String in UIFont.fontNames(forFamilyName: family) {
-                   print("== \(names)")
-               }
-           }
        
- 
        
         
         if devocionalRichText.isEmpty {
@@ -492,8 +553,12 @@ class DevotionalCreatorViewController: UIViewController {
         let userPostRef = Database.database().reference().child("devocionales").child(iglesia)
         let ref = userPostRef.childByAutoId()
         
-        
-       
+        var fondo = ""
+        if advengers.shared.fondoSeleccionado == "" {
+            fondo = "https://firebasestorage.googleapis.com/v0/b/altar-92d12.appspot.com/o/backgroundsDevSR%2F-M-qdkcToEv4HU051_Iq?alt=media&token=c81ad0f4-ee3b-459c-89f2-7b5be3f7c7b6"
+        } else {
+            fondo = advengers.shared.fondoSeleccionado
+        }
 
        
         let attrString = devText.attributedText
@@ -525,13 +590,32 @@ class DevotionalCreatorViewController: UIViewController {
                             return
                         }
                         
-                        guard let profileImageUrl = downloadURL?.absoluteString else { return }
+                        guard let htmlfileURL = downloadURL?.absoluteString else { return }
                         
                         guard let uid = Auth.auth().currentUser?.uid else {return}
+                    
+//
+//                        self.author = dictionary["author"] as? String ?? ""
+//                                      self.church = dictionary["church"] as? String ?? ""
+//                                      self.title = dictionary["title"] as? String
+//                                      self.urltexto = dictionary["urltexto"] as? String
+//                                      self.photoURL = dictionary["photoURL"] as? String
+//
+//
+//                                      self.postID = dictionary["postID"] as? String ?? ""
+//                                      self.message = dictionary["message"] as? String ?? ""
+//
+//                               let secondsFrom1970 = dictionary["creationDate"] as? Int64 ?? 0
+                     //   let devfondo = devocionalFondo ()
                         
-                        
-                        
-                        let devo = ["urltexto": profileImageUrl,"texto": self.devText.text ,"title": self.titulo.text!, "creationDate": Date().timeIntervalSince1970, "usuarioID": Auth.auth().currentUser?.uid] as [String : Any]
+                        let devo = ["urltexto": htmlfileURL,
+                                    "church" : advengers.shared.currentChurch,
+                                    "author": Auth.auth().currentUser?.uid,
+                                    "message": self.devText.text ,
+                                    "photoURL": fondo ,
+                                    
+                                    "title": self.titulo.text!,
+                                    "creationDate": Date().millisecondsSince1970] as [String : Any]
                         
                         ref.updateChildValues(devo) { (err, ref) in
                             if let err = err {
@@ -557,11 +641,82 @@ class DevotionalCreatorViewController: UIViewController {
         }
         print(resultHtmlText)
         
-        
+        _ = navigationController?.popViewController(animated: true)
 
         
         print("editing")
     }
+
+
+    
+    
+    func postBackgrounds (contador: Int) {
+        
+        
+        let key = advengers.shared.postPrayFeed.childByAutoId().key
+        
+        //let imageRef = advengers.shared.PostPrayStorage.child(uid!).child("\(key!).jpg")
+        
+        let iglesia = advengers.shared.currentChurch
+        let userPostRef = Database.database().reference().child("backgroundsDev")
+        let ref = userPostRef
+        //  let filename = NSUUID().uuidString
+        let storageRefDB = Storage.storage().reference().child("backgroundsDevSR").child(key!)
+        
+        
+        
+     
+            
+            
+            guard let imagensincompresion = UIImage(named: "devoback" + String(contador)) else {return}
+            
+            guard let imagen = imagensincompresion.jpegData(compressionQuality: 0.5) else { return }
+            
+            
+            storageRefDB.putData(imagen, metadata: nil, completion: { (metadata, err) in
+                
+                if let err = err {
+                    print("Failed to upload profile image:", err)
+                    return
+                }
+                
+                // Firebase 5 Update: Must now retrieve downloadURL
+                storageRefDB.downloadURL(completion: { (downloadURL, err) in
+                    if let err = err {
+                        print("Failed to fetch downloadURL:", err)
+                        return
+                    }
+                    
+                    guard let backgroundURL = downloadURL?.absoluteString else { return }
+                    
+                    
+                    
+                    self.devocionalFondo["index"] = "devoback" + String(contador)
+                    self.devocionalFondo["type"] = "altar"
+                    self.devocionalFondo["url"] = backgroundURL
+                    
+                    ref.childByAutoId().updateChildValues(self.devocionalFondo) { (err, ref) in
+                        if let err = err {
+                            //self.navigationItem.rightBarButtonItem?.isEnabled = true
+                            print("Failed to save post to DB", err)
+                            return
+                        }
+                        
+                        print("Successfully saved post to DB")
+                        
+                    }
+                    
+                    
+                })
+            })
+        
+        
+        
+        
+    }
+    
+
+     
 
 
 }
@@ -631,28 +786,15 @@ extension DevotionalCreatorViewController: UITextViewDelegate {
     
     func textViewDidChange(_ textView: UITextView) { //Handle the text changes here
        
-        /*
-       if textView.selectedRange.length == 0 {
-           
-           let creatMutable = NSMutableAttributedString(attributedString: devText.attributedText)
-          
-           creatMutable.setAttributes(attributes, range: textView.selectedRange)
-           
-           devText.attributedText = creatMutable
-       } else {
-           
-           let creatMutable = NSMutableAttributedString(attributedString: devText.attributedText)
-           devText.attributedText = creatMutable
-       }
-        */
+    
         
          devText.typingAttributes = self.attributes
-        /*
+ 
         
     let creatMutable = NSMutableAttributedString(attributedString: devText.attributedText)
 
     devText.attributedText = creatMutable
-        */
+      
         
     }
     

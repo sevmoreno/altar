@@ -10,11 +10,14 @@ import UIKit
 import AVFoundation
 import Firebase
 
+
 class SeleccionFotoCollectionViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout  {
 
+
     
+    //var delegate: SeleccioonFondo?
     let cellId = "cellId"
-    var photos = [Posts] ()
+    var photos = [fondo] ()
     let refreshControl = UIRefreshControl()
     
     override func viewDidLoad() {
@@ -24,7 +27,7 @@ class SeleccionFotoCollectionViewController: UICollectionViewController, UIColle
         
     //    collectionView?.backgroundColor =  UIColor.rgb(red: 32, green: 36, blue: 47)
         
-        collectionView.backgroundColor = .red
+     //   collectionView.backgroundColor = .red
         
       
         
@@ -34,11 +37,12 @@ class SeleccionFotoCollectionViewController: UICollectionViewController, UIColle
      //   refreshControl.addTarget(self, action: #selector(handleRefresh), for: .valueChanged)
      //   collectionView?.refreshControl = refreshControl
         
-   //     fetchPost ()
+   fetchPost ()
         
         // collectionView?.contentInset = UIEdgeInsets(top: 23, left: 16, bottom: 10, right: 16)
   
-       
+     
+        
         
         
     }
@@ -71,7 +75,8 @@ class SeleccionFotoCollectionViewController: UICollectionViewController, UIColle
   
      //  ref.observeSingleEvent(of: .value, with: { (snapshot) in
       //  print("Fechea ")
-        advengers.shared.postPrayFeed.observeSingleEvent(of: .value, with: { (data) in
+         let userPostRef = Database.database().reference().child("backgroundsDev")
+         userPostRef.observeSingleEvent(of: .value, with: { (data) in
             
            // self.photos.removeAll()
             
@@ -81,14 +86,14 @@ class SeleccionFotoCollectionViewController: UICollectionViewController, UIColle
                 {
                     
                     
-                    let temporarioPost = Posts (dictionary: value as! [String : Any])
+                    let temporarioPost = fondo (dictionary: value as! [String : Any])
                     
                     
                     self.photos.append(temporarioPost)
                     
-                    self.photos.sort(by: { (p1, p2) -> Bool in
-                        return p1.creationDate?.compare(p2.creationDate!) == .orderedDescending
-                    })
+//                    self.photos.sort(by: { (p1, p2) -> Bool in
+//                        return p1.creationDate?.compare(p2.creationDate!) == .orderedDescending
+//                    })
                     
                     DispatchQueue.main.async {
                               self.collectionView.reloadData()
@@ -115,7 +120,7 @@ class SeleccionFotoCollectionViewController: UICollectionViewController, UIColle
         
      
             
-            return CGSize(width: (380/2) - 9, height:  (460/2) - 3 )
+        return CGSize(width: (view.frame.width / 2) - 6 , height:  (view.frame.height / 2 ) - 6)
             
         }
         
@@ -126,21 +131,29 @@ class SeleccionFotoCollectionViewController: UICollectionViewController, UIColle
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
         
-        return 10
+        return photos.count
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath)
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as? FotoCollectionViewCell
             
         //    let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath as IndexPath) as! FotoCollectionViewCell
-        cell.backgroundColor = .blue
+        print(photos[indexPath.row].index)
+        print(photos[indexPath.row].url)
+        cell?.post = photos[indexPath.row]
+  
          //   cell.post = photos[indexPath.item]
       
-        return cell
+        return cell!
         }
         
         
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        advengers.shared.fondoSeleccionado = photos[indexPath.row].url
+       NotificationCenter.default.post(name: NSNotification.Name("changePic"), object: nil)
+        _ = navigationController?.popViewController(animated: true)
+    }
         
 
     
@@ -158,7 +171,7 @@ class SeleccionFotoCollectionViewController: UICollectionViewController, UIColle
         }
     }
  */
-    
+   
 }
 
 

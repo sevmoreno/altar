@@ -11,7 +11,27 @@ import UIKit
 
 class DevocionalSeleccionado: UIViewController {
     
-    var devo = Devo()
+    var devo = Devo(dictionary: ["text":"text"])
+    let imagen: CustomImageView = {
+               let iv = CustomImageView()
+               iv.contentMode = .scaleAspectFill
+            
+               iv.clipsToBounds = true
+               iv.backgroundColor = .blue
+               return iv
+           }()
+           
+    
+    lazy var titulo: UILabel = {
+                 let label2 = UILabel ()
+                 label2.font = UIFont(name: "Avenir-Black", size: 25)
+                 label2.text = "You prayed 1"
+              label2.textColor = .white
+              //   button.setImage(UIImage(named: "cellPrayIcon")?.withRenderingMode(.alwaysOriginal), for: .normal)
+                // button.addTarget(self, action: #selector(handleLike), for: .touchUpInside)
+                 return label2
+             }()
+       
     
     let textoDevocional: UITextView = {
         
@@ -25,19 +45,35 @@ class DevocionalSeleccionado: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        devo = advengers.shared.devocionalSeleccinado
+      //  devo = advengers.shared.devocionalSeleccinado
         
-        view.backgroundColor = #colorLiteral(red: 0.9098039269, green: 0.4784313738, blue: 0.6431372762, alpha: 1)
+     //   view.backgroundColor = .white
        // textoDevocional.loadAttributedText(urlString: devo.urltexto)
+        
+        view.addSubview(imagen)
+        
+        view.addSubview(titulo)
         
         view.addSubview(textoDevocional)
         
-        textoDevocional.anchor(top: view.topAnchor, left: view.leftAnchor, bottom: view.bottomAnchor, right: view.rightAnchor, paddingTop: 10, paddingLeft: 10, paddingBottom: 10, paddingRight: 10, width: 0, height: 0)
         
-        print(devo.urltexto)
-       print(devo.title)
-        guard let url = URL(string: devo.urltexto) else { return }
-            
+        imagen.loadImage(urlString: advengers.shared.devocionalSeleccinado.photoURL!)
+        
+        titulo.text = advengers.shared.devocionalSeleccinado.title
+   //     view.addSubview(textoDevocional)
+        
+        imagen.anchor(top: view.topAnchor, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 300)
+        
+       
+        titulo.anchor(top: nil, left: imagen.leftAnchor, bottom: imagen.bottomAnchor, right: nil, paddingTop: 0, paddingLeft: 10, paddingBottom: 10, paddingRight: 0, width: 0, height: 0)
+        
+        
+        textoDevocional.anchor(top: imagen.bottomAnchor, left: view.leftAnchor, bottom: view.bottomAnchor, right: view.rightAnchor, paddingTop: 10, paddingLeft: 10, paddingBottom: 10, paddingRight: 10, width: 0, height: 0)
+        
+      //  print(devo.urltexto)
+    //   print(devo.title)
+    //    guard let url = URL(string: devo.urltexto) else { return }
+        guard let url = URL(string: advengers.shared.devocionalSeleccinado.urltexto) else { return }
             URLSession.shared.dataTask(with: url) { (data, response, err) in
                 if let err = err {
                     print("Failed to fetch HTML:", err)

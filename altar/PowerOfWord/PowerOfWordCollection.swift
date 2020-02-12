@@ -19,7 +19,7 @@ class PowerOfWordCollectionView: UICollectionViewController,  UICollectionViewDe
        
        override func viewDidLoad() {
            
-           collectionView?.register(DevotionalCollectionViewCell.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "headerWord")
+    //       collectionView?.register(DevotionalCollectionViewCell.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "headerWord")
 
         
            collectionView?.register(DevotionalCollectionViewCell.self, forCellWithReuseIdentifier: "oldWord")
@@ -29,7 +29,7 @@ class PowerOfWordCollectionView: UICollectionViewController,  UICollectionViewDe
 
            //navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Add Prayer", style: .plain, target: self, action: #selector(addprayer))
         
-        
+        self.collectionView.reloadData()
         
         
         
@@ -59,7 +59,7 @@ class PowerOfWordCollectionView: UICollectionViewController,  UICollectionViewDe
                }
         
                let textAttributes2 = [NSAttributedString.Key.foregroundColor: advengers.shared.colorOrange,
-                                             NSAttributedString.Key.font:UIFont(name: "Avenir-Heavy", size: 15)]
+                                             NSAttributedString.Key.font:UIFont(name: "Avenir-Heavy", size: 12)]
                
                navigationItem.rightBarButtonItem?.setTitleTextAttributes(textAttributes2 as [NSAttributedString.Key : Any], for: .normal)
                navigationItem.rightBarButtonItem?.tintColor = advengers.shared.colorOrange
@@ -88,6 +88,51 @@ class PowerOfWordCollectionView: UICollectionViewController,  UICollectionViewDe
         
       //  let referenciaDB = Database.database()
         
+        // .observeSingleEvent(of: .value, with: { (snapshot) in
+        
+         Database.database().reference().child ("devocionales").child(advengers.shared.currentChurch).observeSingleEvent(of: .value, with: { (data) in
+            
+            
+             if let devoFeed = data.value as? [String:NSDictionary] {
+                                   
+                                   for (_,value) in devoFeed
+                                   {
+
+                                    var devocional  = Devo (dictionary: value as! [String : Any])
+                                    
+            //                        devocional.title = value["title"] as? String
+            //                        devocional.message = value["texto"] as? String
+            //                        devocional.urltexto = value["urltexto"] as? String
+            //                        devocional.creationDate = value["creationDate"] as? String
+                                  //  print(value)
+                                print(devocional.title!)
+                                print(devocional.message!)
+                                    print(devocional.photoURL!)
+                                    
+                                    self.devos.append(devocional)
+                                    
+                                    
+                                    //   let temporarioPost = Posts (dictionary: value as! [String : Any])
+                                       
+                                      
+                       //                self.photos.append(temporariost)
+                         //              self.collectionView.reloadData()
+
+                                    self.collectionView.reloadData()
+                                   }
+                                   
+                                   
+                               }
+            
+            
+           }, withCancel: { (err) in
+            print("Failed to fetch like info for post:", err)
+           })
+        
+        
+        
+       /*
+        
         Database.database().reference().child ("devocionales").child(advengers.shared.currentChurch).queryOrderedByKey().observe(.value) { (data) in
                    
                   // self.photos.removeAll()
@@ -97,22 +142,24 @@ class PowerOfWordCollectionView: UICollectionViewController,  UICollectionViewDe
                        for (_,value) in devoFeed
                        {
 
-                        var devocional  = Devo ()
+                        var devocional  = Devo (dictionary: value as! [String : Any])
                         
-                        devocional.title = value["title"] as? String
-                        devocional.message = value["texto"] as? String
-                        devocional.urltexto = value["urltexto"] as? String
-                        devocional.creationDate = value["creationDate"] as? String
+//                        devocional.title = value["title"] as? String
+//                        devocional.message = value["texto"] as? String
+//                        devocional.urltexto = value["urltexto"] as? String
+//                        devocional.creationDate = value["creationDate"] as? String
                       //  print(value)
-                     //   print(devocional.title!)
-                   //     print(devocional.message!)
+                    print(devocional.title!)
+                    print(devocional.message!)
+                        print(devocional.photoURL!)
+                        
                         self.devos.append(devocional)
                         
                         
                         //   let temporarioPost = Posts (dictionary: value as! [String : Any])
                            
                           
-           //                self.photos.append(temporarioPost)
+           //                self.photos.append(temporariost)
              //              self.collectionView.reloadData()
 
                         self.collectionView.reloadData()
@@ -122,6 +169,7 @@ class PowerOfWordCollectionView: UICollectionViewController,  UICollectionViewDe
                    }
                }
         
+        */
         
     }
     
@@ -199,11 +247,11 @@ class PowerOfWordCollectionView: UICollectionViewController,  UICollectionViewDe
     
     // ------------------------------------------------------------------ COLLECTION CELLS -----------------------------------------------------------------------------
 
-       func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-
-              return 3.0
-      
-      }
+//       func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+//
+//              return 3.0
+//      
+//      }
        
        func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
               
@@ -254,7 +302,7 @@ class PowerOfWordCollectionView: UICollectionViewController,  UICollectionViewDe
         
      //   switch devos.count {
        // case 1:
-            return CGSize(width: view.frame.width, height:  view.frame.height )
+            return CGSize(width: view.frame.width, height: 500 )
    //     default:
      //       return CGSize(width: view.frame.width, height:  500 )
         //}
@@ -305,10 +353,11 @@ class PowerOfWordCollectionView: UICollectionViewController,  UICollectionViewDe
            
    */
         
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "oldWord", for: indexPath)
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "oldWord", for: indexPath) as? DevotionalCollectionViewCell
+        cell?.backgroundColor = .red
         
-        
-        return cell
+        cell?.post = devos[indexPath.row]
+        return cell!
         
        }
  
@@ -320,12 +369,13 @@ class PowerOfWordCollectionView: UICollectionViewController,  UICollectionViewDe
         print("El Contenido de la sellecion")
         print(devos[indexPath.row].title)
         print(devos[indexPath.row].message)
-        
+        print(devos[indexPath.row].photoURL)
         
         advengers.shared.devocionalSeleccinado = devos[indexPath.row]
-     //  let a = DevocionalSeleccionado ()
+         let a = DevocionalSeleccionado ()
         
-     //   a.devo = devos[indexPath.row]
+        
+         a.devo = devos[indexPath.row]
         
         
         

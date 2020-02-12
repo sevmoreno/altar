@@ -9,13 +9,21 @@
 import UIKit
 
 class FotoCollectionViewCell: UICollectionViewCell {
-
+    var post: fondo? {
+    
+        didSet {
+            
+            guard let imagenNombre = post?.url else {return}
+            imagen.loadImage(urlString: imagenNombre)
+        }
+        
+    }
 
         let imagen: CustomImageView = {
             let iv = CustomImageView()
             iv.clipsToBounds = true
-            iv.contentMode = .scaleAspectFit
-            iv.backgroundColor = .blue
+            iv.contentMode = .scaleAspectFill
+           // iv.backgroundColor = .blue
             return iv
         }()
         
@@ -23,12 +31,12 @@ class FotoCollectionViewCell: UICollectionViewCell {
             super.init(frame: frame)
             //        backgroundColor = .yellow
           
-            /*
+           
             addSubview(imagen)
             imagen.anchor(top: topAnchor, left: leftAnchor, bottom: bottomAnchor, right: rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 0)
-            */
+           
             
-            backgroundColor = .red
+          //  backgroundColor = .red
      
         }
         

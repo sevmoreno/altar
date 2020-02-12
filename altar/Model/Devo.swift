@@ -25,7 +25,24 @@ struct Devo {
 //var postType: String!
     var message: String! = ""
     
-    var creationDate: String! = ""
+    var creationDate: Date!
+    
+    
+    init(dictionary: [String: Any]) {
+               self.author = dictionary["author"] as? String ?? ""
+               self.church = dictionary["church"] as? String ?? ""
+               self.title = dictionary["title"] as? String
+               self.urltexto = dictionary["urltexto"] as? String
+               self.photoURL = dictionary["photoURL"] as? String
+        
+            
+               self.postID = dictionary["postID"] as? String ?? ""
+               self.message = dictionary["message"] as? String ?? ""
+       
+        let secondsFrom1970 = dictionary["creationDate"] as? Int64 ?? 0
+        self.creationDate = Date(milliseconds: secondsFrom1970)
+    }
+    
     
  //   var photoW: CGFloat?
  //   var photoH: CGFloat?
