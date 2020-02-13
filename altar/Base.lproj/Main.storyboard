@@ -733,55 +733,69 @@
                     <view key="view" contentMode="scaleToFill" id="PkX-s9-8fL">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="813"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <wkWebView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="YCj-Yr-AI7">
-                                <rect key="frame" x="13" y="347" width="381" height="203"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <wkWebViewConfiguration key="configuration">
-                                    <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
-                                    <wkPreferences key="preferences"/>
-                                </wkWebViewConfiguration>
-                            </wkWebView>
-                        </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="wBR-CF-Un3"/>
                     </view>
                     <navigationItem key="navigationItem" id="q8i-9B-cxF"/>
                     <connections>
-                        <outlet property="playerWeb" destination="YCj-Yr-AI7" id="aux-az-jX8"/>
-                        <segue destination="hWn-ra-yyO" kind="show" identifier="addPlaylist" id="RcI-Gc-HHF"/>
+                        <segue destination="skG-zE-5ZV" kind="show" identifier="addPlaylist" id="d7W-SH-TtW"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dDX-ZN-ehd" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="4418.840579710145" y="-1010.4910714285713"/>
         </scene>
-        <!--Playlist View Controller-->
-        <scene sceneID="phb-QH-rMv">
+        <!--Play List View Controller-->
+        <scene sceneID="meV-p7-PVI">
             <objects>
-                <viewController id="hWn-ra-yyO" customClass="PlaylistViewController" customModule="altar" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="p9e-Zq-tbi">
+                <collectionViewController id="skG-zE-5ZV" customClass="PlayListViewController" customModule="altar" customModuleProvider="target" sceneMemberID="viewController">
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="NJP-Tl-cv3">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="813"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                        <viewLayoutGuide key="safeArea" id="SgF-di-FUm"/>
-                    </view>
-                    <navigationItem key="navigationItem" id="Ns9-W8-Mpz"/>
+                        <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Shr-Oj-b34">
+                            <size key="itemSize" width="50" height="50"/>
+                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                        </collectionViewFlowLayout>
+                        <cells/>
+                        <connections>
+                            <outlet property="dataSource" destination="skG-zE-5ZV" id="4Qs-nw-6RX"/>
+                            <outlet property="delegate" destination="skG-zE-5ZV" id="VJP-5p-jvN"/>
+                        </connections>
+                    </collectionView>
+                    <navigationItem key="navigationItem" id="FZP-iG-tE7"/>
                     <connections>
-                        <segue destination="aQq-G7-J80" kind="show" identifier="searchSong" id="vJA-Pn-S0h"/>
+                        <segue destination="URo-Mt-Xuc" kind="show" identifier="buildDummy" id="l9g-Ie-Dgk"/>
                     </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="iKy-XE-bIS" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                </collectionViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="qHK-Xj-3Za" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5518.840579710145" y="-1010.4910714285713"/>
+            <point key="canvasLocation" x="5370" y="-1019"/>
+        </scene>
+        <!--Bulid Dummy View Controller-->
+        <scene sceneID="Wd1-Ca-ag7">
+            <objects>
+                <viewController id="URo-Mt-Xuc" customClass="bulidDummyViewController" customModule="altar" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="3ia-Ac-YSN">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="813"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="LaV-s7-J9H"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="L3T-9l-7q6"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="9sx-Y4-lMa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="6222" y="-1142"/>
         </scene>
         <!--Search Song View Controller-->
         <scene sceneID="qSM-dR-AFk">
             <objects>
                 <viewController id="aQq-G7-J80" customClass="searchSongViewController" customModule="altar" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="21P-h3-Mql">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="813"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <searchBar contentMode="redraw" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cQc-hA-STo">
@@ -813,18 +827,18 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="B9w-7j-ndu" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="6448" y="-1193"/>
+            <point key="canvasLocation" x="7030" y="-1330"/>
         </scene>
         <!--Seleccion Video View Controller-->
         <scene sceneID="Ydw-c0-rU8">
             <objects>
                 <viewController id="UTs-b0-XUU" customClass="seleccionVideoViewController" customModule="altar" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="bae-Li-t7c">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="813"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <wkWebView contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="IuR-I5-brV">
-                                <rect key="frame" x="-33" y="194" width="480" height="270"/>
+                                <rect key="frame" x="-33" y="106" width="480" height="270"/>
                                 <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="480" id="sBX-9Z-6ES"/>
@@ -849,7 +863,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bst-xZ-dRJ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="7362" y="-1353"/>
+            <point key="canvasLocation" x="7943" y="-1490"/>
         </scene>
         <!--Photo Stream View Controller-->
         <scene sceneID="xQs-xu-7zz">

@@ -8,42 +8,215 @@
 
 import UIKit
 import AVFoundation
-import WebKit
-import Alamofire
+// import WebKit
+// import Alamofire
 import Firebase
 
 
 
 class PowerOfWorshipViewController:  UIViewController{
     
-    var videos: [Video] = {
-           var kanyeChannel = Channel()
-           kanyeChannel.name = "KanyeIsTheBestChannel"
-           kanyeChannel.profileImageName = "kanye_profile"
+ func loadCurrentChurch (codigo: String) {
+       
+     //  let referenciaDB = Database.database()
+       
+       // .observeSingleEvent(of: .value, with: { (snapshot) in
+       
+       print("Este es el codigo")
+       print(codigo)
+       
+       let userPostRef = Database.database().reference().child("Churchs").child(codigo)
+         //let userPostRef = Database.database().reference().child("Media_Channels")
+       userPostRef.observeSingleEvent(of: .value, with: { (data) in
            
-           var blankSpaceVideo = Video()
-           blankSpaceVideo.title = "Taylor Swift - Blank Space"
-           blankSpaceVideo.thumbnailImageName = "taylor_swift_blank_space"
-           blankSpaceVideo.channel = kanyeChannel
-           blankSpaceVideo.numberOfViews = 23932843093
+           print("Entro a ver")
+           print(data.value)
+            if let devoFeed = data.value as? [String:Any] {
+    
+                                   
+                                   advengers.shared.currentChurchInfo = Church(dictionary: devoFeed)
+                                   
+                                   print("Esta es la info de la church:")
+                                   print(advengers.shared.currentChurchInfo.name)
+                                   print(advengers.shared.currentChurchInfo.uidChurch)
+                                   
+
+                              }
            
-           var badBloodVideo = Video()
-           badBloodVideo.title = "Taylor Swift - Bad Blood featuring Kendrick Lamar"
-           badBloodVideo.thumbnailImageName = "taylor_swift_bad_blood"
-           badBloodVideo.channel = kanyeChannel
-           badBloodVideo.numberOfViews = 57989654934
            
-           return [blankSpaceVideo, badBloodVideo]
+          }, withCancel: { (err) in
+           print("Failed to fetch like info for post:", err)
+          })
+
+       
+   }
+  
+    /*
+    func loadActiveChannel (codigo: String) {
+        
+      //  let referenciaDB = Database.database()
+        
+        // .observeSingleEvent(of: .value, with: { (snapshot) in
+        
+        print("Este es el codigo")
+        print(codigo)
+        
+        let userPostRef = Database.database().reference().child("Media_Channels").child(codigo)
+          //let userPostRef = Database.database().reference().child("Media_Channels")
+        userPostRef.observeSingleEvent(of: .value, with: { (data) in
+            
+            print("Entro a ver")
+            print(data.value)
+             if let devoFeed = data.value as? [String:Any] {
+     
+                                    
+                self.channelActivo = wChannel(dictionary: devoFeed)
+                                    
+                print("Esta es la info del active channel:")
+                print(self.channelActivo.church)
+                print(self.channelActivo.title)
+                                    
+
+                               }
+            
+            
+           }, withCancel: { (err) in
+            print("Failed to fetch like info for post:", err)
+           })
+
+        
+    }
+     */
+    
+  //  var channelActivo = wChannel(dictionary: ["":""])
+    
+        var audioPlayer: AVAudioPlayer?
+        let storage = Storage.storage()
+        var delegate: AudibleDelegate?
+                 
+        var isPlaying = false
+                 
+    
+       lazy var statusAudio: UILabel = {
+              let label2 = UILabel ()
+              label2.font = UIFont(name: "Avenir-Medium", size: 12)
+              label2.text = "Loading audio file ..."
+              label2.textColor = .white
+              //   button.setImage(UIImage(named: "cellPrayIcon")?.withRenderingMode(.alwaysOriginal), for: .normal)
+              // button.addTarget(self, action: #selector(handleLike), for: .touchUpInside)
+              return label2
+          }()
+       
+       
+       
+       
+       lazy var praysDate: UILabel = {
+           let label2 = UILabel ()
+           label2.font = UIFont(name: "Avenir-Medium", size: 12)
+           label2.text = "You prayed 1"
+           label2.textColor = .lightGray
+     
+           return label2
        }()
+       
+       
+       lazy var likeCount: UILabel = {
+           let label2 = UILabel ()
+           label2.font = UIFont(name: "Avenir-Medium", size: 15)
+           label2.text = "0000"
+      
+           return label2
+       }()
+       
+       
+       lazy var commentCount: UILabel = {
+           let label2 = UILabel ()
+           label2.font = UIFont(name: "Avenir-Medium", size: 15)
+           label2.text = "    "
+     
+           return label2
+       }()
+       
+       
+       let backgroundChannel: CustomImageView = {
+           let iv = CustomImageView()
+           iv.contentMode = .scaleAspectFill
+           iv.clipsToBounds = true
+           iv.backgroundColor = .blue
+           return iv
+       }()
+       
+       lazy var audioView: UIButton = {
+           let iv = UIButton(type: .system)
+          // iv.setTitle("Play", for: .normal)
+           iv.setImage(#imageLiteral(resourceName: "payAudio").withRenderingMode(.alwaysOriginal), for: .normal)
+         //  iv.setTitleColor(.black, for: .normal)
+           //  iv.contentMode = .scaleAspectFill
+           iv.layer.backgroundColor = #colorLiteral(red: 0.2588235438, green: 0.7568627596, blue: 0.9686274529, alpha: 1)
+           
+           
+           
+        
+
+
+         
+           iv.addTarget(self, action: #selector (hadlePlay), for: .touchUpInside)
+           return iv
+       }()
+       
+       
+
+       lazy var audioViewBack: UIView = {
+           
+           let a = UIView()
+           let fondo: String = {
+               
+               return "fondo" + String(Int.random(in: 1..<5))
+           } ()
+           
+           let imagen = UIImageView(image: UIImage(named: fondo))
+           
+           imagen.contentMode = .scaleAspectFit
+       
+        //   a.bounds = CGRect(x: 0, y: 0, width: frame.width, height: 80)
+           a.addSubview(imagen)
+           a.alpha = 0.6
+           
+           
+           return a
+       } ()
+       
     
-    @IBOutlet weak var playerWeb: WKWebView!
-    var videoURL:URL!  // has the form "https://www.youtube.com/embed/videoID"
-    var didLoadVideo = false
-    
+       
+       
+       
+       let usernameLabel: UILabel = {
+           let label = UILabel()
+           label.text = "Username"
+           label.font = UIFont.boldSystemFont(ofSize: 14)
+           return label
+       }()
+       
+       let optionsButton: UIButton = {
+           let button = UIButton(type: .system)
+           button.setTitle("•••", for: .normal)
+           button.setTitleColor(.black, for: .normal)
+           return button
+       }()
+       
+        @objc func Logout () {
+           try! Auth.auth().signOut()
+       }
+       
+       
+       @objc func addPlaylist () {
+           
+           performSegue(withIdentifier: "addPlaylist", sender: self)
+       }
+
     
     override func viewDidLoad() {
         
-        print("Conectando a Youtube")
         
         // TODO: REFACTORIAR, OJO CON LAS FUNCONES QUE EJCUTAN LOS BOTONES // ----------------------------
                  // ---------------------------------------------------------------------------------------------
@@ -79,135 +252,90 @@ class PowerOfWorshipViewController:  UIViewController{
                  
                  // -----------------------------------------------------------------------------------------
         
-        
-        
-        
- //       navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Log Out", style: .plain, target: self, action: #selector(Logout))
-        
-
-    
-        
-       // videoURL = URL(string: "https://www.youtube.com/embed/F4sTcCcVkPw")
-       // playerWeb.configuration.mediaTypesRequiringUserActionForPlayback = []
-        
-        
-   //     fetchVideos()
-        
-        
-    }
-    
-    @objc func Logout () {
-        try! Auth.auth().signOut()
-    }
-    
-    
-    @objc func addPlaylist () {
-        
-        performSegue(withIdentifier: "addPlaylist", sender: self)
-    }
-    /*
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        // Size of the webView is used to size the YT player frame in the JS code
-        // and the size of the webView is only known in `viewDidLayoutSubviews`,
-        // however, this function is called again once the HTML is loaded, so need
-        // to store a bool indicating whether the HTML has already been loaded once
-        if !didLoadVideo {
-            playerWeb.loadHTMLString(embedVideoHtml, baseURL: nil)
-            didLoadVideo = true
-        }
-    }
-*/
-    
-
-    func fetchVideos() {
-        let url = NSURL(string: "https://s3-us-west-2.amazonaws.com/youtubeassets/home.json")
-        URLSession.shared.dataTask(with: url! as URL) { (data, response, error) in
             
-            if error != nil {
-                print(error)
-                return
-            }
-            
-            do {
-                let json = try JSONSerialization.jsonObject(with: data!, options: .mutableContainers)
-                
-                self.videos = [Video]()
-                
-                for dictionary in json as! [[String: AnyObject]] {
-                    
-                    let video = Video()
-                    video.title = dictionary["title"] as? String
-                    video.thumbnailImageName = dictionary["thumbnail_image_name"] as? String
-                    
-                    let channelDictionary = dictionary["channel"] as! [String: AnyObject]
-                    
-                    let channel = Channel()
-                    channel.name = channelDictionary["name"] as? String
-                    channel.profileImageName = channelDictionary["profile_image_name"] as? String
-                    
-                    video.channel = channel
-                    
-                    self.videos.append(video)
-                    print (self.videos[0].channel)
-                    print (self.videos[0].thumbnailImageName)
-                    print (self.videos[0].title)
-                    
-                }
-                
-             //   self.collectionView?.reloadData()
-                
-            } catch let jsonError {
-                print(jsonError)
-            }
-            
-            
-            
-        }.resume()
+        view.addSubview(backgroundChannel)
         
-
-    }
- 
+        backgroundChannel.anchor(top: view.topAnchor, left: view.leftAnchor, bottom: view.bottomAnchor, right: view.rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 0)
+        
+         loadCurrentChurch(codigo: "66888A34-D2C7-43A8-AAE4-655DA8285541")
+        
+          print(advengers.shared.currentChurchInfo.channelActive)
+        
+        //   loadActiveChannel(codigo: advengers.shared.currentChurchInfo.channelActive)
+          
 
 
+    }
+    
+      @objc func hadlePlay ()  {
+                  
+                  
+                  isPlaying = !isPlaying
+                  
+                  if isPlaying{
+                      audioView.setImage(#imageLiteral(resourceName: "pausebutton").withRenderingMode(.alwaysOriginal), for: .normal)
+                  
+                  statusAudio.isHidden = false
+                      
+//                  let httpsReference = storage.reference(forURL: post!.photoImage)
+//
+//                  httpsReference.getData(maxSize: 1 * 1024 * 1024) { data, error in
+//                      if let error = error {
+//                          // Uh-oh, an error occurred!
+//                      } else {
+//
+//
+//                          self.playContent(data: data!)
+//                          self.statusAudio.isHidden = true
+//
+//
+//                      }
+//
+//
+//
+//                  }
+//
+//
+//                  let url = URL(fileURLWithPath: post!.photoImage)
+//
+//                  print ("Click ok")
+//
+//                  print(url.absoluteString)
+//
+//
+//                  } else {
+//
+//                      audioView.setImage(#imageLiteral(resourceName: "payAudio").withRenderingMode(.alwaysOriginal), for: .normal)
+//                      audioPlayer?.stop()
+//                  }
+                  
+              }
+              
+        func playContent (data: Data)
+                  
+              {
+                  
+                  
+                  do {
+                      
+                      audioPlayer = try AVAudioPlayer(data: data)
+                      audioPlayer?.play()
+                      print("Playing ....")
+                  } catch {
+                      print ("No Playing")
+                      //print(url.absoluteString)
+                  }
+                  
+                  
+                  
+                  
+              }
+              
+
+           
+       }
+
+
+    
 }
 
-
-        /*  --------------- como que funciona
-        var mywkwebview: WKWebView?
-        let mywkwebviewConfig = WKWebViewConfiguration()
-
-        mywkwebviewConfig.allowsInlineMediaPlayback = true
-        mywkwebview = WKWebView(frame: self.view.frame, configuration: mywkwebviewConfig)
-
-        let myURL = URL(string: "https://www.youtube.com/embed/F4sTcCcVkPw?playsinline=1?autoplay=1")
-        var youtubeRequest = URLRequest(url: myURL!)
-
-        mywkwebview?.load(youtubeRequest)
-        
-        guard let webView = mywkwebview else { return }
-        
-        
-        self.view.addSubview(webView)
- 
- */
-/*
-      //  let urlString = "https://firebasestorage.googleapis.com/v0/b/gameofchats-762ca.appspot.com/o/message_movies%2F12323439-9729-4941-BA07-2BAE970967C7.mov?alt=media&token=3e37a093-3bc8-410f-84d3-38332af9c726"
-        
-        //https://www.youtube.com/watch?v=F4sTcCcVkPw
-        
-        let urlString = "https://www.youtube.com/watch?v=F4sTcCcVkPw"
-        
-             if let url = NSURL(string: urlString) {
-                let player = AVPlayer(url: url as URL)
-                 
-                 let playerLayer = AVPlayerLayer(player: player)
-                 view.layer.addSublayer(playerLayer)
-                playerLayer.frame = self.view.frame
-                 
-                 player.play()
-                
-                
-             }
- 
-  */

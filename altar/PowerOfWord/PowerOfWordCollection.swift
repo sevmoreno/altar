@@ -18,7 +18,8 @@ class PowerOfWordCollectionView: UICollectionViewController,  UICollectionViewDe
        var devos = [Devo] ()
        
        override func viewDidLoad() {
-           
+            NotificationCenter.default.addObserver(self, selector: #selector(reloadData), name: NSNotification.Name("reloaddata"), object: nil)
+        
     //       collectionView?.register(DevotionalCollectionViewCell.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "headerWord")
 
         
@@ -74,6 +75,13 @@ class PowerOfWordCollectionView: UICollectionViewController,  UICollectionViewDe
        
            
        }
+    
+    
+    @objc func reloadData () {
+        devos.removeAll()
+        loadDevocionales()
+        collectionView?.reloadData()
+    }
     
     @objc func settings () {
         

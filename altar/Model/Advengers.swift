@@ -32,6 +32,9 @@ class advengers {
     
     var currentChurch = "Favorday Church"
     
+    var currentChurchInfo = Church (dictionary: ["":""])
+    
+    //var currentActiveChannel = wChannel (dictionary: ["":""])
     let storageRef = Storage.storage().reference()
     
     let pathsRef = Database.database().reference().child ("Paths")

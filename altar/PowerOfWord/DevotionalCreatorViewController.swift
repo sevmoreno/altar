@@ -465,7 +465,7 @@ class DevotionalCreatorViewController: UIViewController {
         
       //  model.didChange(<#NSKeyValueChange#>)
      
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "+ Devotional", style: .plain, target: self, action: #selector(postDevotional))
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Post", style: .plain, target: self, action: #selector(postDevotional))
         navigationItem.leftBarButtonItem?.title = "Back"
         
         
@@ -640,6 +640,8 @@ class DevotionalCreatorViewController: UIViewController {
             print("utterly failed to convert to html!!! \n>\(x)<\n")
         }
         print(resultHtmlText)
+        
+         NotificationCenter.default.post(name: NSNotification.Name("reloaddata"), object: nil)
         
         _ = navigationController?.popViewController(animated: true)
 
