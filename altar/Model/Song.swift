@@ -6,7 +6,7 @@
 //  Copyright © 2020 Juan Moreno. All rights reserved.
 //
 
-struct wSong {
+class wSong {
     
    
     var author: String! = ""
@@ -19,7 +19,7 @@ struct wSong {
   
     
 
-    init(dictionary: [String: Any]) {
+  func load(dictionary: [String: Any]) {
                self.author = dictionary["author"] as? String ?? ""
                self.title = dictionary["title"] as? String ?? ""
                self.songID = dictionary["songID"] as? String

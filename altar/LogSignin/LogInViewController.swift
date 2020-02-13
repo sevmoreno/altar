@@ -136,7 +136,7 @@ class logInViewController: UIViewController, UITextFieldDelegate {
                    .font : UIFont(name: "Prompt-Bold", size: 34)!,
                    .foregroundColor : UIColor(red: 1, green: 1, blue: 1, alpha: 1),
                    .kern : 0.61,
-                   .paragraphStyle : NSMutableParagraphStyle(alignment: .left, lineHeight: nil, paragraphSpacing: 0)
+                  // .paragraphStyle : NSMutableParagraphStyle(alignment: .left, lineHeight: nil, paragraphSpacing: 0)
                ])
     self.welcomeBackLabel.attributedText = welcomeBackLabelAttrString
         

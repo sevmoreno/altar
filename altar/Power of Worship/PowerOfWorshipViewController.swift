@@ -39,7 +39,8 @@ class PowerOfWorshipViewController:  UIViewController{
                                    print("Esta es la info de la church:")
                                    print(advengers.shared.currentChurchInfo.name)
                                    print(advengers.shared.currentChurchInfo.uidChurch)
-                                   
+                
+                  
 
                               }
            
@@ -76,10 +77,13 @@ class PowerOfWorshipViewController:  UIViewController{
                 print(self.cannalActivo.church)
                 print(self.cannalActivo.title)
                 
-                
+               
+                                     
 
                 DispatchQueue.main.async {
                             self.backgroundChannel.loadImage(urlString: self.cannalActivo.photoURL)
+                     self.nameChannel.text = self.cannalActivo.title
+                    
                         }
                 
                                     
@@ -118,11 +122,12 @@ class PowerOfWorshipViewController:  UIViewController{
        
        
        
-       lazy var praysDate: UILabel = {
+       lazy var nameChannel: UILabel = {
            let label2 = UILabel ()
-           label2.font = UIFont(name: "Avenir-Medium", size: 12)
+           label2.font = UIFont(name: "Avenir-Heavy", size: 20)
            label2.text = "You prayed 1"
-           label2.textColor = .lightGray
+           label2.textColor = .white
+        label2.textAlignment = .center
      
            return label2
        }()
@@ -169,7 +174,7 @@ class PowerOfWorshipViewController:  UIViewController{
 
 
          
-           iv.addTarget(self, action: #selector (hadlePlay), for: .touchUpInside)
+           iv.addTarget(self, action: #selector (activarChannel), for: .touchUpInside)
            return iv
        }()
        
@@ -278,55 +283,130 @@ class PowerOfWorshipViewController:  UIViewController{
          audioView.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
         
           loadActiveChannel(codigo: advengers.shared.currentChurchInfo.channelActive)
-          
+        
+        
+        view.addSubview(nameChannel)
+        
+        
+        nameChannel.anchor(top: audioView.topAnchor, left: nil, bottom: nil, right: nil, paddingTop: 50, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: view.frame.width - 20, height: 0)
+        nameChannel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        
+ 
 
 
     }
     
-      @objc func hadlePlay ()  {
+       var urlSongs = [wSong] ()
+    
+    typealias CompletionHandler = (_ :Bool) -> Void
+    
+    func loadTrack (track: String, completionHandler: @escaping CompletionHandler) {
+        let userPostRef = Database.database().reference().child("Media_Songs").child(track)
+                         
+                             userPostRef.observeSingleEvent(of: .value, with: { (data) in
+                                        
+                                        print("Entro a ver")
+                                        print(data.value)
+                                         if let devoFeed = data.value as? [String:Any] {
+                                             let cancion = wSong()
+                                             cancion.load(dictionary: devoFeed)
+                                             
+                                             self.urlSongs.append(cancion)
+                                            
+                                            
+                                                           }
+                                        
+                                        completionHandler(true)
+
+                                self.channelActivo = true
+                                
+                                       }, withCancel: { (err) in
+                                        
+                                        
+                                        print("Failed to fetch like info for post:", err)
+                                       })
+                             
+        
+    }
+    
+    
+    var channelActivo = false
+    
+      @objc func activarChannel ()  {
                   
                   
-                  isPlaying = !isPlaying
-                  
-                  if isPlaying{
-                      audioView.setImage(#imageLiteral(resourceName: "pausebutton").withRenderingMode(.alwaysOriginal), for: .normal)
-                  
-                  statusAudio.isHidden = false
-                      
-//                  let httpsReference = storage.reference(forURL: post!.photoImage)
-//
-//                  httpsReference.getData(maxSize: 1 * 1024 * 1024) { data, error in
-//                      if let error = error {
-//                          // Uh-oh, an error occurred!
-//                      } else {
-//
-//
-//                          self.playContent(data: data!)
-//                          self.statusAudio.isHidden = true
-//
-//
-//                      }
-//
-//
-//
-//                  }
-//
-//
-//                  let url = URL(fileURLWithPath: post!.photoImage)
-//
-//                  print ("Click ok")
-//
-//                  print(url.absoluteString)
-//
-//
-//                  } else {
-//
-//                      audioView.setImage(#imageLiteral(resourceName: "payAudio").withRenderingMode(.alwaysOriginal), for: .normal)
-//                      audioPlayer?.stop()
-//                  }
+                   
+           
+                  if !isPlaying {
+                    
+                    
+                    audioView.setImage(#imageLiteral(resourceName: "pausebutton").withRenderingMode(.alwaysOriginal), for: .normal)
+
+ 
+                    
+                    for track in cannalActivo.lista {
+                        
+                        loadTrack (track: track, completionHandler: { (true) -> Void in
+                            
+                            if self.channelActivo != false {
+                            self.playNow ()
+                            }
+                            
+                        })
+                      isPlaying = true
+                        
+                    }
+                    
+
+                    
+                    } else {
+                    
+                                          audioView.setImage(#imageLiteral(resourceName: "payAudio").withRenderingMode(.alwaysOriginal), for: .normal)
+                                          audioPlayer?.stop()
+                                      }
+               
                   
               }
               
+    func playNow () {
+        
+             print("llego a play now")
+             print(urlSongs[0].songURL)
+             let httpsReference = storage.reference(forURL: urlSongs[0].songURL)
+
+                            httpsReference.getData(maxSize: 100 * 1024 * 1024) { data, error in
+                              if let error = error {
+                                print("Error Playing")
+                                print(error.localizedDescription)
+                              } else {
+
+                                  self.playContent(data: data!)
+                                  self.statusAudio.isHidden = true
+
+                              }
+
+                          }
+
+
+                     //     let url = URL(fileURLWithPath: post!.photoImage)
+
+                       //   print ("Click ok")
+
+                        //  print(url.absoluteString)
+
+        //
+        //                  } else {
+        //
+        //                      audioView.setImage(#imageLiteral(resourceName: "payAudio").withRenderingMode(.alwaysOriginal), for: .normal)
+        //                      audioPlayer?.stop()
+        //                  }
+        
+    }
+    
+    
+    
+    
+    
         func playContent (data: Data)
                   
               {
@@ -353,5 +433,5 @@ class PowerOfWorshipViewController:  UIViewController{
 
 
     
-}
+
 
