@@ -114,7 +114,7 @@ class DevotionalCollectionViewCell: UICollectionViewCell {
         
         addSubview(titulo)
         
-        titulo.anchor(top: nil, left: leftAnchor, bottom: bottomAnchor, right: nil, paddingTop: 0, paddingLeft: 15, paddingBottom: 30, paddingRight: 0, width: 0, height: 0)
+        titulo.anchor(top: nil, left: leftAnchor, bottom: bottomAnchor, right: nil, paddingTop: 0, paddingLeft: 15, paddingBottom: 30, paddingRight: 0, width: frame.size.width, height: 0)
        // titulo.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
         
         

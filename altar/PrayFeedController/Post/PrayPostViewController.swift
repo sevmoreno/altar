@@ -30,7 +30,7 @@ class PrayPostViewController: UIViewController, UIImagePickerControllerDelegate,
     @IBOutlet var nombreUsuario: UILabel? {
         didSet {
             
-            nombreUsuario?.text = advengers.shared.currenUSer["name"]
+            nombreUsuario?.text = advengers.shared.currenUSer["name"] as! String
         }
     }
     @IBOutlet weak var textoIngresado: UITextView!
@@ -267,7 +267,7 @@ class PrayPostViewController: UIViewController, UIImagePickerControllerDelegate,
          DispatchQueue.main.async {
             print("Esta es la foto")
             print(advengers.shared.currenUSer["photoURL"])
-            self.usuarioFoto.loadImage(urlString: advengers.shared.currenUSer["photoURL"]!)
+            self.usuarioFoto.loadImage(urlString: advengers.shared.currenUSer["photoURL"]! as! String)
         
         }
      //   let imagenUsuario = CustomImageView ()

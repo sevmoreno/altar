@@ -10,7 +10,7 @@ import UIKit
 import AVFoundation
 import Firebase
 
-class PlayListViewController: UICollectionViewController,  UICollectionViewDelegateFlowLayout  {
+class PlayListViewController: UICollectionViewController,  UICollectionViewDelegateFlowLayout   {
     
     
        let cellId = "cellId"
@@ -54,7 +54,7 @@ class PlayListViewController: UICollectionViewController,  UICollectionViewDeleg
                
                if advengers.shared.isPastor {
                    
-                   navigationItem.rightBarButtonItem = UIBarButtonItem(title: "+ Devotional", style: .plain, target: self, action: #selector(addDevotional))
+                   navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Select Channel", style: .plain, target: self, action: #selector(addDevotional))
                    
                }
         
@@ -256,72 +256,20 @@ class PlayListViewController: UICollectionViewController,  UICollectionViewDeleg
     
     // ------------------------------------------------------------------ COLLECTION CELLS -----------------------------------------------------------------------------
 
-//       func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-//
-//              return 3.0
-//
-//      }
+       func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+
+              return 3.0
+
+      }
        
-       func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-              
+  
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
 
-        /*
-           
-           if photos[indexPath.row].postType == advengers.postType.textOnly.rawValue {
-               
-               print("sizeForItemAt")
-                                                print("Numero:3")
-                                                let botones: CGFloat = 50.0
-                                                let usuarioInfo: CGFloat = 50.0
-                                      
-                                                let dummyframe = CGRect(x: 0, y: 0, width: view.frame.width, height: 1000)
-                                                let dummycell = textOnlyCell (frame: dummyframe)
-                                                dummycell.captionLabel.text = photos[indexPath.row].message
-                                           
-                                                
-                                                
-
-                                               let size = CGSize(width: view.frame.width, height: .infinity)
-                                               let texto = dummycell.captionLabel.sizeThatFits(size)
-                                               
-                                             //  let imageRatio = CGFloat(photos[indexPath.row].photoW! / photos[indexPath.row].photoH!)
-                                                
-
-                                        
-                                                
-                          return CGSize(width: view.frame.width, height:  usuarioInfo + botones + texto.height )
-               
-           } else {
-               print("sizeForItemAt")
-                           print("Numero:3")
-                           let botones: CGFloat = 50.0
-                           let usuarioInfo: CGFloat = 50.0
-
-           
-                          
-                          let imageRatio = CGFloat(photos[indexPath.row].photoW! / photos[indexPath.row].photoH!)
-                           
-
-                      return CGSize(width: view.frame.width, height:  usuarioInfo + botones + (view.frame.width /  imageRatio) )
-           
-           }
-               
- 
-          */
-        
-     //   switch devos.count {
-       // case 1:
-            return CGSize(width: view.frame.width, height: 200 )
-   //     default:
-     //       return CGSize(width: view.frame.width, height:  500 )
-        //}
-            
-            
-
-        
-      
-       }
-       
+   
+        return CGSize(width: view.frame.width, height: view.frame.height / 4)
+    }
+    
        
        override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
           
@@ -336,36 +284,12 @@ class PlayListViewController: UICollectionViewController,  UICollectionViewDeleg
        override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
            
         
-        /*
-           switch photos[indexPath.item].postType {
-           case advengers.postType.imageOnly.rawValue:
-               
-               let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "OtraPostCell", for: indexPath as IndexPath) as! AnnotatedPhotoCell
-               cell.contentView.backgroundColor = .white
-               cell.post = photos[indexPath.item]
-               return cell
-               
-               
-           case advengers.postType.textOnly.rawValue:
-               let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "textOnlyCelll", for: indexPath as IndexPath) as! textOnlyCell
-               cell.contentView.backgroundColor = .white
-               cell.post = photos[indexPath.item]
-               return cell
-               
-           default:
-               
-               let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "textOnlyCelll", for: indexPath as IndexPath) as! textOnlyCell
-               cell.contentView.backgroundColor = .white
-               cell.post = photos[indexPath.item]
-               return cell
-           }
-           
-   */
+    
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "oldWord", for: indexPath) as? ChannelCollectionViewCell
       
         
-         cell?.post = channel[indexPath.row]
+        cell?.post = channel[indexPath.row]
         return cell!
         
        }
@@ -373,20 +297,9 @@ class PlayListViewController: UICollectionViewController,  UICollectionViewDeleg
     
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
-        performSegue(withIdentifier: "aChannelSelecction", sender: self)
-        
-      
+    //    performSegue(withIdentifier: "aChannelSelecction", sender: self)
        
-       
-        /*
-        
-        advengers.shared.devocionalSeleccinado = channel[indexPath.row]
-         let a = DevocionalSeleccionado ()
-        
-        
-         a.devo = channel[indexPath.row]
-        */
-        
+
         
     }
     

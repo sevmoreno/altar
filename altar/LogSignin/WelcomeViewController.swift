@@ -11,7 +11,7 @@ import Firebase
 
 class WelcomeViewController: UIViewController {
       @IBOutlet weak var bgCopyView: UIView!
-      @IBOutlet weak var findNewFriendsNeaLabel: UILabel!
+      @IBOutlet weak var altarLaber: UILabel!
       @IBOutlet weak var togetherInTheSameLabel: UILabel!
       @IBOutlet weak var withMilionsOfUserLabel: UILabel!
 
@@ -120,15 +120,15 @@ class WelcomeViewController: UIViewController {
         
         
         // Setup findNewFriendsNeaLabel
-        let findNewFriendsNeaLabelAttrString = NSMutableAttributedString(string: "Altar", attributes: [
-            .font : UIFont(name: "Prompt-Bold", size: 50)!,
-            .foregroundColor : UIColor(red: 1, green: 1, blue: 1, alpha: 1),
-            .kern : -0.8,
-            .paragraphStyle : NSMutableParagraphStyle(alignment: .left, lineHeight: nil, paragraphSpacing: 0)
-        ])
-
-        self.findNewFriendsNeaLabel.attributedText = findNewFriendsNeaLabelAttrString
-        
+//        let altarTitle = NSMutableAttributedString(string: "Altar", attributes: [
+//            .font : UIFont(name: "Avenir-Heavy", size: 50)!,
+//            .foregroundColor : UIColor(red: 1, green: 1, blue: 1, alpha: 1),
+//            .kern : -0.8
+//            //.paragraphStyle : //NSMutableParagraphStyle(alignment: .left, lineHeight: nil, paragraphSpacing: 0)
+//        ])
+//
+//        self.findNewFriendsNeaLabel.attributedText = altarTitle
+//
         // Setup togetherInTheSameLabel
         let togetherInTheSameLabelAttrString: NSAttributedString = {
             
@@ -166,9 +166,17 @@ class WelcomeViewController: UIViewController {
             
      //   }()
         
-        self.togetherInTheSameLabel.attributedText = togetherInTheSameLabelAttrString
+    self.togetherInTheSameLabel.attributedText = togetherInTheSameLabelAttrString
         
-        // Setup withMilionsOfUserLabel
+//        DispatchQueue.main.async {
+//            self.togetherInTheSameLabel.text = "Altar"
+//            self.togetherInTheSameLabel.font = UIFont(name: "Avenir-Heavy", size: 50)
+//            self.togetherInTheSameLabel.textColor = UIColor(red: 1, green: 1, blue: 1, alpha: 1)
+//            self.togetherInTheSameLabel.textAlignment = .center
+//            // Setup withMilionsOfUserLabel
+//        }
+        
+        
         let withMilionsOfUserLabelAttrString: NSMutableAttributedString  =
             
         {
@@ -236,10 +244,10 @@ class WelcomeViewController: UIViewController {
 
         
         
-         view.addSubview(findNewFriendsNeaLabel)
+         view.addSubview(altarLaber)
       
-        findNewFriendsNeaLabel.anchor(top: view.topAnchor, left: nil, bottom: nil, right: nil, paddingTop: 258, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: findNewFriendsNeaLabel.intrinsicContentSize.width, height: findNewFriendsNeaLabel.intrinsicContentSize.height)
-        findNewFriendsNeaLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        altarLaber.anchor(top: view.topAnchor, left: nil, bottom: nil, right: nil, paddingTop: 258, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 300, height: 0)
+        altarLaber.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         
         
         view.addSubview(togetherInTheSameLabel)

@@ -174,7 +174,7 @@ class ChatViewController: MessagesViewController,InputBarAccessoryViewDelegate, 
     
     func inputBar(_ inputBar: InputBarAccessoryView, didPressSendButtonWith text: String) {
     //When use press send button this method is called.
-        let message = Message(id: UUID().uuidString, content: text, created: Timestamp(), senderID: currentUser.uid, senderName: currentUser.displayName ?? advengers.shared.currenUSer["name"]!)
+        let message = Message(id: UUID().uuidString, content: text, created: Timestamp(), senderID: currentUser.uid, senderName: currentUser.displayName ?? advengers.shared.currenUSer["name"]! as! String)
     //calling function to insert and save message
     insertNewMessage(message)
     save(message)

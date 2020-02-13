@@ -75,10 +75,15 @@ class ChannelCollectionViewCell: UICollectionViewCell {
         
         lazy var imagenDevocional: CustomImageView = {
             let iv = CustomImageView()
-            iv.contentMode = .scaleAspectFill
-              iv.clipsToBounds = true
-           iv.backgroundColor = .blue
+            
+            
+            iv.contentMode = .scaleToFill
+            
+            iv.clipsToBounds = true
+            iv.layer.masksToBounds = true
+            iv.contentMode = .scaleAspectFit
             iv.layer.cornerRadius = 22
+ 
             return iv
         }()
         
@@ -104,20 +109,36 @@ class ChannelCollectionViewCell: UICollectionViewCell {
                     // button.addTarget(self, action: #selector(handleLike), for: .touchUpInside)
                      return label2
                  }()
+    
+    lazy var subTitulo: UILabel = {
+        let label2 = UILabel ()
+        label2.font = UIFont(name: "Avenir-Medium", size: 14)
+        label2.text = "Instrumentl Praise & Worship"
+     label2.textColor = .white
+        label2.alpha = 0.8
+     //   button.setImage(UIImage(named: "cellPrayIcon")?.withRenderingMode(.alwaysOriginal), for: .normal)
+       // button.addTarget(self, action: #selector(handleLike), for: .touchUpInside)
+        return label2
+    }()
         
         
         override init(frame: CGRect) {
             super.init(frame: frame)
             
-            
         addSubview(imagenDevocional)
             
-        imagenDevocional.anchor(top: topAnchor, left: leftAnchor, bottom: bottomAnchor, right: rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 0)
+            imagenDevocional.contentMode = .scaleAspectFill
+            imagenDevocional.anchor(top: topAnchor, left: leftAnchor, bottom: nil, right: nil, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: frame.width,height: frame.height)
             
             addSubview(titulo)
             
             titulo.anchor(top: nil, left: leftAnchor, bottom: bottomAnchor, right: nil, paddingTop: 0, paddingLeft: 15, paddingBottom: 30, paddingRight: 0, width: 0, height: 0)
            // titulo.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
+            
+            addSubview(subTitulo)
+            
+            
+            subTitulo.anchor(top: titulo.bottomAnchor, left: titulo.leftAnchor, bottom: nil, right: nil, paddingTop: 4, paddingLeft: 0, paddingBottom: 30, paddingRight: 0, width: 0, height: 0)
             
             
           //  imagenDevocional.image = UIImage(named: "devoback1")

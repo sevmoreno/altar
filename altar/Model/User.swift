@@ -16,13 +16,19 @@ class User: NSObject {
     var churchUser: String = ""
     var email: String = ""
     var uid: String = ""
-    
+    var title: String = ""
+    var churchID: String = ""
+    var isPastor: Int = 0
 
     init(uid: String, dictionary: [String: Any]) {
            self.fullName = dictionary["username"] as? String ?? ""
            self.photoUser = dictionary["photoURL"]  as? String ?? ""
            self.userID = dictionary["userid"] as? String ?? ""
            self.churchUser = dictionary["church"]  as? String ?? ""
+        
+          self.title = dictionary["title"]  as? String ?? ""
+          self.churchID = dictionary["churchID"] as? String ?? ""
+          self.isPastor = dictionary["isPastor"]  as? Int ?? 0
         
            self.uid = uid
        }

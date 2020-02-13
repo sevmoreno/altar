@@ -98,10 +98,10 @@ class PhotoVideoPostViewController: UIViewController, UIImagePickerControllerDel
         view.addSubview(usernameLabel)
         
         DispatchQueue.main.async {
-            self.usernameLabel.text = advengers.shared.currenUSer["name"]
+            self.usernameLabel.text = advengers.shared.currenUSer["name"] as! String
                    
              guard let profileuserURL = advengers.shared.currenUSer["photoURL"] else {return}
-            self.userProfileImageView.loadImage(urlString: profileuserURL)
+            self.userProfileImageView.loadImage(urlString: profileuserURL as! String)
         }
         
          userProfileImageView.translatesAutoresizingMaskIntoConstraints = false

@@ -49,7 +49,13 @@ class advengers {
                       "email": "",
                       "name":"",
                       "photoURL":"",
-                      "userid":""] as! [String:String]
+                      "userid":"",
+                      "title":"",
+                      "churchID":"",
+                      "isPastor": 0,
+                      "uid":""
+                        
+                        ] as! [String:Any]
     
 
     
