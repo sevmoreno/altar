@@ -10,7 +10,7 @@
 import Foundation
 import UIKit
 
-struct wChannel {
+class wChannel {
     
     var church: String! = ""
     var author: String! = ""
@@ -21,7 +21,7 @@ struct wChannel {
     var creationDate: Date!
     
     
-    init(dictionary: [String: Any]) {
+   func load(dictionary: [String: Any]) {
                self.author = dictionary["author"] as? String ?? ""
                self.church = dictionary["church"] as? String ?? ""
                self.title = dictionary["title"] as? String
@@ -33,5 +33,6 @@ struct wChannel {
         let secondsFrom1970 = dictionary["creationDate"] as? Int64 ?? 0
         self.creationDate = Date(milliseconds: secondsFrom1970)
     }
+    
     
 }

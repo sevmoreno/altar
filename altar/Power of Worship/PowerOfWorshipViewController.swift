@@ -51,7 +51,7 @@ class PowerOfWorshipViewController:  UIViewController{
        
    }
   
-    /*
+
     func loadActiveChannel (codigo: String) {
         
       //  let referenciaDB = Database.database()
@@ -70,11 +70,18 @@ class PowerOfWorshipViewController:  UIViewController{
              if let devoFeed = data.value as? [String:Any] {
      
                                     
-                self.channelActivo = wChannel(dictionary: devoFeed)
-                                    
+                
+                self.cannalActivo.load(dictionary: devoFeed)
                 print("Esta es la info del active channel:")
-                print(self.channelActivo.church)
-                print(self.channelActivo.title)
+                print(self.cannalActivo.church)
+                print(self.cannalActivo.title)
+                
+                
+
+                DispatchQueue.main.async {
+                            self.backgroundChannel.loadImage(urlString: self.cannalActivo.photoURL)
+                        }
+                
                                     
 
                                }
@@ -86,7 +93,7 @@ class PowerOfWorshipViewController:  UIViewController{
 
         
     }
-     */
+ 
     
   //  var channelActivo = wChannel(dictionary: ["":""])
     
@@ -96,6 +103,7 @@ class PowerOfWorshipViewController:  UIViewController{
                  
         var isPlaying = false
                  
+        var cannalActivo = wChannel()
     
        lazy var statusAudio: UILabel = {
               let label2 = UILabel ()
@@ -142,7 +150,7 @@ class PowerOfWorshipViewController:  UIViewController{
            let iv = CustomImageView()
            iv.contentMode = .scaleAspectFill
            iv.clipsToBounds = true
-           iv.backgroundColor = .blue
+          
            return iv
        }()
        
@@ -150,9 +158,10 @@ class PowerOfWorshipViewController:  UIViewController{
            let iv = UIButton(type: .system)
           // iv.setTitle("Play", for: .normal)
            iv.setImage(#imageLiteral(resourceName: "payAudio").withRenderingMode(.alwaysOriginal), for: .normal)
+        iv.alpha = 0.6
          //  iv.setTitleColor(.black, for: .normal)
            //  iv.contentMode = .scaleAspectFill
-           iv.layer.backgroundColor = #colorLiteral(red: 0.2588235438, green: 0.7568627596, blue: 0.9686274529, alpha: 1)
+        //   iv.layer.backgroundColor = #colorLiteral(red: 0.2588235438, green: 0.7568627596, blue: 0.9686274529, alpha: 1)
            
            
            
@@ -217,7 +226,7 @@ class PowerOfWorshipViewController:  UIViewController{
     
     override func viewDidLoad() {
         
-        
+                 view.backgroundColor = advengers.shared.colorBlue
         // TODO: REFACTORIAR, OJO CON LAS FUNCONES QUE EJCUTAN LOS BOTONES // ----------------------------
                  // ---------------------------------------------------------------------------------------------
                  navigationController?.navigationBar.backgroundColor = advengers.shared.colorBlue
@@ -253,15 +262,22 @@ class PowerOfWorshipViewController:  UIViewController{
                  // -----------------------------------------------------------------------------------------
         
             
-        view.addSubview(backgroundChannel)
+       view.addSubview(backgroundChannel)
         
         backgroundChannel.anchor(top: view.topAnchor, left: view.leftAnchor, bottom: view.bottomAnchor, right: view.rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 0)
+        
+        
+        view.addSubview(audioView)
+        
+        audioView.anchor(top: view.topAnchor, left: nil, bottom: nil, right: nil, paddingTop: 100, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 0)
         
          loadCurrentChurch(codigo: "66888A34-D2C7-43A8-AAE4-655DA8285541")
         
           print(advengers.shared.currentChurchInfo.channelActive)
+           audioView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+         audioView.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
         
-        //   loadActiveChannel(codigo: advengers.shared.currentChurchInfo.channelActive)
+          loadActiveChannel(codigo: advengers.shared.currentChurchInfo.channelActive)
           
 
 

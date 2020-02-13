@@ -104,8 +104,9 @@ class PlayListViewController: UICollectionViewController,  UICollectionViewDeleg
                                    
                                    for (_,value) in devoFeed
                                    {
-
-                                    var channelT  = wChannel (dictionary: value as! [String : Any])
+                                    
+                                    var channelT  = wChannel()
+                                    channelT.load(dictionary: value as! [String : Any])
                                     
             //                        devocional.title = value["title"] as? String
             //                        devocional.message = value["texto"] as? String

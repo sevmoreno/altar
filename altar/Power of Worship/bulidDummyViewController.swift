@@ -66,7 +66,7 @@ class bulidDummyViewController: UIViewController {
         
  
                         
-                let diction = ["author" : "",
+                       let diction = ["author" : Auth.auth().currentUser?.uid,
                                "title" : nombre,
                                 "lista" : listaDeCanciones,
                                 "photoURL" : urlimagen,
