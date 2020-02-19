@@ -14,11 +14,14 @@ import Firebase
 class PowerOfWordCollectionView: UICollectionViewController,  UICollectionViewDelegateFlowLayout  {
     
     
+    // NotificationCenter.default.post(name: NSNotification.Name(rawValue: "loadDevotional"), object: nil)
+  
+    
        let cellId = "cellId"
        var devos = [Devo] ()
        
        override func viewDidLoad() {
-            NotificationCenter.default.addObserver(self, selector: #selector(reloadData), name: NSNotification.Name("reloaddata"), object: nil)
+            NotificationCenter.default.addObserver(self, selector: #selector(reloadData), name: NSNotification.Name("loadDevotional"), object: nil)
         
     //       collectionView?.register(DevotionalCollectionViewCell.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "headerWord")
 
@@ -70,7 +73,17 @@ class PowerOfWordCollectionView: UICollectionViewController,  UICollectionViewDe
                // -----------------------------------------------------------------------------------------
         
         
-        loadDevocionales ()
+        loadDevocionales(completionHandler: { (success) -> Void in
+            
+            
+            
+            
+            if success {
+                
+                
+            }
+            
+        })
 
        
            
@@ -79,8 +92,24 @@ class PowerOfWordCollectionView: UICollectionViewController,  UICollectionViewDe
     
     @objc func reloadData () {
         devos.removeAll()
-        loadDevocionales()
+        
         collectionView?.reloadData()
+        loadDevocionales(completionHandler: { (success) -> Void in
+
+            if success {
+                
+                self.collectionView?.reloadData()
+                
+          
+               let textAttributes2 = [NSAttributedString.Key.foregroundColor: advengers.shared.colorOrange,
+                                                            NSAttributedString.Key.font:UIFont(name: "Avenir-Heavy", size: 12)]
+                              
+                self.navigationItem.rightBarButtonItem?.setTitleTextAttributes(textAttributes2 as [NSAttributedString.Key : Any], for: .normal)
+                self.navigationItem.rightBarButtonItem?.tintColor = advengers.shared.colorOrange
+            }
+            
+        })
+       
     }
     
     @objc func settings () {
@@ -92,13 +121,13 @@ class PowerOfWordCollectionView: UICollectionViewController,  UICollectionViewDe
                present(settingsController, animated: true, completion: nil)
     }
     
-    func loadDevocionales () {
+    func loadDevocionales (completionHandler: @escaping (_ success:Bool) -> Void) {
         
       //  let referenciaDB = Database.database()
         
         // .observeSingleEvent(of: .value, with: { (snapshot) in
-        
-         Database.database().reference().child ("devocionales").child(advengers.shared.currentChurch).observeSingleEvent(of: .value, with: { (data) in
+         guard let currentChurchID = advengers.shared.currenUSer["churchID"] as? String else { return }
+         Database.database().reference().child ("Devotionals").child(currentChurchID).observeSingleEvent(of: .value, with: { (data) in
             
             
              if let devoFeed = data.value as? [String:NSDictionary] {
@@ -129,12 +158,13 @@ class PowerOfWordCollectionView: UICollectionViewController,  UICollectionViewDe
                                     self.collectionView.reloadData()
                                    }
                                    
-                                   
+                                 completionHandler(true)
                                }
             
             
            }, withCancel: { (err) in
             print("Failed to fetch like info for post:", err)
+            completionHandler(false)
            })
         
         
@@ -194,29 +224,29 @@ class PowerOfWordCollectionView: UICollectionViewController,  UICollectionViewDe
        
 
        
-       func loadCurrentUserInfo () {
-              
-              advengers.shared.usersStatusRef.queryOrderedByKey().observe(.value) { (datasnap) in
-                  
-                  let userinfo = datasnap.value as! [String:NSDictionary]
-                  
-                  for (key, value) in userinfo {
-                      
-                      if key == Auth.auth().currentUser?.uid {
-                          advengers.shared.currenUSer["userid"] = value["userid"] as! String
-                          advengers.shared.currenUSer["email"] = value["email"] as! String
-                          advengers.shared.currenUSer["name"] = value["name"] as! String
-                          advengers.shared.currenUSer["photoURL"] = value["photoURL"] as! String
-                          advengers.shared.currenUSer["church"] = value["church"] as! String
-                          advengers.shared.currentChurch = value["church"] as! String
-                      }
-                  }
-                  
-              }
-              
-              
-              
-          }
+//       func loadCurrentUserInfo () {
+//
+//              advengers.shared.usersStatusRef.queryOrderedByKey().observe(.value) { (datasnap) in
+//
+//                  let userinfo = datasnap.value as! [String:NSDictionary]
+//
+//                  for (key, value) in userinfo {
+//
+//                      if key == Auth.auth().currentUser?.uid {
+//                          advengers.shared.currenUSer["userid"] = value["userid"] as! String
+//                          advengers.shared.currenUSer["email"] = value["email"] as! String
+//                          advengers.shared.currenUSer["name"] = value["name"] as! String
+//                          advengers.shared.currenUSer["photoURL"] = value["photoURL"] as! String
+//                          advengers.shared.currenUSer["church"] = value["church"] as! String
+//                          advengers.shared.currentChurch = value["church"] as! String
+//                      }
+//                  }
+//
+//              }
+//
+//
+//
+//          }
     
     
     

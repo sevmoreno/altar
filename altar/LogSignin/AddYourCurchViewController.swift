@@ -14,14 +14,30 @@
     class AddYourCurchViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate {
         
       //  @IBOutlet var seleecionFoto: UIButton!
-        @IBOutlet weak var churchChose: UIPickerView!
-        @IBOutlet weak var image: UIImageView!
-        @IBOutlet weak var name: UITextField!
-        @IBOutlet weak var email: UITextField!
-        @IBOutlet weak var password: UITextField!
-        @IBOutlet weak var passwordvalidator: UITextField!
-        @IBOutlet weak var signInBtt: UIButton!
+//        @IBOutlet weak var churchChose: UIPickerView!
+//        @IBOutlet weak var image: UIImageView!
+//        @IBOutlet weak var name: UITextField!
+//        @IBOutlet weak var email: UITextField!
+//        @IBOutlet weak var password: UITextField!
+//        @IBOutlet weak var passwordvalidator: UITextField!
+//        @IBOutlet weak var signInBtt: UIButton!
       //  var picker = UIImagePickerController ()
+        
+        
+        @IBOutlet var name: UITextField!
+        @IBOutlet var address: UITextField!
+        @IBOutlet var state: UITextField!
+        @IBOutlet var zipcode: UITextField!
+        @IBOutlet var country: UITextField!
+        @IBOutlet var email: UITextField!
+        @IBOutlet var phonenumber: UITextField!
+        @IBOutlet var displayname: UITextField!
+        @IBOutlet var creatProfile: UIButton!
+        
+        
+        
+        
+        
         let storageReference = Storage.storage().reference(forURL: "gs://altar-92d12.appspot.com" ).child("users")
         var ref: DatabaseReference!
         
@@ -32,40 +48,76 @@
         var churchList = ["Favorday Church","River Church","Rey de Reyes","Not listed"]
         
        @IBOutlet weak var mainScrollViewBottomConstraint: NSLayoutConstraint!
-      
-        @IBOutlet var textviewBackground: UIView!
-        @IBOutlet var textbackbroundpassword: UIView!
-        @IBOutlet var textEmail: UIView!
-        @IBOutlet var textbackgroundPassValidator: UIView!
-        @IBOutlet var selectUChurch: UIView!
-        @IBOutlet var selectChurchButton: UIButton!
-        // let userStorage =
-        @IBOutlet var textviewemail: UIView!
+//
+//        @IBOutlet var textviewBackground: UIView!
+//        @IBOutlet var textbackbroundpassword: UIView!
+//        @IBOutlet var textEmail: UIView!
+//        @IBOutlet var textbackgroundPassValidator: UIView!
+//        @IBOutlet var selectUChurch: UIView!
+//        @IBOutlet var selectChurchButton: UIButton!
+//        // let userStorage =
+//        @IBOutlet var textviewemail: UIView!
         
         var imageToSave: UIImage?
+        let accounthelper = AccountHelpers ()
+        
+        var isUserLoaded = false
         
         override func viewDidLoad() {
             
             super.viewDidLoad()
             
-            let accounthelper = AccountHelpers ()
+           // let accounthelper = AccountHelpers ()
             
-            accounthelper.loadCurrentUserInfo()
+            accounthelper.loadCurrentUserInfo(completionHandler: { (success) -> Void in
+                
+                if success {
+                    self.isUserLoaded = true
+                }
+                    
+                
+            })
+            
             accounthelper.fetchUserInfo()
             
-            print(advengers.shared.currenUSer as [String:Any])
+         //   print(advengers.shared.currenUSer as [String:Any])
+            
+            
+            name.delegate = self
+            address.delegate = self
+            state.delegate = self
+            zipcode.delegate = self
+            country.delegate = self
+            email.delegate = self
+            phonenumber.delegate = self
+            displayname.delegate = self
+            
+            name.layer.cornerRadius = 22
+            address.layer.cornerRadius = 22
+            state.layer.cornerRadius = 22
+            zipcode.layer.cornerRadius = 22
+            country.layer.cornerRadius = 22
+            email.layer.cornerRadius = 22
+            phonenumber.layer.cornerRadius = 22
+            displayname.layer.cornerRadius = 22
+            
 //
 //            NotificationCenter.default.addObserver(self, selector: #selector(churchSelection), name: NSNotification.Name(rawValue: "ChurchSelection"), object: nil)
 //
 //            navigationController?.navigationBar.isHidden = true
 //
-//            signInBtt.backgroundColor = UIColor.rgb(red: 247, green: 131, blue: 97)
-//            signInBtt.layer.cornerRadius = 22
-//            signInBtt.layer.masksToBounds = true
-//            signInBtt.setTitleColor(.white , for: .normal)
-//            signInBtt.setTitle("Sign in", for: .normal)
-//            signInBtt.setTitleColor(UIColor.white.withAlphaComponent(0.3), for: .highlighted )
-//            signInBtt.applyGradient(colors: [WelcomeViewController.UIColorFromRGB(0xF78361).cgColor,WelcomeViewController.UIColorFromRGB(0xF54B64).cgColor])
+             creatProfile.backgroundColor = UIColor.rgb(red: 247, green: 131, blue: 97)
+            creatProfile.layer.cornerRadius = 22
+            creatProfile.layer.masksToBounds = true
+            creatProfile.setTitleColor(.white , for: .normal)
+            creatProfile.setTitle("Sign in", for: .normal)
+            creatProfile.setTitleColor(UIColor.white.withAlphaComponent(0.3), for: .highlighted )
+            creatProfile.applyGradient(colors: [WelcomeViewController.UIColorFromRGB(0xF78361).cgColor,WelcomeViewController.UIColorFromRGB(0xF54B64).cgColor])
+            
+            
+            
+            
+            
 //        textviewBackground.layer.cornerRadius = 22
 //        textviewemail.layer.cornerRadius = 22
 //    textbackbroundpassword.layer.cornerRadius = 22
@@ -97,14 +149,14 @@
         }
         
         
-        @objc func churchSelection() {
-            DispatchQueue.main.async {
-                self.selectChurchButton.setTitle(advengers.shared.currentChurch, for: .normal)
-                print(advengers.shared.currentChurch)
-            }
-            
-            
-        }
+//        @objc func churchSelection() {
+//            DispatchQueue.main.async {
+//                self.selectChurchButton.setTitle(advengers.shared.currentChurch, for: .normal)
+//                print(advengers.shared.currentChurch)
+//            }
+//
+//
+//        }
         
         func textFieldDidBeginEditing(_ textField: UITextField) {
             textField.text = ""
@@ -133,9 +185,57 @@
            mainScrollViewBottomConstraint.constant = 0
        }
      */
+        
+        
+        @IBAction func creatprofile(_ sender: Any) {
+            
+            
+            
+            
+            guard name.text != "", email.text != "", displayname.text != "" else {return}
+            
+            
+            guard let usuarioNumber = Auth.auth().currentUser?.uid else {return}
+            
+            accounthelper.creatChurch(userID: usuarioNumber, name: name.text!, address: address.text ?? "", state: state.text ?? "", country: country.text ?? "", zipCode: zipcode.text ?? "", email: email.text!, facebook: "", instragram: "", webSite: "", phoneNumber: phonenumber.text ?? "", displayname: displayname.text!, completionHandler: { (success) -> Void in
+                
+                
+                
+                if success {
+                    self.ref = self.databaseReference
+                    
+                    let userinfo: [String:Any] = ["church": advengers.shared.currentChurch, "churchID": advengers.shared.currentChurchInfo.uidChurch]
+                    
+                    guard let userID = Auth.auth().currentUser?.uid else {return}
+                    
+                    self.ref.child("users").child(userID).updateChildValues(userinfo)
+                    
+                    
+                    self.performSegue(withIdentifier: "welcome", sender: self)
+                    advengers.shared.isPastor =  true
+                    advengers.shared.currentChurch = self.displayname.text!
+                    
+                }
+                
+                
+            })
+            
+            
+            
+            
+            
+        }
+        
+        
+        
 
-        @IBAction func signIn(_ sender: Any) {
+       // @IBAction func signIn(_ sender: Any) {
 
+            
+         
+            
+            
+            
 //            guard name?.text != "", email.text != "", password.text != "", passwordvalidator.text != "" else {return}
 //
 //            if password.text == password.text {
@@ -245,7 +345,7 @@
 
         
         
-    }
+ //   }
 
 //    extension AddYourCurchViewController: UIPickerViewDataSource,UIPickerViewDelegate {
 //

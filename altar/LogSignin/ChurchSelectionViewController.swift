@@ -45,22 +45,40 @@ class ChurchSelectionViewController: UIViewController, UITableViewDelegate, UITa
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-
+        
         
         if searching {
-                       advengers.shared.currentChurch = seachinChurch[indexPath.row]
+            
+            advengers.shared.currentChurch = seachinChurch[indexPath.row]
+            
+            for elementos in  idChurhc {
+                
+                if elementos["name"] as? String == seachinChurch[indexPath.row] {
+                    
+                    advengers.shared.currentChurchInfo = Church(dictionary: elementos  as! [String : Any])
+                    print("Encotro Match")
+                    break
+                }
+                
+            }
             
             
-                      } else {
-                           advengers.shared.currentChurch = churchList[indexPath.row]
+            
+        } else {
+            
+            advengers.shared.currentChurch = churchList[indexPath.row]
+            advengers.shared.currentChurchInfo = Church(dictionary: idChurhc[indexPath.row]  as! [String : Any])
+            //            var igleser =  Church(dictionary: idChurhc[indexPath.row]  as! [String : Any])
+            //            print(igleser)
             
             
-                      }
+            
+        }
         
         navigationController?.popViewController(animated: true)
         let nc = NotificationCenter.default
         nc.post(name: Notification.Name("ChurchSelection"), object: nil)
-              
+        
     }
 
     @IBOutlet var serachBar: UISearchBar!
@@ -68,13 +86,18 @@ class ChurchSelectionViewController: UIViewController, UITableViewDelegate, UITa
     
     var seachinChurch = [String] ()
     var searching: Bool = false
-     var churchList = ["I don't have one","Favorday Church","River Church","Rey de Reyes","Not listed"]
+    var churchList = ["I don't have one","Favorday Church","River Church","Rey de Reyes","Not listed"]
+    
+     var idChurhc = [NSDictionary] ()
+    
+    
+    let accountHelper = AccountHelpers ()
+    
    
     override func viewDidLoad() {
 
         super.viewDidLoad()
-        
-       
+
         
         listadeChurch.dataSource = self
         listadeChurch.delegate = self
@@ -83,23 +106,45 @@ class ChurchSelectionViewController: UIViewController, UITableViewDelegate, UITa
         serachBar.backgroundColor = UIColor.clear
         
         
-        var ref: DatabaseReference!
+        accountHelper.loadChurchs(completionHandler: { (success,array) -> Void in
+            
 
-        ref = Database.database().reference().child("churcheslist")
-        
-        let values = ["churcheslist": churchList ] as [String : Any]
-
-        
-        ref.updateChildValues(values) { (err, ref) in
-            if let err = err {
-                self.navigationItem.rightBarButtonItem?.isEnabled = true
-                print("Failed to save post to DB", err)
-                return
+            if success {
+                self.idChurhc.removeAll()
+                self.churchList.removeAll()
+                for element in array {
+                    self.idChurhc.append(element)
+                    self.churchList.append(element["name"] as! String)
+                    print(element["name"]!)
+                    print(element["uidChurch"]!)
+                    self.listadeChurch.reloadData()
+                }
+                
+                
+                
+                
             }
             
-            print("Successfully saved post to DB")
-            self.dismiss(animated: true, completion: nil)
-        }
+        })
+        
+        
+//        var ref: DatabaseReference!
+//
+//        ref = Database.database().reference().child("churcheslist")
+//
+//        let values = ["churcheslist": churchList ] as [String : Any]
+//
+//
+//        ref.updateChildValues(values) { (err, ref) in
+//            if let err = err {
+//                self.navigationItem.rightBarButtonItem?.isEnabled = true
+//                print("Failed to save post to DB", err)
+//                return
+//            }
+//
+//            print("Successfully saved post to DB")
+//            self.dismiss(animated: true, completion: nil)
+//        }
 
         
     }
@@ -107,6 +152,7 @@ class ChurchSelectionViewController: UIViewController, UITableViewDelegate, UITa
    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
     
            seachinChurch = churchList.filter({$0.lowercased().prefix(searchText.count) == searchText.lowercased()})
+    
            searching = true
            listadeChurch.reloadData()
        }

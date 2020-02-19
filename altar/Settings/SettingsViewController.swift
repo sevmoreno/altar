@@ -84,8 +84,8 @@ class SettingsViewController: UIViewController {
         
         
 
-            let vc =  logInViewController ()
-            present(vc, animated: true, completion: nil)
+            let vc =  WelcomeViewController ()
+            present(vc, animated: true)
      
         
     }

@@ -219,7 +219,11 @@ class PowerOfWorshipViewController:  UIViewController{
        }()
        
         @objc func Logout () {
-           try! Auth.auth().signOut()
+           
+                  let settingsController = SettingsViewController()
+                 // navigationController?.pushViewController(signUpController, animated: true)
+                  
+                   present(settingsController, animated: true, completion: nil)
        }
        
        
@@ -237,7 +241,7 @@ class PowerOfWorshipViewController:  UIViewController{
                  navigationController?.navigationBar.backgroundColor = advengers.shared.colorBlue
                  navigationController?.navigationBar.barTintColor = advengers.shared.colorBlue
                  
-                 navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "settingsincon"), style: .plain, target: self, action: #selector(advengers.shared.settings))
+                 navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "settingsincon"), style: .plain, target: self, action: #selector(Logout))
           
                  navigationItem.leftBarButtonItem?.tintColor = advengers.shared.colorOrange
                  

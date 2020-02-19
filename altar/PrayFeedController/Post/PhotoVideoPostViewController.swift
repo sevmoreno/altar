@@ -216,8 +216,10 @@ class PhotoVideoPostViewController: UIViewController, UIImagePickerControllerDel
                         ] as! [String:Any]
                     
                     let postfeed = ["\(key!)" : feed] as! [String:Any]
-                    
-                    advengers.shared.postPrayFeed.updateChildValues(postfeed)
+                  
+                    guard let currentChurchID = advengers.shared.currenUSer["churchID"] as? String else { return }
+                    advengers.shared.postPrayFeed.child(currentChurchID).updateChildValues(postfeed)
+                 //   advengers.shared.postPrayFeed.updateChildValues(postfeed)
                     
                     AppDelegate.instance().dismissActivityIndicator()
                     NotificationCenter.default.post(name: NSNotification.Name(rawValue: "UpdateFeed"), object: nil)

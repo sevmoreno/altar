@@ -18,7 +18,7 @@ class DevotionalCollectionViewCell: UICollectionViewCell {
               guard let imagenDevo = post!.photoURL else { return }
             
              imagenDevocional.loadImage(urlString: imagenDevo)
-            
+            imagenDevocional.contentMode = .scaleAspectFill
             guard let titulotext = post?.title else { return }
             
             titulo.text = titulotext

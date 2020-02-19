@@ -31,7 +31,7 @@ class advengers {
     let PostPrayStorage = Storage.storage().reference().child("post_pray_feed")
     
     var currentChurch = "Favorday Church"
-    
+ //   var currentChurchID = ""
     var currentChurchInfo = Church (dictionary: ["":""])
     
     //var currentActiveChannel = wChannel (dictionary: ["":""])
@@ -72,6 +72,8 @@ class advengers {
     var seleccionVideo = elementoVideo ()
 
     var devocionalSeleccinado = Devo (dictionary: ["fsd":"FDSFSD"])
+    
+    var eventolSeleccinado = Event (dictionary: ["fsd":"FDSFSD"])
     
     var fondoSeleccionado = ""
     

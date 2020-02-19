@@ -465,7 +465,7 @@ class DevotionalCreatorViewController: UIViewController {
         
       //  model.didChange(<#NSKeyValueChange#>)
      
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Post", style: .plain, target: self, action: #selector(postDevotional))
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Post", style: .plain, target: self, action: #selector(postDevo))
         navigationItem.leftBarButtonItem?.title = "Back"
         
         
@@ -482,6 +482,9 @@ class DevotionalCreatorViewController: UIViewController {
         
         navigationItem.rightBarButtonItem?.tintColor = advengers.shared.colorOrange
         
+//
+//        let newBackButton = UIBarButtonItem(title: "Back", style: UIBarButtonItem.Style.bordered, target: self, action: "back:")
+//        self.navigationItem.leftBarButtonItem = newBackButton
         // VIEW SETTINGS
         /*
         for counter in 1...10
@@ -494,7 +497,9 @@ class DevotionalCreatorViewController: UIViewController {
       
         devText.delegate = self
        
-       
+        titulo.delegate = self
+        
+        
         
         if devocionalRichText.isEmpty {
         
@@ -506,6 +511,15 @@ class DevotionalCreatorViewController: UIViewController {
 
         // Do any additional setup after loading the view.
     }
+    
+    @IBAction func changePicture(_ sender: Any) {
+        
+        
+        let newViewController = SeleccionFotoCollectionViewController(collectionViewLayout: UICollectionViewFlowLayout())
+        self.navigationController?.pushViewController(newViewController, animated: true)
+        
+    }
+    
     
     @IBAction func seleccionFoto(_ sender: Any) {
         
@@ -547,10 +561,12 @@ class DevotionalCreatorViewController: UIViewController {
         
     }
     
-    @objc func postDevotional () {
+    @objc func postDevo () {
         
         let iglesia = advengers.shared.currentChurch
-        let userPostRef = Database.database().reference().child("devocionales").child(iglesia)
+        
+         guard let currentChurchID = advengers.shared.currenUSer["churchID"] as? String else { return }
+        let userPostRef = Database.database().reference().child("Devotionals").child(currentChurchID)
         let ref = userPostRef.childByAutoId()
         
         var fondo = ""
@@ -575,7 +591,7 @@ class DevotionalCreatorViewController: UIViewController {
                 
    // ------------------------------------ ACA SALVAMOS AL STORAGE LA DATA  ---------------------------------
                 let filename = NSUUID().uuidString
-                let storageRefDB = Storage.storage().reference().child("devotionales").child(iglesia).child(filename)
+                let storageRefDB = Storage.storage().reference().child("Devotionals").child(currentChurchID).child(filename)
                 storageRefDB.putData(d, metadata: nil, completion: { (metadata, err) in
                     
                     if let err = err {
@@ -608,8 +624,8 @@ class DevotionalCreatorViewController: UIViewController {
 //                               let secondsFrom1970 = dictionary["creationDate"] as? Int64 ?? 0
                      //   let devfondo = devocionalFondo ()
                         
-                        let devo = ["urltexto": htmlfileURL,
-                                    "church" : advengers.shared.currentChurch,
+                        let event = ["urltexto": htmlfileURL,
+                                    "church" : currentChurchID,
                                     "author": Auth.auth().currentUser?.uid,
                                     "message": self.devText.text ,
                                     "photoURL": fondo ,
@@ -617,13 +633,13 @@ class DevotionalCreatorViewController: UIViewController {
                                     "title": self.titulo.text!,
                                     "creationDate": Date().millisecondsSince1970] as [String : Any]
                         
-                        ref.updateChildValues(devo) { (err, ref) in
+                        ref.updateChildValues(event) { (err, ref) in
                             if let err = err {
                                 //self.navigationItem.rightBarButtonItem?.isEnabled = true
                                 print("Failed to save post to DB", err)
                                 return
                             }
-                            
+                            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "loadDevotional"), object: nil)
                             print("Successfully saved post to DB")
                             
                         }
@@ -728,30 +744,34 @@ extension DevotionalCreatorViewController: UITextViewDelegate {
     
     func textViewDidBeginEditing(_ textView: UITextView) {
       //  scroll.setContentOffset(CGPoint(x: 0, y: (textView.superview?.frame.origin.y)!), animated: true)
-        
-    let attributes = [
-               
-             //  NSAttributedString.Key.underlineStyle : 1,
-               NSAttributedString.Key.foregroundColor : UIColor.black
-             //  NSAttributedString.Key.font: UIFont.systemFontSize
-             //  NSAttributedString.Key.strokeWidth : 3.0
-                  
-               ] as [NSAttributedString.Key : Any]
-           
-           if devocionalRichText.isEmpty {
-            
-            
-           // attributedString.addAttribute(.link, value: "https://www.hackingwithswift.com", range: NSRange(location: 19, length: 55))
-            let secondString = NSAttributedString(string: "", attributes: attributes)
-            attributedString.append(secondString)
+    
+        if textView.text == "Add your devotional here..." {
+            let attributes = [
+                       
+                     //  NSAttributedString.Key.underlineStyle : 1,
+                       NSAttributedString.Key.foregroundColor : UIColor.black
+                     //  NSAttributedString.Key.font: UIFont.systemFontSize
+                     //  NSAttributedString.Key.strokeWidth : 3.0
+                          
+                       ] as [NSAttributedString.Key : Any]
+                   
+                   if devocionalRichText.isEmpty {
+                    
+                    
+                   // attributedString.addAttribute(.link, value: "https://www.hackingwithswift.com", range: NSRange(location: 19, length: 55))
+                    let secondString = NSAttributedString(string: "", attributes: attributes)
+                    attributedString.append(secondString)
 
-           devText.attributedText = attributedString
-           
-        //   devText.attributedText = NSAttributedString(string: "", attributes: attributes)
+                   devText.attributedText = attributedString
+                   
+                //   devText.attributedText = NSAttributedString(string: "", attributes: attributes)
+                    
+                   
+                  
+                   }
             
-           
-          
-           }
+        }
+
                
        // devText.t
         
@@ -865,22 +885,19 @@ extension DevotionalCreatorViewController: UITextViewDelegate {
         }
         
     }
+
+    
+    
+}
+
+
+extension DevotionalCreatorViewController: UITextFieldDelegate {
+    
+    func textFieldDidBeginEditing(_ textField: UITextField) {
         
-  //   let prueba = devText.attributedText as? NSMutableAttributedString
-      //  attributedString = devText.attributedText as! NSMutableAttributedString
-  //  }
-    
-    /*
-    private func textViewdDidBeginEditing(_ textField: UITextField) {
-        scroll.setContentOffset(CGPoint(x: 0, y: (textField.superview?.frame.origin.y)!), animated: true)
+        if textField.text == "Change title here ..." {
+        textField.text = ""
+        }
     }
-
-    private func textViewDidEndEditing(_ textField: UITextField) {
-        scroll.setContentOffset(CGPoint(x: 0, y: 0), animated: true)
-    }
-
-*/
-   
-    
     
 }

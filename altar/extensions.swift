@@ -59,7 +59,10 @@ extension Database {
             guard let userDictionary = snapshot.value as? [String: Any] else { return }
             print("Diccionario Usuary")
             print(userDictionary)
-            let user = User(uid: userDictionary["userid"] as? String ?? "", dictionary: userDictionary)
+//            let user = User(uid: userDictionary["userid"] as? String ?? "", dictionary: userDictionary)
+            
+            let user = User()
+            user.setup(uid: userDictionary["userid"] as? String ?? "", dictionary: userDictionary)
             completion(user)
             
         }) { (err) in
@@ -162,6 +165,39 @@ extension UIImage {
     
     
 }
+
+extension UIImageView {
+    
+    func downloadImage (imgURL: String) {
+        
+  
+            let url = URLRequest(url: URL(string: imgURL)!)
+            
+            
+            let task = URLSession.shared.dataTask(with: url) { (data, response, error) in
+                
+                if error != nil {
+                    
+                    print(error?.localizedDescription)
+                    return
+                }
+                
+                DispatchQueue.main.async {
+                    
+                    self.image = UIImage(data: data!)
+                }
+                
+            }
+        
+        task.resume()
+        
+        
+        
+    }
+    
+    
+}
+
 extension UILabel {
     private struct AssociatedKeys {
         static var padding = UIEdgeInsets()

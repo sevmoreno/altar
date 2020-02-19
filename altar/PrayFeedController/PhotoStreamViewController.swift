@@ -52,8 +52,8 @@ class PhotoStreamViewController: UICollectionViewController, UICollectionViewDel
                                   let cuentadeLikes = ["prays": post.likes!,
                               
                                   ]
-                              
-                              Database.database().reference().child("post_pray_feed").child(postId).updateChildValues(cuentadeLikes) { (err, _) in
+                              guard let currentChurchID = advengers.shared.currenUSer["churchID"] as? String else { return }
+                                Database.database().reference().child("post_pray_feed").child(currentChurchID).child(postId).updateChildValues(cuentadeLikes) { (err, _) in
                                   
                                   if let err = err {
                                       print("Failed to like post:", err)
@@ -129,7 +129,8 @@ class PhotoStreamViewController: UICollectionViewController, UICollectionViewDel
                               
                                   ]
                               
-                              Database.database().reference().child("post_pray_feed").child(postId).updateChildValues(cuentadeLikes) { (err, _) in
+                                guard let currentChurchID = advengers.shared.currenUSer["churchID"] as? String else { return }
+                                                            Database.database().reference().child("post_pray_feed").child(currentChurchID).child(postId).updateChildValues(cuentadeLikes) { (err, _) in
                                   
                                   if let err = err {
                                       print("Failed to like post:", err)
@@ -206,7 +207,8 @@ class PhotoStreamViewController: UICollectionViewController, UICollectionViewDel
                        
                            ]
                        
-                       Database.database().reference().child("post_pray_feed").child(postId).updateChildValues(cuentadeLikes) { (err, _) in
+                      guard let currentChurchID = advengers.shared.currenUSer["churchID"] as? String else { return }
+                                                     Database.database().reference().child("post_pray_feed").child(currentChurchID).child(postId).updateChildValues(cuentadeLikes) { (err, _) in
                            
                            if let err = err {
                                print("Failed to like post:", err)
@@ -276,7 +278,8 @@ class PhotoStreamViewController: UICollectionViewController, UICollectionViewDel
                 
                     ]
                 
-                Database.database().reference().child("post_pray_feed").child(postId).updateChildValues(cuentadeLikes) { (err, _) in
+                  guard let currentChurchID = advengers.shared.currenUSer["churchID"] as? String else { return }
+                                              Database.database().reference().child("post_pray_feed").child(currentChurchID).child(postId).updateChildValues(cuentadeLikes) { (err, _) in
                     
                     if let err = err {
                         print("Failed to like post:", err)
@@ -395,71 +398,94 @@ class PhotoStreamViewController: UICollectionViewController, UICollectionViewDel
     let cellId = "cellId"
     var photos = [Posts] ()
     let refreshControl = UIRefreshControl()
-    
+    let accountHelper = AccountHelpers()
     override func viewDidLoad() {
-        NotificationCenter.default.addObserver(self, selector: #selector(handleUpdateFeed), name: NSNotification.Name(rawValue: "UpdateFeed"), object: nil)
         
-        collectionView?.register(AnnotatedPhotoCell.self, forCellWithReuseIdentifier: "OtraPostCell")
-        collectionView?.register(textOnlyCell.self, forCellWithReuseIdentifier: "textOnlyCelll")
+        accountHelper.loadCurrentUserInfo(completionHandler: { (success) -> Void in
+            
+                       if success {
+                        print("Current User")
+                        print(advengers.shared.currenUSer )
+                        self.loadEverything ()
+                       }
+                       
+                   })
+     //   loadCurrentUserInfo ()
         
-        collectionView?.register(PhotoTextoCollectionViewCell.self, forCellWithReuseIdentifier: "textImageCell")
-        
-        
-        collectionView?.register(AudioCollectionViewCell.self, forCellWithReuseIdentifier: "audioCell")
-        
-        collectionView?.backgroundColor =  UIColor.rgb(red: 32, green: 36, blue: 47)
-        
-        
-        // TODO: REFACTORIAR, OJO CON LAS FUNCONES QUE EJCUTAN LOS BOTONES // ----------------------------
-        // ---------------------------------------------------------------------------------------------
-        navigationController?.navigationBar.backgroundColor = advengers.shared.colorBlue
-        navigationController?.navigationBar.barTintColor = advengers.shared.colorBlue
-        
-        navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "settingsincon"), style: .plain, target: self, action: #selector(logoutFirebase))
-        navigationItem.leftBarButtonItem?.tintColor = advengers.shared.colorOrange
-        
-        
-        let textAttributes = [NSAttributedString.Key.foregroundColor:UIColor.white,
-                              NSAttributedString.Key.font:UIFont(name: "Avenir-Heavy", size: 15)]
-        navigationController?.navigationBar.titleTextAttributes = textAttributes as [NSAttributedString.Key : Any]
-        
-        
-        
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "+ Prayer", style: .plain, target: self, action: #selector(addprayer))
-        let textAttributes2 = [NSAttributedString.Key.foregroundColor: advengers.shared.colorOrange,
-                               NSAttributedString.Key.font:UIFont(name: "Avenir-Heavy", size: 17)]
-        
-        navigationItem.rightBarButtonItem?.setTitleTextAttributes(textAttributes2 as [NSAttributedString.Key : Any], for: .normal)
-        navigationItem.rightBarButtonItem?.tintColor = advengers.shared.colorOrange
-        
-        navigationItem.title = advengers.shared.currentChurch
-        
-        
-        collectionView.reloadData()
-        // -----------------------------------------------------------------------------------------
-        
-        // ----------- solo para tener impresas las fuentes BORRAR LUEGO
-        /*
-         for family: String in UIFont.familyNames {
-         print("\(family)")
-         for names: String in UIFont.fontNames(forFamilyName: family) {
-         print("== \(names)")
-         }
-         }
-         */
-        // ---------------------
-        
-        refreshControl.addTarget(self, action: #selector(handleRefresh), for: .valueChanged)
-        collectionView?.refreshControl = refreshControl
-        
-        fetchPost ()
-        
+       
         // collectionView?.contentInset = UIEdgeInsets(top: 23, left: 16, bottom: 10, right: 16)
-        loadCurrentUserInfo ()
+        
        
         
         
     }
+    
+    func loadEverything () {
+        // NotificationCenter.default.addObserver(self, selector: #selector(handleUpdateFeed), name: NSNotification.Name("Up"), object: nil)
+         NotificationCenter.default.addObserver(self, selector: #selector(handleUpdateFeed), name: NSNotification.Name(rawValue: "UpdateFeed"), object: nil)
+               
+               collectionView?.register(AnnotatedPhotoCell.self, forCellWithReuseIdentifier: "OtraPostCell")
+               collectionView?.register(textOnlyCell.self, forCellWithReuseIdentifier: "textOnlyCelll")
+               
+               collectionView?.register(PhotoTextoCollectionViewCell.self, forCellWithReuseIdentifier: "textImageCell")
+               
+               
+               collectionView?.register(AudioCollectionViewCell.self, forCellWithReuseIdentifier: "audioCell")
+               
+               collectionView?.backgroundColor =  UIColor.rgb(red: 32, green: 36, blue: 47)
+               
+               
+               // TODO: REFACTORIAR, OJO CON LAS FUNCONES QUE EJCUTAN LOS BOTONES // ----------------------------
+               // ---------------------------------------------------------------------------------------------
+               navigationController?.navigationBar.backgroundColor = advengers.shared.colorBlue
+               navigationController?.navigationBar.barTintColor = advengers.shared.colorBlue
+               
+               navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "settingsincon"), style: .plain, target: self, action: #selector(logoutFirebase))
+               navigationItem.leftBarButtonItem?.tintColor = advengers.shared.colorOrange
+               
+               
+               let textAttributes = [NSAttributedString.Key.foregroundColor:UIColor.white,
+                                     NSAttributedString.Key.font:UIFont(name: "Avenir-Heavy", size: 15)]
+               navigationController?.navigationBar.titleTextAttributes = textAttributes as [NSAttributedString.Key : Any]
+               
+               
+               
+               navigationItem.rightBarButtonItem = UIBarButtonItem(title: "+ Prayer", style: .plain, target: self, action: #selector(addprayer))
+               let textAttributes2 = [NSAttributedString.Key.foregroundColor: advengers.shared.colorOrange,
+                                      NSAttributedString.Key.font:UIFont(name: "Avenir-Heavy", size: 17)]
+               
+               navigationItem.rightBarButtonItem?.setTitleTextAttributes(textAttributes2 as [NSAttributedString.Key : Any], for: .normal)
+               navigationItem.rightBarButtonItem?.tintColor = advengers.shared.colorOrange
+               
+               navigationItem.title = advengers.shared.currentChurch
+               
+               
+               collectionView.reloadData()
+               // -----------------------------------------------------------------------------------------
+               
+               // ----------- solo para tener impresas las fuentes BORRAR LUEGO
+               /*
+                for family: String in UIFont.familyNames {
+                print("\(family)")
+                for names: String in UIFont.fontNames(forFamilyName: family) {
+                print("== \(names)")
+                }
+                }
+                */
+               // ---------------------
+               
+               refreshControl.addTarget(self, action: #selector(handleRefresh), for: .valueChanged)
+               collectionView?.refreshControl = refreshControl
+               
+               fetchPost ()
+               
+        
+        
+        
+    }
+    
+    
+    
     
     @objc func handleRefresh() {
         photos.removeAll()
@@ -475,7 +501,15 @@ class PhotoStreamViewController: UICollectionViewController, UICollectionViewDel
        
            photos.removeAll()
             collectionView.reloadData()
+            navigationItem.rightBarButtonItem = UIBarButtonItem(title: "+ Prayer", style: .plain, target: self, action: #selector(addprayer))
+                          let textAttributes2 = [NSAttributedString.Key.foregroundColor: advengers.shared.colorOrange,
+                                                 NSAttributedString.Key.font:UIFont(name: "Avenir-Heavy", size: 17)]
+                          
+                          navigationItem.rightBarButtonItem?.setTitleTextAttributes(textAttributes2 as [NSAttributedString.Key : Any], for: .normal)
+                          navigationItem.rightBarButtonItem?.tintColor = advengers.shared.colorOrange
            fetchPost ()
+            
+            
         
        }
     
@@ -511,11 +545,11 @@ class PhotoStreamViewController: UICollectionViewController, UICollectionViewDel
     
     func fetchPost () {
         
-        
+        guard let currentChurchID = advengers.shared.currenUSer["churchID"] as? String else { return }
   
      //  ref.observeSingleEvent(of: .value, with: { (snapshot) in
       //  print("Fechea ")
-        advengers.shared.postPrayFeed.observeSingleEvent(of: .value, with: { (data) in
+        advengers.shared.postPrayFeed.child(currentChurchID).observeSingleEvent(of: .value, with: { (data) in
             
            // self.photos.removeAll()
             

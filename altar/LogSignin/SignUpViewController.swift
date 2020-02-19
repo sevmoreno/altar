@@ -116,8 +116,18 @@ textbackbroundpassword.layer.cornerRadius = 22
     }
     
     func textFieldDidBeginEditing(_ textField: UITextField) {
+
         textField.text = ""
+       
+        if textField.tag == 200 {
+            textField.text = ""
+            textField.isSecureTextEntry = true
+        }
         
+        if textField.tag == 201 {
+            textField.text = ""
+            textField.isSecureTextEntry = true
+        }
     }
     
     
@@ -181,7 +191,8 @@ textbackbroundpassword.layer.cornerRadius = 22
                         let modoString = String (url!.absoluteString)
                         self.ref = self.databaseReference
                         
-                        let userinfo: [String:Any] = ["userid" : (user?.user.uid), "name" : self.name?.text!, "email" : self.email.text!, "church": advengers.shared.currentChurch, "photoURL" : modoString ?? ""]
+                        let userinfo: [String:Any] = ["userid" : (user?.user.uid), "name" : self.name?.text!, "email" : self.email.text!, "church": advengers.shared.currentChurch, "photoURL" : modoString ?? "","churchID": advengers.shared.currentChurchInfo.uidChurch]
+                        
                         let userID = String ((user?.user.uid)!) ?? "NoTiene"
                         //   self.databaseReference.child("users").child("\(user!.user.uid)").setValue(user?.user.uid, forKeyPath: "userid")
                         self.ref.child("users").child(userID).setValue(userinfo)

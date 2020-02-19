@@ -15,7 +15,13 @@ class CommentsController: UICollectionViewController, UICollectionViewDelegateFl
     
     let cellId = "cellId"
     
+    
+
+    
     override func viewDidLoad() {
+        
+        
+        
         super.viewDidLoad()
         
         navigationItem.title = "Comments"
@@ -162,8 +168,9 @@ class CommentsController: UICollectionViewController, UICollectionViewDelegateFl
             let cuentadecoments = ["comments": self.post?.comments!,
             
                 ]
-            
-            Database.database().reference().child("post_pray_feed").child(postId).updateChildValues(cuentadecoments) { (err, _) in
+            guard let currentChurchID = advengers.shared.currenUSer["churchID"] as? String else { return }
+                        //                           advengers.shared.postPrayFeed.child(currentChurchID).updateChildValues(postfeed)
+            Database.database().reference().child("post_pray_feed").child(currentChurchID).child(postId).updateChildValues(cuentadecoments) { (err, _) in
                 
                 if let err = err {
                     print("Failed to like post:", err)
@@ -174,7 +181,8 @@ class CommentsController: UICollectionViewController, UICollectionViewDelegateFl
                 
 
                 self.commentTextField.text = ""
-                
+                NotificationCenter.default.post(name: NSNotification.Name(rawValue: "UpdateFeed"), object: nil)
+                _ = self.navigationController?.popViewController(animated: true)
            
                 
             }

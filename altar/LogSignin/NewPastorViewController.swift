@@ -119,6 +119,15 @@ textbackbroundpassword.layer.cornerRadius = 22
     func textFieldDidBeginEditing(_ textField: UITextField) {
         textField.text = ""
         
+        if textField.tag == 200 {
+                textField.text = ""
+                textField.isSecureTextEntry = true
+            }
+            
+            if textField.tag == 201 {
+                textField.text = ""
+                textField.isSecureTextEntry = true
+            }
     }
     
     
