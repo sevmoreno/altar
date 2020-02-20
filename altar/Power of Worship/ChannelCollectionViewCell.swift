@@ -25,10 +25,20 @@ class ChannelCollectionViewCell: UICollectionViewCell {
                 titulo.text = titulotext
                 
                 
+                subTitulo.text = post?.subtitle
+                
                 let fecha = post?.creationDate
                          //  let fecha = Date(milliseconds: Int64(post?.creationDate ?? 0))
                            
-                praysDate.text = fecha!.timeAgoDisplay()
+                praysDate.text = "Selected"
+                
+                if post?.channelID == advengers.shared.currentChurchInfo.channelActive {
+                    
+                    praysDate.text = "Selected"
+                } else {
+                    
+                    praysDate.text = ""
+                }
                 /*
                 
                 guard let postImageUrl = post?.photoImage else { return }

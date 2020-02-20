@@ -27,15 +27,17 @@ class WelcomeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+       //try! Auth.auth().signOut()
+        
         navigationController?.navigationBar.isHidden = true
-        Auth.auth().addStateDidChangeListener() { auth, user in
-                   // 2
-                   if user != nil {
-                       // 3
-                       self.performSegue(withIdentifier: "accesoOK", sender: nil)
-                     
-                   }
-               }
+//        Auth.auth().addStateDidChangeListener() { auth, user in
+//                   // 2
+//                   if user != nil {
+//                       // 3
+//                       self.performSegue(withIdentifier: "accesoOK", sender: nil)
+//
+//                   }
+//               }
         
         setupComponents()
 

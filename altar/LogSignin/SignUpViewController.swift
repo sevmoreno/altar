@@ -171,51 +171,31 @@ textbackbroundpassword.layer.cornerRadius = 22
                     
                 })
                 
-                
                 if user != nil {
                 
                 let imageref = self.storageReference.child("picture").child("\(user!.user.uid)")
-                
-                    
-                    
-                    let data = self.imageToSave?.jpegData(compressionQuality: 0.5) ?? UIImage(named: "Rectangle")!.jpegData(compressionQuality: 0.5)
-                    
-                 
-                let uploadTask = imageref.putData(data!, metadata: nil, completion: { (metadata, error) in
 
+                    let data = self.imageToSave?.jpegData(compressionQuality: 0.5) ?? UIImage(named: "Rectangle")!.jpegData(compressionQuality: 0.5)
+                let uploadTask = imageref.putData(data!, metadata: nil, completion: { (metadata, error) in
                     
                     imageref.downloadURL(completion: { (url, error) in
-                        
-                        
-                        
+
                         let modoString = String (url!.absoluteString)
                         self.ref = self.databaseReference
-                        
                         let userinfo: [String:Any] = ["userid" : (user?.user.uid), "name" : self.name?.text!, "email" : self.email.text!, "church": advengers.shared.currentChurch, "photoURL" : modoString ?? "","churchID": advengers.shared.currentChurchInfo.uidChurch]
-                        
                         let userID = String ((user?.user.uid)!) ?? "NoTiene"
                         //   self.databaseReference.child("users").child("\(user!.user.uid)").setValue(user?.user.uid, forKeyPath: "userid")
                         self.ref.child("users").child(userID).setValue(userinfo)
-                        //self.ref.child("users").child(userID).setValue(self.email.text!)
-                        //   self.databaseReference.child("users").child("\(user!.user.uid)").setValue(self.selectedChurch, forKeyPath: "church")
-                        self.performSegue(withIdentifier: "accesoOK", sender: self)
                         
-                        
-                        
+
                     })
-                    
-                    
-                    
+
                     })
-                    
-                    
-                
+
                 uploadTask.resume()
-                
-                
-          
+   
                 }
-                
+                self.performSegue(withIdentifier: "accesoOK", sender: self)
             }
             
       

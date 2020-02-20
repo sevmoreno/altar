@@ -24,7 +24,7 @@ class DevocionalSeleccionado: UIViewController {
     
     lazy var titulo: UILabel = {
                  let label2 = UILabel ()
-                 label2.font = UIFont(name: "Avenir-Black", size: 25)
+                 label2.font = UIFont(name: "Avenir-Heavy", size: 25)
                  label2.text = "You prayed 1"
               label2.textColor = .white
               //   button.setImage(UIImage(named: "cellPrayIcon")?.withRenderingMode(.alwaysOriginal), for: .normal)
@@ -56,6 +56,7 @@ class DevocionalSeleccionado: UIViewController {
         
         view.addSubview(textoDevocional)
         
+        textoDevocional.isEditable = false
         
         imagen.loadImage(urlString: advengers.shared.devocionalSeleccinado.photoURL!)
         
@@ -70,9 +71,11 @@ class DevocionalSeleccionado: UIViewController {
         
         textoDevocional.anchor(top: imagen.bottomAnchor, left: view.leftAnchor, bottom: view.bottomAnchor, right: view.rightAnchor, paddingTop: 10, paddingLeft: 10, paddingBottom: 10, paddingRight: 10, width: 0, height: 0)
         
-      //  print(devo.urltexto)
-    //   print(devo.title)
-    //    guard let url = URL(string: devo.urltexto) else { return }
+      DispatchQueue.main.async {
+                        let cargando = NSAttributedString(string: "Loading...")
+                        self.textoDevocional.attributedText = cargando
+                    }
+        
         guard let url = URL(string: advengers.shared.devocionalSeleccinado.urltexto) else { return }
             URLSession.shared.dataTask(with: url) { (data, response, err) in
                 if let err = err {
@@ -80,6 +83,7 @@ class DevocionalSeleccionado: UIViewController {
                     return
                 }
                 
+              
                 
                // if let attributedString = try! NSAttributedString(data: data!, options: [.documentType: NSAttributedString.DocumentType.html], documentAttributes: nil) {
                 let attributedString = try! NSAttributedString(data: data!, options: [.documentType: NSAttributedString.DocumentType.html], documentAttributes: nil)

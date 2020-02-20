@@ -64,6 +64,8 @@ class Slide3Type: UIView {
         usernameLabel.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
 
         photoImageView.contentMode = .scaleAspectFill
+        usernameLabel.textAlignment = .center
+        usernameLabel.font = UIFont(name: "Avenir-Heavy", size: 20)
         
     }
     

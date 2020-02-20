@@ -21,7 +21,7 @@ class User: NSObject {
     var isPastor: Int = 0
 
    func setup(uid: String, dictionary: [String: Any]) {
-           self.fullName = dictionary["username"] as? String ?? ""
+           self.fullName = dictionary["name"] as? String ?? ""
            self.photoUser = dictionary["photoURL"]  as? String ?? ""
            self.userID = dictionary["userid"] as? String ?? ""
            self.churchUser = dictionary["church"]  as? String ?? ""

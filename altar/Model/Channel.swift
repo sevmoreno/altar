@@ -12,19 +12,25 @@ import UIKit
 
 class wChannel {
     
-    var church: String! = ""
+    var channelID: String = ""
+   // var church: String! = ""
     var author: String! = ""
     var title: String! = ""
     var lista: [String] = [""]
     var photoURL: String! = ""
-
+    var subtitle: String = ""
+    var channelDuration: Int = 0
     var creationDate: Date!
     
     
    func load(dictionary: [String: Any]) {
                self.author = dictionary["author"] as? String ?? ""
-               self.church = dictionary["church"] as? String ?? ""
+               //self.church = dictionary["church"] as? String ?? ""
                self.title = dictionary["title"] as? String
+                self.subtitle = dictionary["subtitle"] as? String ?? ""
+                self.channelDuration = dictionary["channelDuration"] as? Int ?? 0
+    
+                self.channelID = dictionary["channelID"] as? String ?? ""
 
                self.photoURL = dictionary["photoURL"] as? String
         

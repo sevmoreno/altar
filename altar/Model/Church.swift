@@ -27,8 +27,9 @@ class Church: NSObject {
     var phoneNumber: String = ""
     var uidChurch: String = ""
     
-    var channelActive: String = "8107D0A2-4233-41D4-A9FC-D72C84E34C78"
-
+    var channelActive: String = "E41F56A9-2DA2-458F-8292-63F46DF3C8D3"
+    var channelActiveTime: Int = 0
+    
     init(dictionary: [String: Any]) {
            self.name = dictionary["name"] as? String ?? ""
            self.address = dictionary["address"]  as? String ?? ""
@@ -44,8 +45,10 @@ class Church: NSObject {
            self.webSite = dictionary["webSite"]  as? String ?? ""
            self.phoneNumber = dictionary["phoneNumber"] as? String ?? ""
            self.uidChurch = dictionary["uidChurch"]  as? String ?? ""
-        
-           self.userID = dictionary["userID"]  as? String ?? ""
+        self.channelActiveTime = dictionary["channelActiveTime"]  as? Int ?? 0
+           
+        self.channelActive = dictionary["channelActive"]  as? String ?? "E41F56A9-2DA2-458F-8292-63F46DF3C8D3"
+        self.userID = dictionary["userID"]  as? String ?? ""
         
         
            

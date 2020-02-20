@@ -24,11 +24,12 @@ class EventoSeleccionado: UIViewController {
     
     lazy var titulo: UILabel = {
                  let label2 = UILabel ()
-                 label2.font = UIFont(name: "Avenir-Black", size: 25)
+                 label2.font = UIFont(name: "Avenir-Heavy", size: 25)
                  label2.text = "You prayed 1"
               label2.textColor = .white
               //   button.setImage(UIImage(named: "cellPrayIcon")?.withRenderingMode(.alwaysOriginal), for: .normal)
                 // button.addTarget(self, action: #selector(handleLike), for: .touchUpInside)
+        label2.textAlignment = .center
                  return label2
              }()
        
@@ -60,8 +61,10 @@ class EventoSeleccionado: UIViewController {
         imagen.loadImage(urlString: advengers.shared.eventolSeleccinado.photoURL!)
         
         titulo.text = advengers.shared.eventolSeleccinado.title
+        titulo.textAlignment = .center
+        titulo.font = UIFont(name: "Avenir-Heavy", size: 18)
    //     view.addSubview(textoDevocional)
-        
+        titulo.numberOfLines = 0
         imagen.anchor(top: view.topAnchor, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 300)
         
        
@@ -72,6 +75,10 @@ class EventoSeleccionado: UIViewController {
         
         textoDevocional.anchor(top: imagen.bottomAnchor, left: view.leftAnchor, bottom: view.bottomAnchor, right: view.rightAnchor, paddingTop: 10, paddingLeft: 10, paddingBottom: 10, paddingRight: 10, width: 0, height: 0)
         
+        let loading = NSAttributedString(string: "Loading...")
+        DispatchQueue.main.async {
+                           self.textoDevocional.attributedText = loading
+                           }
       //  print(devo.urltexto)
     //   print(devo.title)
     //    guard let url = URL(string: devo.urltexto) else { return }
@@ -82,7 +89,7 @@ class EventoSeleccionado: UIViewController {
                     return
                 }
                 
-                
+
                // if let attributedString = try! NSAttributedString(data: data!, options: [.documentType: NSAttributedString.DocumentType.html], documentAttributes: nil) {
                 let attributedString = try! NSAttributedString(data: data!, options: [.documentType: NSAttributedString.DocumentType.html], documentAttributes: nil)
                     print("Este es el texto que bajo")

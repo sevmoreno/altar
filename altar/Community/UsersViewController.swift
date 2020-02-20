@@ -263,7 +263,7 @@ class UsersViewController: UIViewController, UIScrollViewDelegate {
           scrollView.isPagingEnabled = false
         
         let tap = UITapGestureRecognizer(target: self, action: #selector(doubleTapped))
-          tap.numberOfTapsRequired = 2
+          tap.numberOfTapsRequired = 1
           scrollView.addGestureRecognizer(tap)
         pageController.numberOfPages = slides.count
           scrollView.contentInsetAdjustmentBehavior = .never
@@ -375,7 +375,14 @@ func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> U
     let cell = tableView.dequeueReusableCell(withIdentifier: "cellA", for: indexPath) as! UsuariosUITableTableViewCell
     
     cell.foto.loadImage(urlString: users[indexPath.row].photoUser)
-    cell.nombre.text = users[indexPath.row].fullName
+    
+    DispatchQueue.main.async {
+        print("este es el full name")
+        print(self.users[indexPath.row].fullName)
+        cell.nombre.text = self.users[indexPath.row].fullName
+        print(cell.nombre.text)
+    }
+  
         
         //users[indexPath.row].fullName ?? "No name"
    // cell.user = users[indexPath.row]
@@ -412,6 +419,8 @@ func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> U
         
         
     }
+    
+    
     
 }
 

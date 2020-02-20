@@ -299,7 +299,11 @@ class PlayListViewController: UICollectionViewController,  UICollectionViewDeleg
         
     //    performSegue(withIdentifier: "aChannelSelecction", sender: self)
        
-
+          let a = ChannelSeleccionadoViewController ()
+        
+        a.cannal = channel[indexPath.row]
+        
+        navigationController?.pushViewController(a, animated: true)
         
     }
     

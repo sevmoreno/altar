@@ -16,8 +16,9 @@ class AccountHelpers  {
     func loadCurrentUserInfo (completionHandler: @escaping (_ success:Bool) -> Void)  {
                  
                  advengers.shared.usersStatusRef.queryOrderedByKey().observe(.value) { (datasnap) in
-                     
-                     let userinfo = datasnap.value as! [String:NSDictionary]
+                  
+                   
+                    if let userinfo = datasnap.value as? [String:NSDictionary] {
                      
                      for (key, value) in userinfo {
                          
@@ -45,9 +46,12 @@ class AccountHelpers  {
                             completionHandler(false)
                         }
                      }
-                     
+                    } else {
+                        
+                        completionHandler(false)
+                    }
                  }
-                 
+        
                  
                  
              }

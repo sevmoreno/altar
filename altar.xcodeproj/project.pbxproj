@@ -28,6 +28,9 @@
 		653C0FC823FCB17B00700ACE /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 653C0FC723FCB17B00700ACE /* Event.swift */; };
 		653C0FCA23FCB9DC00700ACE /* EventoSeleccionado.swift in Sources */ = {isa = PBXBuildFile; fileRef = 653C0FC923FCB9DC00700ACE /* EventoSeleccionado.swift */; };
 		653C0FCC23FD963D00700ACE /* UsuariosUITableTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 653C0FCB23FD963D00700ACE /* UsuariosUITableTableViewCell.swift */; };
+		653C0FCE23FE002E00700ACE /* Here I Am to Worship.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 653C0FCD23FE002E00700ACE /* Here I Am to Worship.mp3 */; };
+		653C0FD023FE0D7500700ACE /* songinprocess.swift in Sources */ = {isa = PBXBuildFile; fileRef = 653C0FCF23FE0D7500700ACE /* songinprocess.swift */; };
+		653C0FD323FEFF0F00700ACE /* ChannelSeleccionadoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 653C0FD223FEFF0F00700ACE /* ChannelSeleccionadoViewController.swift */; };
 		65421CCE23AAABFE000B0437 /* extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65421CCD23AAABFE000B0437 /* extensions.swift */; };
 		654F95D923306ABC00175A7E /* PrayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 654F95D823306ABC00175A7E /* PrayViewController.swift */; };
 		654F95DB23306E7F00175A7E /* PrayPostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 654F95DA23306E7F00175A7E /* PrayPostViewController.swift */; };
@@ -131,6 +134,9 @@
 		653C0FC723FCB17B00700ACE /* Event.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
 		653C0FC923FCB9DC00700ACE /* EventoSeleccionado.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventoSeleccionado.swift; sourceTree = "<group>"; };
 		653C0FCB23FD963D00700ACE /* UsuariosUITableTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsuariosUITableTableViewCell.swift; sourceTree = "<group>"; };
+		653C0FCD23FE002E00700ACE /* Here I Am to Worship.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Here I Am to Worship.mp3"; sourceTree = "<group>"; };
+		653C0FCF23FE0D7500700ACE /* songinprocess.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = songinprocess.swift; sourceTree = "<group>"; };
+		653C0FD223FEFF0F00700ACE /* ChannelSeleccionadoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelSeleccionadoViewController.swift; sourceTree = "<group>"; };
 		6541434123E4ED2300EB8BA8 /* league-gothic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "league-gothic.ttf"; sourceTree = "<group>"; };
 		65421CCD23AAABFE000B0437 /* extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = extensions.swift; sourceTree = "<group>"; };
 		654F95D823306ABC00175A7E /* PrayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrayViewController.swift; sourceTree = "<group>"; };
@@ -245,6 +251,19 @@
 				65372DD723ECFEF30078778A /* SettingsViewController.swift */,
 			);
 			path = Settings;
+			sourceTree = "<group>";
+		};
+		653C0FD123FEFE6400700ACE /* Tintero */ = {
+			isa = PBXGroup;
+			children = (
+				659595C723D0F4F2007FB09C /* Model */,
+				659595C523D0F4B4007FB09C /* VideoResultcolCollectionViewCell.swift */,
+				659595CC23D21C3C007FB09C /* seleccionVideoViewController.swift */,
+				659595C323D0EFC1007FB09C /* searchSongViewController.swift */,
+				65913B2123C8F956009B8537 /* File.swift */,
+				65913B1F23C8E245009B8537 /* VideoCell.swift */,
+			);
+			path = Tintero;
 			sourceTree = "<group>";
 		};
 		65421CCF23AAAC68000B0437 /* LogSignin */ = {
@@ -366,16 +385,11 @@
 		65CB7E8D23C3D3C50018526D /* Power of Worship */ = {
 			isa = PBXGroup;
 			children = (
-				659595C723D0F4F2007FB09C /* Model */,
 				65CB7E8E23C3D5FB0018526D /* PowerOfWorshipViewController.swift */,
-				65913B2123C8F956009B8537 /* File.swift */,
-				65913B1F23C8E245009B8537 /* VideoCell.swift */,
 				659595C123D0EE96007FB09C /* PlaylistViewController.swift */,
 				6561CA0F23F46FD400AA8C15 /* bulidDummyViewController.swift */,
-				659595C323D0EFC1007FB09C /* searchSongViewController.swift */,
-				659595C523D0F4B4007FB09C /* VideoResultcolCollectionViewCell.swift */,
-				659595CC23D21C3C007FB09C /* seleccionVideoViewController.swift */,
 				6561CA1323F49CD100AA8C15 /* ChannelCollectionViewCell.swift */,
+				653C0FD223FEFF0F00700ACE /* ChannelSeleccionadoViewController.swift */,
 			);
 			path = "Power of Worship";
 			sourceTree = "<group>";
@@ -401,6 +415,7 @@
 		65D42417232576A800DB286E /* altar */ = {
 			isa = PBXGroup;
 			children = (
+				653C0FD123FEFE6400700ACE /* Tintero */,
 				6561CA1723F505C200AA8C15 /* altar.entitlements */,
 				65372DD623ECFEC90078778A /* Settings */,
 				658303D823DA49C100D48ED0 /* Resources */,
@@ -419,6 +434,7 @@
 				65421CCD23AAABFE000B0437 /* extensions.swift */,
 				6561CA1823F510C000AA8C15 /* NSMutableParagraphStyle+Utility.swift */,
 				6561CA1123F4785900AA8C15 /* AsolasconDios.mp3 */,
+				653C0FCD23FE002E00700ACE /* Here I Am to Worship.mp3 */,
 				65C7FE07237CF5B0000D6D80 /* OnlyVideoPostViewController.swift */,
 				65D42424232576AA00DB286E /* LaunchScreen.storyboard */,
 				65D42427232576AA00DB286E /* Info.plist */,
@@ -440,6 +456,7 @@
 				6501259123CE3000009FAD55 /* Comments.swift */,
 				6561CA0923F3685D00AA8C15 /* fondo.swift */,
 				6561CA0B23F46C8900AA8C15 /* Channel.swift */,
+				653C0FCF23FE0D7500700ACE /* songinprocess.swift */,
 				6561CA0D23F46E3700AA8C15 /* Song.swift */,
 				6561CA1523F4E1C500AA8C15 /* Church.swift */,
 				653C0FC723FCB17B00700ACE /* Event.swift */,
@@ -560,6 +577,7 @@
 				658303DE23DA83DA00D48ED0 /* Prompt-ExtraBoldItalic.ttf in Resources */,
 				658303E023DA83DA00D48ED0 /* Prompt-ExtraLightItalic.ttf in Resources */,
 				65D42423232576AA00DB286E /* Assets.xcassets in Resources */,
+				653C0FCE23FE002E00700ACE /* Here I Am to Worship.mp3 in Resources */,
 				658303EC23DA83E000D48ED0 /* Avenir.ttc in Resources */,
 				658303E523DA83DA00D48ED0 /* Prompt-MediumItalic.ttf in Resources */,
 				65D4241E232576A800DB286E /* Main.storyboard in Resources */,
@@ -661,6 +679,7 @@
 				650B1E8D23DB97B0000C0E32 /* ForgottViewController.swift in Sources */,
 				654F95DB23306E7F00175A7E /* PrayPostViewController.swift in Sources */,
 				65913B2223C8F956009B8537 /* File.swift in Sources */,
+				653C0FD023FE0D7500700ACE /* songinprocess.swift in Sources */,
 				655BF7052385DA1A002F0C7C /* PrayCollectionViewLayout.swift in Sources */,
 				65372DD823ECFEF30078778A /* SettingsViewController.swift in Sources */,
 				650B1E9523E207A7000C0E32 /* TabBarCambios.swift in Sources */,
@@ -708,6 +727,7 @@
 				65913B2023C8E245009B8537 /* VideoCell.swift in Sources */,
 				6526F5EF23836C7300DA2433 /* DynamicHeightCollectionView.swift in Sources */,
 				65ABFC87232C12C200729B57 /* User.swift in Sources */,
+				653C0FD323FEFF0F00700ACE /* ChannelSeleccionadoViewController.swift in Sources */,
 				65CB7E8F23C3D5FB0018526D /* PowerOfWorshipViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
