@@ -10,7 +10,11 @@ import UIKit
 import Firebase
 
 class WelcomeViewController: UIViewController {
-      @IBOutlet weak var bgCopyView: UIView!
+    @IBOutlet weak var bgCopyView: UIView? = {
+        let a = UIView()
+        
+        return a
+    } ()
       @IBOutlet weak var altarLaber: UILabel!
       @IBOutlet weak var togetherInTheSameLabel: UILabel!
       @IBOutlet weak var withMilionsOfUserLabel: UILabel!
@@ -108,16 +112,17 @@ class WelcomeViewController: UIViewController {
   
         
         // Setup bgCopyView
-        self.bgCopyView.layer.borderColor = UIColor(red: 0.592, green: 0.592, blue: 0.592, alpha: 1).cgColor /* #979797 */
-        self.bgCopyView.layer.borderWidth = 1
+        self.bgCopyView?.layer.borderColor = UIColor(red: 0.592, green: 0.592, blue: 0.592, alpha: 1).cgColor /* #979797 */
+        self.bgCopyView?.layer.borderWidth = 1
         
         let bgCopyViewGradient = CAGradientLayer()
         bgCopyViewGradient.colors = [UIColor.clear.cgColor, UIColor(red: 0.141, green: 0.165, blue: 0.216, alpha: 1).cgColor /* #242A37 */]
         bgCopyViewGradient.locations = [0, 1]
         bgCopyViewGradient.startPoint = CGPoint(x: 0.5, y: 0)
         bgCopyViewGradient.endPoint = CGPoint(x: 0.5, y: 0.95)
-        bgCopyViewGradient.frame = self.bgCopyView.bounds
-        self.bgCopyView.layer.insertSublayer(bgCopyViewGradient, at: 0)
+        guard let framebg = bgCopyView?.frame else {return}
+        bgCopyViewGradient.frame = framebg
+        self.bgCopyView?.layer.insertSublayer(bgCopyViewGradient, at: 0)
         self.allGradientLayers.append(bgCopyViewGradient)
         
         

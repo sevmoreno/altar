@@ -1665,10 +1665,10 @@
             </objects>
             <point key="canvasLocation" x="1780" y="-1862"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--Inicial-->
         <scene sceneID="MjU-Pn-Jep">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="wgu-KU-Dhh" sceneMemberID="viewController">
+                <navigationController title="Inicial" automaticallyAdjustsScrollViewInsets="NO" id="wgu-KU-Dhh" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="kNI-dQ-Bll">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
@@ -2206,7 +2206,7 @@
         <image name="worshipicon" width="30" height="23"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="7cR-iW-vX2"/>
-        <segue reference="BJb-6s-AhC"/>
+        <segue reference="Vsu-Bt-GX7"/>
+        <segue reference="ykW-h1-pG1"/>
     </inferredMetricsTieBreakers>
 </document>

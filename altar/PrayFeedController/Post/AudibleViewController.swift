@@ -109,8 +109,11 @@ class AudibleViewController: UIViewController, AVAudioRecorderDelegate {
 
                 usernameLabel.translatesAutoresizingMaskIntoConstraints = false
                
-                 usernameLabel.topAnchor.constraint(equalTo: userProfileImageView.topAnchor, constant:10).isActive = true
+            //     usernameLabel.topAnchor.constraint(equalTo: userProfileImageView.topAnchor, constant:10).isActive = true
                 usernameLabel.leftAnchor.constraint(equalTo: userProfileImageView.rightAnchor, constant: 8).isActive = true
+        usernameLabel.widthAnchor.constraint(equalToConstant: 300).isActive = true
+        usernameLabel.centerYAnchor.constraint(equalTo: userProfileImageView.centerYAnchor).isActive = true
+
         
         view.backgroundColor = .white
         checkPermissions()

@@ -170,8 +170,10 @@ class PrayPostViewController: UIViewController, UIImagePickerControllerDelegate,
                     //   userProfileImageView.bottomAnchor.constraint(equalTo: photoImageView.topAnchor, constant: -8).isActive = true
 
         nombreUsuario?.translatesAutoresizingMaskIntoConstraints = false
-                      
-        nombreUsuario?.topAnchor.constraint(equalTo: usuarioFoto.topAnchor, constant:10).isActive = true
+        nombreUsuario?.widthAnchor.constraint(equalToConstant: 300).isActive = true
+        nombreUsuario?.centerYAnchor.constraint(equalTo: usuarioFoto.centerYAnchor).isActive = true
+
+      //  nombreUsuario?.topAnchor.constraint(equalTo: usuarioFoto.topAnchor, constant:10).isActive = true
         nombreUsuario?.leftAnchor.constraint(equalTo: usuarioFoto.rightAnchor, constant: 8).isActive = true
         
         view.addSubview(textoIngresado)

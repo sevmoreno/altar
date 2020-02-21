@@ -81,7 +81,11 @@ class SettingsViewController: UIViewController {
     @objc func logout () {
         print("Log out ejecutado")
          try? Auth.auth().signOut()
+        
+        
+        self.view.window?.rootViewController?.dismiss(animated: true, completion: nil)
 
+        
           let vc =  WelcomeViewController ()
             present(vc, animated: true)
     // _ = navigationController?.popToRootViewController(animated: true)
