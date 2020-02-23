@@ -190,7 +190,9 @@ textbackbroundpassword.layer.cornerRadius = 22
                         
                         let modoString = String (url!.absoluteString)
                         self.ref = self.databaseReference
-                        
+                        guard let fcmToken = Messaging.messaging().fcmToken else { return }
+                        var stringdeToken = [String] ()
+                        stringdeToken.append(fcmToken)
                         let userinfo: [String:Any] =
                             
                             ["userid" : (user?.user.uid),
@@ -198,6 +200,7 @@ textbackbroundpassword.layer.cornerRadius = 22
                              "email" : self.email.text!,
                              "church": "New Account",
                              "photoURL": modoString ,
+                             "fcmToken": stringdeToken,
                              "title" : self.titlePastor.text,
                              "churchID" : "",
                              "isPastor" : 1,

@@ -291,16 +291,13 @@ func loadCurrentChurch (codigo: String) {
     //let userPostRef = Database.database().reference().child("Media_Channels")
     userPostRef.observeSingleEvent(of: .value, with: { (data) in
         
-        print("Entro a ver")
-        print(data.value)
+      
         if let devoFeed = data.value as? [String:Any] {
             
             
             advengers.shared.currentChurchInfo = Church(dictionary: devoFeed)
             
-            print("Esta es la info de la church:")
-            print(advengers.shared.currentChurchInfo.name)
-            print(advengers.shared.currentChurchInfo.uidChurch)
+          
             
             
         }

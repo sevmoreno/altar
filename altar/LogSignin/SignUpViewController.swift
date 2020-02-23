@@ -9,6 +9,7 @@
 import UIKit
 import Firebase
 import FirebaseUI
+import FirebaseMessaging
 
 class SignUpViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate {
     
@@ -182,12 +183,24 @@ textbackbroundpassword.layer.cornerRadius = 22
 
                         let modoString = String (url!.absoluteString)
                         self.ref = self.databaseReference
-                        let userinfo: [String:Any] = ["userid" : (user?.user.uid), "name" : self.name?.text!, "email" : self.email.text!, "church": advengers.shared.currentChurch, "photoURL" : modoString ?? "","churchID": advengers.shared.currentChurchInfo.uidChurch]
+                       guard let fcmToken = Messaging.messaging().fcmToken else { return }
+                       var stringdeToken = [String] ()
+                       stringdeToken.append(fcmToken)
+                        let userinfo: [String:Any] = ["userid" : (user?.user.uid), "name" : self.name?.text!, "email" : self.email.text!,"fcmToken": stringdeToken, "church": advengers.shared.currentChurch, "photoURL" : modoString ?? "","churchID": advengers.shared.currentChurchInfo.uidChurch]
                         let userID = String ((user?.user.uid)!) ?? "NoTiene"
                         //   self.databaseReference.child("users").child("\(user!.user.uid)").setValue(user?.user.uid, forKeyPath: "userid")
                         self.ref.child("users").child(userID).setValue(userinfo)
                         
+                        let accounthelper = AccountHelpers ()
+                        accounthelper.addUserToChuch(churchUID: advengers.shared.currentChurchInfo.uidChurch, completionHandler: { (success) -> Void in
 
+                            
+                            if success {
+                                
+                                
+                            }
+                            
+                        })
                     })
 
                     })

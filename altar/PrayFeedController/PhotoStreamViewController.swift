@@ -699,7 +699,7 @@ class PhotoStreamViewController: UICollectionViewController, UICollectionViewDel
             
             
         else {
-            print("Cayo en Else")
+            
             
             let botones: CGFloat = 50.0
             let usuarioInfo: CGFloat = 50.0

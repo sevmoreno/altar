@@ -284,10 +284,7 @@ class PowerOfWorshipViewController:  UIViewController{
                 
                 advengers.shared.currentChurchInfo = Church(dictionary: devoFeed)
                 
-                print("Esta es la info de la church:")
-                print(advengers.shared.currentChurchInfo.name)
-                print(advengers.shared.currentChurchInfo.uidChurch)
-                
+         
                 
                 
             }

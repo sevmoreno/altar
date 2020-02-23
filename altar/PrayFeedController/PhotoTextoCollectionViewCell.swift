@@ -211,7 +211,7 @@ class PhotoTextoCollectionViewCell: UICollectionViewCell {
         override init(frame: CGRect) {
             super.init(frame: frame)
             
-            print("Este es el frame de la cell: \(frame.width),\(frame.height)")
+            
             
           
 

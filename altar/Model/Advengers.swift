@@ -53,8 +53,8 @@ class advengers {
                       "title":"",
                       "churchID":"",
                       "isPastor": 0,
-                      "uid":""
-                        
+                      "uid":"",
+                      "fcmToken":[""]
                         ] as! [String:Any]
     
 

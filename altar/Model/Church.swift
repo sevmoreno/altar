@@ -26,7 +26,7 @@ class Church: NSObject {
     var webSite: String = ""
     var phoneNumber: String = ""
     var uidChurch: String = ""
-    
+    var fcmToken: String = ""
     var channelActive: String = "E41F56A9-2DA2-458F-8292-63F46DF3C8D3"
     var channelActiveTime: Int = 0
     
@@ -36,7 +36,7 @@ class Church: NSObject {
            self.userID = dictionary["userid"] as? String ?? ""
            self.country = dictionary["country"]  as? String ?? ""
             self.state = dictionary["state"]  as? String ?? ""
-           
+           self.fcmToken = dictionary["fcmToken"]  as? String ?? ""
            self.zipCode = dictionary["zipCode"] as? String ?? ""
            self.email = dictionary["email"]  as? String ?? ""
            self.facebook = dictionary["facebook"] as? String ?? ""

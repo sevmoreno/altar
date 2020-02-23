@@ -195,7 +195,7 @@ class AnnotatedPhotoCell: UICollectionViewCell {
         
         
         
-        print("Este es el frame de la cell: \(frame.width),\(frame.height)")
+
         
       
 
