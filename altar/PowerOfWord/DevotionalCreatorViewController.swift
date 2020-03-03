@@ -30,7 +30,12 @@ class DevotionalCreatorViewController: UIViewController {
     }
     
 
-    @IBOutlet weak var devText: UITextView!
+    var devText: UITextView = {
+        let a = UITextView ()
+        
+        
+        return a
+    } ()
     
     var attributedString = NSMutableAttributedString(string: "")
     
@@ -452,6 +457,7 @@ class DevotionalCreatorViewController: UIViewController {
   //  var loqueviene: SeleccionFotoCollectionViewController?
     
     let model = SeleccionFotoCollectionViewController()
+    var tamanodefault = CGFloat()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -482,6 +488,24 @@ class DevotionalCreatorViewController: UIViewController {
         
         navigationItem.rightBarButtonItem?.tintColor = advengers.shared.colorOrange
         
+        
+        tamanodefault = view.frame.height - fondovisual.frame.height - 200
+        devText.frame = CGRect(x: 0, y: 0, width: view.frame.width - 16 , height: view.frame.height - fondovisual.frame.height - 200)
+      //  devText.backgroundColor = .red
+        
+        view.addSubview(devText)
+         devText.translatesAutoresizingMaskIntoConstraints = false
+        
+     
+               [
+                   devText.topAnchor.constraint(equalTo: fondovisual.bottomAnchor, constant: 20),
+                   devText.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 8),
+                   devText.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -8),
+                   devText.heightAnchor.constraint(equalToConstant: tamanodefault)
+                   ].forEach{ $0.isActive = true }
+               
+//devText.anchor(top: fondovisual.bottomAnchor, left: view.leftAnchor, bottom: nil, right: view.leftAnchor, paddingTop: 10, paddingLeft: 8, paddingBottom: 0, paddingRight: 8, width: 0, height: 200)
+        
 //
 //        let newBackButton = UIBarButtonItem(title: "Back", style: UIBarButtonItem.Style.bordered, target: self, action: "back:")
 //        self.navigationItem.leftBarButtonItem = newBackButton
@@ -493,6 +517,8 @@ class DevotionalCreatorViewController: UIViewController {
         }
 */
         
+       
+
         addAccessory()
       
         devText.delegate = self
@@ -510,7 +536,58 @@ class DevotionalCreatorViewController: UIViewController {
         
 
         // Do any additional setup after loading the view.
-    }
+   let notificationCenter = NotificationCenter.default
+                    notificationCenter.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
+                    notificationCenter.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillChangeFrameNotification, object: nil)
+                // And that's it!
+             }
+
+        @objc func keyboardWillShow(notification: NSNotification) {
+            
+            
+          //  let size = CGSize(width: view.frame.width, height: .infinity)
+          //  let estimatedSize = devText.sizeThatFits(size)
+            
+            
+            devText.constraints.forEach { (constraint) in
+                if constraint.firstAttribute == .height {
+                    constraint.constant = tamanodefault - getKeyboardHeight(notification: notification) + 70
+                }
+            }
+            
+//               if view.frame.origin.y >= 0 {
+//
+//                view.frame.origin.y -=
+//
+//
+//              view.reloadInputViews()
+//
+//
+//                print("Se va a mostrar")
+//               }
+           }
+           
+           @objc func keyboardWillHide(notification: NSNotification) {
+               devText.constraints.forEach { (constraint) in
+                
+                   if constraint.firstAttribute == .height {
+                       constraint.constant = tamanodefault
+                   }
+               }
+           }
+           
+           func unsubscribeFromKeyboardNotifications() {
+               NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
+               NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
+           }
+           
+           
+           
+           func getKeyboardHeight(notification: NSNotification) -> CGFloat {
+               let userInfo = notification.userInfo
+               let keyboardSize = userInfo![UIResponder.keyboardFrameEndUserInfoKey] as! NSValue // of CGRect
+               return keyboardSize.cgRectValue.height
+           }
     
     @IBAction func changePicture(_ sender: Any) {
         
@@ -563,12 +640,14 @@ class DevotionalCreatorViewController: UIViewController {
     
     @objc func postDevo () {
         
-        let iglesia = advengers.shared.currentChurch
         
-         guard let currentChurchID = advengers.shared.currenUSer["churchID"] as? String else { return }
+        let currentChurchID = advengers.shared.currentChurchInfo.uidChurch
+       //  guard let currentChurchID = advengers.shared.currenUSer["churchID"] as? String else { return }
         let userPostRef = Database.database().reference().child("Devotionals").child(currentChurchID)
-        let ref = userPostRef.childByAutoId()
         
+        let filenameA = NSUUID().uuidString
+        
+        let ref = userPostRef.child(filenameA)
         var fondo = ""
         if advengers.shared.fondoSeleccionado == "" {
             fondo = "https://firebasestorage.googleapis.com/v0/b/altar-92d12.appspot.com/o/backgroundsDevSR%2F-M-qdkcToEv4HU051_Iq?alt=media&token=c81ad0f4-ee3b-459c-89f2-7b5be3f7c7b6"
@@ -629,6 +708,7 @@ class DevotionalCreatorViewController: UIViewController {
                                     "author": Auth.auth().currentUser?.uid,
                                     "message": self.devText.text ,
                                     "photoURL": fondo ,
+                                    "devoUID": filenameA,
                                     
                                     "title": self.titulo.text!,
                                     "creationDate": Date().millisecondsSince1970] as [String : Any]
@@ -808,7 +888,11 @@ extension DevotionalCreatorViewController: UITextViewDelegate {
     
     func textViewDidChange(_ textView: UITextView) { //Handle the text changes here
        
-    
+        
+        print(devText.selectedRange)
+        
+        devText.scrollRangeToVisible(devText.selectedRange)
+        
         
          devText.typingAttributes = self.attributes
  

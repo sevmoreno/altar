@@ -28,7 +28,8 @@ class CreateEventViewController: UIViewController {
     }
     
     
-    @IBOutlet weak var devText: UITextView!
+    //@IBOutlet weak var devText: UITextView!
+    var devText = UITextView ()
     
     var attributedString = NSMutableAttributedString(string: "")
     
@@ -59,7 +60,8 @@ class CreateEventViewController: UIViewController {
     @IBOutlet weak var scroll: UIScrollView!
     
     @IBOutlet var titulo: UITextView!
-    
+    var tamanodefault = CGFloat()
+
     var attributes = [
         
         //  NSAttributedString.Key.underlineStyle : 1,
@@ -454,6 +456,8 @@ class CreateEventViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        devText.tag = 200
+        
         // NAVIGATION SETTINGS
         
         NotificationCenter.default.addObserver(self, selector: #selector(didChangePic), name: NSNotification.Name("changePic"), object: nil)
@@ -491,13 +495,13 @@ class CreateEventViewController: UIViewController {
          }
          */
         
-        addAccessory()
+        
         
         devText.delegate = self
         
         titulo.delegate = self
         
-        
+        addAccessory()
         
         if devocionalRichText.isEmpty {
             
@@ -505,11 +509,63 @@ class CreateEventViewController: UIViewController {
             
         }
         //  devText.selectedRange
+
+           tamanodefault = view.frame.height - fondovisual.frame.height - 200
+           devText.frame = CGRect(x: 0, y: 0, width: view.frame.width - 16 , height: view.frame.height - fondovisual.frame.height - 200)
+      //   devText.backgroundColor = .red
+           
+           view.addSubview(devText)
+            devText.translatesAutoresizingMaskIntoConstraints = false
+           
+        
+                  [
+                      devText.topAnchor.constraint(equalTo: fondovisual.bottomAnchor, constant: 20),
+                      devText.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 8),
+                      devText.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -8),
+                      devText.heightAnchor.constraint(equalToConstant: tamanodefault)
+                      ].forEach{ $0.isActive = true }
+                  
+
         
         
-        // Do any additional setup after loading the view.
-    }
-    
+                    let notificationCenter = NotificationCenter.default
+                      notificationCenter.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
+                      notificationCenter.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillChangeFrameNotification, object: nil)
+                  // And that's it!
+               }
+
+          @objc func keyboardWillShow(notification: NSNotification) {
+                   devText.constraints.forEach { (constraint) in
+                            if constraint.firstAttribute == .height {
+                                constraint.constant = tamanodefault - getKeyboardHeight(notification: notification) + 140
+                            }
+                        }
+
+             }
+             
+             @objc func keyboardWillHide(notification: NSNotification) {
+                
+              devText.constraints.forEach { (constraint) in
+                  
+                     if constraint.firstAttribute == .height {
+                         constraint.constant = tamanodefault
+                     }
+                 }
+
+             }
+             
+             func unsubscribeFromKeyboardNotifications() {
+                 NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
+                 NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
+             }
+             
+             
+             
+             func getKeyboardHeight(notification: NSNotification) -> CGFloat {
+                 let userInfo = notification.userInfo
+                 let keyboardSize = userInfo![UIResponder.keyboardFrameEndUserInfoKey] as! NSValue // of CGRect
+                 return keyboardSize.cgRectValue.height
+             }
     
     
     @IBAction func seleccionFoto(_ sender: Any) {
@@ -557,7 +613,9 @@ class CreateEventViewController: UIViewController {
         // let iglesia = advengers.shared.currentChurch
         guard let currentChurchID = advengers.shared.currenUSer["churchID"] as? String else { return }
         let userPostRef = Database.database().reference().child("Events").child(currentChurchID)
-        let ref = userPostRef.childByAutoId()
+        
+        let filenameA = NSUUID().uuidString
+        let ref = userPostRef.child(filenameA)
         
         var fondo = ""
         if advengers.shared.fondoSeleccionado == "" {
@@ -580,8 +638,8 @@ class CreateEventViewController: UIViewController {
                 resultHtmlText = h
                 
                 // ------------------------------------ ACA SALVAMOS AL STORAGE LA DATA  ---------------------------------
-                let filename = NSUUID().uuidString
-                let storageRefDB = Storage.storage().reference().child("Events").child(currentChurchID).child(filename)
+               
+                let storageRefDB = Storage.storage().reference().child("Events").child(currentChurchID).child(filenameA)
                 storageRefDB.putData(d, metadata: nil, completion: { (metadata, err) in
                     
                     if let err = err {
@@ -619,6 +677,7 @@ class CreateEventViewController: UIViewController {
                                     "author": Auth.auth().currentUser?.uid,
                                     "message": self.devText.text ,
                                     "photoURL": fondo ,
+                                    "postID": filenameA,
                                     
                                     "title": self.titulo.text!,
                                     "creationDate": Date().millisecondsSince1970] as [String : Any]
@@ -773,6 +832,7 @@ extension CreateEventViewController: UITextViewDelegate {
         if textView.tag == 100 {
             print(textView.attributedText.string)
             print(textView.text)
+        
             if textView.text == "Change title here ..." {
                 
                 let secondString = NSAttributedString(string: "")
@@ -836,6 +896,9 @@ extension CreateEventViewController: UITextViewDelegate {
             
             devText.attributedText = creatMutable
             
+        } else {
+            
+                textView.centerVertically()
         }
         
     }

@@ -14,7 +14,7 @@ import UIKit
 class Church: NSObject {
     
     var userID: String = ""
-
+    var displayname: String = ""
     var name: String = ""
     var address: String = ""
     var state: String = ""
@@ -27,7 +27,7 @@ class Church: NSObject {
     var phoneNumber: String = ""
     var uidChurch: String = ""
     var fcmToken: String = ""
-    var channelActive: String = "E41F56A9-2DA2-458F-8292-63F46DF3C8D3"
+    var channelActive: String = "37E98093-7B60-4029-8DE2-7BD7C15840BE"
     var channelActiveTime: Int = 0
     
     init(dictionary: [String: Any]) {
@@ -41,6 +41,8 @@ class Church: NSObject {
            self.email = dictionary["email"]  as? String ?? ""
            self.facebook = dictionary["facebook"] as? String ?? ""
            self.instragram = dictionary["instragram"]  as? String ?? ""
+        
+            self.displayname = dictionary["displayname"]  as? String ?? "Altar"
         
            self.webSite = dictionary["webSite"]  as? String ?? ""
            self.phoneNumber = dictionary["phoneNumber"] as? String ?? ""

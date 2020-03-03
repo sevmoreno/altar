@@ -35,6 +35,7 @@
         @IBOutlet var creatProfile: UIButton!
         
         
+        @IBOutlet var errorLabel: UILabel!
         
         
         
@@ -101,6 +102,8 @@
             phonenumber.layer.cornerRadius = 22
             displayname.layer.cornerRadius = 22
             
+            
+            
 //
 //            NotificationCenter.default.addObserver(self, selector: #selector(churchSelection), name: NSNotification.Name(rawValue: "ChurchSelection"), object: nil)
 //
@@ -146,8 +149,40 @@
             
             
 
-        }
-        
+     
+              let notificationCenter = NotificationCenter.default
+                        notificationCenter.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
+                        notificationCenter.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillChangeFrameNotification, object: nil)
+                    // And that's it!
+                 }
+
+            @objc func keyboardWillShow(notification: NSNotification) {
+                   if view.frame.origin.y >= 0 {
+                       view.frame.origin.y -= (getKeyboardHeight(notification: notification) - 100)
+                       print("Se va a mostrar")
+                   }
+               }
+               
+               @objc func keyboardWillHide(notification: NSNotification) {
+                   if (self.view.frame.origin.y < 0) {
+                     //  view.frame.origin.y += getKeyboardHeight(notification: notification)
+                     view.frame.origin.y = 0
+                       view.reloadInputViews()
+                   }
+               }
+               
+               func unsubscribeFromKeyboardNotifications() {
+                   NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
+                   NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
+               }
+               
+               
+               
+               func getKeyboardHeight(notification: NSNotification) -> CGFloat {
+                   let userInfo = notification.userInfo
+                   let keyboardSize = userInfo![UIResponder.keyboardFrameEndUserInfoKey] as! NSValue // of CGRect
+                   return keyboardSize.cgRectValue.height
+               }
         
 //        @objc func churchSelection() {
 //            DispatchQueue.main.async {
@@ -189,38 +224,60 @@
         
         @IBAction func creatprofile(_ sender: Any) {
             
+            name.text != "Name" &&
+            displayname.text != "Display name" &&
+            email.text != "Email"
             
             
+            guard name.text != "", email.text != "", displayname.text != "", name.text != "Name",
+            displayname.text != "Display name",
+            email.text != "Email"
             
-            guard name.text != "", email.text != "", displayname.text != "" else {return}
+                else {
+                 errorLabel.text = "Please add your Church name, email adrress, and display name."
+                return}
             
             
-            guard let usuarioNumber = Auth.auth().currentUser?.uid else {return}
+            guard displayname.text!.count > 1 && displayname.text!.count < 20  else {
+                errorLabel.text = "Display name must be less than 20 characters."
+                return
+            }
             
             
-            accounthelper.creatChurch(userID: usuarioNumber, name: name.text!, address: address.text ?? "", state: state.text ?? "", country: country.text ?? "", zipCode: zipcode.text ?? "", email: email.text!, facebook: "", instragram: "", webSite: "", phoneNumber: phonenumber.text ?? "", displayname: displayname.text!, completionHandler: { (success) -> Void in
+            if name.text != "" && email.text != "" && displayname.text != "" &&
+                name.text != "Name" &&
+                displayname.text != "Display name" &&
+                email.text != "Email"
                 
                 
+                {
                 
-                if success {
-                    self.ref = self.databaseReference
-                    
-                    let userinfo: [String:Any] = ["church": advengers.shared.currentChurch, "churchID": advengers.shared.currentChurchInfo.uidChurch]
-                    
-                    guard let userID = Auth.auth().currentUser?.uid else {return}
-                    
-                    self.ref.child("users").child(userID).updateChildValues(userinfo)
+                guard let usuarioNumber = Auth.auth().currentUser?.uid else {return}
+                accounthelper.creatChurch(userID: usuarioNumber, name: name.text!, address: address.text ?? "", state: state.text ?? "", country: country.text ?? "", zipCode: zipcode.text ?? "", email: email.text!, facebook: "", instragram: "", webSite: "", phoneNumber: phonenumber.text ?? "", displayname: displayname.text!, completionHandler: { (success) -> Void in
                     
                     
-                    self.performSegue(withIdentifier: "welcome", sender: self)
-                    advengers.shared.isPastor =  true
-                    advengers.shared.currentChurch = self.displayname.text!
                     
-                }
+                    if success {
+                        self.ref = self.databaseReference
+                        
+                        let userinfo: [String:Any] = ["church": advengers.shared.currentChurch, "churchID": advengers.shared.currentChurchInfo.uidChurch]
+                        
+                        guard let userID = Auth.auth().currentUser?.uid else {return}
+                        
+                        self.ref.child("users").child(userID).updateChildValues(userinfo)
+                        
+                        self.accounthelper.loadFirstContent()
+                         self.performSegue(withIdentifier: "welcome", sender: self)
+                        advengers.shared.isPastor =  true
+                        advengers.shared.currentChurch = self.displayname.text!
+                        
+                    }
+                    
+                    
+                })
                 
                 
-            })
-            
+            }
             
             
             

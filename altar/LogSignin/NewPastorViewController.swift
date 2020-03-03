@@ -44,6 +44,7 @@ class NewPastorViewController: UIViewController, UIImagePickerControllerDelegate
     
     var imageToSave: UIImage?
     
+    @IBOutlet var errorLabel: UILabel!
     override func viewDidLoad() {
         
         super.viewDidLoad()
@@ -103,10 +104,40 @@ textbackbroundpassword.layer.cornerRadius = 22
     
         
         
+         
+          let notificationCenter = NotificationCenter.default
+                    notificationCenter.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
+                    notificationCenter.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillChangeFrameNotification, object: nil)
+                // And that's it!
+             }
 
-    }
-    
-    
+        @objc func keyboardWillShow(notification: NSNotification) {
+               if view.frame.origin.y >= 0 {
+                   view.frame.origin.y -= (getKeyboardHeight(notification: notification) - 100)
+                   print("Se va a mostrar")
+               }
+           }
+           
+           @objc func keyboardWillHide(notification: NSNotification) {
+               if (self.view.frame.origin.y < 0) {
+                 //  view.frame.origin.y += getKeyboardHeight(notification: notification)
+                 view.frame.origin.y = 0
+                   view.reloadInputViews()
+               }
+           }
+           
+           func unsubscribeFromKeyboardNotifications() {
+               NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
+               NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
+           }
+           
+           
+           
+           func getKeyboardHeight(notification: NSNotification) -> CGFloat {
+               let userInfo = notification.userInfo
+               let keyboardSize = userInfo![UIResponder.keyboardFrameEndUserInfoKey] as! NSValue // of CGRect
+               return keyboardSize.cgRectValue.height
+           }
 //    @objc func churchSelection() {
 //        DispatchQueue.main.async {
 //            self.selectChurchButton.setTitle(advengers.shared.currentChurch, for: .normal)
@@ -155,7 +186,9 @@ textbackbroundpassword.layer.cornerRadius = 22
 
     @IBAction func signIn(_ sender: Any) {
         
-        guard name?.text != "", email.text != "", password.text != "", passwordvalidator.text != "" else {return}
+        guard name?.text != "", email.text != "", password.text != "", passwordvalidator.text != ""  else {
+             errorLabel.text = "You need your email & password to access Altar."
+            return}
         
         if password.text == password.text {
             
@@ -163,6 +196,7 @@ textbackbroundpassword.layer.cornerRadius = 22
                 
                 if let error = error {
                     print(error.localizedDescription)
+                    self.errorLabel.text = error.localizedDescription
                 }
                 
                 let changeRequest = Auth.auth().currentUser?.createProfileChangeRequest()
@@ -190,9 +224,13 @@ textbackbroundpassword.layer.cornerRadius = 22
                         
                         let modoString = String (url!.absoluteString)
                         self.ref = self.databaseReference
-                        guard let fcmToken = Messaging.messaging().fcmToken else { return }
-                        var stringdeToken = [String] ()
-                        stringdeToken.append(fcmToken)
+                        
+                         var stringdeToken = [""]
+                        if let fcmToken = Messaging.messaging().fcmToken {
+                            stringdeToken.removeAll()
+                            stringdeToken.append(fcmToken)
+                        }
+                        
                         let userinfo: [String:Any] =
                             
                             ["userid" : (user?.user.uid),

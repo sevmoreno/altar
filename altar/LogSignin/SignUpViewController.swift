@@ -11,6 +11,12 @@ import Firebase
 import FirebaseUI
 import FirebaseMessaging
 
+
+
+
+
+
+
 class SignUpViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate {
     
     @IBOutlet var seleecionFoto: UIButton!
@@ -25,7 +31,8 @@ class SignUpViewController: UIViewController, UIImagePickerControllerDelegate, U
     let storageReference = Storage.storage().reference(forURL: "gs://altar-92d12.appspot.com" ).child("users")
     var ref: DatabaseReference!
     
- 
+    @IBOutlet var errorLabel: UILabel!
+    
     let databaseReference = Database.database().reference()
     
     var selectedChurch = "Favorday Church"
@@ -44,10 +51,17 @@ class SignUpViewController: UIViewController, UIImagePickerControllerDelegate, U
     
     var imageToSave: UIImage?
     
+    let scrollview = UIScrollView()
     override func viewDidLoad() {
         
         super.viewDidLoad()
         
+        let altarChurch = ["uidChurch": "37E98093-7B60-4029-8DE2-7BD7C15840BE",
+] as? [String:Any]
+        
+        
+        let churchDefautl = Church(dictionary: altarChurch!)
+        advengers.shared.currentChurchInfo = churchDefautl
         
         NotificationCenter.default.addObserver(self, selector: #selector(churchSelection), name: NSNotification.Name(rawValue: "ChurchSelection"), object: nil)
         
@@ -100,11 +114,46 @@ textbackbroundpassword.layer.cornerRadius = 22
  //       churchChose.dataSource = self
   //      churchChose.delegate = self
         
-    
+//    \\ TRYNG TO WORK WITH THE Keboard
+         
         
         
+        scrollview.addSubview(view)
+        
+        
+     let notificationCenter = NotificationCenter.default
+               notificationCenter.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
+               notificationCenter.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillChangeFrameNotification, object: nil)
+           // And that's it!
+        }
 
-    }
+   @objc func keyboardWillShow(notification: NSNotification) {
+          if view.frame.origin.y >= 0 {
+              view.frame.origin.y -= (getKeyboardHeight(notification: notification) - 100)
+              print("Se va a mostrar")
+          }
+      }
+      
+      @objc func keyboardWillHide(notification: NSNotification) {
+          if (self.view.frame.origin.y < 0) {
+            //  view.frame.origin.y += getKeyboardHeight(notification: notification)
+            view.frame.origin.y = 0
+              view.reloadInputViews()
+          }
+      }
+      
+      func unsubscribeFromKeyboardNotifications() {
+          NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
+          NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
+      }
+      
+      
+      
+      func getKeyboardHeight(notification: NSNotification) -> CGFloat {
+          let userInfo = notification.userInfo
+          let keyboardSize = userInfo![UIResponder.keyboardFrameEndUserInfoKey] as! NSValue // of CGRect
+          return keyboardSize.cgRectValue.height
+      }
     
     
     @objc func churchSelection() {
@@ -156,7 +205,9 @@ textbackbroundpassword.layer.cornerRadius = 22
 
     @IBAction func signIn(_ sender: Any) {
         
-        guard name?.text != "", email.text != "", password.text != "", passwordvalidator.text != "" else {return}
+        guard name?.text != "", email.text != "", password.text != "", passwordvalidator.text != "" else {
+            errorLabel.text = "You need your email & password to access Altar."
+            return}
         
         if password.text == password.text {
             
@@ -164,7 +215,10 @@ textbackbroundpassword.layer.cornerRadius = 22
                 
                 if let error = error {
                     print(error.localizedDescription)
+                    self.errorLabel.text = error.localizedDescription
                 }
+                
+                
                 
                 let changeRequest = Auth.auth().currentUser?.createProfileChangeRequest()
                 changeRequest?.displayName = self.name?.text
@@ -173,48 +227,59 @@ textbackbroundpassword.layer.cornerRadius = 22
                 })
                 
                 if user != nil {
-                
-                let imageref = self.storageReference.child("picture").child("\(user!.user.uid)")
-
-                    let data = self.imageToSave?.jpegData(compressionQuality: 0.5) ?? UIImage(named: "Rectangle")!.jpegData(compressionQuality: 0.5)
+                    
+                    
+                    // UNA VEZ CREADO EL USUARIO CON LO BASICO
+                    
+                    let imageref = self.storageReference.child("picture").child("\(user!.user.uid)")
+                     let data = self.imageToSave?.jpegData(compressionQuality: 0.5) ?? UIImage(named: "Rectangle")!.jpegData(compressionQuality: 0.5)
+                    
+                   // CUANDO SE HACE EL SEGUE ???
+                    
+                    
+                     
+                    
+         // ----------------------------------------------------------------------------
+                    
                 let uploadTask = imageref.putData(data!, metadata: nil, completion: { (metadata, error) in
                     
-                    imageref.downloadURL(completion: { (url, error) in
+                imageref.downloadURL(completion: { (url, error) in
 
                         let modoString = String (url!.absoluteString)
                         self.ref = self.databaseReference
-                       guard let fcmToken = Messaging.messaging().fcmToken else { return }
-                       var stringdeToken = [String] ()
-                       stringdeToken.append(fcmToken)
-                        let userinfo: [String:Any] = ["userid" : (user?.user.uid), "name" : self.name?.text!, "email" : self.email.text!,"fcmToken": stringdeToken, "church": advengers.shared.currentChurch, "photoURL" : modoString ?? "","churchID": advengers.shared.currentChurchInfo.uidChurch]
+                    
+                    var stringdeToken = [""]
+                    
+                    if let fcmToken = Messaging.messaging().fcmToken {
+                        stringdeToken.removeAll()
+                        stringdeToken.append(fcmToken)
+                    }
+                       
+                       
+                    
+                    let userinfo: [String:Any] = ["userid" : (user?.user.uid), "name" : self.name?.text!, "email" : self.email.text!,"fcmToken": stringdeToken, "church": advengers.shared.currentChurch,"isPastor" : 0, "photoURL" : modoString ?? "","churchID": advengers.shared.currentChurchInfo.uidChurch]
+                    
                         let userID = String ((user?.user.uid)!) ?? "NoTiene"
                         //   self.databaseReference.child("users").child("\(user!.user.uid)").setValue(user?.user.uid, forKeyPath: "userid")
                         self.ref.child("users").child(userID).setValue(userinfo)
                         
                         let accounthelper = AccountHelpers ()
-                        accounthelper.addUserToChuch(churchUID: advengers.shared.currentChurchInfo.uidChurch, completionHandler: { (success) -> Void in
-
-                            
-                            if success {
-                                
-                                
-                            }
-                            
-                        })
+                        accounthelper.addUserToChuch(churchUID: advengers.shared.currentChurchInfo.uidChurch, completionHandler: { (success) -> Void in })
+                    
                     })
 
                     })
 
                 uploadTask.resume()
+                self.performSegue(withIdentifier: "accesoOK", sender: self)
    
                 }
-                self.performSegue(withIdentifier: "accesoOK", sender: self)
+               
             }
             
-      
-        }
-        
-        else {
+           
+  
+        } else {
             let alertController = UIAlertController(title: "Password not matching", message: "Password not matching", preferredStyle: .alert)
             let OKAction = UIAlertAction(title: "OK", style: .default, handler: nil)
             alertController.addAction(OKAction)
@@ -260,30 +325,33 @@ textbackbroundpassword.layer.cornerRadius = 22
     
 }
 
-extension SignUpViewController: UIPickerViewDataSource,UIPickerViewDelegate {
-    
-    func numberOfComponents(in pickerView: UIPickerView) -> Int {
-        return 1
-    }
-    
-    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-      
-            return churchList.count
-        
-    }
-    
-    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        
-        if row < churchList.count {
-        return churchList[row]
-        }
-        return ""
-        
-    }
-    
-    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        
-       selectedChurch = churchList[row]
-    }
-    
-}
+
+
+
+//extension SignUpViewController: UIPickerViewDataSource,UIPickerViewDelegate {
+//
+//    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+//        return 1
+//    }
+//
+//    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+//
+//            return churchList.count
+//
+//    }
+//
+//    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+//
+//        if row < churchList.count {
+//        return churchList[row]
+//        }
+//        return ""
+//
+//    }
+//
+//    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+//
+//       selectedChurch = churchList[row]
+//    }
+//
+//}

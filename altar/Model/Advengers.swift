@@ -75,6 +75,10 @@ class advengers {
     
     var eventolSeleccinado = Event (dictionary: ["fsd":"FDSFSD"])
     
+    var eventolSeleccinadoIndex = 0
+    
+     var eventolToDelete = Event (dictionary: ["fsd":"FDSFSD"])
+    
     var fondoSeleccionado = ""
     
     var fondoSeleccionadoIndex = ""

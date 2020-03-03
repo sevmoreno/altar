@@ -55,6 +55,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate,MessagingDelegate, UNUserN
         FirebaseApp.configure()
         
         attemptRegisterForNotifications(application: application)
+        
+        // Payment observer
+        
+        IAPManager.shared.startObserving()
         // Override point for customization after application launch.
         return true
     }
@@ -121,6 +125,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate,MessagingDelegate, UNUserN
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
         // Saves changes in the application's managed object context before the application terminates.
         self.saveContext()
+        IAPManager.shared.stopObserving()
     }
 
     // MARK: - Core Data stack

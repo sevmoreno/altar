@@ -14,10 +14,11 @@ import Firebase
 protocol AudibleDelegate {
     func AudibleDelegate_didTapComment(post: Posts)
     func AudibleDelegate_didLike(for cell: AudioCollectionViewCell)
+    func deletCellD(for cell: AudioCollectionViewCell)
 }
 
 
-class AudioCollectionViewCell: UICollectionViewCell {
+class AudioCollectionViewCell: UICollectionViewCell, UIGestureRecognizerDelegate {
     
     var audioPlayer: AVAudioPlayer?
     let storage = Storage.storage()
@@ -408,8 +409,53 @@ class AudioCollectionViewCell: UICollectionViewCell {
         
         
         //   setupActionButtons()
-    }
-    
+        
+             let swipeCell = UISwipeGestureRecognizer(target: self, action: #selector(hiddenContainerViewTapped))
+                swipeCell.direction = .left
+                swipeCell.delegate = self
+                
+                addGestureRecognizer(swipeCell)
+
+            }
+            
+            
+            @objc func hiddenContainerViewTapped () {
+
+             if post?.userID == Auth.auth().currentUser?.uid || advengers.shared.isPastor == true {
+
+                       print("Swiper no Swiper !!!!")
+                       
+                       let contenedor = UIView()
+
+                       addSubview(contenedor)
+                       
+                       contenedor.anchor(top: topAnchor, left: nil, bottom: bottomAnchor, right: rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 100, height: 0)
+                       contenedor.backgroundColor = .red
+                       
+                       let deleteB = UIButton ()
+                       
+                       deleteB.addTarget(self, action: #selector(borrar), for: .touchDown)
+                      // deleteB.titleLabel?.text = "Delete"
+                     //  deleteB.tintColor = .white
+                       deleteB.setTitle("Delete", for: .normal)
+                       deleteB.setTitleColor(.white, for: .normal)
+                       
+                       contenedor.addSubview(deleteB)
+                       deleteB.translatesAutoresizingMaskIntoConstraints = false
+                       deleteB.centerXAnchor.constraint(equalTo: contenedor.centerXAnchor).isActive = true
+                       deleteB.centerYAnchor.constraint(equalTo: contenedor.centerYAnchor).isActive = true
+                           
+                       }
+               
+            }
+            
+            @objc func borrar() {
+        //        let imageDataDict = ["index": self.]
+        //        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "DeleteCell"), object: nil,userInfo: imageDataDict)
+                
+                delegate?.deletCellD(for: self)
+            }
+        
     
     
     

@@ -9,10 +9,28 @@
 import Foundation
 import UIKit
 import Firebase
+import Alamofire
+
 
 class AccountHelpers  {
     
-
+    
+    func isConnectedToInternet() ->Bool {
+           return NetworkReachabilityManager()!.isReachable
+       }
+    
+    
+    
+    
+    
+    func loadFirstContent () {
+        
+        
+    }
+    
+    
+    
+    
     func loadCurrentUserInfo (completionHandler: @escaping (_ success:Bool) -> Void)  {
                  
                  advengers.shared.usersStatusRef.queryOrderedByKey().observe(.value) { (datasnap) in
@@ -156,7 +174,8 @@ class AccountHelpers  {
                    "fcmToken" : stringdeToken,
                     "webSite" : webSite,
                    "phoneNumber" : phoneNumber,
-                   "uidChurch" : uuid
+                   "uidChurch" : uuid,
+                   "displayname" : displayname
         
             ] as [String : Any]
         

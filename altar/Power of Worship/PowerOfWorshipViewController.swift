@@ -14,7 +14,7 @@ import Firebase
 
 
 
-class PowerOfWorshipViewController:  UIViewController{
+class PowerOfWorshipViewController:  UIViewController, AVAudioPlayerDelegate{
     
     
     
@@ -23,7 +23,7 @@ class PowerOfWorshipViewController:  UIViewController{
     var audioPlayer: AVAudioPlayer?
     let storage = Storage.storage()
     var delegate: AudibleDelegate?
-    
+    var indexPlaylist = 0
     var isPlaying = false
     
     var cannalActivo = wChannel()
@@ -111,6 +111,22 @@ class PowerOfWorshipViewController:  UIViewController{
     } ()
     
     
+    let tituloCancion: UILabel = {
+           let label = UILabel()
+           label.text = ""
+        label.textColor = .white
+           label.font = UIFont(name: "Avenir-Heavy", size: 22)
+           return label
+       }()
+    
+    
+    let estadodelPlay: UILabel = {
+           let label = UILabel()
+           label.text = ""
+        label.textColor = .white
+           label.font = UIFont(name: "Avenir", size: 14)
+           return label
+       }()
     
     
     
@@ -178,6 +194,7 @@ class PowerOfWorshipViewController:  UIViewController{
     }
     
     override func viewDidLoad() {
+      //  audioPlayer?.delegate = self
         
         view.backgroundColor = advengers.shared.colorBlue
         // TODO: REFACTORIAR, OJO CON LAS FUNCONES QUE EJCUTAN LOS BOTONES // ----------------------------
@@ -256,7 +273,16 @@ class PowerOfWorshipViewController:  UIViewController{
         subtitulo.anchor(top: nameChannel.bottomAnchor, left: nil, bottom: nil, right: nil, paddingTop: 15, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: view.frame.width - 20, height: 0)
         subtitulo.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         
+        view.addSubview(tituloCancion)
+        view.addSubview(estadodelPlay)
         
+        tituloCancion.anchor(top: audioView.centerYAnchor, left: nil, bottom: nil, right: nil, paddingTop: 100, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 400, height: 0)
+        tituloCancion.centerXAnchor.constraint(equalTo: audioView.centerXAnchor).isActive = true
+        tituloCancion.textAlignment = .center
+        tituloCancion.sizeToFit()
+        estadodelPlay.anchor(top: nil, left: nil, bottom: view.bottomAnchor, right: nil, paddingTop: 0, paddingLeft: 0, paddingBottom: 80, paddingRight: 0, width: 200, height: 0)
+        estadodelPlay.textAlignment = .center
+        estadodelPlay.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
     }
     
     var urlSongs = [wSong] ()
@@ -384,6 +410,8 @@ class PowerOfWorshipViewController:  UIViewController{
     
     var channelActivo = false
     
+  
+    
     @objc func activarChannel ()  {
         
         
@@ -423,6 +451,13 @@ class PowerOfWorshipViewController:  UIViewController{
         
         // 1 CARGAMOS TODOS LOS TEMAS
         
+        
+        if !isPlaying {
+                   
+                   
+                   audioView.setImage(#imageLiteral(resourceName: "pausebutton").withRenderingMode(.alwaysOriginal), for: .normal)
+                   isPlaying = true
+        
     
           
             for (index,track) in cannalActivo.lista.enumerated() {
@@ -449,19 +484,22 @@ class PowerOfWorshipViewController:  UIViewController{
                                 
                                                                   print("index loop")
                                                                   print(index)
-                                porDonde = porDonde + cancion.durationSeg
+            
                                 
-                                print("Por Donde en el loop")
-                                print(porDonde)
-                                if porDonde >= Int (time.timeIntervalSinceNow){
-                                    
+                                if porDonde >= Int (time.timeIntervalSince1970){
+                                  
+                                   let seginThetrack = porDonde - Int (time.timeIntervalSince1970)
                                     
                                     print("index antes")
                                     print(index)
-                                    self.playNow (index: index)
-                                    
-                                    break
+                                    self.indexPlaylist = index
+                                    self.playNow (index: index, segPosition:seginThetrack )
+                                    self.tituloCancion.text = self.urlSongs[index].title
+                                    self.tituloCancion.sizeToFit()
+                                    return
                                 }
+                                
+                                porDonde = porDonde + cancion.durationSeg
                             }
                             
                             
@@ -476,6 +514,16 @@ class PowerOfWorshipViewController:  UIViewController{
                      /// isPlaying = true
                     urlSongs.append(a)
                   }
+        
+        
+        
+          } else {
+              
+              audioView.setImage(#imageLiteral(resourceName: "payAudio").withRenderingMode(.alwaysOriginal), for: .normal)
+              isPlaying = false
+             estadodelPlay.text = ""
+              audioPlayer?.stop()
+          }
                   
        
         
@@ -483,39 +531,30 @@ class PowerOfWorshipViewController:  UIViewController{
         
         
         /* ESto para ver donde lo ponemos*/
-        if !isPlaying {
-            
-            
-            audioView.setImage(#imageLiteral(resourceName: "pausebutton").withRenderingMode(.alwaysOriginal), for: .normal)
-            
+       
             
           
             
-            
-        } else {
-            
-            audioView.setImage(#imageLiteral(resourceName: "payAudio").withRenderingMode(.alwaysOriginal), for: .normal)
-            audioPlayer?.stop()
-        }
+      
         
          /*  -------*/
     }
     
-    func playNow (index: Int) {
+    func playNow (index: Int, segPosition: Int) {
         
         print("llego a play now")
         print(index)
         print(urlSongs[index].songURL as? String)
         
         let httpsReference = storage.reference(forURL: urlSongs[index].songURL)
-        
+        estadodelPlay.text = "Loading ..."
         httpsReference.getData(maxSize: 100 * 1024 * 1024) { data, error in
             if let error = error {
                 print("Error Playing")
                 print(error.localizedDescription)
             } else {
                 
-                self.playContent(data: data!)
+                self.playContent(data: data!, segPosition: segPosition)
                 self.statusAudio.isHidden = true
                 
             }
@@ -542,19 +581,31 @@ class PowerOfWorshipViewController:  UIViewController{
     
     
     
-    func playContent (data: Data)
+    func playContent (data: Data, segPosition: Int)
         
     {
         
+           print (" Poscicion en Segundos")
+           print(segPosition)
         
         do {
             
+
             audioPlayer = try AVAudioPlayer(data: data)
+            audioPlayer!.delegate = self
             audioPlayer?.play()
-            print("Playing ....")
+            print("Audio Player duration")
+            print (audioPlayer?.duration)
             
+           // audioPlayer?.play(atTime: Double(segPosition))
+            
+            
+            //audioPlayer?.play(atTime: 1)
+            
+            print("Playing ....")
+            estadodelPlay.text = "Playing ...."
         } catch {
-            print ("No Playing")
+            estadodelPlay.text = "No Playing - Error in Conection"
             //print(url.absoluteString)
         }
         
@@ -563,6 +614,32 @@ class PowerOfWorshipViewController:  UIViewController{
         
     }
     
+    func audioPlayerDidFinishPlaying(_ player: AVAudioPlayer, successfully flag: Bool) {
+       // audioRecorder = nil
+        print ( " Termino la song " )
+        
+        indexPlaylist = indexPlaylist + 1
+        
+        if indexPlaylist == urlSongs.count {
+            
+            indexPlaylist = 0
+            
+            self.playNow (index: indexPlaylist, segPosition: 0)
+            
+        } else {
+            
+            self.playNow (index: indexPlaylist, segPosition: 0)
+            
+            
+        }
+        
+        
+        
+        self.tituloCancion.text = self.urlSongs[indexPlaylist].title
+        
+    }
+    
+ 
     
     
 }

@@ -9,6 +9,12 @@
 import Foundation
 import UIKit
 
+import Firebase
+
+//protocol deleteDelegate {
+//
+//    func deleteEvennt(controller:UIViewController)
+//}
 class EventoSeleccionado: UIViewController {
     
     var devo = Event(dictionary: ["text":"text"])
@@ -33,6 +39,28 @@ class EventoSeleccionado: UIViewController {
                  return label2
              }()
        
+    lazy var deleteButton : UIButton = {
+        
+        
+        
+        let button = UIButton(type: .system)
+        button.setImage(UIImage(named: "trash")?.withRenderingMode(.alwaysOriginal), for: .normal)
+        button.addTarget(self, action: #selector(deleteEvent), for: .touchUpInside)
+        
+      return button
+        
+    } ()
+    
+    @objc func deleteEvent () {
+        
+        
+        print("Pimer llamado")
+        //delegate?.deleteEvennt(controller: self)
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "deleteEvent"), object: nil)
+        //deleteEvent
+        _ = navigationController?.popViewController(animated: true)
+    }
+    
     
     let textoDevocional: UITextView = {
         
@@ -43,9 +71,13 @@ class EventoSeleccionado: UIViewController {
         
     } ()
     
+     //var delegate: deleteDelegate?
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
+       
       //  devo = advengers.shared.devocionalSeleccinado
         
      //   view.backgroundColor = .white
@@ -57,7 +89,12 @@ class EventoSeleccionado: UIViewController {
         
         view.addSubview(textoDevocional)
         
+        if advengers.shared.isPastor {
+        view.addSubview(deleteButton)
         
+        deleteButton.anchor(top: view.topAnchor, left: view.leftAnchor, bottom: nil, right: nil, paddingTop: 100, paddingLeft: 15, paddingBottom: 0, paddingRight: 0, width: 0, height: 0)
+        
+        }
         imagen.loadImage(urlString: advengers.shared.eventolSeleccinado.photoURL!)
         
         titulo.text = advengers.shared.eventolSeleccinado.title
@@ -105,4 +142,6 @@ class EventoSeleccionado: UIViewController {
         
         
     }
+    
+    
 }

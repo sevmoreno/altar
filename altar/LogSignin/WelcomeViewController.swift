@@ -21,17 +21,70 @@ class WelcomeViewController: UIViewController {
 
       private var allGradientLayers: [CAGradientLayer] = []
     
+    var isConnected = false
     
     @IBOutlet weak var backButton: UIButton!
    
-    
+    let accounthelper = AccountHelpers ()
 
 
-    
+    func checkloopInternet () {
+        
+         let alertController = UIAlertController(title: "No internet conextion", message: "Try again?", preferredStyle: .alert)
+         
+         if accounthelper.isConnectedToInternet() {
+             isConnected = true
+             print("Yes! internet is available.")
+             
+         } else  {
+             
+             
+             
+          //   alertController.addAction(UIAlertAction(title: "Ok", style: .cancel, handler: nil))
+                     
+             
+                                         
+                                 
+                                         alertController.addAction(UIAlertAction(title: "Ok", style: .destructive, handler: { (_) in
+                     
+                                             do {
+                                                
+                                                
+                                                self.checkloopInternet ()
+                                                // try Auth.auth().signOut()
+                     
+                                                 //what happens? we need to present some kind of login controller
+                     
+                                             } catch let signOutErr {
+                                                 print("Failed to sign out:", signOutErr)
+                                             }
+                     
+                     
+                                         }))
+                    
+             
+                    
+                    present(alertController, animated: true, completion: nil)
+             
+             
+         }
+         
+         
+        
+        
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         
-       //try! Auth.auth().signOut()
+        
+        
+        
+       
+ 
+               
+               // do some tasks..
+     
+     //   try! Auth.auth().signOut()
         
         navigationController?.navigationBar.isHidden = true
 //        Auth.auth().addStateDidChangeListener() { auth, user in
@@ -42,7 +95,7 @@ class WelcomeViewController: UIViewController {
 //
 //                   }
 //               }
-        
+        checkloopInternet ()
         setupComponents()
 
         // Do any additional setup after loading the view.
@@ -59,8 +112,8 @@ class WelcomeViewController: UIViewController {
         let background: UIImageView = {
             
             let a = UIImageView ()
-            a.image = #imageLiteral(resourceName: "background_image")
-            a.contentMode = .scaleAspectFit
+            a.image = #imageLiteral(resourceName: "univers")
+            a.contentMode = .scaleAspectFill
             
             return a
             
@@ -77,6 +130,16 @@ class WelcomeViewController: UIViewController {
             return a
             
         } ()
+        
+        let logo: UIImageView = {
+            
+            let a = UIImageView ()
+            
+            a.image = UIImage(named: "logo")
+            
+            return a
+            
+        }  ()
         
         let LogInButton: UIButton = {
             let a = UIButton ()
@@ -241,6 +304,7 @@ class WelcomeViewController: UIViewController {
         background.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
          background.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
         
+        background.contentMode = .scaleAspectFill
         
         view.addSubview(background_Gray)
                
@@ -248,7 +312,14 @@ class WelcomeViewController: UIViewController {
         background_Gray.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         background_Gray.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
         
-
+  
+        background_Gray.contentMode = .scaleToFill
+        
+        
+        view.addSubview(logo)
+        
+        logo.contentMode = .scaleAspectFit
+        
         
         
          view.addSubview(altarLaber)
@@ -256,6 +327,8 @@ class WelcomeViewController: UIViewController {
         altarLaber.anchor(top: view.topAnchor, left: nil, bottom: nil, right: nil, paddingTop: 258, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 300, height: 0)
         altarLaber.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         
+        logo.anchor(top: nil, left: nil, bottom: altarLaber.topAnchor, right: nil, paddingTop: 0, paddingLeft: 0, paddingBottom: 5, paddingRight: 0, width: 33, height: 44)
+         logo.centerXAnchor.constraint(equalTo: altarLaber.centerXAnchor).isActive = true
         
         view.addSubview(togetherInTheSameLabel)
         
@@ -271,13 +344,13 @@ class WelcomeViewController: UIViewController {
         
         
         view.addSubview(LogInButton)
-        LogInButton.anchor(top: nil, left: nil, bottom: view.bottomAnchor, right: nil, paddingTop: 0, paddingLeft: 0, paddingBottom: 220, paddingRight: 0, width: 315, height: 44)
+        LogInButton.anchor(top: withMilionsOfUserLabel.bottomAnchor, left: nil, bottom: nil, right: nil, paddingTop: 20, paddingLeft: 0, paddingBottom: 00, paddingRight: 0, width: 315, height: 44)
         LogInButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
        // buttonLoginButton.titleLabel?.text = "Sign up"
         
          
         view.addSubview(SignUpButton)
-         SignUpButton.anchor(top: nil, left: nil, bottom: view.bottomAnchor, right: nil, paddingTop: 0, paddingLeft: 0, paddingBottom: 166, paddingRight: 0, width: 315, height: 44)
+         SignUpButton.anchor(top: LogInButton.bottomAnchor, left: nil, bottom: nil, right: nil, paddingTop: 10, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 315, height: 44)
          SignUpButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         SignUpButton.applyGradient(colors: [WelcomeViewController.UIColorFromRGB(0xF78361).cgColor,WelcomeViewController.UIColorFromRGB(0xF54B64).cgColor])
     }
@@ -285,8 +358,13 @@ class WelcomeViewController: UIViewController {
     
     @objc func logInActtion () {
     
+        if isConnected {
+            
+            
+            performSegue(withIdentifier: "logInActtion", sender: self)
+        }
     
-    performSegue(withIdentifier: "logInActtion", sender: self)
+    
     
     
     }
@@ -294,8 +372,14 @@ class WelcomeViewController: UIViewController {
     
     @objc func sigInActtion () {
     
+        
+        if isConnected {
+                  
+                  performSegue(withIdentifier: "sigInActtion", sender: self)
+                  
+              }
     
-    performSegue(withIdentifier: "sigInActtion", sender: self)
+    
     
     
     }

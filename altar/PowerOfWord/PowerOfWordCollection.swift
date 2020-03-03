@@ -11,7 +11,31 @@ import UIKit
 import AVFoundation
 import Firebase
 
-class PowerOfWordCollectionView: UICollectionViewController,  UICollectionViewDelegateFlowLayout  {
+class PowerOfWordCollectionView: UICollectionViewController,  UICollectionViewDelegateFlowLayout, devotionalDelegate  {
+    
+    
+    func deletCellD(for cell: DevotionalCollectionViewCell) {
+        
+        guard let indexPath = collectionView?.indexPath(for: cell) else { return }
+        
+        var devo =  self.devos[indexPath.item]
+        
+        guard let postId = devo.postID else { return }
+        
+        
+        let currentChurchID = advengers.shared.currentChurchInfo.uidChurch
+        print ("Data devo")
+        print (currentChurchID)
+        print (devo.devoUID)
+        let userPostRef = Database.database().reference().child("Devotionals").child(currentChurchID).child(devo.devoUID).removeValue()
+        
+        
+        
+        self.collectionView?.deleteItems(at: [indexPath])
+        self.devos.remove(at: indexPath.row)
+        self.collectionView.reloadData()
+    }
+    
     
     
     // NotificationCenter.default.post(name: NSNotification.Name(rawValue: "loadDevotional"), object: nil)
@@ -25,6 +49,15 @@ class PowerOfWordCollectionView: UICollectionViewController,  UICollectionViewDe
         
     //       collectionView?.register(DevotionalCollectionViewCell.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "headerWord")
 
+         let accounthelper = AccountHelpers ()
+        accounthelper.loadCurrentChurch (codigo: advengers.shared.currenUSer["churchID"] as! String,completionHandler: { (success) -> Void in
+
+              if success {
+                  
+                  
+              }
+              
+          })
         
            collectionView?.register(DevotionalCollectionViewCell.self, forCellWithReuseIdentifier: "oldWord")
           // collectionView?.register(textOnlyCell.self, forCellWithReuseIdentifier: "textOnlyCelll")
@@ -423,7 +456,7 @@ class PowerOfWordCollectionView: UICollectionViewController,  UICollectionViewDe
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "oldWord", for: indexPath) as? DevotionalCollectionViewCell
         cell?.backgroundColor = .red
-        
+        cell?.delegate = self
         cell?.post = devos[indexPath.row]
         return cell!
         

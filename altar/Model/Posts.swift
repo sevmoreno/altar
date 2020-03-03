@@ -34,7 +34,7 @@ class Posts {
         self.comments = dictionary["comments"] as? Int ?? 0
         self.photoImage = dictionary["pathtoPost"] as? String ?? "No image"
         self.userID = dictionary["userID"] as? String ?? ""
-        self.postID = dictionary["postID"] as? String ?? ""
+        self.postID = dictionary["postID"] as? String
         self.userPhoto = dictionary["userPhoto"] as? String ?? ""
         self.postType = dictionary["postType"] as? String ?? ""
         self.message = dictionary["message"] as? String ?? ""

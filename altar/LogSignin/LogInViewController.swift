@@ -14,6 +14,7 @@ import Firebase
 class logInViewController: UIViewController, UITextFieldDelegate {
     
     
+    @IBOutlet var errorMensajes: UILabel!
     
     @IBOutlet var viewGeneral: UIView!
     @IBOutlet weak var emailLogin: UITextField!
@@ -190,6 +191,8 @@ class logInViewController: UIViewController, UITextFieldDelegate {
             email.count > 0,
             password.count > 0
             else {
+                
+                errorMensajes.text = "You need your email & password to access Altar."
                 return
         }
         
@@ -199,7 +202,7 @@ class logInViewController: UIViewController, UITextFieldDelegate {
                 let alert = UIAlertController(title: "Sign In Failed",
                                               message: error.localizedDescription,
                                               preferredStyle: .alert)
-                
+                self.errorMensajes.text = error.localizedDescription
                 alert.addAction(UIAlertAction(title: "OK", style: .default))
                 
                 self.present(alert, animated: true, completion: nil)

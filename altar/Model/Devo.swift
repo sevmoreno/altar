@@ -26,7 +26,7 @@ struct Devo {
     var message: String! = ""
     
     var creationDate: Date!
-    
+    var devoUID: String! = ""
     
     init(dictionary: [String: Any]) {
                self.author = dictionary["author"] as? String ?? ""
@@ -34,6 +34,7 @@ struct Devo {
                self.title = dictionary["title"] as? String
                self.urltexto = dictionary["urltexto"] as? String
                self.photoURL = dictionary["photoURL"] as? String
+                self.devoUID = dictionary["devoUID"] as? String
         
             
                self.postID = dictionary["postID"] as? String ?? ""

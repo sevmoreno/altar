@@ -54,13 +54,14 @@ class ChatViewController: MessagesViewController,InputBarAccessoryViewDelegate, 
     
     //Background colors of the bubbles
     func backgroundColor(for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> UIColor {
-    return isFromCurrentSender(message: message) ? .blue: .lightGray
+        return isFromCurrentSender(message: message) ? advengers.shared.colorBlue: advengers.shared.colorOrange
     }
     //THis function shows the avatar
     func configureAvatarView(_ avatarView: AvatarView, for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) {
     //If it's current user show current user photo.
     if message.sender.senderId == currentUser.uid {
-    SDWebImageManager.shared.loadImage(with: currentUser.photoURL, options: .highPriority, progress: nil) { (image, data, error, cacheType, isFinished, imageUrl) in
+        let foto = URL(string: advengers.shared.currenUSer["photoURL"] as! String)
+    SDWebImageManager.shared.loadImage(with: foto, options: .highPriority, progress: nil) { (image, data, error, cacheType, isFinished, imageUrl) in
     avatarView.image = image
     }
     } else {
