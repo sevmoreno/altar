@@ -97,6 +97,7 @@
 		65A7AFD72405FED900A233C0 /* IAPManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65A7AFD62405FED900A233C0 /* IAPManager.swift */; };
 		65A7AFD9240645E800A233C0 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65A7AFD8240645E800A233C0 /* Model.swift */; };
 		65A7AFDB2406DC2600A233C0 /* SubscribeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65A7AFDA2406DC2600A233C0 /* SubscribeViewController.swift */; };
+		65A7AFDD240ECFDA00A233C0 /* EditUserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65A7AFDC240ECFD800A233C0 /* EditUserViewController.swift */; };
 		65ABFC83232C069000729B57 /* UsersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65ABFC82232C069000729B57 /* UsersViewController.swift */; };
 		65ABFC85232C0E1D00729B57 /* UserTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65ABFC84232C0E1D00729B57 /* UserTableViewCell.swift */; };
 		65ABFC87232C12C200729B57 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65ABFC86232C12C200729B57 /* User.swift */; };
@@ -210,6 +211,7 @@
 		65A7AFD62405FED900A233C0 /* IAPManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IAPManager.swift; sourceTree = "<group>"; };
 		65A7AFD8240645E800A233C0 /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 		65A7AFDA2406DC2600A233C0 /* SubscribeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscribeViewController.swift; sourceTree = "<group>"; };
+		65A7AFDC240ECFD800A233C0 /* EditUserViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditUserViewController.swift; sourceTree = "<group>"; };
 		65ABFC82232C069000729B57 /* UsersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersViewController.swift; sourceTree = "<group>"; };
 		65ABFC84232C0E1D00729B57 /* UserTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserTableViewCell.swift; sourceTree = "<group>"; };
 		65ABFC86232C12C200729B57 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
@@ -261,6 +263,7 @@
 			isa = PBXGroup;
 			children = (
 				65372DD723ECFEF30078778A /* SettingsViewController.swift */,
+				65A7AFDC240ECFD800A233C0 /* EditUserViewController.swift */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -688,6 +691,7 @@
 				65ABFC89232C170200729B57 /* Advengers.swift in Sources */,
 				659595C423D0EFC1007FB09C /* searchSongViewController.swift in Sources */,
 				653C0FC623FC837200700ACE /* Slide3Type.swift in Sources */,
+				65A7AFDD240ECFDA00A233C0 /* EditUserViewController.swift in Sources */,
 				65A7AFDB2406DC2600A233C0 /* SubscribeViewController.swift in Sources */,
 				654F95E52339307F00175A7E /* FeedOnlyTextCollectionViewCell.swift in Sources */,
 				65CB7E8B23C3CBAD0018526D /* DevotionalCollectionViewCell.swift in Sources */,

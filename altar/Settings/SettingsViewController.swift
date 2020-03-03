@@ -143,8 +143,13 @@ class SettingsViewController: UIViewController {
            navigationController?.dismiss(animated: true, completion: nil)
 
         
-          let vc =  WelcomeViewController ()
-            present(vc, animated: true)
+        self.view.window?.rootViewController?.dismiss(animated: true, completion: nil)
+        
+//          let vc =  WelcomeViewController ()
+//            present(vc, animated: true)
+        
+        
+        
     // _ = navigationController?.popToRootViewController(animated: true)
         
     }
